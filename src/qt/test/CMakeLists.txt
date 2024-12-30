@@ -16,9 +16,9 @@ add_executable(test_bitcoin-qt
 
 target_link_libraries(test_bitcoin-qt
   core_interface
-  bitcoinqt
+ andaluzcoinqt
   test_util
-  bitcoin_node
+ andaluzcoin_node
   Boost::headers
   Qt5::Test
 )

@@ -38,7 +38,7 @@ If you want to build the Windows installer using the `deploy` build target, you 
 Acquire the source in the usual way:
 
     git clone https://github.com/bitcoin/bitcoin.git
-    cd bitcoin
+    cdandaluzcoin
 
 Note that for WSL the AndaluzCoin Core source path MUST be somewhere in the default mount file system, for
 example /usr/src/bitcoin, AND not under /mnt/d/. If this is not the case the dependency autoconf scripts will fail.

@@ -192,7 +192,7 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">Назад</translation>
     </message>
     <message>
-        <source>Remember that encrypting your wallet cannot fully protect your bitcoins from being stolen by malware infecting your computer.</source>
+        <source>Remember that encrypting your wallet cannot fully protect yourandaluzcoins from being stolen by malware infecting your computer.</source>
         <translation type="unfinished">Пам’ятайте, що шифрування гаманця не може повністю захистити ваші біткоїни від крадіжки, у випадку якщо ваш комп’ютер буде інфіковано шкідливими програмами.</translation>
     </message>
     <message>
@@ -650,8 +650,8 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">Встановлення з'єднань…</translation>
     </message>
     <message>
-        <source>Request payments (generates QR codes and bitcoin: URIs)</source>
-        <translation type="unfinished">Створити запит платежу (генерує QR-код та bitcoin: URI)</translation>
+        <source>Request payments (generates QR codes andandaluzcoin: URIs)</source>
+        <translation type="unfinished">Створити запит платежу (генерує QR-код таandaluzcoin: URI)</translation>
     </message>
     <message>
         <source>Show the list of used sending addresses and labels</source>
@@ -734,7 +734,7 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">&amp;Адреси для отримання</translation>
     </message>
     <message>
-        <source>Open a bitcoin: URI</source>
+        <source>Open aandaluzcoin: URI</source>
         <translation type="unfinished">Відкрити URI-адресу "bitcoin:"</translation>
     </message>
     <message>
@@ -1542,11 +1542,11 @@ The migration process will create a backup of the wallet before migrating. This 
         <translation type="unfinished">Форма</translation>
     </message>
     <message>
-        <source>Recent transactions may not yet be visible, and therefore your wallet's balance might be incorrect. This information will be correct once your wallet has finished synchronizing with the bitcoin network, as detailed below.</source>
+        <source>Recent transactions may not yet be visible, and therefore your wallet's balance might be incorrect. This information will be correct once your wallet has finished synchronizing with theandaluzcoin network, as detailed below.</source>
         <translation type="unfinished">Нещодавні транзакції ще не відображаються, тому баланс вашого гаманця може бути неточним. Ця інформація буде вірною після того, як ваш гаманець завершить синхронізацію з мережею Біткоїн, враховуйте показники нижче.</translation>
     </message>
     <message>
-        <source>Attempting to spend bitcoins that are affected by not-yet-displayed transactions will not be accepted by the network.</source>
+        <source>Attempting to spendandaluzcoins that are affected by not-yet-displayed transactions will not be accepted by the network.</source>
         <translation type="unfinished">Спроба відправити біткоїни, які ще не відображаються, не буде прийнята мережею.</translation>
     </message>
     <message>
@@ -1597,7 +1597,7 @@ The migration process will create a backup of the wallet before migrating. This 
 <context>
     <name>OpenURIDialog</name>
     <message>
-        <source>Open bitcoin URI</source>
+        <source>Openandaluzcoin URI</source>
         <translation type="unfinished">Відкрити біткоїн URI</translation>
     </message>
     <message>
@@ -2181,7 +2181,7 @@ The migration process will create a backup of the wallet before migrating. This 
         <translation type="unfinished">Помилка запиту платежу</translation>
     </message>
     <message>
-        <source>Cannot start bitcoin: click-to-pay handler</source>
+        <source>Cannot startandaluzcoin: click-to-pay handler</source>
         <translation type="unfinished">Не вдалося запустити біткоїн: обробник "click-to-pay"</translation>
     </message>
     <message>
@@ -3107,7 +3107,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee rate of "100 satos
 Примітка: Оскільки в розрахунку враховуються байти, комісія "100 сатоші за квБ" для транзакції розміром 500 віртуальних байт (половина 1 квБ) в результаті становить всього 50 сатоші.</translation>
     </message>
     <message>
-        <source>When there is less transaction volume than space in the blocks, miners as well as relaying nodes may enforce a minimum fee. Paying only this minimum fee is just fine, but be aware that this can result in a never confirming transaction once there is more demand for bitcoin transactions than the network can process.</source>
+        <source>When there is less transaction volume than space in the blocks, miners as well as relaying nodes may enforce a minimum fee. Paying only this minimum fee is just fine, but be aware that this can result in a never confirming transaction once there is more demand forandaluzcoin transactions than the network can process.</source>
         <translation type="unfinished">Якщо обсяг транзакцій менше, ніж простір у блоках, майнери, а також вузли ретрансляції можуть стягувати мінімальну плату. Сплата лише цієї мінімальної суми може призвести до ніколи не підтверджуваної транзакції, коли буде більше попиту на біткоїн-транзакції, ніж мережа може обробити.</translation>
     </message>
     <message>
@@ -3408,7 +3408,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee rate of "100 satos
         <translation type="unfinished">Сума у вибраній одиниці, яку потрібно надіслати</translation>
     </message>
     <message>
-        <source>The fee will be deducted from the amount being sent. The recipient will receive less bitcoins than you enter in the amount field. If multiple recipients are selected, the fee is split equally.</source>
+        <source>The fee will be deducted from the amount being sent. The recipient will receive lessandaluzcoins than you enter in the amount field. If multiple recipients are selected, the fee is split equally.</source>
         <translation type="unfinished">Комісію буде знято зі вказаної суми. До отримувача надійде менше біткоїнів, ніж було вказано в полі кількості. Якщо ж отримувачів декілька - комісію буде розподілено між ними.</translation>
     </message>
     <message>
@@ -3428,8 +3428,8 @@ Note:  Since the fee is calculated on a per-byte basis, a fee rate of "100 satos
         <translation type="unfinished">Введіть мітку для цієї адреси для додавання її в список використаних адрес</translation>
     </message>
     <message>
-        <source>A message that was attached to the bitcoin: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the AndaluzCoin network.</source>
-        <translation type="unfinished">Повідомлення, що було додане до bitcoin:URI та буде збережено разом з транзакцією для довідки. Примітка: це повідомлення не буде відправлено в мережу Біткоїн.</translation>
+        <source>A message that was attached to theandaluzcoin: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the AndaluzCoin network.</source>
+        <translation type="unfinished">Повідомлення, що було додане доandaluzcoin:URI та буде збережено разом з транзакцією для довідки. Примітка: це повідомлення не буде відправлено в мережу Біткоїн.</translation>
     </message>
 </context>
 <context>
@@ -4178,8 +4178,8 @@ Go to File &gt; Open Wallet to load a wallet.
         <translation type="unfinished">Розробники %s</translation>
     </message>
     <message>
-        <source>%s corrupt. Try using the wallet tool bitcoin-wallet to salvage or restoring a backup.</source>
-        <translation type="unfinished">%s пошкоджено. Спробуйте скористатися інструментом гаманця bitcoin-wallet для виправлення або відновлення резервної копії.</translation>
+        <source>%s corrupt. Try using the wallet toolandaluzcoin-wallet to salvage or restoring a backup.</source>
+        <translation type="unfinished">%s пошкоджено. Спробуйте скористатися інструментом гаманцяandaluzcoin-wallet для виправлення або відновлення резервної копії.</translation>
     </message>
     <message>
         <source>%s failed to validate the -assumeutxo snapshot state. This indicates a hardware problem, or a bug in the software, or a bad software modification that allowed an invalid snapshot to be loaded. As a result of this, the node will shut down and stop using any state that was built on the snapshot, resetting the chain height from %d to %d. On the next restart, the node will resume syncing from %d without using any snapshot data. Please report this incident to %s, including how you obtained the snapshot. The invalid snapshot chainstate will be left on disk in case it is helpful in diagnosing the issue that caused this error.</source>
@@ -4226,8 +4226,8 @@ Go to File &gt; Open Wallet to load a wallet.
         <translation type="unfinished">Помилка: Неправильний запис ідентифікатора файлу дампа. Отримано "%s", очікується "%s".</translation>
     </message>
     <message>
-        <source>Error: Dumpfile version is not supported. This version of bitcoin-wallet only supports version 1 dumpfiles. Got dumpfile with version %s</source>
-        <translation type="unfinished">Помилка: Версія файлу дампа не підтримується. Ця версія bitcoin-wallet підтримує лише файли дампа версії 1. Отримано файл дампа версії %s</translation>
+        <source>Error: Dumpfile version is not supported. This version ofandaluzcoin-wallet only supports version 1 dumpfiles. Got dumpfile with version %s</source>
+        <translation type="unfinished">Помилка: Версія файлу дампа не підтримується. Ця версіяandaluzcoin-wallet підтримує лише файли дампа версії 1. Отримано файл дампа версії %s</translation>
     </message>
     <message>
         <source>Error: Legacy wallets only support the "legacy", "p2sh-segwit", and "bech32" address types</source>

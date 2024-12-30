@@ -184,7 +184,7 @@ This example lists the steps necessary to setup and build a command line only di
 
     pacman --sync --needed cmake boost gcc git libevent make python sqlite
     git clone https://github.com/bitcoin/bitcoin.git
-    cd bitcoin/
+    cdandaluzcoin/
     cmake -B build
     cmake --build build
     ctest --test-dir build

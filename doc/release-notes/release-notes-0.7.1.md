@@ -16,8 +16,8 @@ maintained by Matt Corallo to automatically keep
 up-to-date.  Just type:
   sudo apt-add-repository ppa:bitcoin/bitcoin
   sudo apt-get update
-in your terminal, then install the bitcoin-qt package:
-  sudo apt-get install bitcoin-qt
+in your terminal, then install theandaluzcoin-qt package:
+  sudo apt-get installandaluzcoin-qt
 
 KNOWN ISSUES
 ------------
@@ -30,7 +30,7 @@ How to Upgrade
 If you are running an older version, shut it down. Wait
 until it has completely shut down (which might take a few minutes for older
 versions), then run the installer (on Windows) or just copy over
-/Applications/AndaluzCoin-Qt (on Mac) or bitcoind/bitcoin-qt (on Linux).
+/Applications/AndaluzCoin-Qt (on Mac) orandaluzcoind/bitcoin-qt (on Linux).
 
 If you were running on Linux with a version that might have been compiled
 with a different version of Berkeley DB (for example, if you were using an
@@ -75,7 +75,7 @@ Dependency changes
 Bug fixes
 ---------
 
-* Clicking on a bitcoin: URI on Windows should now launch AndaluzCoin-Qt properly.
+* Clicking on aandaluzcoin: URI on Windows should now launch AndaluzCoin-Qt properly.
 
 * When running -testnet, use RPC port 18332 by default.
 

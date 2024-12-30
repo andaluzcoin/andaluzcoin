@@ -72,7 +72,7 @@ checkconfig()
 	if grep -qs '^rpcuser=' "${BITCOIND_CONFIGFILE}" && \
 		! grep -qs '^rpcpassword=' "${BITCOIND_CONFIGFILE}" ; then
 		eerror ""
-		eerror "ERROR: You must set a secure rpcpassword to run bitcoind."
+		eerror "ERROR: You must set a secure rpcpassword to runandaluzcoind."
 		eerror "The setting must appear in ${BITCOIND_CONFIGFILE}"
 		eerror ""
 		eerror "This password is security critical to securing wallets "

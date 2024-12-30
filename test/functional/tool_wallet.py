@@ -2,7 +2,7 @@
 # Copyright (c) 2018-2022 The AndaluzCoin Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
-"""Test bitcoin-wallet."""
+"""Testandaluzcoin-wallet."""
 
 import os
 import platform
@@ -37,7 +37,7 @@ class ToolWalletTest(AndaluzCoinTestFramework):
         self.skip_if_no_wallet()
         self.skip_if_no_wallet_tool()
 
-    def bitcoin_wallet_process(self, *args):
+    defandaluzcoin_wallet_process(self, *args):
         default_args = ['-datadir={}'.format(self.nodes[0].datadir_path), '-chain=%s' % self.chain]
         if not self.options.descriptors and 'create' in args:
             default_args.append('-legacy')
@@ -369,12 +369,12 @@ class ToolWalletTest(AndaluzCoinTestFramework):
         bad_ver_wallet_dump = self.nodes[0].datadir_path / "wallet-bad_ver1.dump"
         dump_data["BITCOIN_CORE_WALLET_DUMP"] = "0"
         self.write_dump(dump_data, bad_ver_wallet_dump)
-        self.assert_raises_tool_error('Error: Dumpfile version is not supported. This version of bitcoin-wallet only supports version 1 dumpfiles. Got dumpfile with version 0', '-wallet=badload', '-dumpfile={}'.format(bad_ver_wallet_dump), 'createfromdump')
+        self.assert_raises_tool_error('Error: Dumpfile version is not supported. This version ofandaluzcoin-wallet only supports version 1 dumpfiles. Got dumpfile with version 0', '-wallet=badload', '-dumpfile={}'.format(bad_ver_wallet_dump), 'createfromdump')
         assert not (self.nodes[0].wallets_path / "badload").is_dir()
         bad_ver_wallet_dump = self.nodes[0].datadir_path / "wallet-bad_ver2.dump"
         dump_data["BITCOIN_CORE_WALLET_DUMP"] = "2"
         self.write_dump(dump_data, bad_ver_wallet_dump)
-        self.assert_raises_tool_error('Error: Dumpfile version is not supported. This version of bitcoin-wallet only supports version 1 dumpfiles. Got dumpfile with version 2', '-wallet=badload', '-dumpfile={}'.format(bad_ver_wallet_dump), 'createfromdump')
+        self.assert_raises_tool_error('Error: Dumpfile version is not supported. This version ofandaluzcoin-wallet only supports version 1 dumpfiles. Got dumpfile with version 2', '-wallet=badload', '-dumpfile={}'.format(bad_ver_wallet_dump), 'createfromdump')
         assert not (self.nodes[0].wallets_path / "badload").is_dir()
         bad_magic_wallet_dump = self.nodes[0].datadir_path / "wallet-bad_magic.dump"
         del dump_data["BITCOIN_CORE_WALLET_DUMP"]
@@ -531,7 +531,7 @@ class ToolWalletTest(AndaluzCoinTestFramework):
         self.nodes[0].loadwallet("unclean_lsn")
         # Next cause a bunch of writes by filling the keypool
         wallet.keypoolrefill(wallet.getwalletinfo()["keypoolsize"] + 100)
-        # Lastly kill bitcoind so that the LSNs don't get reset
+        # Lastly killandaluzcoind so that the LSNs don't get reset
         self.nodes[0].process.kill()
         self.nodes[0].wait_until_stopped(expected_ret_code=1 if platform.system() == "Windows" else -9)
         assert self.nodes[0].is_node_stopped()

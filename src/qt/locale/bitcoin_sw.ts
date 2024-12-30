@@ -176,8 +176,8 @@ Kutia sahihi kunawezekana tu kwa anwani za aina ya 'urithi'.</translation>
         <translation type="unfinished">Ingiza nenosiri la zamani na nenosiri jipya la pochi yako.</translation>
     </message>
     <message>
-        <source>Remember that encrypting your wallet cannot fully protect your bitcoins from being stolen by malware infecting your computer.</source>
-        <translation type="unfinished">Kumbuka kwamba usimbaji fiche wa mkoba wako hauwezi kulinda bitcoins zako zisiibiwe na programu hasidi kuambukiza kompyuta yako.</translation>
+        <source>Remember that encrypting your wallet cannot fully protect yourandaluzcoins from being stolen by malware infecting your computer.</source>
+        <translation type="unfinished">Kumbuka kwamba usimbaji fiche wa mkoba wako hauwezi kulindaandaluzcoins zako zisiibiwe na programu hasidi kuambukiza kompyuta yako.</translation>
     </message>
     <message>
         <source>Wallet to be encrypted</source>
@@ -507,8 +507,8 @@ Kutia sahihi kunawezekana tu kwa anwani za aina ya 'urithi'.</translation>
         <translation type="unfinished">Kuunganisha na wenzako wa kushirikiana...</translation>
     </message>
     <message>
-        <source>Request payments (generates QR codes and bitcoin: URIs)</source>
-        <translation type="unfinished">Omba malipo (huzalisha nambari za QR na bitcoin: URIs)</translation>
+        <source>Request payments (generates QR codes andandaluzcoin: URIs)</source>
+        <translation type="unfinished">Omba malipo (huzalisha nambari za QR naandaluzcoin: URIs)</translation>
     </message>
     <message>
         <source>Show the list of used sending addresses and labels</source>
@@ -586,8 +586,8 @@ Kutia sahihi kunawezekana tu kwa anwani za aina ya 'urithi'.</translation>
         <translation type="unfinished">&amp;Inapokea anwani</translation>
     </message>
     <message>
-        <source>Open a bitcoin: URI</source>
-        <translation type="unfinished">Fungua bitcoin: URI</translation>
+        <source>Open aandaluzcoin: URI</source>
+        <translation type="unfinished">Funguaandaluzcoin: URI</translation>
     </message>
     <message>
         <source>Open Wallet</source>

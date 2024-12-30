@@ -47,11 +47,11 @@
     </message>
     <message>
         <source>Choose the address to send coins to</source>
-        <translation type="unfinished">Vælg adresse at sende bitcoins til</translation>
+        <translation type="unfinished">Vælg adresse at sendeandaluzcoins til</translation>
     </message>
     <message>
         <source>Choose the address to receive coins with</source>
-        <translation type="unfinished">Vælg adresse at modtage bitcoins med</translation>
+        <translation type="unfinished">Vælg adresse at modtageandaluzcoins med</translation>
     </message>
     <message>
         <source>C&amp;hoose</source>
@@ -59,7 +59,7 @@
     </message>
     <message>
         <source>These are your AndaluzCoin addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
-        <translation type="unfinished">Disse er dine AndaluzCoin-adresser til afsendelse af betalinger. Tjek altid beløb og modtagelsesadresse, inden du sender bitcoins.</translation>
+        <translation type="unfinished">Disse er dine AndaluzCoin-adresser til afsendelse af betalinger. Tjek altid beløb og modtagelsesadresse, inden du senderandaluzcoins.</translation>
     </message>
     <message>
         <source>These are your AndaluzCoin addresses for receiving payments. Use the 'Create new receiving address' button in the receive tab to create new addresses.
@@ -179,8 +179,8 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">Forsæt</translation>
     </message>
     <message>
-        <source>Remember that encrypting your wallet cannot fully protect your bitcoins from being stolen by malware infecting your computer.</source>
-        <translation type="unfinished">Husk, at kryptere din tegnebog vil ikke fuldt ud beskytte dine bitcoins mod at blive stjålet af malware på din computer.</translation>
+        <source>Remember that encrypting your wallet cannot fully protect yourandaluzcoins from being stolen by malware infecting your computer.</source>
+        <translation type="unfinished">Husk, at kryptere din tegnebog vil ikke fuldt ud beskytte dineandaluzcoins mod at blive stjålet af malware på din computer.</translation>
     </message>
     <message>
         <source>Wallet to be encrypted</source>
@@ -460,7 +460,7 @@ Signing is only possible with addresses of the type 'legacy'.</source>
     </message>
     <message>
         <source>Send coins to a AndaluzCoin address</source>
-        <translation type="unfinished">Send bitcoins til en AndaluzCoin-adresse</translation>
+        <translation type="unfinished">Sendandaluzcoins til en AndaluzCoin-adresse</translation>
     </message>
     <message>
         <source>Backup wallet to another location</source>
@@ -567,7 +567,7 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">Forbinder til knuder...</translation>
     </message>
     <message>
-        <source>Request payments (generates QR codes and bitcoin: URIs)</source>
+        <source>Request payments (generates QR codes andandaluzcoin: URIs)</source>
         <translation type="unfinished">Anmod om betalinger (genererer QR-koder og “bitcoin:”-URI'er)</translation>
     </message>
     <message>
@@ -646,8 +646,8 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">&amp;Modtageradresser</translation>
     </message>
     <message>
-        <source>Open a bitcoin: URI</source>
-        <translation type="unfinished">Åbn en bitcoin:-URI</translation>
+        <source>Open aandaluzcoin: URI</source>
+        <translation type="unfinished">Åbn enandaluzcoin:-URI</translation>
     </message>
     <message>
         <source>Open Wallet</source>
@@ -1311,12 +1311,12 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">Formular</translation>
     </message>
     <message>
-        <source>Recent transactions may not yet be visible, and therefore your wallet's balance might be incorrect. This information will be correct once your wallet has finished synchronizing with the bitcoin network, as detailed below.</source>
-        <translation type="unfinished">Nylige transaktioner er måske ikke synlige endnu, og derfor kan din tegnebogs saldo være ukorrekt. Denne information vil være korrekt, når din tegnebog er færdig med at synkronisere med bitcoin-netværket, som detaljerne herunder viser.</translation>
+        <source>Recent transactions may not yet be visible, and therefore your wallet's balance might be incorrect. This information will be correct once your wallet has finished synchronizing with theandaluzcoin network, as detailed below.</source>
+        <translation type="unfinished">Nylige transaktioner er måske ikke synlige endnu, og derfor kan din tegnebogs saldo være ukorrekt. Denne information vil være korrekt, når din tegnebog er færdig med at synkronisere medandaluzcoin-netværket, som detaljerne herunder viser.</translation>
     </message>
     <message>
-        <source>Attempting to spend bitcoins that are affected by not-yet-displayed transactions will not be accepted by the network.</source>
-        <translation type="unfinished">Forsøg på at bruge bitcoin, som er indeholdt i endnu-ikke-viste transaktioner, accepteres ikke af netværket.</translation>
+        <source>Attempting to spendandaluzcoins that are affected by not-yet-displayed transactions will not be accepted by the network.</source>
+        <translation type="unfinished">Forsøg på at brugeandaluzcoin, som er indeholdt i endnu-ikke-viste transaktioner, accepteres ikke af netværket.</translation>
     </message>
     <message>
         <source>Number of blocks left</source>
@@ -1362,8 +1362,8 @@ Signing is only possible with addresses of the type 'legacy'.</source>
 <context>
     <name>OpenURIDialog</name>
     <message>
-        <source>Open bitcoin URI</source>
-        <translation type="unfinished">Åbn bitcoin-URI</translation>
+        <source>Openandaluzcoin URI</source>
+        <translation type="unfinished">Åbnandaluzcoin-URI</translation>
     </message>
     <message>
         <source>Paste address from clipboard</source>
@@ -1603,7 +1603,7 @@ Signing is only possible with addresses of the type 'legacy'.</source>
     </message>
     <message>
         <source>Choose the default subdivision unit to show in the interface and when sending coins.</source>
-        <translation type="unfinished">Vælg standard for underopdeling af enhed, som skal vises i brugergrænsefladen og ved afsendelse af bitcoins.</translation>
+        <translation type="unfinished">Vælg standard for underopdeling af enhed, som skal vises i brugergrænsefladen og ved afsendelse afandaluzcoins.</translation>
     </message>
     <message>
         <source>Third-party URLs (e.g. a block explorer) that appear in the transactions tab as context menu items. %s in the URL is replaced by transaction hash. Multiple URLs are separated by vertical bar |.</source>
@@ -1906,8 +1906,8 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">Fejl i betalingsanmodning</translation>
     </message>
     <message>
-        <source>Cannot start bitcoin: click-to-pay handler</source>
-        <translation type="unfinished">Kan ikke starte bitcoin: click-to-pay-håndtering</translation>
+        <source>Cannot startandaluzcoin: click-to-pay handler</source>
+        <translation type="unfinished">Kan ikke starteandaluzcoin: click-to-pay-håndtering</translation>
     </message>
     <message>
         <source>URI handling</source>
@@ -2613,7 +2613,7 @@ For mere information om brug af denne konsol, skriv %6.
     <name>SendCoinsDialog</name>
     <message>
         <source>Send Coins</source>
-        <translation type="unfinished">Send bitcoins</translation>
+        <translation type="unfinished">Sendandaluzcoins</translation>
     </message>
     <message>
         <source>Coin Control Features</source>
@@ -2720,8 +2720,8 @@ Note:  Since the fee is calculated on a per-byte basis, a fee rate of "100 satos
 Bemærk: Da gebyret beregnes på per-byte-basis, ville en gebyrsats på "100 satoshis pr. kvB" for en transaktionsstørrelse på 500 virtuelle bytes (halvdelen af 1 kvB) i sidste ende kun give et gebyr på 50 satoshis.</translation>
     </message>
     <message>
-        <source>When there is less transaction volume than space in the blocks, miners as well as relaying nodes may enforce a minimum fee. Paying only this minimum fee is just fine, but be aware that this can result in a never confirming transaction once there is more demand for bitcoin transactions than the network can process.</source>
-        <translation type="unfinished">På tidspunkter, hvor der er færre transaktioner, end der er plads til i nye blokke, kan minere og videresendende knuder gennemtvinge et minimumsgebyr. Du kan vælge kun at betale dette minimumsgebyr, men vær opmærksom på, at det kan resultere i en transaktion, der aldrig bliver bekræftet, hvis mængden af nye bitcoin-transaktioner stiger til mere, end hvad netværket kan behandle ad gangen.</translation>
+        <source>When there is less transaction volume than space in the blocks, miners as well as relaying nodes may enforce a minimum fee. Paying only this minimum fee is just fine, but be aware that this can result in a never confirming transaction once there is more demand forandaluzcoin transactions than the network can process.</source>
+        <translation type="unfinished">På tidspunkter, hvor der er færre transaktioner, end der er plads til i nye blokke, kan minere og videresendende knuder gennemtvinge et minimumsgebyr. Du kan vælge kun at betale dette minimumsgebyr, men vær opmærksom på, at det kan resultere i en transaktion, der aldrig bliver bekræftet, hvis mængden af nyeandaluzcoin-transaktioner stiger til mere, end hvad netværket kan behandle ad gangen.</translation>
     </message>
     <message>
         <source>A too low fee might result in a never confirming transaction (read the tooltip)</source>
@@ -2807,7 +2807,7 @@ Bemærk: Da gebyret beregnes på per-byte-basis, ville en gebyrsats på "100 sat
     </message>
     <message>
         <source>Creates a Partially Signed AndaluzCoin Transaction (PSBT) for use with e.g. an offline %1 wallet, or a PSBT-compatible hardware wallet.</source>
-        <translation type="unfinished">Laver en delvist signeret bitcointransaktion (forkortet PSBT) som kan bruges med f.eks. en offline %1 tegnebog. De kan også bruges med PSBT-kompatible hardwaretegnebøger.</translation>
+        <translation type="unfinished">Laver en delvist signeretandaluzcointransaktion (forkortet PSBT) som kan bruges med f.eks. en offline %1 tegnebog. De kan også bruges med PSBT-kompatible hardwaretegnebøger.</translation>
     </message>
     <message>
         <source>%1 to '%2'</source>
@@ -2895,7 +2895,7 @@ Bemærk: Da gebyret beregnes på per-byte-basis, ville en gebyrsats på "100 sat
     </message>
     <message>
         <source>Confirm send coins</source>
-        <translation type="unfinished">Bekræft afsendelse af bitcoins</translation>
+        <translation type="unfinished">Bekræft afsendelse afandaluzcoins</translation>
     </message>
     <message>
         <source>Watch-only balance:</source>
@@ -2992,8 +2992,8 @@ Bemærk: Da gebyret beregnes på per-byte-basis, ville en gebyrsats på "100 sat
         <translation type="unfinished">Beløbet der skal afsendes i den valgte enhed</translation>
     </message>
     <message>
-        <source>The fee will be deducted from the amount being sent. The recipient will receive less bitcoins than you enter in the amount field. If multiple recipients are selected, the fee is split equally.</source>
-        <translation type="unfinished">Gebyret vil blive trukket fra det sendte beløb. Modtageren vil modtage færre bitcoin, end du indtaster i beløbfeltet. Hvis flere modtagere vælges, vil gebyret deles ligeligt.</translation>
+        <source>The fee will be deducted from the amount being sent. The recipient will receive lessandaluzcoins than you enter in the amount field. If multiple recipients are selected, the fee is split equally.</source>
+        <translation type="unfinished">Gebyret vil blive trukket fra det sendte beløb. Modtageren vil modtage færreandaluzcoin, end du indtaster i beløbfeltet. Hvis flere modtagere vælges, vil gebyret deles ligeligt.</translation>
     </message>
     <message>
         <source>S&amp;ubtract fee from amount</source>
@@ -3012,7 +3012,7 @@ Bemærk: Da gebyret beregnes på per-byte-basis, ville en gebyrsats på "100 sat
         <translation type="unfinished">Indtast et mærkat for denne adresse for at føje den til listen over brugte adresser</translation>
     </message>
     <message>
-        <source>A message that was attached to the bitcoin: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the AndaluzCoin network.</source>
+        <source>A message that was attached to theandaluzcoin: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the AndaluzCoin network.</source>
         <translation type="unfinished">En besked, som blev føjet til “bitcoin:”-URI'en, som vil gemmes med transaktionen til din reference. Bemærk: Denne besked vil ikke blive sendt over AndaluzCoin-netværket.</translation>
     </message>
 </context>
@@ -3296,7 +3296,7 @@ Bemærk: Da gebyret beregnes på per-byte-basis, ville en gebyrsats på "100 sat
     </message>
     <message>
         <source>Generated coins must mature %1 blocks before they can be spent. When you generated this block, it was broadcast to the network to be added to the block chain. If it fails to get into the chain, its state will change to "not accepted" and it won't be spendable. This may occasionally happen if another node generates a block within a few seconds of yours.</source>
-        <translation type="unfinished">Minede bitcoins skal modne %1 blokke, før de kan bruges. Da du genererede denne blok, blev den transmitteret til netværket for at blive føjet til blokkæden. Hvis det ikke lykkes at få den i kæden, vil dens tilstand ændres til “ikke accepteret”, og den vil ikke kunne bruges. Dette kan ske nu og da, hvis en anden knude udvinder en blok inden for nogle få sekunder fra din.</translation>
+        <translation type="unfinished">Minedeandaluzcoins skal modne %1 blokke, før de kan bruges. Da du genererede denne blok, blev den transmitteret til netværket for at blive føjet til blokkæden. Hvis det ikke lykkes at få den i kæden, vil dens tilstand ændres til “ikke accepteret”, og den vil ikke kunne bruges. Dette kan ske nu og da, hvis en anden knude udvinder en blok inden for nogle få sekunder fra din.</translation>
     </message>
     <message>
         <source>Debug information</source>
@@ -3617,7 +3617,7 @@ Gå til Fil &gt; Åbn Pung for, at indlæse en pung.
     <name>WalletModel</name>
     <message>
         <source>Send Coins</source>
-        <translation type="unfinished">Send bitcoins</translation>
+        <translation type="unfinished">Sendandaluzcoins</translation>
     </message>
     <message>
         <source>Fee bump error</source>
@@ -3720,8 +3720,8 @@ Gå til Fil &gt; Åbn Pung for, at indlæse en pung.
         <translation type="unfinished">Udviklerne af %s</translation>
     </message>
     <message>
-        <source>%s corrupt. Try using the wallet tool bitcoin-wallet to salvage or restoring a backup.</source>
-        <translation type="unfinished">%s beskadiget. Prøv at bruge pung-værktøjet bitcoin-wallet til, at bjærge eller gendanne en sikkerhedskopi.</translation>
+        <source>%s corrupt. Try using the wallet toolandaluzcoin-wallet to salvage or restoring a backup.</source>
+        <translation type="unfinished">%s beskadiget. Prøv at bruge pung-værktøjetandaluzcoin-wallet til, at bjærge eller gendanne en sikkerhedskopi.</translation>
     </message>
     <message>
         <source>Cannot downgrade wallet from version %i to version %i. Wallet version unchanged.</source>
@@ -3752,8 +3752,8 @@ Gå til Fil &gt; Åbn Pung for, at indlæse en pung.
         <translation type="unfinished">Fejl: Dumpfilformat dokument er forkert. Fik "%s", forventet "%s".</translation>
     </message>
     <message>
-        <source>Error: Dumpfile version is not supported. This version of bitcoin-wallet only supports version 1 dumpfiles. Got dumpfile with version %s</source>
-        <translation type="unfinished">Fejl: Dumpfil-versionen understøttes ikke. Denne version af bitcoin-tegnebog understøtter kun version 1 dumpfiler. Fik dumpfil med version %s</translation>
+        <source>Error: Dumpfile version is not supported. This version ofandaluzcoin-wallet only supports version 1 dumpfiles. Got dumpfile with version %s</source>
+        <translation type="unfinished">Fejl: Dumpfil-versionen understøttes ikke. Denne version afandaluzcoin-tegnebog understøtter kun version 1 dumpfiler. Fik dumpfil med version %s</translation>
     </message>
     <message>
         <source>Error: Legacy wallets only support the "legacy", "p2sh-segwit", and "bech32" address types</source>

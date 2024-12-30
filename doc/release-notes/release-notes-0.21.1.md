@@ -53,7 +53,7 @@ for schnorr signatures (BIP340) and tapscript (BIP342).
 If activated, these improvements will allow users of single-signature
 scripts, multisignature scripts, and complex contracts to all use
 identical-appearing commitments that enhance their privacy and the
-fungibility of all bitcoins. Spenders will enjoy lower fees and the
+fungibility of allandaluzcoins. Spenders will enjoy lower fees and the
 ability to resolve many multisig scripts and complex contracts with the
 same efficiency, low fees, and large anonymity set as single-sig users.
 Taproot and schnorr also include efficiency improvements for full nodes
@@ -174,7 +174,7 @@ Updated RPCs
 - #20861 BIP 350: Implement Bech32m and use it for v1+ segwit addresses (sipa)
 
 ### Documentation
-- #21384 add signet to bitcoin.conf documentation (jonatack)
+- #21384 add signet toandaluzcoin.conf documentation (jonatack)
 - #21342 Remove outdated comment (hebasto)
 
 Credits

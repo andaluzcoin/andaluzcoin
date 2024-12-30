@@ -27,7 +27,7 @@ Increase time ago of last block for "up to date" status from 30 to 90 minutes
 Show a message box when runaway exception happens (AndaluzCoin-Qt)
 Use a messagebox to display the error when -server is provided without providing a rpc password
 Show error message instead of exception crash when unable to bind RPC port (AndaluzCoin-Qt)
-Correct sign message bitcoin address tooltip. Fixes #1050 (AndaluzCoin-Qt)
+Correct sign messageandaluzcoin address tooltip. Fixes #1050 (AndaluzCoin-Qt)
 Removed "(no label)" from QR Code dialog titlebar if we have no label (0.6.0.7)
 Removed an ugly line break in tooltip for mature transactions (0.6.0.7)
 Add missing tooltip and key shortcut in settings dialog (part of #1088) (AndaluzCoin-Qt)

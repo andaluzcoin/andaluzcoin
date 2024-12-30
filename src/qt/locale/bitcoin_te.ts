@@ -176,7 +176,7 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">కొనసాగించు</translation>
     </message>
     <message>
-        <source>Remember that encrypting your wallet cannot fully protect your bitcoins from being stolen by malware infecting your computer.</source>
+        <source>Remember that encrypting your wallet cannot fully protect yourandaluzcoins from being stolen by malware infecting your computer.</source>
         <translation type="unfinished">మీ వాలెట్‌ను గుప్తీకరించడం వల్ల మీ కంప్యూటర్‌కు హాని కలిగించే మాల్వేర్ దొంగిలించకుండా మీ బిట్‌కాయిన్‌లను పూర్తిగా రక్షించలేమని గుర్తుంచుకోండి.</translation>
     </message>
     <message>
@@ -568,7 +568,7 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">తోటివారితో కలుస్తుంది…</translation>
     </message>
     <message>
-        <source>Request payments (generates QR codes and bitcoin: URIs)</source>
+        <source>Request payments (generates QR codes andandaluzcoin: URIs)</source>
         <translation type="unfinished">చెల్లింపులను అభ్యర్థించండి (QR కోడ్‌లు మరియు బిట్‌కాయిన్‌లను ఉత్పత్తి చేస్తుంది: URIలు)</translation>
     </message>
     <message>
@@ -651,7 +651,7 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">&amp;చిరునామాలను స్వీకరిస్తోంది</translation>
     </message>
     <message>
-        <source>Open a bitcoin: URI</source>
+        <source>Open aandaluzcoin: URI</source>
         <translation type="unfinished">బిట్‌కాయిన్‌ను తెరవండి: URI</translation>
     </message>
     <message>
@@ -1391,7 +1391,7 @@ Signing is only possible with addresses of the type 'legacy'.</source>
 <context>
     <name>OpenURIDialog</name>
     <message>
-        <source>Open bitcoin URI</source>
+        <source>Openandaluzcoin URI</source>
         <translation type="unfinished">బిట్‌కాయిన్ URIని తెరవండి</translation>
     </message>
     <message>
@@ -1909,7 +1909,7 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">చెల్లింపు అభ్యర్ధన లోపం</translation>
     </message>
     <message>
-        <source>Cannot start bitcoin: click-to-pay handler</source>
+        <source>Cannot startandaluzcoin: click-to-pay handler</source>
         <translation type="unfinished">బిట్‌కాయిన్‌ను ప్రారంభించడం సాధ్యం కాదు: క్లిక్-టు-పే హ్యాండ్లర్</translation>
     </message>
     <message>

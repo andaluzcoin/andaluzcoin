@@ -180,8 +180,8 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">Συνεχίστε</translation>
     </message>
     <message>
-        <source>Remember that encrypting your wallet cannot fully protect your bitcoins from being stolen by malware infecting your computer.</source>
-        <translation type="unfinished">Θυμίσου ότι το να κρυπτογραφείς το πορτοφόλι σου δεν μπορεί να προστατέψει πλήρως τα bitcoins σου από κλοπή από  κακόβουλο λογισμικό που έχει μολύνει τον υπολογιστή σου</translation>
+        <source>Remember that encrypting your wallet cannot fully protect yourandaluzcoins from being stolen by malware infecting your computer.</source>
+        <translation type="unfinished">Θυμίσου ότι το να κρυπτογραφείς το πορτοφόλι σου δεν μπορεί να προστατέψει πλήρως ταandaluzcoins σου από κλοπή από  κακόβουλο λογισμικό που έχει μολύνει τον υπολογιστή σου</translation>
     </message>
     <message>
         <source>Wallet to be encrypted</source>
@@ -479,7 +479,7 @@ Signing is only possible with addresses of the type 'legacy'.</source>
     </message>
     <message>
         <source>Send coins to a AndaluzCoin address</source>
-        <translation type="unfinished">Στείλε νομίσματα σε μια διεύθυνση bitcoin</translation>
+        <translation type="unfinished">Στείλε νομίσματα σε μια διεύθυνσηandaluzcoin</translation>
     </message>
     <message>
         <source>Backup wallet to another location</source>
@@ -590,8 +590,8 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">Σύνδεση στους χρήστες...</translation>
     </message>
     <message>
-        <source>Request payments (generates QR codes and bitcoin: URIs)</source>
-        <translation type="unfinished">Αίτηση πληρωμών (δημιουργεί QR codes και διευθύνσεις bitcoin: )</translation>
+        <source>Request payments (generates QR codes andandaluzcoin: URIs)</source>
+        <translation type="unfinished">Αίτηση πληρωμών (δημιουργεί QR codes και διευθύνσειςandaluzcoin: )</translation>
     </message>
     <message>
         <source>Show the list of used sending addresses and labels</source>
@@ -673,8 +673,8 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">&amp;Λήψη διευθύνσεων</translation>
     </message>
     <message>
-        <source>Open a bitcoin: URI</source>
-        <translation type="unfinished">Ανοίξτε ένα bitcoin: URI</translation>
+        <source>Open aandaluzcoin: URI</source>
+        <translation type="unfinished">Ανοίξτε έναandaluzcoin: URI</translation>
     </message>
     <message>
         <source>Open Wallet</source>
@@ -1465,12 +1465,12 @@ The migration process will create a backup of the wallet before migrating. This 
         <translation type="unfinished">Φόρμα</translation>
     </message>
     <message>
-        <source>Recent transactions may not yet be visible, and therefore your wallet's balance might be incorrect. This information will be correct once your wallet has finished synchronizing with the bitcoin network, as detailed below.</source>
+        <source>Recent transactions may not yet be visible, and therefore your wallet's balance might be incorrect. This information will be correct once your wallet has finished synchronizing with theandaluzcoin network, as detailed below.</source>
         <translation type="unfinished">Οι πρόσφατες συναλλαγές ενδέχεται να μην είναι ακόμα ορατές και επομένως η ισορροπία του πορτοφολιού σας μπορεί να είναι εσφαλμένη. Αυτές οι πληροφορίες θα είναι σωστές όταν ολοκληρωθεί το συγχρονισμό του πορτοφολιού σας με το δίκτυο AndaluzCoin, όπως περιγράφεται παρακάτω.</translation>
     </message>
     <message>
-        <source>Attempting to spend bitcoins that are affected by not-yet-displayed transactions will not be accepted by the network.</source>
-        <translation type="unfinished">Η προσπάθεια να δαπανήσετε bitcoins που επηρεάζονται από τις μη εμφανιζόμενες ακόμη συναλλαγές δεν θα γίνει αποδεκτή από το δίκτυο.</translation>
+        <source>Attempting to spendandaluzcoins that are affected by not-yet-displayed transactions will not be accepted by the network.</source>
+        <translation type="unfinished">Η προσπάθεια να δαπανήσετεandaluzcoins που επηρεάζονται από τις μη εμφανιζόμενες ακόμη συναλλαγές δεν θα γίνει αποδεκτή από το δίκτυο.</translation>
     </message>
     <message>
         <source>Number of blocks left</source>
@@ -1524,8 +1524,8 @@ The migration process will create a backup of the wallet before migrating. This 
 <context>
     <name>OpenURIDialog</name>
     <message>
-        <source>Open bitcoin URI</source>
-        <translation type="unfinished">Ανοίξτε το bitcoin URI</translation>
+        <source>Openandaluzcoin URI</source>
+        <translation type="unfinished">Ανοίξτε τοandaluzcoin URI</translation>
     </message>
     <message>
         <source>Paste address from clipboard</source>
@@ -2106,8 +2106,8 @@ ID Συναλλαγής: %1</translation>
         <translation type="unfinished">Σφάλμα αίτησης πληρωμής</translation>
     </message>
     <message>
-        <source>Cannot start bitcoin: click-to-pay handler</source>
-        <translation type="unfinished">Δεν είναι δυνατή η εκκίνηση του bitcoin: χειριστής click-to-pay</translation>
+        <source>Cannot startandaluzcoin: click-to-pay handler</source>
+        <translation type="unfinished">Δεν είναι δυνατή η εκκίνηση τουandaluzcoin: χειριστής click-to-pay</translation>
     </message>
     <message>
         <source>URI handling</source>
@@ -3013,8 +3013,8 @@ Note:  Since the fee is calculated on a per-byte basis, a fee rate of "100 satos
 Σημείωση: Εφόσον η χρέωση υπολογίζεται ανά byte, ένας ρυθμός χρέωσης των «100 satoshis ανά kvB» για μέγεθος συναλλαγής 500 ψηφιακών bytes (το μισό του 1 kvB) θα απέφερε χρέωση μόλις 50 satoshis.</translation>
     </message>
     <message>
-        <source>When there is less transaction volume than space in the blocks, miners as well as relaying nodes may enforce a minimum fee. Paying only this minimum fee is just fine, but be aware that this can result in a never confirming transaction once there is more demand for bitcoin transactions than the network can process.</source>
-        <translation type="unfinished">Όταν υπάρχει λιγότερος όγκος συναλλαγών από το χώρο στα μπλοκ, οι ανθρακωρύχοι καθώς και οι κόμβοι αναμετάδοσης μπορούν να επιβάλουν ένα ελάχιστο τέλος. Η πληρωμή μόνο αυτού του ελάχιστου τέλους είναι μια χαρά, αλλά γνωρίζετε ότι αυτό μπορεί να οδηγήσει σε μια συναλλαγή που δεν επιβεβαιώνει ποτέ τη στιγμή που υπάρχει μεγαλύτερη ζήτηση για συναλλαγές bitcoin από ό, τι μπορεί να επεξεργαστεί το δίκτυο.</translation>
+        <source>When there is less transaction volume than space in the blocks, miners as well as relaying nodes may enforce a minimum fee. Paying only this minimum fee is just fine, but be aware that this can result in a never confirming transaction once there is more demand forandaluzcoin transactions than the network can process.</source>
+        <translation type="unfinished">Όταν υπάρχει λιγότερος όγκος συναλλαγών από το χώρο στα μπλοκ, οι ανθρακωρύχοι καθώς και οι κόμβοι αναμετάδοσης μπορούν να επιβάλουν ένα ελάχιστο τέλος. Η πληρωμή μόνο αυτού του ελάχιστου τέλους είναι μια χαρά, αλλά γνωρίζετε ότι αυτό μπορεί να οδηγήσει σε μια συναλλαγή που δεν επιβεβαιώνει ποτέ τη στιγμή που υπάρχει μεγαλύτερη ζήτηση για συναλλαγέςandaluzcoin από ό, τι μπορεί να επεξεργαστεί το δίκτυο.</translation>
     </message>
     <message>
         <source>A too low fee might result in a never confirming transaction (read the tooltip)</source>
@@ -3300,8 +3300,8 @@ Note:  Since the fee is calculated on a per-byte basis, a fee rate of "100 satos
         <translation type="unfinished">Το ποσό που θα αποσταλεί στην επιλεγμένη μονάδα</translation>
     </message>
     <message>
-        <source>The fee will be deducted from the amount being sent. The recipient will receive less bitcoins than you enter in the amount field. If multiple recipients are selected, the fee is split equally.</source>
-        <translation type="unfinished">Το τέλος θα αφαιρεθεί από το ποσό που αποστέλλεται. Ο παραλήπτης θα λάβει λιγότερα bitcoins από ό,τι εισάγετε στο πεδίο ποσό. Εάν επιλεγούν πολλοί παραλήπτες, το έξοδο διαιρείται εξίσου.</translation>
+        <source>The fee will be deducted from the amount being sent. The recipient will receive lessandaluzcoins than you enter in the amount field. If multiple recipients are selected, the fee is split equally.</source>
+        <translation type="unfinished">Το τέλος θα αφαιρεθεί από το ποσό που αποστέλλεται. Ο παραλήπτης θα λάβει λιγότεραandaluzcoins από ό,τι εισάγετε στο πεδίο ποσό. Εάν επιλεγούν πολλοί παραλήπτες, το έξοδο διαιρείται εξίσου.</translation>
     </message>
     <message>
         <source>S&amp;ubtract fee from amount</source>
@@ -3320,8 +3320,8 @@ Note:  Since the fee is calculated on a per-byte basis, a fee rate of "100 satos
         <translation type="unfinished">Εισάγετε μία ετικέτα για αυτή την διεύθυνση για να προστεθεί στη λίστα με τις χρησιμοποιημένες διευθύνσεις</translation>
     </message>
     <message>
-        <source>A message that was attached to the bitcoin: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the AndaluzCoin network.</source>
-        <translation type="unfinished">Ένα μήνυμα που επισυνάφθηκε στο bitcoin: URI το οποίο θα αποθηκευτεί με τη συναλλαγή για αναφορά. Σημείωση: Αυτό το μήνυμα δεν θα σταλεί μέσω του δικτύου AndaluzCoin.</translation>
+        <source>A message that was attached to theandaluzcoin: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the AndaluzCoin network.</source>
+        <translation type="unfinished">Ένα μήνυμα που επισυνάφθηκε στοandaluzcoin: URI το οποίο θα αποθηκευτεί με τη συναλλαγή για αναφορά. Σημείωση: Αυτό το μήνυμα δεν θα σταλεί μέσω του δικτύου AndaluzCoin.</translation>
     </message>
 </context>
 <context>
@@ -4039,8 +4039,8 @@ Go to File &gt; Open Wallet to load a wallet.
         <translation type="unfinished">Οι προγραμματιστές %s</translation>
     </message>
     <message>
-        <source>%s corrupt. Try using the wallet tool bitcoin-wallet to salvage or restoring a backup.</source>
-        <translation type="unfinished">%s κατεστραμμένο. Δοκιμάστε να το επισκευάσετε με το εργαλείο πορτοφολιού bitcoin-wallet, ή επαναφέρετε κάποιο αντίγραφο ασφαλείας.</translation>
+        <source>%s corrupt. Try using the wallet toolandaluzcoin-wallet to salvage or restoring a backup.</source>
+        <translation type="unfinished">%s κατεστραμμένο. Δοκιμάστε να το επισκευάσετε με το εργαλείο πορτοφολιούandaluzcoin-wallet, ή επαναφέρετε κάποιο αντίγραφο ασφαλείας.</translation>
     </message>
     <message>
         <source>Cannot downgrade wallet from version %i to version %i. Wallet version unchanged.</source>
@@ -4059,8 +4059,8 @@ Go to File &gt; Open Wallet to load a wallet.
         <translation type="unfinished">Σφάλμα: Η καταγραφή του φορμά του αρχείου dump είναι εσφαλμένη. Ελήφθη: «%s», αναμενόταν: «φορμά».</translation>
     </message>
     <message>
-        <source>Error: Dumpfile version is not supported. This version of bitcoin-wallet only supports version 1 dumpfiles. Got dumpfile with version %s</source>
-        <translation type="unfinished">Σφάλμα: Η έκδοση του αρχείου dump δεν υποστηρίζεται. Αυτή η έκδοση του bitcoin-wallet υποστηρίζει αρχεία dump μόνο της έκδοσης 1. Δόθηκε αρχείο dump έκδοσης %s.</translation>
+        <source>Error: Dumpfile version is not supported. This version ofandaluzcoin-wallet only supports version 1 dumpfiles. Got dumpfile with version %s</source>
+        <translation type="unfinished">Σφάλμα: Η έκδοση του αρχείου dump δεν υποστηρίζεται. Αυτή η έκδοση τουandaluzcoin-wallet υποστηρίζει αρχεία dump μόνο της έκδοσης 1. Δόθηκε αρχείο dump έκδοσης %s.</translation>
     </message>
     <message>
         <source>File %s already exists. If you are sure this is what you want, move it out of the way first.</source>

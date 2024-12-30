@@ -32,7 +32,7 @@ To run:
 
 - Functional tests used to ensure proper functionality of the GUI. Significant changes to the GUI code normally require new or updated tests.
 
-#### bitcoingui.(h/cpp)
+####andaluzcoingui.(h/cpp)
 
 - Represents the main window of the AndaluzCoin UI.
 
@@ -51,7 +51,7 @@ To run:
 
 #### paymentserver.(h/cpp)
 
-- (Deprecated) Used to process BIP21 payment URI requests. Also handles URI-based application switching (e.g. when following a bitcoin:... link from a browser).
+- (Deprecated) Used to process BIP21 payment URI requests. Also handles URI-based application switching (e.g. when following aandaluzcoin:... link from a browser).
 
 #### walletview.(h/cpp)
 
@@ -61,7 +61,7 @@ To run:
 
 * UI elements like AndaluzCoinAmountField, which inherit from QWidget.
 * `bitcoinstrings.cpp`: automatically generated
-* `bitcoinunits.(h/cpp)`: BTC / mBTC / etc. handling
+* `bitcoinunits.(h/cpp)`: LUZ / mLUZ / etc. handling
 * `callback.h`
 * `guiconstants.h`: UI colors, app name, etc.
 * `guiutil.h`: several helper functions

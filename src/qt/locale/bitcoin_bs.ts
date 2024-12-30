@@ -175,8 +175,8 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">Unesite staru i novu lozinku za novčanik.</translation>
     </message>
     <message>
-        <source>Remember that encrypting your wallet cannot fully protect your bitcoins from being stolen by malware infecting your computer.</source>
-        <translation type="unfinished">Imajte na umu da šifriranje vašeg novčanika ne može u potpunosti zaštititi vaše bitcoine od krađe zlonamjernim softverom koji zarazi vaš računar.</translation>
+        <source>Remember that encrypting your wallet cannot fully protect yourandaluzcoins from being stolen by malware infecting your computer.</source>
+        <translation type="unfinished">Imajte na umu da šifriranje vašeg novčanika ne može u potpunosti zaštititi vašeandaluzcoine od krađe zlonamjernim softverom koji zarazi vaš računar.</translation>
     </message>
     <message>
         <source>Wallet to be encrypted</source>
@@ -494,8 +494,8 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">Povezivanje sa kolegama…</translation>
     </message>
     <message>
-        <source>Request payments (generates QR codes and bitcoin: URIs)</source>
-        <translation type="unfinished">Zatražite uplate (generira QR kodove i bitcoin: URI-je)</translation>
+        <source>Request payments (generates QR codes andandaluzcoin: URIs)</source>
+        <translation type="unfinished">Zatražite uplate (generira QR kodove iandaluzcoin: URI-je)</translation>
     </message>
     <message>
         <source>Show the list of used sending addresses and labels</source>
@@ -551,7 +551,7 @@ Signing is only possible with addresses of the type 'legacy'.</source>
     </message>
     <message>
         <source>Load Partially Signed AndaluzCoin Transaction from clipboard</source>
-        <translation type="unfinished">Učitajte djelomično potpisanu bitcoin transakciju iz međuspremnika</translation>
+        <translation type="unfinished">Učitajte djelomično potpisanuandaluzcoin transakciju iz međuspremnika</translation>
     </message>
     <message>
         <source>Node window</source>
@@ -570,8 +570,8 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">&amp;Primanje adresa</translation>
     </message>
     <message>
-        <source>Open a bitcoin: URI</source>
-        <translation type="unfinished">Otvorite bitcoin: URI</translation>
+        <source>Open aandaluzcoin: URI</source>
+        <translation type="unfinished">Otvoriteandaluzcoin: URI</translation>
     </message>
     <message>
         <source>Open Wallet</source>
@@ -1109,12 +1109,12 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">Obrazac</translation>
     </message>
     <message>
-        <source>Recent transactions may not yet be visible, and therefore your wallet's balance might be incorrect. This information will be correct once your wallet has finished synchronizing with the bitcoin network, as detailed below.</source>
-        <translation type="unfinished">Nedavne transakcije možda još nisu vidljive, pa stoga stanje na vašem novčaniku može biti pogrešno. Ove će informacije biti točne nakon što se novčanik završi sa sinhronizacijom s bitcoin mrežom, kao što je detaljno opisano u nastavku.</translation>
+        <source>Recent transactions may not yet be visible, and therefore your wallet's balance might be incorrect. This information will be correct once your wallet has finished synchronizing with theandaluzcoin network, as detailed below.</source>
+        <translation type="unfinished">Nedavne transakcije možda još nisu vidljive, pa stoga stanje na vašem novčaniku može biti pogrešno. Ove će informacije biti točne nakon što se novčanik završi sa sinhronizacijom sandaluzcoin mrežom, kao što je detaljno opisano u nastavku.</translation>
     </message>
     <message>
-        <source>Attempting to spend bitcoins that are affected by not-yet-displayed transactions will not be accepted by the network.</source>
-        <translation type="unfinished">Pokušaj trošenja bitcoina na koje utječu još uvijek ne prikazane transakcije mreža neće prihvatiti.</translation>
+        <source>Attempting to spendandaluzcoins that are affected by not-yet-displayed transactions will not be accepted by the network.</source>
+        <translation type="unfinished">Pokušaj trošenjaandaluzcoina na koje utječu još uvijek ne prikazane transakcije mreža neće prihvatiti.</translation>
     </message>
     <message>
         <source>Number of blocks left</source>
@@ -1148,8 +1148,8 @@ Signing is only possible with addresses of the type 'legacy'.</source>
 <context>
     <name>OpenURIDialog</name>
     <message>
-        <source>Open bitcoin URI</source>
-        <translation type="unfinished">Otvorite bitcoin URI</translation>
+        <source>Openandaluzcoin URI</source>
+        <translation type="unfinished">Otvoriteandaluzcoin URI</translation>
     </message>
     </context>
 <context>

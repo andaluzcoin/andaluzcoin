@@ -184,8 +184,8 @@ Allekirjoitus on mahdollista vain 'legacy'-tyyppisillä osoitteilla.</translatio
         <translation type="unfinished">Takaisin</translation>
     </message>
     <message>
-        <source>Remember that encrypting your wallet cannot fully protect your bitcoins from being stolen by malware infecting your computer.</source>
-        <translation type="unfinished">Muista, että salaamalla lompakkosi et täysin pysty suojaamaan bitcoineja varkaudelta, jotka aiheutuvat koneellasi olevista haittaohjelmista.</translation>
+        <source>Remember that encrypting your wallet cannot fully protect yourandaluzcoins from being stolen by malware infecting your computer.</source>
+        <translation type="unfinished">Muista, että salaamalla lompakkosi et täysin pysty suojaamaanandaluzcoineja varkaudelta, jotka aiheutuvat koneellasi olevista haittaohjelmista.</translation>
     </message>
     <message>
         <source>Wallet to be encrypted</source>
@@ -606,8 +606,8 @@ Allekirjoitus on mahdollista vain 'legacy'-tyyppisillä osoitteilla.</translatio
         <translation type="unfinished">Yhdistetään vertaisiin...</translation>
     </message>
     <message>
-        <source>Request payments (generates QR codes and bitcoin: URIs)</source>
-        <translation type="unfinished">Pyydä maksuja (Luo QR koodit ja bitcoin: URIt)</translation>
+        <source>Request payments (generates QR codes andandaluzcoin: URIs)</source>
+        <translation type="unfinished">Pyydä maksuja (Luo QR koodit jaandaluzcoin: URIt)</translation>
     </message>
     <message>
         <source>Show the list of used sending addresses and labels</source>
@@ -662,7 +662,7 @@ Allekirjoitus on mahdollista vain 'legacy'-tyyppisillä osoitteilla.</translatio
     </message>
     <message>
         <source>Load Partially Signed AndaluzCoin Transaction</source>
-        <translation type="unfinished">Lataa osittain allekirjoitettu bitcoin-siirtotapahtuma</translation>
+        <translation type="unfinished">Lataa osittain allekirjoitettuandaluzcoin-siirtotapahtuma</translation>
     </message>
     <message>
         <source>Load PSBT from &amp;clipboard…</source>
@@ -670,7 +670,7 @@ Allekirjoitus on mahdollista vain 'legacy'-tyyppisillä osoitteilla.</translatio
     </message>
     <message>
         <source>Load Partially Signed AndaluzCoin Transaction from clipboard</source>
-        <translation type="unfinished">Lataa osittain allekirjoitettu bitcoin-siirtotapahtuma leikepöydältä</translation>
+        <translation type="unfinished">Lataa osittain allekirjoitettuandaluzcoin-siirtotapahtuma leikepöydältä</translation>
     </message>
     <message>
         <source>Node window</source>
@@ -689,8 +689,8 @@ Allekirjoitus on mahdollista vain 'legacy'-tyyppisillä osoitteilla.</translatio
         <translation type="unfinished">&amp;Vastaanotto-osoitteet</translation>
     </message>
     <message>
-        <source>Open a bitcoin: URI</source>
-        <translation type="unfinished">Avaa bitcoin: URI</translation>
+        <source>Open aandaluzcoin: URI</source>
+        <translation type="unfinished">Avaaandaluzcoin: URI</translation>
     </message>
     <message>
         <source>Open Wallet</source>
@@ -1489,12 +1489,12 @@ Siirtoprosessi luo varmuuskopion lompakosta ennen siirtoa. Tämä varmuuskopioti
         <translation type="unfinished">Lomake</translation>
     </message>
     <message>
-        <source>Recent transactions may not yet be visible, and therefore your wallet's balance might be incorrect. This information will be correct once your wallet has finished synchronizing with the bitcoin network, as detailed below.</source>
-        <translation type="unfinished">Viimeiset tapahtumat eivät välttämättä vielä näy, joten lompakkosi saldo voi olla virheellinen. Tieto korjautuu, kunhan lompakkosi synkronointi bitcoin-verkon kanssa on päättynyt. Tiedot näkyvät alla.</translation>
+        <source>Recent transactions may not yet be visible, and therefore your wallet's balance might be incorrect. This information will be correct once your wallet has finished synchronizing with theandaluzcoin network, as detailed below.</source>
+        <translation type="unfinished">Viimeiset tapahtumat eivät välttämättä vielä näy, joten lompakkosi saldo voi olla virheellinen. Tieto korjautuu, kunhan lompakkosi synkronointiandaluzcoin-verkon kanssa on päättynyt. Tiedot näkyvät alla.</translation>
     </message>
     <message>
-        <source>Attempting to spend bitcoins that are affected by not-yet-displayed transactions will not be accepted by the network.</source>
-        <translation type="unfinished">Verkko ei tule hyväksymään sellaisten bitcoinien käyttämistä, jotka liittyvät vielä näkymättömissä oleviin siirtoihin.</translation>
+        <source>Attempting to spendandaluzcoins that are affected by not-yet-displayed transactions will not be accepted by the network.</source>
+        <translation type="unfinished">Verkko ei tule hyväksymään sellaistenandaluzcoinien käyttämistä, jotka liittyvät vielä näkymättömissä oleviin siirtoihin.</translation>
     </message>
     <message>
         <source>Number of blocks left</source>
@@ -1548,8 +1548,8 @@ Siirtoprosessi luo varmuuskopion lompakosta ennen siirtoa. Tämä varmuuskopioti
 <context>
     <name>OpenURIDialog</name>
     <message>
-        <source>Open bitcoin URI</source>
-        <translation type="unfinished">Avaa bitcoin URI</translation>
+        <source>Openandaluzcoin URI</source>
+        <translation type="unfinished">Avaaandaluzcoin URI</translation>
     </message>
     <message>
         <source>Paste address from clipboard</source>
@@ -1801,11 +1801,11 @@ Siirtoprosessi luo varmuuskopion lompakosta ennen siirtoa. Tämä varmuuskopioti
     </message>
     <message>
         <source>&amp;Unit to show amounts in:</source>
-        <translation type="unfinished">Yksikkö jona bitcoin-määrät näytetään</translation>
+        <translation type="unfinished">Yksikkö jonaandaluzcoin-määrät näytetään</translation>
     </message>
     <message>
         <source>Choose the default subdivision unit to show in the interface and when sending coins.</source>
-        <translation type="unfinished">Valitse mitä yksikköä käytetään ensisijaisesti bitcoin-määrien näyttämiseen.</translation>
+        <translation type="unfinished">Valitse mitä yksikköä käytetään ensisijaisestiandaluzcoin-määrien näyttämiseen.</translation>
     </message>
     <message>
         <source>&amp;Third-party transaction URLs</source>
@@ -2045,7 +2045,7 @@ Siirtoprosessi luo varmuuskopion lompakosta ennen siirtoa. Tämä varmuuskopioti
     </message>
     <message>
         <source>PSBT copied to clipboard.</source>
-        <translation type="unfinished">PSBT (osittain allekirjoitettu bitcoin-siirto) kopioitiin leikepöydälle.</translation>
+        <translation type="unfinished">PSBT (osittain allekirjoitettuandaluzcoin-siirto) kopioitiin leikepöydälle.</translation>
     </message>
     <message>
         <source>Save Transaction Data</source>
@@ -2058,7 +2058,7 @@ Siirtoprosessi luo varmuuskopion lompakosta ennen siirtoa. Tämä varmuuskopioti
     </message>
     <message>
         <source>PSBT saved to disk.</source>
-        <translation type="unfinished">PSBT (osittain tallennettu bitcoin-siirto) tallennettiin levylle.</translation>
+        <translation type="unfinished">PSBT (osittain tallennettuandaluzcoin-siirto) tallennettiin levylle.</translation>
     </message>
     <message>
         <source>Sends %1 to %2</source>
@@ -2124,7 +2124,7 @@ Siirtoprosessi luo varmuuskopion lompakosta ennen siirtoa. Tämä varmuuskopioti
         <translation type="unfinished">Maksupyyntövirhe</translation>
     </message>
     <message>
-        <source>Cannot start bitcoin: click-to-pay handler</source>
+        <source>Cannot startandaluzcoin: click-to-pay handler</source>
         <translation type="unfinished">AndaluzCoinia ei voi käynnistää: klikkaa-maksaaksesi -käsittelijän virhe</translation>
     </message>
     <message>
@@ -3031,8 +3031,8 @@ Huom: Koska maksu lasketaan per tavu, "100 satoshin per kB" maksunopeus 500 virt
 ) tapahtumakoolle johtaisi lopulta vain 50 satoshin maksuun.</translation>
     </message>
     <message>
-        <source>When there is less transaction volume than space in the blocks, miners as well as relaying nodes may enforce a minimum fee. Paying only this minimum fee is just fine, but be aware that this can result in a never confirming transaction once there is more demand for bitcoin transactions than the network can process.</source>
-        <translation type="unfinished">Mikäli lohkoissa ei ole tilaa kaikille siirtotapahtumille, voi louhijat sekä välittävät solmut pakottaa vähimmäispalkkion. Tämän vähimmäispalkkion maksaminen on täysin OK, mutta huomaa, että se saattaa johtaa siihen, ettei siirto vahvistu koskaan, jos bitcoin-siirtoja on enemmän kuin mitä verkko pystyy käsittelemään.</translation>
+        <source>When there is less transaction volume than space in the blocks, miners as well as relaying nodes may enforce a minimum fee. Paying only this minimum fee is just fine, but be aware that this can result in a never confirming transaction once there is more demand forandaluzcoin transactions than the network can process.</source>
+        <translation type="unfinished">Mikäli lohkoissa ei ole tilaa kaikille siirtotapahtumille, voi louhijat sekä välittävät solmut pakottaa vähimmäispalkkion. Tämän vähimmäispalkkion maksaminen on täysin OK, mutta huomaa, että se saattaa johtaa siihen, ettei siirto vahvistu koskaan, josandaluzcoin-siirtoja on enemmän kuin mitä verkko pystyy käsittelemään.</translation>
     </message>
     <message>
         <source>A too low fee might result in a never confirming transaction (read the tooltip)</source>
@@ -3118,7 +3118,7 @@ Huom: Koska maksu lasketaan per tavu, "100 satoshin per kB" maksunopeus 500 virt
     </message>
     <message>
         <source>Creates a Partially Signed AndaluzCoin Transaction (PSBT) for use with e.g. an offline %1 wallet, or a PSBT-compatible hardware wallet.</source>
-        <translation type="unfinished">Luo osittain allekirjoitetun bitcoin-siirtotapahtuman (PSBT) käytettäväksi mm. offline %1 lompakko tai PSBT-yhteensopiva hardware-lompakko.</translation>
+        <translation type="unfinished">Luo osittain allekirjoitetunandaluzcoin-siirtotapahtuman (PSBT) käytettäväksi mm. offline %1 lompakko tai PSBT-yhteensopiva hardware-lompakko.</translation>
     </message>
     <message>
         <source>%1 to '%2'</source>
@@ -3317,8 +3317,8 @@ Huom: Koska maksu lasketaan per tavu, "100 satoshin per kB" maksunopeus 500 virt
         <translation type="unfinished">Lähetettävä summa valitussa yksikössä</translation>
     </message>
     <message>
-        <source>The fee will be deducted from the amount being sent. The recipient will receive less bitcoins than you enter in the amount field. If multiple recipients are selected, the fee is split equally.</source>
-        <translation type="unfinished">Kulu vähennetään lähetettävästä määrästä. Saaja vastaanottaa vähemmän bitcoineja kuin merkitset Määrä-kenttään. Jos saajia on monia, kulu jaetaan tasan.</translation>
+        <source>The fee will be deducted from the amount being sent. The recipient will receive lessandaluzcoins than you enter in the amount field. If multiple recipients are selected, the fee is split equally.</source>
+        <translation type="unfinished">Kulu vähennetään lähetettävästä määrästä. Saaja vastaanottaa vähemmänandaluzcoineja kuin merkitset Määrä-kenttään. Jos saajia on monia, kulu jaetaan tasan.</translation>
     </message>
     <message>
         <source>S&amp;ubtract fee from amount</source>
@@ -3337,8 +3337,8 @@ Huom: Koska maksu lasketaan per tavu, "100 satoshin per kB" maksunopeus 500 virt
         <translation type="unfinished">Aseta nimi tälle osoitteelle lisätäksesi sen käytettyjen osoitteiden listalle.</translation>
     </message>
     <message>
-        <source>A message that was attached to the bitcoin: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the AndaluzCoin network.</source>
-        <translation type="unfinished">Viesti joka liitettiin bitcoin: URI:iin tallennetaan rahansiirtoon viitteeksi. Tätä viestiä ei lähetetä AndaluzCoin-verkkoon.</translation>
+        <source>A message that was attached to theandaluzcoin: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the AndaluzCoin network.</source>
+        <translation type="unfinished">Viesti joka liitettiinandaluzcoin: URI:iin tallennetaan rahansiirtoon viitteeksi. Tätä viestiä ei lähetetä AndaluzCoin-verkkoon.</translation>
     </message>
 </context>
 <context>
@@ -4076,8 +4076,8 @@ Varoitus: Tämä voi maksaa ylimääräisen maksun vähentämällä vaihtotuloja
         <translation type="unfinished">%s kehittäjät</translation>
     </message>
     <message>
-        <source>%s corrupt. Try using the wallet tool bitcoin-wallet to salvage or restoring a backup.</source>
-        <translation type="unfinished">%s on vioittunut. Yritä käyttää lompakkotyökalua bitcoin-wallet pelastaaksesi sen tai palauttaa varmuuskopio.</translation>
+        <source>%s corrupt. Try using the wallet toolandaluzcoin-wallet to salvage or restoring a backup.</source>
+        <translation type="unfinished">%s on vioittunut. Yritä käyttää lompakkotyökaluaandaluzcoin-wallet pelastaaksesi sen tai palauttaa varmuuskopio.</translation>
     </message>
     <message>
         <source>%s failed to validate the -assumeutxo snapshot state. This indicates a hardware problem, or a bug in the software, or a bad software modification that allowed an invalid snapshot to be loaded. As a result of this, the node will shut down and stop using any state that was built on the snapshot, resetting the chain height from %d to %d. On the next restart, the node will resume syncing from %d without using any snapshot data. Please report this incident to %s, including how you obtained the snapshot. The invalid snapshot chainstate will be left on disk in case it is helpful in diagnosing the issue that caused this error.</source>
@@ -4097,8 +4097,8 @@ ilman, että käytetään mitään snapshot-tietoja. Ilmoita tästä tapauksesta
         <translation type="unfinished">Jaettu MIT -ohjelmistolisenssin alaisuudessa, katso mukana tuleva %s tiedosto tai %s</translation>
     </message>
     <message>
-        <source>Error: Dumpfile version is not supported. This version of bitcoin-wallet only supports version 1 dumpfiles. Got dumpfile with version %s</source>
-        <translation type="unfinished">Virhe: Dump-tiedoston versio ei ole tuettu. Tämä bitcoin-lompakon versio tukee vain version 1 dump-tiedostoja. Annetun dump-tiedoston versio %s</translation>
+        <source>Error: Dumpfile version is not supported. This version ofandaluzcoin-wallet only supports version 1 dumpfiles. Got dumpfile with version %s</source>
+        <translation type="unfinished">Virhe: Dump-tiedoston versio ei ole tuettu. Tämäandaluzcoin-lompakon versio tukee vain version 1 dump-tiedostoja. Annetun dump-tiedoston versio %s</translation>
     </message>
     <message>
         <source>More than one onion bind address is provided. Using %s for the automatically created Tor onion service.</source>

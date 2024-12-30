@@ -17,6 +17,6 @@ public:
 };
 
 static clang::tidy::ClangTidyModuleRegistry::Add<AndaluzCoinModule>
-    X("bitcoin-module", "Adds bitcoin checks.");
+    X("bitcoin-module", "Addsandaluzcoin checks.");
 
 volatile int AndaluzCoinModuleAnchorSource = 0;

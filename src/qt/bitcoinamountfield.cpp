@@ -125,7 +125,7 @@ public:
 
             const QFontMetrics fm(fontMetrics());
             int h = lineEdit()->minimumSizeHint().height();
-            int w = GUIUtil::TextWidth(fm, AndaluzCoinUnits::format(AndaluzCoinUnit::BTC, AndaluzCoinUnits::maxMoney(), false, AndaluzCoinUnits::SeparatorStyle::ALWAYS));
+            int w = GUIUtil::TextWidth(fm, AndaluzCoinUnits::format(AndaluzCoinUnit::LUZ, AndaluzCoinUnits::maxMoney(), false, AndaluzCoinUnits::SeparatorStyle::ALWAYS));
             w += 2; // cursor blinking space
 
             QStyleOptionSpinBox opt;
@@ -150,7 +150,7 @@ public:
     }
 
 private:
-    AndaluzCoinUnit currentUnit{AndaluzCoinUnit::BTC};
+    AndaluzCoinUnit currentUnit{AndaluzCoinUnit::LUZ};
     CAmount singleStep{CAmount(100000)}; // satoshis
     mutable QSize cachedMinimumSizeHint;
     bool m_allow_empty{true};

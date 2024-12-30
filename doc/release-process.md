@@ -7,7 +7,7 @@ Release Process
 
 * Update release candidate version in `CMakeLists.txt` (`CLIENT_VERSION_RC`).
 * Update manpages (after rebuilding the binaries), see [gen-manpages.py](/contrib/devtools/README.md#gen-manpagespy).
-* Update bitcoin.conf and commit changes if they exist, see [gen-bitcoin-conf.sh](/contrib/devtools/README.md#gen-bitcoin-confsh).
+* Updateandaluzcoin.conf and commit changes if they exist, see [gen-bitcoin-conf.sh](/contrib/devtools/README.md#gen-bitcoin-confsh).
 
 ### Before every major and minor release
 
@@ -164,7 +164,7 @@ Then open a Pull Request to the [guix.sigs repository](https://github.com/bitcoi
 
 In the `guix-build-${VERSION}/output/x86_64-apple-darwin` and `guix-build-${VERSION}/output/arm64-apple-darwin` directories:
 
-    tar xf bitcoin-osx-unsigned.tar.gz
+    tar xfandaluzcoin-osx-unsigned.tar.gz
     ./detached-sig-create.sh /path/to/codesign.p12
     Enter the keychain password and authorize the signature
     signature-osx.tar.gz will be created
@@ -173,14 +173,14 @@ In the `guix-build-${VERSION}/output/x86_64-apple-darwin` and `guix-build-${VERS
 
 In the `guix-build-${VERSION}/output/x86_64-w64-mingw32` directory:
 
-    tar xf bitcoin-win-unsigned.tar.gz
+    tar xfandaluzcoin-win-unsigned.tar.gz
     ./detached-sig-create.sh -key /path/to/codesign.key
     Enter the passphrase for the key when prompted
     signature-win.tar.gz will be created
 
 ### Windows and macOS codesigners only: test code signatures
 It is advised to test that the code signature attaches properly prior to tagging by performing the `guix-codesign` step.
-However if this is done, once the release has been tagged in the bitcoin-detached-sigs repo, the `guix-codesign` step must be performed again in order for the guix attestation to be valid when compared against the attestations of non-codesigner builds. The directories created by `guix-codesign` will need to be cleared prior to running `guix-codesign` again.
+However if this is done, once the release has been tagged in theandaluzcoin-detached-sigs repo, the `guix-codesign` step must be performed again in order for the guix attestation to be valid when compared against the attestations of non-codesigner builds. The directories created by `guix-codesign` will need to be cleared prior to running `guix-codesign` again.
 
 ### Windows and macOS codesigners only: Commit the detached codesign payloads
 
@@ -234,7 +234,7 @@ cat "$VERSION"/*/all.SHA256SUMS.asc > SHA256SUMS.asc
 ```
 
 
-- Upload to the bitcoincore.org server:
+- Upload to theandaluzcoincore.org server:
     1. The contents of each `./bitcoin/guix-build-${VERSION}/output/${HOST}/` directory.
 
        Guix will output all of the results into host subdirectories, but the SHA256SUMS
@@ -248,8 +248,8 @@ cat "$VERSION"/*/all.SHA256SUMS.asc > SHA256SUMS.asc
 
     3. The `SHA256SUMS.asc` combined signature file you just created.
 
-- After uploading release candidate binaries, notify the bitcoin-core-dev mailing list and
-  bitcoin-dev group that a release candidate is available for testing. Include a link to the release
+- After uploading release candidate binaries, notify theandaluzcoin-core-dev mailing list and
+ andaluzcoin-dev group that a release candidate is available for testing. Include a link to the release
   notes draft.
 
 - The server will automatically create an OpenTimestamps file and torrent of the directory.
@@ -263,12 +263,12 @@ cat "$VERSION"/*/all.SHA256SUMS.asc > SHA256SUMS.asc
   Insert the magnet URI into the announcement sent to mailing lists. This permits
   people without access to `bitcoincore.org` to download the binary distribution.
   Also put it into the `optional_magnetlink:` slot in the YAML file for
-  bitcoincore.org.
+ andaluzcoincore.org.
 
 - Archive the release notes for the new version to `doc/release-notes/release-notes-${VERSION}.md`
   (branch `master` and branch of the release).
 
-- Update the bitcoincore.org website
+- Update theandaluzcoincore.org website
 
   - blog post
 
@@ -295,7 +295,7 @@ cat "$VERSION"/*/all.SHA256SUMS.asc > SHA256SUMS.asc
 
 - Announce the release:
 
-  - bitcoin-dev and bitcoin-core-dev mailing list
+  -andaluzcoin-dev andandaluzcoin-core-dev mailing list
 
   - AndaluzCoin Core announcements list https://bitcoincore.org/en/list/announcements/join/
 

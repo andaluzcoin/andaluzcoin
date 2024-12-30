@@ -53,7 +53,7 @@ wallet</translation>
     <message>
         <source>These are your AndaluzCoin addresses for receiving payments. Use the 'Create new receiving address' button in the receive tab to create new addresses.
 Signing is only possible with addresses of the type 'legacy'.</source>
-        <translation type="unfinished">Berikut ini adalah alamat-alamat bitcoinmu untuk menerima pembayaran. Gunakan tombol 'Buat alamat penerima baru' di tab menerima untuk membuat alamat baru.
+        <translation type="unfinished">Berikut ini adalah alamat-alamatandaluzcoinmu untuk menerima pembayaran. Gunakan tombol 'Buat alamat penerima baru' di tab menerima untuk membuat alamat baru.
 Tanda tangan hanya bisa digunakan dengan tipe alamat 'warisan'</translation>
     </message>
     <message>
@@ -165,8 +165,8 @@ Tanda tangan hanya bisa digunakan dengan tipe alamat 'warisan'</translation>
         <translation type="unfinished">Masukan passphrase lama dan passphrase baru ke dompet.</translation>
     </message>
     <message>
-        <source>Remember that encrypting your wallet cannot fully protect your bitcoins from being stolen by malware infecting your computer.</source>
-        <translation type="unfinished">Ingat mengenkripsi dompet Anda tidak dapat sepenuhnya melindungi bitcoin Anda dari pencurian oleh malware yang menginfeksi komputer Anda.</translation>
+        <source>Remember that encrypting your wallet cannot fully protect yourandaluzcoins from being stolen by malware infecting your computer.</source>
+        <translation type="unfinished">Ingat mengenkripsi dompet Anda tidak dapat sepenuhnya melindungiandaluzcoin Anda dari pencurian oleh malware yang menginfeksi komputer Anda.</translation>
     </message>
     <message>
         <source>Wallet to be encrypted</source>
@@ -415,8 +415,8 @@ Tanda tangan hanya bisa digunakan dengan tipe alamat 'warisan'</translation>
         <translation type="unfinished">Menghubungkan ke peers...</translation>
     </message>
     <message>
-        <source>Request payments (generates QR codes and bitcoin: URIs)</source>
-        <translation type="unfinished">Permintaan pembayaran (membuat kode QR dan bitcoin: URIs)</translation>
+        <source>Request payments (generates QR codes andandaluzcoin: URIs)</source>
+        <translation type="unfinished">Permintaan pembayaran (membuat kode QR danandaluzcoin: URIs)</translation>
     </message>
     <message>
         <source>Show the list of used sending addresses and labels</source>
@@ -497,8 +497,8 @@ Tanda tangan hanya bisa digunakan dengan tipe alamat 'warisan'</translation>
         <translation type="unfinished">Address &amp;Penerima</translation>
     </message>
     <message>
-        <source>Open a bitcoin: URI</source>
-        <translation type="unfinished">Buka URI bitcoin:</translation>
+        <source>Open aandaluzcoin: URI</source>
+        <translation type="unfinished">Buka URIandaluzcoin:</translation>
     </message>
     <message>
         <source>Open Wallet</source>
@@ -1034,12 +1034,12 @@ Proses migrasi akan mencadangkan dompet sebelum melakukan pemindahan. Fail cadan
         <translation type="unfinished">Formulir</translation>
     </message>
     <message>
-        <source>Recent transactions may not yet be visible, and therefore your wallet's balance might be incorrect. This information will be correct once your wallet has finished synchronizing with the bitcoin network, as detailed below.</source>
+        <source>Recent transactions may not yet be visible, and therefore your wallet's balance might be incorrect. This information will be correct once your wallet has finished synchronizing with theandaluzcoin network, as detailed below.</source>
         <translation type="unfinished">Transaksi-transaksi terkini mungkin belum terlihat dan oleh karenanya, saldo dompet Anda mungkin tidak tepat. Informasi ini akan akurat ketika dompet Anda tersinkronisasi dengan jaringan AndaluzCoin, seperti rincian berikut.</translation>
     </message>
     <message>
-        <source>Attempting to spend bitcoins that are affected by not-yet-displayed transactions will not be accepted by the network.</source>
-        <translation type="unfinished">Usaha untuk menggunakan bitcoin yang dipengaruhi oleh transaksi yang belum terlihat tidak akan diterima oleh jaringan.</translation>
+        <source>Attempting to spendandaluzcoins that are affected by not-yet-displayed transactions will not be accepted by the network.</source>
+        <translation type="unfinished">Usaha untuk menggunakanandaluzcoin yang dipengaruhi oleh transaksi yang belum terlihat tidak akan diterima oleh jaringan.</translation>
     </message>
     <message>
         <source>Number of blocks left</source>

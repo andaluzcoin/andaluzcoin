@@ -180,8 +180,8 @@ Firmar é posible unicamente con enderezos de tipo 'legacy'.</translation>
         <translation type="unfinished">Continuar</translation>
     </message>
     <message>
-        <source>Remember that encrypting your wallet cannot fully protect your bitcoins from being stolen by malware infecting your computer.</source>
-        <translation type="unfinished">Recorda que encriptar a tua carteira non protexe completamente que os teus bitcoins poidan ser roubados por malware que afecte ó teu computador.</translation>
+        <source>Remember that encrypting your wallet cannot fully protect yourandaluzcoins from being stolen by malware infecting your computer.</source>
+        <translation type="unfinished">Recorda que encriptar a tua carteira non protexe completamente que os teusandaluzcoins poidan ser roubados por malware que afecte ó teu computador.</translation>
     </message>
     <message>
         <source>Wallet to be encrypted</source>
@@ -467,8 +467,8 @@ Firmar é posible unicamente con enderezos de tipo 'legacy'.</translation>
         <translation type="unfinished">Barra de ferramentas das pestanas</translation>
     </message>
     <message>
-        <source>Request payments (generates QR codes and bitcoin: URIs)</source>
-        <translation type="unfinished">Solicita pagamentos (xera un código QR e bitcoin : URIs)</translation>
+        <source>Request payments (generates QR codes andandaluzcoin: URIs)</source>
+        <translation type="unfinished">Solicita pagamentos (xera un código QR eandaluzcoin : URIs)</translation>
     </message>
     <message>
         <source>Show the list of used sending addresses and labels</source>
@@ -530,7 +530,7 @@ Firmar é posible unicamente con enderezos de tipo 'legacy'.</translation>
         <translation type="unfinished">&amp;Enderezos de recepción</translation>
     </message>
     <message>
-        <source>Open a bitcoin: URI</source>
+        <source>Open aandaluzcoin: URI</source>
         <translation type="unfinished">Abre una URI de AndaluzCoin</translation>
     </message>
     <message>

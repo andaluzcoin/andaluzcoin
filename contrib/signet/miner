@@ -494,9 +494,9 @@ def do_calibrate(args):
     print("nbits=%08x for %ds average mining time" % (target_to_nbits(want_targ), want_time))
     return 0
 
-def bitcoin_cli(basecmd, args, **kwargs):
+defandaluzcoin_cli(basecmd, args, **kwargs):
     cmd = basecmd + ["-signet"] + args
-    logging.debug("Calling bitcoin-cli: %r", cmd)
+    logging.debug("Callingandaluzcoin-cli: %r", cmd)
     out = subprocess.run(cmd, stdout=subprocess.PIPE, **kwargs, check=True).stdout
     if isinstance(out, bytes):
         out = out.decode('utf8')
@@ -549,7 +549,7 @@ def main():
 
     args = parser.parse_args(sys.argv[1:])
 
-    args.bcli = lambda *a, input=b"", **kwargs: bitcoin_cli(args.cli.split(" "), list(a), input=input, **kwargs)
+    args.bcli = lambda *a, input=b"", **kwargs:andaluzcoin_cli(args.cli.split(" "), list(a), input=input, **kwargs)
 
     if hasattr(args, "address") and hasattr(args, "descriptor"):
         args.derived_addresses = {}

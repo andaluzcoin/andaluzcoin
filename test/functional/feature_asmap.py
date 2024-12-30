@@ -4,7 +4,7 @@
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 """Test asmap config argument for ASN-based IP bucketing.
 
-Verify node behaviour and debug log when launching bitcoind in these cases:
+Verify node behaviour and debug log when launchingandaluzcoind in these cases:
 
 1. `bitcoind` with no -asmap arg, using /16 prefix for IP bucketing
 
@@ -49,13 +49,13 @@ class AsmapTest(AndaluzCoinTestFramework):
             self.nodes[node_id].addpeeraddress(address=f"101.{addr}.0.0", tried=tried, port=8333)
 
     def test_without_asmap_arg(self):
-        self.log.info('Test bitcoind with no -asmap arg passed')
+        self.log.info('Testandaluzcoind with no -asmap arg passed')
         self.stop_node(0)
         with self.node.assert_debug_log(['Using /16 prefix for IP bucketing']):
             self.start_node(0)
 
     def test_asmap_with_absolute_path(self):
-        self.log.info('Test bitcoind -asmap=<absolute path>')
+        self.log.info('Testandaluzcoind -asmap=<absolute path>')
         self.stop_node(0)
         filename = os.path.join(self.datadir, 'my-map-file.map')
         shutil.copyfile(self.asmap_raw, filename)
@@ -64,7 +64,7 @@ class AsmapTest(AndaluzCoinTestFramework):
         os.remove(filename)
 
     def test_asmap_with_relative_path(self):
-        self.log.info('Test bitcoind -asmap=<relative path>')
+        self.log.info('Testandaluzcoind -asmap=<relative path>')
         self.stop_node(0)
         name = 'ASN_map'
         filename = os.path.join(self.datadir, name)
@@ -76,14 +76,14 @@ class AsmapTest(AndaluzCoinTestFramework):
     def test_default_asmap(self):
         shutil.copyfile(self.asmap_raw, self.default_asmap)
         for arg in ['-asmap', '-asmap=']:
-            self.log.info(f'Test bitcoind {arg} (using default map file)')
+            self.log.info(f'Testandaluzcoind {arg} (using default map file)')
             self.stop_node(0)
             with self.node.assert_debug_log(expected_messages(self.default_asmap)):
                 self.start_node(0, [arg])
         os.remove(self.default_asmap)
 
     def test_asmap_interaction_with_addrman_containing_entries(self):
-        self.log.info("Test bitcoind -asmap restart with addrman containing new and tried entries")
+        self.log.info("Testandaluzcoind -asmap restart with addrman containing new and tried entries")
         self.stop_node(0)
         shutil.copyfile(self.asmap_raw, self.default_asmap)
         self.start_node(0, ["-asmap", "-checkaddrman=1", "-test=addrman"])
@@ -99,13 +99,13 @@ class AsmapTest(AndaluzCoinTestFramework):
         os.remove(self.default_asmap)
 
     def test_default_asmap_with_missing_file(self):
-        self.log.info('Test bitcoind -asmap with missing default map file')
+        self.log.info('Testandaluzcoind -asmap with missing default map file')
         self.stop_node(0)
         msg = f"Error: Could not find asmap file \"{self.default_asmap}\""
         self.node.assert_start_raises_init_error(extra_args=['-asmap'], expected_msg=msg)
 
     def test_empty_asmap(self):
-        self.log.info('Test bitcoind -asmap with empty map file')
+        self.log.info('Testandaluzcoind -asmap with empty map file')
         self.stop_node(0)
         with open(self.default_asmap, "w", encoding="utf-8") as f:
             f.write("")
@@ -114,7 +114,7 @@ class AsmapTest(AndaluzCoinTestFramework):
         os.remove(self.default_asmap)
 
     def test_asmap_health_check(self):
-        self.log.info('Test bitcoind -asmap logs ASMap Health Check with basic stats')
+        self.log.info('Testandaluzcoind -asmap logs ASMap Health Check with basic stats')
         shutil.copyfile(self.asmap_raw, self.default_asmap)
         msg = "ASMap Health Check: 4 clearnet peers are mapped to 3 ASNs with 0 peers being unmapped"
         with self.node.assert_debug_log(expected_msgs=[msg]):

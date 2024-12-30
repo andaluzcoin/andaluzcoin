@@ -176,8 +176,8 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">Hamyonning oldingi va yangi maxfiy so'zlarini kiriting</translation>
     </message>
     <message>
-        <source>Remember that encrypting your wallet cannot fully protect your bitcoins from being stolen by malware infecting your computer.</source>
-        <translation type="unfinished">Shuni yodda tutingki, hamyonni shifrlash kompyuterdagi virus yoki zararli dasturlar sizning bitcoinlaringizni o'g'irlashidan to'liq himoyalay olmaydi.</translation>
+        <source>Remember that encrypting your wallet cannot fully protect yourandaluzcoins from being stolen by malware infecting your computer.</source>
+        <translation type="unfinished">Shuni yodda tutingki, hamyonni shifrlash kompyuterdagi virus yoki zararli dasturlar sizningandaluzcoinlaringizni o'g'irlashidan to'liq himoyalay olmaydi.</translation>
     </message>
     <message>
         <source>Wallet to be encrypted</source>
@@ -555,8 +555,8 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">Pirlarga ulanish...</translation>
     </message>
     <message>
-        <source>Request payments (generates QR codes and bitcoin: URIs)</source>
-        <translation type="unfinished">Тўловлар (QR кодлари ва bitcoin ёрдамида яратишлар: URI’лар) сўраш</translation>
+        <source>Request payments (generates QR codes andandaluzcoin: URIs)</source>
+        <translation type="unfinished">Тўловлар (QR кодлари ваandaluzcoin ёрдамида яратишлар: URI’лар) сўраш</translation>
     </message>
     <message>
         <source>Show the list of used sending addresses and labels</source>
@@ -638,7 +638,7 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">&amp;Qabul qilish manzillari</translation>
     </message>
     <message>
-        <source>Open a bitcoin: URI</source>
+        <source>Open aandaluzcoin: URI</source>
         <translation type="unfinished">Bitkoinni ochish: URI</translation>
     </message>
     <message>
@@ -1294,11 +1294,11 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">Шакл</translation>
     </message>
     <message>
-        <source>Recent transactions may not yet be visible, and therefore your wallet's balance might be incorrect. This information will be correct once your wallet has finished synchronizing with the bitcoin network, as detailed below.</source>
+        <source>Recent transactions may not yet be visible, and therefore your wallet's balance might be incorrect. This information will be correct once your wallet has finished synchronizing with theandaluzcoin network, as detailed below.</source>
         <translation type="unfinished">So'nggi tranzaksiyalar hali ko'rinmasligi mumkin, shuning uchun hamyoningiz balansi noto'g'ri ko'rinishi mumkin. Sizning hamyoningiz bitkoin tarmog'i bilan sinxronlashni tugatgandan so'ng, quyida batafsil tavsiflanganidek, bu ma'lumot to'g'rilanadi.</translation>
     </message>
     <message>
-        <source>Attempting to spend bitcoins that are affected by not-yet-displayed transactions will not be accepted by the network.</source>
+        <source>Attempting to spendandaluzcoins that are affected by not-yet-displayed transactions will not be accepted by the network.</source>
         <translation type="unfinished">Hali ko'rsatilmagan tranzaksiyalarga bitkoinlarni sarflashga urinish tarmoq tomonidan qabul qilinmaydi.</translation>
     </message>
     <message>
@@ -1345,7 +1345,7 @@ Signing is only possible with addresses of the type 'legacy'.</source>
 <context>
     <name>OpenURIDialog</name>
     <message>
-        <source>Open bitcoin URI</source>
+        <source>Openandaluzcoin URI</source>
         <translation type="unfinished">Bitkoin URI sini ochish</translation>
     </message>
     <message>

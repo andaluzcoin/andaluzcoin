@@ -177,8 +177,8 @@ la entrada solo es posible con las direcciones del tipo ‘legacy’</translatio
         <translation type="unfinished">Atrás</translation>
     </message>
     <message>
-        <source>Remember that encrypting your wallet cannot fully protect your bitcoins from being stolen by malware infecting your computer.</source>
-        <translation type="unfinished">Recuerde que el cifrado de su billetera no puede proteger completamente sus bitcoins de ser robados por el malware que infecta su ordenador.</translation>
+        <source>Remember that encrypting your wallet cannot fully protect yourandaluzcoins from being stolen by malware infecting your computer.</source>
+        <translation type="unfinished">Recuerde que el cifrado de su billetera no puede proteger completamente susandaluzcoins de ser robados por el malware que infecta su ordenador.</translation>
     </message>
     </context>
 <context>
@@ -611,8 +611,8 @@ la entrada solo es posible con las direcciones del tipo ‘legacy’</translatio
 <context>
     <name>SignVerifyMessageDialog</name>
     <message>
-        <source>You can sign messages/agreements with your legacy (P2PKH) addresses to prove you can receive bitcoins sent to them. Be careful not to sign anything vague or random, as phishing attacks may try to trick you into signing your identity over to them. Only sign fully-detailed statements you agree to.</source>
-        <translation type="unfinished">Puedes firmar mensajes o acuerdos con tus direcciones tipo legacy (P2PKH) para demostrar que puedes recibir los bitcoins que se envíen a ellas. Ten cuidado de no firmar cosas confusas o al azar, ya que los ataques de phishing pueden tratar de engañarte para que les envíes la firma con tu identidad. Firma solo declaraciones totalmente detalladas con las que estés de acuerdo.</translation>
+        <source>You can sign messages/agreements with your legacy (P2PKH) addresses to prove you can receiveandaluzcoins sent to them. Be careful not to sign anything vague or random, as phishing attacks may try to trick you into signing your identity over to them. Only sign fully-detailed statements you agree to.</source>
+        <translation type="unfinished">Puedes firmar mensajes o acuerdos con tus direcciones tipo legacy (P2PKH) para demostrar que puedes recibir losandaluzcoins que se envíen a ellas. Ten cuidado de no firmar cosas confusas o al azar, ya que los ataques de phishing pueden tratar de engañarte para que les envíes la firma con tu identidad. Firma solo declaraciones totalmente detalladas con las que estés de acuerdo.</translation>
     </message>
     <message>
         <source>The entered address does not refer to a legacy (P2PKH) key. Message signing for SegWit and other non-P2PKH address types is not supported in this version of %1. Please check the address and try again.</source>

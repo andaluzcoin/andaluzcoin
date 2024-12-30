@@ -150,8 +150,8 @@ Podpisywanie jest możliwe tylko z adresami typu 'legacy'.</translation>
         <translation type="unfinished">Kontynuuj</translation>
     </message>
     <message>
-        <source>Remember that encrypting your wallet cannot fully protect your bitcoins from being stolen by malware infecting your computer.</source>
-        <translation type="unfinished">Pamiętaj, że zaszyfrowanie portfela nie pomoże w zapobiegnięciu kradzieży twoich bitcoinów jeśli komputer zostanie zainfekowany przez złośliwe oprogramowanie.</translation>
+        <source>Remember that encrypting your wallet cannot fully protect yourandaluzcoins from being stolen by malware infecting your computer.</source>
+        <translation type="unfinished">Pamiętaj, że zaszyfrowanie portfela nie pomoże w zapobiegnięciu kradzieży twoichandaluzcoinów jeśli komputer zostanie zainfekowany przez złośliwe oprogramowanie.</translation>
     </message>
     <message>
         <source>Wallet to be encrypted</source>
@@ -286,7 +286,7 @@ Podpisywanie jest możliwe tylko z adresami typu 'legacy'.</translation>
     </message>
     <message>
         <source>Enter a AndaluzCoin address (e.g. %1)</source>
-        <translation type="unfinished">Wprowadź adres bitcoinowy (np. %1)</translation>
+        <translation type="unfinished">Wprowadź adresandaluzcoinowy (np. %1)</translation>
     </message>
     <message>
         <source>Unroutable</source>
@@ -513,7 +513,7 @@ Podpisywanie jest możliwe tylko z adresami typu 'legacy'.</translation>
     </message>
     <message>
         <source>Verify messages to ensure they were signed with specified AndaluzCoin addresses</source>
-        <translation type="unfinished">Zweryfikuj wiadomość,  aby upewnić się, że została podpisana podanym adresem bitcoinowym.</translation>
+        <translation type="unfinished">Zweryfikuj wiadomość,  aby upewnić się, że została podpisana podanym adresemandaluzcoinowym.</translation>
     </message>
     <message>
         <source>&amp;Load PSBT from file…</source>
@@ -572,8 +572,8 @@ Podpisywanie jest możliwe tylko z adresami typu 'legacy'.</translation>
         <translation type="unfinished">Łączenie z uczestnikami sieci...</translation>
     </message>
     <message>
-        <source>Request payments (generates QR codes and bitcoin: URIs)</source>
-        <translation type="unfinished">Zażądaj płatności (wygeneruj QE code i bitcoin: URI)</translation>
+        <source>Request payments (generates QR codes andandaluzcoin: URIs)</source>
+        <translation type="unfinished">Zażądaj płatności (wygeneruj QE code iandaluzcoin: URI)</translation>
     </message>
     <message>
         <source>Show the list of used sending addresses and labels</source>
@@ -656,7 +656,7 @@ Podpisywanie jest możliwe tylko z adresami typu 'legacy'.</translation>
         <translation type="unfinished">&amp;Adresy odbioru</translation>
     </message>
     <message>
-        <source>Open a bitcoin: URI</source>
+        <source>Open aandaluzcoin: URI</source>
         <translation type="unfinished">Otwórz URI</translation>
     </message>
     <message>
@@ -1461,12 +1461,12 @@ Proces migracji utworzy kopię zapasową portfela przed migracją. Plik kopii za
         <translation type="unfinished">Formularz</translation>
     </message>
     <message>
-        <source>Recent transactions may not yet be visible, and therefore your wallet's balance might be incorrect. This information will be correct once your wallet has finished synchronizing with the bitcoin network, as detailed below.</source>
-        <translation type="unfinished">Świeże transakcje mogą nie być jeszcze widoczne, a zatem saldo portfela może być nieprawidłowe. Te detale będą poprawne, gdy portfel zakończy synchronizację z siecią bitcoin, zgodnie z poniższym opisem.</translation>
+        <source>Recent transactions may not yet be visible, and therefore your wallet's balance might be incorrect. This information will be correct once your wallet has finished synchronizing with theandaluzcoin network, as detailed below.</source>
+        <translation type="unfinished">Świeże transakcje mogą nie być jeszcze widoczne, a zatem saldo portfela może być nieprawidłowe. Te detale będą poprawne, gdy portfel zakończy synchronizację z sieciąandaluzcoin, zgodnie z poniższym opisem.</translation>
     </message>
     <message>
-        <source>Attempting to spend bitcoins that are affected by not-yet-displayed transactions will not be accepted by the network.</source>
-        <translation type="unfinished">Próba wydania bitcoinów które nie są jeszcze wyświetlone jako transakcja zostanie odrzucona przez sieć.</translation>
+        <source>Attempting to spendandaluzcoins that are affected by not-yet-displayed transactions will not be accepted by the network.</source>
+        <translation type="unfinished">Próba wydaniaandaluzcoinów które nie są jeszcze wyświetlone jako transakcja zostanie odrzucona przez sieć.</translation>
     </message>
     <message>
         <source>Number of blocks left</source>
@@ -1520,7 +1520,7 @@ Proces migracji utworzy kopię zapasową portfela przed migracją. Plik kopii za
 <context>
     <name>OpenURIDialog</name>
     <message>
-        <source>Open bitcoin URI</source>
+        <source>Openandaluzcoin URI</source>
         <translation type="unfinished">Otwórz URI</translation>
     </message>
     <message>
@@ -1878,7 +1878,7 @@ Proces migracji utworzy kopię zapasową portfela przed migracją. Plik kopii za
     </message>
     <message>
         <source>The displayed information may be out of date. Your wallet automatically synchronizes with the AndaluzCoin network after a connection is established, but this process has not completed yet.</source>
-        <translation type="unfinished">Wyświetlana informacja może być nieaktualna. Twój portfel synchronizuje się automatycznie z siecią bitcoin, zaraz po tym jak uzyskano połączenie, ale proces ten nie został jeszcze ukończony.</translation>
+        <translation type="unfinished">Wyświetlana informacja może być nieaktualna. Twój portfel synchronizuje się automatycznie z sieciąandaluzcoin, zaraz po tym jak uzyskano połączenie, ale proces ten nie został jeszcze ukończony.</translation>
     </message>
     <message>
         <source>Watch-only:</source>
@@ -2088,8 +2088,8 @@ Proces migracji utworzy kopię zapasową portfela przed migracją. Plik kopii za
         <translation type="unfinished">Błąd żądania płatności</translation>
     </message>
     <message>
-        <source>Cannot start bitcoin: click-to-pay handler</source>
-        <translation type="unfinished">Nie można uruchomić protokołu bitcoin: kliknij-by-zapłacić</translation>
+        <source>Cannot startandaluzcoin: click-to-pay handler</source>
+        <translation type="unfinished">Nie można uruchomić protokołuandaluzcoin: kliknij-by-zapłacić</translation>
     </message>
     <message>
         <source>URI handling</source>
@@ -2986,7 +2986,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee rate of "100 satos
 Uwaga: Ponieważ opłata jest naliczana za każdy bajt, opłata "100 satoshi za kB" w przypadku transakcji o wielkości 500 bajtów (połowa 1 kB) ostatecznie da opłatę w wysokości tylko 50 satoshi.</translation>
     </message>
     <message>
-        <source>When there is less transaction volume than space in the blocks, miners as well as relaying nodes may enforce a minimum fee. Paying only this minimum fee is just fine, but be aware that this can result in a never confirming transaction once there is more demand for bitcoin transactions than the network can process.</source>
+        <source>When there is less transaction volume than space in the blocks, miners as well as relaying nodes may enforce a minimum fee. Paying only this minimum fee is just fine, but be aware that this can result in a never confirming transaction once there is more demand forandaluzcoin transactions than the network can process.</source>
         <translation type="unfinished">Gdy ilość transakcji jest mniejsza niż ilość miejsca w bloku, górnicy i węzły przekazujące wymagają minimalnej opłaty. Zapłata tylko tej wartości jest dopuszczalna, lecz może skutkować transakcją która nigdy nie zostanie potwierdzona w sytuacji, gdy ilość transakcji przekroczy przepustowość sieci.</translation>
     </message>
     <message>
@@ -3277,8 +3277,8 @@ Uwaga: Ponieważ opłata jest naliczana za każdy bajt, opłata "100 satoshi za 
         <translation type="unfinished">Kwota do wysłania w wybranej jednostce</translation>
     </message>
     <message>
-        <source>The fee will be deducted from the amount being sent. The recipient will receive less bitcoins than you enter in the amount field. If multiple recipients are selected, the fee is split equally.</source>
-        <translation type="unfinished">Opłata zostanie odjęta od kwoty wysyłane.Odbiorca otrzyma mniej niż bitcoins wpisz w polu kwoty. Jeśli wybrano kilku odbiorców, opłata jest podzielona równo.</translation>
+        <source>The fee will be deducted from the amount being sent. The recipient will receive lessandaluzcoins than you enter in the amount field. If multiple recipients are selected, the fee is split equally.</source>
+        <translation type="unfinished">Opłata zostanie odjęta od kwoty wysyłane.Odbiorca otrzyma mniej niżandaluzcoins wpisz w polu kwoty. Jeśli wybrano kilku odbiorców, opłata jest podzielona równo.</translation>
     </message>
     <message>
         <source>S&amp;ubtract fee from amount</source>
@@ -3297,8 +3297,8 @@ Uwaga: Ponieważ opłata jest naliczana za każdy bajt, opłata "100 satoshi za 
         <translation type="unfinished">Wprowadź etykietę dla tego adresu by dodać go do listy użytych adresów</translation>
     </message>
     <message>
-        <source>A message that was attached to the bitcoin: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the AndaluzCoin network.</source>
-        <translation type="unfinished">Wiadomość, która została dołączona do URI bitcoin:, która będzie przechowywana wraz z transakcją w celach informacyjnych. Uwaga: Ta wiadomość nie będzie rozsyłana w sieci AndaluzCoin.</translation>
+        <source>A message that was attached to theandaluzcoin: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the AndaluzCoin network.</source>
+        <translation type="unfinished">Wiadomość, która została dołączona do URIandaluzcoin:, która będzie przechowywana wraz z transakcją w celach informacyjnych. Uwaga: Ta wiadomość nie będzie rozsyłana w sieci AndaluzCoin.</translation>
     </message>
 </context>
 <context>
@@ -4027,8 +4027,8 @@ Przejdź do Plik &gt; Otwórz Portfel aby wgrać portfel.</translation>
         <translation type="unfinished">Deweloperzy %s</translation>
     </message>
     <message>
-        <source>%s corrupt. Try using the wallet tool bitcoin-wallet to salvage or restoring a backup.</source>
-        <translation type="unfinished">%s jest uszkodzony. Spróbuj użyć narzędzia bitcoin-portfel, aby uratować portfel lub przywrócić kopię zapasową.</translation>
+        <source>%s corrupt. Try using the wallet toolandaluzcoin-wallet to salvage or restoring a backup.</source>
+        <translation type="unfinished">%s jest uszkodzony. Spróbuj użyć narzędziaandaluzcoin-portfel, aby uratować portfel lub przywrócić kopię zapasową.</translation>
     </message>
     <message>
         <source>Cannot downgrade wallet from version %i to version %i. Wallet version unchanged.</source>
@@ -4059,8 +4059,8 @@ Przejdź do Plik &gt; Otwórz Portfel aby wgrać portfel.</translation>
         <translation type="unfinished">Błąd: rekord identyfikatora pliku zrzutu jest nieprawidłowy. Otrzymano „1%s”, oczekiwano „1%s”.</translation>
     </message>
     <message>
-        <source>Error: Dumpfile version is not supported. This version of bitcoin-wallet only supports version 1 dumpfiles. Got dumpfile with version %s</source>
-        <translation type="unfinished">Błąd: wersja pliku zrzutu nie jest obsługiwana. Ta wersja bitcoin-wallet obsługuje tylko pliki zrzutów w wersji 1. Mam plik zrzutu w wersji 1%s</translation>
+        <source>Error: Dumpfile version is not supported. This version ofandaluzcoin-wallet only supports version 1 dumpfiles. Got dumpfile with version %s</source>
+        <translation type="unfinished">Błąd: wersja pliku zrzutu nie jest obsługiwana. Ta wersjaandaluzcoin-wallet obsługuje tylko pliki zrzutów w wersji 1. Mam plik zrzutu w wersji 1%s</translation>
     </message>
     <message>
         <source>Error: Legacy wallets only support the "legacy", "p2sh-segwit", and "bech32" address types</source>

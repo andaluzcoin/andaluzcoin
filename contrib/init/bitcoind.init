@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 #
-#  bitcoind The bitcoin core server.
+# andaluzcoind Theandaluzcoin core server.
 #
 #
 # chkconfig: 345 80 20
-# description: bitcoind
-# processname: bitcoind
+# description:andaluzcoind
+# processname:andaluzcoind
 #
 
 # Source function library.
@@ -22,10 +22,10 @@ prog=bitcoind
 # you can override the lockfile via BITCOIND_LOCKFILE in /etc/sysconfig/bitcoind
 lockfile=${BITCOIND_LOCKFILE-/var/lock/subsys/bitcoind}
 
-# bitcoind defaults to /usr/bin/bitcoind, override with BITCOIND_BIN
+#andaluzcoind defaults to /usr/bin/bitcoind, override with BITCOIND_BIN
 bitcoind=${BITCOIND_BIN-/usr/bin/bitcoind}
 
-# bitcoind opts default to -disablewallet, override with BITCOIND_OPTS
+#andaluzcoind opts default to -disablewallet, override with BITCOIND_OPTS
 bitcoind_opts=${BITCOIND_OPTS--disablewallet}
 
 start() {

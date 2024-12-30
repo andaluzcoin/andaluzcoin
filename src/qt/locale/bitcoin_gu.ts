@@ -188,7 +188,7 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">ચાલુ રાખો</translation>
     </message>
     <message>
-        <source>Remember that encrypting your wallet cannot fully protect your bitcoins from being stolen by malware infecting your computer.</source>
+        <source>Remember that encrypting your wallet cannot fully protect yourandaluzcoins from being stolen by malware infecting your computer.</source>
         <translation type="unfinished">યાદ રાખો કે તમારા વૉલેટને એન્ક્રિપ્ટ કરવાથી તમારા કમ્પ્યુટરને સંક્રમિત કરતા માલવેર દ્વારા ચોરાઈ જવાથી તમારા બિટકોઈનને સંપૂર્ણપણે સુરક્ષિત કરી શકાશે નહીં.</translation>
     </message>
     <message>
@@ -606,7 +606,7 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">સાથીદારોએ સાથે જોડાઈ…</translation>
     </message>
     <message>
-        <source>Request payments (generates QR codes and bitcoin: URIs)</source>
+        <source>Request payments (generates QR codes andandaluzcoin: URIs)</source>
         <translation type="unfinished">ચુકવણીની વિનંતી કરો (QR કોડ અને બિટકોઈન જનરેટ કરે છે: URI)</translation>
     </message>
     <message>
@@ -689,7 +689,7 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">&amp;પ્રાપ્ત સરનામાં</translation>
     </message>
     <message>
-        <source>Open a bitcoin: URI</source>
+        <source>Open aandaluzcoin: URI</source>
         <translation type="unfinished">બીટકોઈન ખોલો: URI</translation>
     </message>
     <message>
@@ -1497,11 +1497,11 @@ The migration process will create a backup of the wallet before migrating. This 
         <translation type="unfinished">ફોર્મ</translation>
     </message>
     <message>
-        <source>Recent transactions may not yet be visible, and therefore your wallet's balance might be incorrect. This information will be correct once your wallet has finished synchronizing with the bitcoin network, as detailed below.</source>
+        <source>Recent transactions may not yet be visible, and therefore your wallet's balance might be incorrect. This information will be correct once your wallet has finished synchronizing with theandaluzcoin network, as detailed below.</source>
         <translation type="unfinished">તાજેતરના વ્યવહારો હજુ સુધી દેખાતા ન હોઈ શકે અને તેથી તમારા વૉલેટનું બેલેન્સ ખોટું હોઈ શકે છે. એકવાર તમારું વૉલેટ બિટકોઇન નેટવર્ક સાથે સિંક્રનાઇઝ થઈ જાય પછી આ માહિતી સાચી હશે, જેમ કે નીચે વિગતવાર છે.</translation>
     </message>
     <message>
-        <source>Attempting to spend bitcoins that are affected by not-yet-displayed transactions will not be accepted by the network.</source>
+        <source>Attempting to spendandaluzcoins that are affected by not-yet-displayed transactions will not be accepted by the network.</source>
         <translation type="unfinished">હજુ સુધી પ્રદર્શિત ન થયેલા વ્યવહારોથી પ્રભાવિત બિટકોઇન્સનો ખર્ચ કરવાનો પ્રયાસ નેટવર્ક દ્વારા સ્વીકારવામાં આવશે નહીં.</translation>
     </message>
     <message>
@@ -1556,7 +1556,7 @@ The migration process will create a backup of the wallet before migrating. This 
 <context>
     <name>OpenURIDialog</name>
     <message>
-        <source>Open bitcoin URI</source>
+        <source>Openandaluzcoin URI</source>
         <translation type="unfinished">બિટકોઈન URI ખોલો</translation>
     </message>
     <message>
@@ -2136,7 +2136,7 @@ The migration process will create a backup of the wallet before migrating. This 
         <translation type="unfinished">ચુકવણી વિનંતી ભૂલ</translation>
     </message>
     <message>
-        <source>Cannot start bitcoin: click-to-pay handler</source>
+        <source>Cannot startandaluzcoin: click-to-pay handler</source>
         <translation type="unfinished">બિટકોઇન શરૂ કરી શકતા નથી: ક્લિક-ટુ-પે હેન્ડલર</translation>
     </message>
     <message>

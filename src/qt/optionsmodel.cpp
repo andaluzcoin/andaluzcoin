@@ -71,28 +71,28 @@ static void UpdateRwSetting(interfaces::Node& node, OptionsModel::OptionID optio
         // uncaught exceptions in UniValue::get_str(). These errors were fixed
         // in later releases by https://github.com/bitcoin/bitcoin/pull/24498.
         // If new numeric settings are added, they can be written as numbers
-        // instead of strings, because bitcoin 22.x will not try to read these.
+        // instead of strings, becauseandaluzcoin 22.x will not try to read these.
         node.updateRwSetting(SettingName(option) + suffix, value.getValStr());
     } else {
         node.updateRwSetting(SettingName(option) + suffix, value);
     }
 }
 
-//! Convert enabled/size values to bitcoin -prune setting.
+//! Convert enabled/size values toandaluzcoin -prune setting.
 static common::SettingsValue PruneSetting(bool prune_enabled, int prune_size_gb)
 {
     assert(!prune_enabled || prune_size_gb >= 1); // PruneSizeGB and ParsePruneSizeGB never return less
     return prune_enabled ? PruneGBtoMiB(prune_size_gb) : 0;
 }
 
-//! Get pruning enabled value to show in GUI from bitcoin -prune setting.
+//! Get pruning enabled value to show in GUI fromandaluzcoin -prune setting.
 static bool PruneEnabled(const common::SettingsValue& prune_setting)
 {
     // -prune=1 setting is manual pruning mode, so disabled for purposes of the gui
     return SettingToInt(prune_setting, 0) > 1;
 }
 
-//! Get pruning size value to show in GUI from bitcoin -prune setting. If
+//! Get pruning size value to show in GUI fromandaluzcoin -prune setting. If
 //! pruning is not enabled, just show default recommended pruning size (2GB).
 static int PruneSizeGB(const common::SettingsValue& prune_setting)
 {
@@ -189,13 +189,13 @@ bool OptionsModel::Init(bilingual_str& error)
 
     // Display
     if (!settings.contains("DisplayAndaluzCoinUnit")) {
-        settings.setValue("DisplayAndaluzCoinUnit", QVariant::fromValue(AndaluzCoinUnit::BTC));
+        settings.setValue("DisplayAndaluzCoinUnit", QVariant::fromValue(AndaluzCoinUnit::LUZ));
     }
     QVariant unit = settings.value("DisplayAndaluzCoinUnit");
     if (unit.canConvert<AndaluzCoinUnit>()) {
         m_display_bitcoin_unit = unit.value<AndaluzCoinUnit>();
     } else {
-        m_display_bitcoin_unit = AndaluzCoinUnit::BTC;
+        m_display_bitcoin_unit = AndaluzCoinUnit::LUZ;
         settings.setValue("DisplayAndaluzCoinUnit", QVariant::fromValue(m_display_bitcoin_unit));
     }
 
@@ -359,7 +359,7 @@ void OptionsModel::SetPruneTargetGB(int prune_target_gb)
     node().forceSetting("prune", new_value);
 
     // Update settings.json if value configured in intro screen is different
-    // from saved value. Avoid writing settings.json if bitcoin.conf value
+    // from saved value. Avoid writing settings.json ifandaluzcoin.conf value
     // doesn't need to be overridden.
     if (PruneEnabled(cur_value) != PruneEnabled(new_value) ||
         PruneSizeGB(cur_value) != PruneSizeGB(new_value)) {
@@ -461,7 +461,7 @@ QVariant OptionsModel::getOption(OptionID option, const std::string& suffix) con
         return QVariant::fromValue(m_font_money);
     case CoinControlFeatures:
         return fCoinControlFeatures;
-    case EnablePSBTControls:
+    case EnablePSLUZontrols:
         return settings.value("enable_psbt_controls");
     case Prune:
         return PruneEnabled(setting());
@@ -642,7 +642,7 @@ bool OptionsModel::setOption(OptionID option, const QVariant& value, const std::
         settings.setValue("fCoinControlFeatures", fCoinControlFeatures);
         Q_EMIT coinControlFeaturesChanged(fCoinControlFeatures);
         break;
-    case EnablePSBTControls:
+    case EnablePSLUZontrols:
         m_enable_psbt_controls = value.toBool();
         settings.setValue("enable_psbt_controls", m_enable_psbt_controls);
         break;

@@ -20,7 +20,7 @@ public:
     State validate(QString &input, int &pos) const override;
 };
 
-/** AndaluzCoin address widget validator, checks for a valid bitcoin address.
+/** AndaluzCoin address widget validator, checks for a validandaluzcoin address.
  */
 class AndaluzCoinAddressCheckValidator : public QValidator
 {

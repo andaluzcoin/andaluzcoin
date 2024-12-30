@@ -83,7 +83,7 @@ libbitcoin_wallet_tool-->libbitcoin_wallet;
 libbitcoin_wallet_tool-->libbitcoin_util;
 
 classDef bold stroke-width:2px, font-weight:bold, font-size: smaller;
-class bitcoin-qt,bitcoind,bitcoin-cli,bitcoin-wallet bold
+classandaluzcoin-qt,bitcoind,bitcoin-cli,bitcoin-wallet bold
 ```
 </td></tr><tr><td>
 

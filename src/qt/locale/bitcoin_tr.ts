@@ -64,7 +64,7 @@
     <message>
         <source>These are your AndaluzCoin addresses for receiving payments. Use the 'Create new receiving address' button in the receive tab to create new addresses.
 Signing is only possible with addresses of the type 'legacy'.</source>
-        <translation type="unfinished">Bunlar ödeme almak için kullanacağınız bitcoin adreslerinizdir. Yeni adres oluşturmak için ödeme alma sekmesindeki 'Yeni alıcı adresi oluşturun' kısmına tıklayın.
+        <translation type="unfinished">Bunlar ödeme almak için kullanacağınızandaluzcoin adreslerinizdir. Yeni adres oluşturmak için ödeme alma sekmesindeki 'Yeni alıcı adresi oluşturun' kısmına tıklayın.
 İmzalama sadece 'legacy' tipindeki adreslerle mümkündür.</translation>
     </message>
     <message>
@@ -193,8 +193,8 @@ Cüzdan kilidini aç.</translation>
         <translation type="unfinished">Geri</translation>
     </message>
     <message>
-        <source>Remember that encrypting your wallet cannot fully protect your bitcoins from being stolen by malware infecting your computer.</source>
-        <translation type="unfinished">Cüzdanınızı şifrelemenin bilgisayarınıza bulaşan kötü amaçlı yazılımlar tarafından bitcoinlerinizin çalınmasına karşı tamamen koruyamayacağını unutmayın.</translation>
+        <source>Remember that encrypting your wallet cannot fully protect yourandaluzcoins from being stolen by malware infecting your computer.</source>
+        <translation type="unfinished">Cüzdanınızı şifrelemenin bilgisayarınıza bulaşan kötü amaçlı yazılımlar tarafındanandaluzcoinlerinizin çalınmasına karşı tamamen koruyamayacağını unutmayın.</translation>
     </message>
     <message>
         <source>Wallet to be encrypted</source>
@@ -325,7 +325,7 @@ Cüzdan kilidini aç.</translation>
     </message>
     <message>
         <source>Enter a AndaluzCoin address (e.g. %1)</source>
-        <translation type="unfinished">Bir bitcoin adresi giriniz (örneğin %1)</translation>
+        <translation type="unfinished">Birandaluzcoin adresi giriniz (örneğin %1)</translation>
     </message>
     <message>
         <source>Onion</source>
@@ -589,8 +589,8 @@ Cüzdan kilidini aç.</translation>
         <translation type="unfinished">Eşlere Bağlanılıyor...</translation>
     </message>
     <message>
-        <source>Request payments (generates QR codes and bitcoin: URIs)</source>
-        <translation type="unfinished">Ödeme isteyin (QR kodları ve bitcoin: URI'ler üretir)</translation>
+        <source>Request payments (generates QR codes andandaluzcoin: URIs)</source>
+        <translation type="unfinished">Ödeme isteyin (QR kodları veandaluzcoin: URI'ler üretir)</translation>
     </message>
     <message>
         <source>Show the list of used sending addresses and labels</source>
@@ -667,7 +667,7 @@ Cüzdan kilidini aç.</translation>
         <translation type="unfinished">&amp; Adresler alınıyor</translation>
     </message>
     <message>
-        <source>Open a bitcoin: URI</source>
+        <source>Open aandaluzcoin: URI</source>
         <translation type="unfinished">AndaluzCoin’i aç.</translation>
     </message>
     <message>
@@ -1408,12 +1408,12 @@ Taşıma işlemi, taşıma işleminden önce cüzdanın bir yedeğini oluşturac
 <context>
     <name>ModalOverlay</name>
     <message>
-        <source>Recent transactions may not yet be visible, and therefore your wallet's balance might be incorrect. This information will be correct once your wallet has finished synchronizing with the bitcoin network, as detailed below.</source>
-        <translation type="unfinished">Son işlemler henüz görünmeyebilir ve bu nedenle cüzdanınızın bakiyesi yanlış olabilir. Bu bilgiler, aşağıda detaylandırıldığı gibi, cüzdanınız bitcoin ağı ile senkronizasyonunu tamamladığında doğru olacaktır. </translation>
+        <source>Recent transactions may not yet be visible, and therefore your wallet's balance might be incorrect. This information will be correct once your wallet has finished synchronizing with theandaluzcoin network, as detailed below.</source>
+        <translation type="unfinished">Son işlemler henüz görünmeyebilir ve bu nedenle cüzdanınızın bakiyesi yanlış olabilir. Bu bilgiler, aşağıda detaylandırıldığı gibi, cüzdanınızandaluzcoin ağı ile senkronizasyonunu tamamladığında doğru olacaktır. </translation>
     </message>
     <message>
-        <source>Attempting to spend bitcoins that are affected by not-yet-displayed transactions will not be accepted by the network.</source>
-        <translation type="unfinished">Henüz görüntülenmeyen işlemlerden etkilenen bitcoinleri harcama girişiminde bulunmak ağ tarafından kabul edilmeyecektir.</translation>
+        <source>Attempting to spendandaluzcoins that are affected by not-yet-displayed transactions will not be accepted by the network.</source>
+        <translation type="unfinished">Henüz görüntülenmeyen işlemlerden etkilenenandaluzcoinleri harcama girişiminde bulunmak ağ tarafından kabul edilmeyecektir.</translation>
     </message>
     <message>
         <source>Number of blocks left</source>
@@ -1455,7 +1455,7 @@ Taşıma işlemi, taşıma işleminden önce cüzdanın bir yedeğini oluşturac
 <context>
     <name>OpenURIDialog</name>
     <message>
-        <source>Open bitcoin URI</source>
+        <source>Openandaluzcoin URI</source>
         <translation type="unfinished">AndaluzCoin URI aç</translation>
     </message>
     <message>
@@ -1961,7 +1961,7 @@ Taşıma işlemi, taşıma işleminden önce cüzdanın bir yedeğini oluşturac
         <translation type="unfinished">Ödeme isteği hatası</translation>
     </message>
     <message>
-        <source>Cannot start bitcoin: click-to-pay handler</source>
+        <source>Cannot startandaluzcoin: click-to-pay handler</source>
         <translation type="unfinished">AndaluzCoin başlatılamadı: tıkla-ve-öde yöneticisi</translation>
     </message>
     <message>
@@ -2908,8 +2908,8 @@ Taşıma işlemi, taşıma işleminden önce cüzdanın bir yedeğini oluşturac
         <translation type="unfinished">Bu ögeyi kaldır</translation>
     </message>
     <message>
-        <source>The fee will be deducted from the amount being sent. The recipient will receive less bitcoins than you enter in the amount field. If multiple recipients are selected, the fee is split equally.</source>
-        <translation type="unfinished">Ücret yollanan tutardan alınacaktır. Alıcı tutar alanına girdiğinizden daha az bitcoin alacaktır. Eğer birden çok alıcı seçiliyse ücret eşit olarak bölünecektir.</translation>
+        <source>The fee will be deducted from the amount being sent. The recipient will receive lessandaluzcoins than you enter in the amount field. If multiple recipients are selected, the fee is split equally.</source>
+        <translation type="unfinished">Ücret yollanan tutardan alınacaktır. Alıcı tutar alanına girdiğinizden daha azandaluzcoin alacaktır. Eğer birden çok alıcı seçiliyse ücret eşit olarak bölünecektir.</translation>
     </message>
     <message>
         <source>S&amp;ubtract fee from amount</source>
@@ -2928,8 +2928,8 @@ Taşıma işlemi, taşıma işleminden önce cüzdanın bir yedeğini oluşturac
         <translation type="unfinished">Kullanılmış adres listesine eklemek için bu adrese bir etiket girin</translation>
     </message>
     <message>
-        <source>A message that was attached to the bitcoin: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the AndaluzCoin network.</source>
-        <translation type="unfinished">Referans için bitcoin: URI'siyle iliştirilmiş işlemle birlikte depolanacak bir ileti. Not: Bu mesaj AndaluzCoin ağı üzerinden gönderilmeyecektir.</translation>
+        <source>A message that was attached to theandaluzcoin: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the AndaluzCoin network.</source>
+        <translation type="unfinished">Referans içinandaluzcoin: URI'siyle iliştirilmiş işlemle birlikte depolanacak bir ileti. Not: Bu mesaj AndaluzCoin ağı üzerinden gönderilmeyecektir.</translation>
     </message>
 </context>
 <context>
@@ -2954,7 +2954,7 @@ Taşıma işlemi, taşıma işleminden önce cüzdanın bir yedeğini oluşturac
         <translation type="unfinished">İleti &amp;imzala</translation>
     </message>
     <message>
-        <source>You can sign messages/agreements with your legacy (P2PKH) addresses to prove you can receive bitcoins sent to them. Be careful not to sign anything vague or random, as phishing attacks may try to trick you into signing your identity over to them. Only sign fully-detailed statements you agree to.</source>
+        <source>You can sign messages/agreements with your legacy (P2PKH) addresses to prove you can receiveandaluzcoins sent to them. Be careful not to sign anything vague or random, as phishing attacks may try to trick you into signing your identity over to them. Only sign fully-detailed statements you agree to.</source>
         <translation type="unfinished">Eski (P2PKH) adreslerinizle mesajları/anlaşmaları imzalayarak bu adreslere gönderilen AndaluzCoin'leri alabileceğinizi unutmayın. Belirsiz veya rastgele şeyleri imzalamaktan kaçının, çünkü kimlik bilgilerinizi çalmak isteyen oltalama saldırıları sizi kandırmaya çalışabilir. Sadece tamamen ayrıntılı ve onayladığınız beyanları imzalayın.</translation>
     </message>
     <message>
@@ -3233,7 +3233,7 @@ Taşıma işlemi, taşıma işleminden önce cüzdanın bir yedeğini oluşturac
     </message>
     <message>
         <source>Generated coins must mature %1 blocks before they can be spent. When you generated this block, it was broadcast to the network to be added to the block chain. If it fails to get into the chain, its state will change to "not accepted" and it won't be spendable. This may occasionally happen if another node generates a block within a few seconds of yours.</source>
-        <translation type="unfinished">Oluşturulan bitcoin'lerin harcanabilmelerinden önce %1 blok beklemeleri gerekmektedir. Bu blok, oluşturduğunuzda, blok zincirine eklenmesi için ağda yayınlandı. Zincire eklenmesi başarısız olursa, durumu "kabul edilmedi" olarak değiştirilecek ve harcanamayacaktır. Bu, bazen başka bir düğüm sizden birkaç saniye önce ya da sonra blok oluşturursa meydana gelebilir.</translation>
+        <translation type="unfinished">Oluşturulanandaluzcoin'lerin harcanabilmelerinden önce %1 blok beklemeleri gerekmektedir. Bu blok, oluşturduğunuzda, blok zincirine eklenmesi için ağda yayınlandı. Zincire eklenmesi başarısız olursa, durumu "kabul edilmedi" olarak değiştirilecek ve harcanamayacaktır. Bu, bazen başka bir düğüm sizden birkaç saniye önce ya da sonra blok oluşturursa meydana gelebilir.</translation>
     </message>
     <message>
         <source>Debug information</source>
@@ -3662,7 +3662,7 @@ Taşıma işlemi, taşıma işleminden önce cüzdanın bir yedeğini oluşturac
     </message>
     <message>
         <source>This is a pre-release test build - use at your own risk - do not use for mining or merchant applications</source>
-        <translation type="unfinished">Bu kararlı sürümden önceki bir deneme sürümüdür. - risklerini bilerek kullanma sorumluluğu sizdedir - bitcoin oluşturmak ya da ticari uygulamalar için kullanmayınız</translation>
+        <translation type="unfinished">Bu kararlı sürümden önceki bir deneme sürümüdür. - risklerini bilerek kullanma sorumluluğu sizdedir -andaluzcoin oluşturmak ya da ticari uygulamalar için kullanmayınız</translation>
     </message>
     <message>
         <source>This is the transaction fee you may pay when fee estimates are not available.</source>
@@ -4098,7 +4098,7 @@ Cüzdan yedeği geri yüklenemiyor.</translation>
     </message>
     <message>
         <source>The transaction amount is too small to pay the fee</source>
-        <translation type="unfinished">İşlemdeki bitcoin tutarı ücreti ödemek için çok düşük</translation>
+        <translation type="unfinished">İşlemdekiandaluzcoin tutarı ücreti ödemek için çok düşük</translation>
     </message>
     <message>
         <source>The wallet will avoid paying less than the minimum relay fee.</source>

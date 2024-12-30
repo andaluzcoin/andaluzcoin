@@ -68,7 +68,7 @@ def print_image(img, threshold=128):
             line.append(chr(ch))
         print(''.join(line))
 
-parser = argparse.ArgumentParser(description='Script to get coins from a faucet.', epilog='You may need to start with double-dash (--) when providing bitcoin-cli arguments.')
+parser = argparse.ArgumentParser(description='Script to get coins from a faucet.', epilog='You may need to start with double-dash (--) when providingandaluzcoin-cli arguments.')
 parser.add_argument('-c', '--cmd', dest='cmd', default='bitcoin-cli', help='bitcoin-cli command to use')
 parser.add_argument('-f', '--faucet', dest='faucet', default=DEFAULT_GLOBAL_FAUCET, help='URL of the faucet')
 parser.add_argument('-g', '--captcha', dest='captcha', default=DEFAULT_GLOBAL_CAPTCHA, help='URL of the faucet captcha, or empty if no captcha is needed')
@@ -76,7 +76,7 @@ parser.add_argument('-a', '--addr', dest='addr', default='', help='AndaluzCoin a
 parser.add_argument('-p', '--password', dest='password', default='', help='Faucet password, if any')
 parser.add_argument('-n', '--amount', dest='amount', default='0.001', help='Amount to request (0.001-0.1, default is 0.001)')
 parser.add_argument('-i', '--imagemagick', dest='imagemagick', default=CONVERT, help='Path to imagemagick convert utility')
-parser.add_argument('bitcoin_cli_args', nargs='*', help='Arguments to pass on to bitcoin-cli (default: -signet)')
+parser.add_argument('bitcoin_cli_args', nargs='*', help='Arguments to pass on toandaluzcoin-cli (default: -signet)')
 
 args = parser.parse_args()
 
@@ -84,7 +84,7 @@ if args.bitcoin_cli_args == []:
     args.bitcoin_cli_args = ['-signet']
 
 
-def bitcoin_cli(rpc_command_and_params):
+defandaluzcoin_cli(rpc_command_and_params):
     argv = [args.cmd] + args.bitcoin_cli_args + rpc_command_and_params
     try:
         return subprocess.check_output(argv).strip().decode()
@@ -97,7 +97,7 @@ def bitcoin_cli(rpc_command_and_params):
 
 if args.faucet.lower() == DEFAULT_GLOBAL_FAUCET:
     # Get the hash of the block at height 1 of the currently active signet chain
-    curr_signet_hash = bitcoin_cli(['getblockhash', '1'])
+    curr_signet_hash =andaluzcoin_cli(['getblockhash', '1'])
     if curr_signet_hash != GLOBAL_FIRST_BLOCK_HASH:
         raise SystemExit('The global faucet cannot be used with a custom Signet network. Please use the global signet or setup your custom faucet to use this functionality.\n')
 else:
@@ -107,7 +107,7 @@ else:
 
 if args.addr == '':
     # get address for receiving coins
-    args.addr = bitcoin_cli(['getnewaddress', 'faucet', 'bech32'])
+    args.addr =andaluzcoin_cli(['getnewaddress', 'faucet', 'bech32'])
 
 data = {'address': args.addr, 'password': args.password, 'amount': args.amount}
 

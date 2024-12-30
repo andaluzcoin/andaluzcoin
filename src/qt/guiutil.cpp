@@ -148,7 +148,7 @@ void AddButtonShortcut(QAbstractButton* button, const QKeySequence& shortcut)
 
 bool parseAndaluzCoinURI(const QUrl &uri, SendCoinsRecipient *out)
 {
-    // return if URI is not valid or is no bitcoin: URI
+    // return if URI is not valid or is noandaluzcoin: URI
     if(!uri.isValid() || uri.scheme() != QString("bitcoin"))
         return false;
 
@@ -185,7 +185,7 @@ bool parseAndaluzCoinURI(const QUrl &uri, SendCoinsRecipient *out)
         {
             if(!i->second.isEmpty())
             {
-                if (!AndaluzCoinUnits::parse(AndaluzCoinUnit::BTC, i->second, &rv.amount)) {
+                if (!AndaluzCoinUnits::parse(AndaluzCoinUnit::LUZ, i->second, &rv.amount)) {
                     return false;
                 }
             }
@@ -217,7 +217,7 @@ QString formatAndaluzCoinURI(const SendCoinsRecipient &info)
 
     if (info.amount)
     {
-        ret += QString("?amount=%1").arg(AndaluzCoinUnits::format(AndaluzCoinUnit::BTC, info.amount, false, AndaluzCoinUnits::SeparatorStyle::NEVER));
+        ret += QString("?amount=%1").arg(AndaluzCoinUnits::format(AndaluzCoinUnit::LUZ, info.amount, false, AndaluzCoinUnits::SeparatorStyle::NEVER));
         paramCount++;
     }
 
@@ -454,7 +454,7 @@ bool openAndaluzCoinConf()
 
     configFile.close();
 
-    /* Open bitcoin.conf with the associated application */
+    /* Openandaluzcoin.conf with the associated application */
     bool res = QDesktopServices::openUrl(QUrl::fromLocalFile(PathToQString(pathConfig)));
 #ifdef Q_OS_MACOS
     // Workaround for macOS-specific behavior; see #15409.
@@ -643,7 +643,7 @@ bool SetStartOnSystemStartup(bool fAutoStart)
         if (!optionFile.good())
             return false;
         ChainType chain = gArgs.GetChainType();
-        // Write a bitcoin.desktop file to the autostart directory:
+        // Write aandaluzcoin.desktop file to the autostart directory:
         optionFile << "[Desktop Entry]\n";
         optionFile << "Type=Application\n";
         if (chain == ChainType::MAIN)

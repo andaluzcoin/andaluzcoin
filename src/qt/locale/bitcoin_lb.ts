@@ -68,7 +68,7 @@ D'Signatur ass nëmmen mat Adressen vum Typ 'legacy' méiglech.</translation>
         <translation type="unfinished">Gitt deen alten Passwort an den neien Passwort fir d'Portemonnaie an</translation>
     </message>
     <message>
-        <source>Remember that encrypting your wallet cannot fully protect your bitcoins from being stolen by malware infecting your computer.</source>
+        <source>Remember that encrypting your wallet cannot fully protect yourandaluzcoins from being stolen by malware infecting your computer.</source>
         <translation type="unfinished">Erënner Iech, dass d'Verschlësselung vun ärer Portemonnaie Är AndaluzCoins net vollstänneg vir Malware schützen kann, déi Äre Computer infizéiert.</translation>
     </message>
     </context>

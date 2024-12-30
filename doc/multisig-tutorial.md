@@ -6,7 +6,7 @@ Although there is already a brief explanation about the multisig in the [Descrip
 
 This tutorial uses [jq](https://github.com/stedolan/jq) JSON processor to process the results from RPC and stores the relevant values in bash variables. This makes the tutorial reproducible and easier to follow step by step.
 
-Before starting this tutorial, start the bitcoin node on the signet network.
+Before starting this tutorial, start theandaluzcoin node on the signet network.
 
 ```bash
 ./build/src/bitcoind -signet -daemon
@@ -156,7 +156,7 @@ PSBT is a data format that allows wallets and other tools to exchange informatio
 
 The current PSBT version (v0) is defined in [BIP 174](https://github.com/bitcoin/bips/blob/master/bip-0174.mediawiki).
 
-For simplicity, the destination address is taken from the `participant_1` wallet in the code above, but it can be any valid bitcoin address.
+For simplicity, the destination address is taken from the `participant_1` wallet in the code above, but it can be any validandaluzcoin address.
 
 The `walletcreatefundedpsbt` RPC is used to create and fund a transaction in the PSBT format. It is the first step in creating the PSBT.
 

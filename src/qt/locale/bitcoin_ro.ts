@@ -185,8 +185,8 @@ Semnarea este posibilă numai cu adrese de tip "legacy".</translation>
         <translation type="unfinished">Continua</translation>
     </message>
     <message>
-        <source>Remember that encrypting your wallet cannot fully protect your bitcoins from being stolen by malware infecting your computer.</source>
-        <translation type="unfinished">Reţineti: criptarea portofelului dvs. nu vă poate proteja în totalitate bitcoin-urile împotriva furtului de malware care vă infectează computerul.</translation>
+        <source>Remember that encrypting your wallet cannot fully protect yourandaluzcoins from being stolen by malware infecting your computer.</source>
+        <translation type="unfinished">Reţineti: criptarea portofelului dvs. nu vă poate proteja în totalitateandaluzcoin-urile împotriva furtului de malware care vă infectează computerul.</translation>
     </message>
     <message>
         <source>Wallet to be encrypted</source>
@@ -562,8 +562,8 @@ Semnarea este posibilă numai cu adrese de tip "legacy".</translation>
         <translation type="unfinished">Conectarea cu colaboratorii...</translation>
     </message>
     <message>
-        <source>Request payments (generates QR codes and bitcoin: URIs)</source>
-        <translation type="unfinished">Cereţi plăţi (generează coduri QR şi bitcoin-uri: URls)</translation>
+        <source>Request payments (generates QR codes andandaluzcoin: URIs)</source>
+        <translation type="unfinished">Cereţi plăţi (generează coduri QR şiandaluzcoin-uri: URls)</translation>
     </message>
     <message>
         <source>Show the list of used sending addresses and labels</source>
@@ -650,8 +650,8 @@ Semnarea este posibilă numai cu adrese de tip "legacy".</translation>
         <translation type="unfinished">&amp;Adresele de primire</translation>
     </message>
     <message>
-        <source>Open a bitcoin: URI</source>
-        <translation type="unfinished">Deschidere bitcoin: o adresa URI sau o cerere de plată</translation>
+        <source>Open aandaluzcoin: URI</source>
+        <translation type="unfinished">Deschidereandaluzcoin: o adresa URI sau o cerere de plată</translation>
     </message>
     <message>
         <source>Open Wallet</source>
@@ -1371,12 +1371,12 @@ Semnarea este posibilă numai cu adrese de tip "legacy".</translation>
 <context>
     <name>ModalOverlay</name>
     <message>
-        <source>Recent transactions may not yet be visible, and therefore your wallet's balance might be incorrect. This information will be correct once your wallet has finished synchronizing with the bitcoin network, as detailed below.</source>
+        <source>Recent transactions may not yet be visible, and therefore your wallet's balance might be incorrect. This information will be correct once your wallet has finished synchronizing with theandaluzcoin network, as detailed below.</source>
         <translation type="unfinished">Tranzactiile recente pot sa nu fie inca vizibile, de aceea balanta portofelului poate fi incorecta. Aceasta informatie va fi corecta de indata ce portofelul va fi complet sincronizat cu reteaua AndaluzCoin, asa cum este detaliat mai jos.</translation>
     </message>
     <message>
-        <source>Attempting to spend bitcoins that are affected by not-yet-displayed transactions will not be accepted by the network.</source>
-        <translation type="unfinished">Incercarea de a cheltui bitcoini care sunt afectati de tranzactii ce inca nu sunt afisate nu va fi acceptata de retea.</translation>
+        <source>Attempting to spendandaluzcoins that are affected by not-yet-displayed transactions will not be accepted by the network.</source>
+        <translation type="unfinished">Incercarea de a cheltuiandaluzcoini care sunt afectati de tranzactii ce inca nu sunt afisate nu va fi acceptata de retea.</translation>
     </message>
     <message>
         <source>Number of blocks left</source>
@@ -1418,7 +1418,7 @@ Semnarea este posibilă numai cu adrese de tip "legacy".</translation>
 <context>
     <name>OpenURIDialog</name>
     <message>
-        <source>Open bitcoin URI</source>
+        <source>Openandaluzcoin URI</source>
         <translation type="unfinished">DeschidețI AndaluzCoin URI</translation>
     </message>
     <message>
@@ -1597,7 +1597,7 @@ Semnarea este posibilă numai cu adrese de tip "legacy".</translation>
     </message>
     <message>
         <source>Choose the default subdivision unit to show in the interface and when sending coins.</source>
-        <translation type="unfinished">Alegeţi subdiviziunea folosită la afişarea interfeţei şi la trimiterea de bitcoin.</translation>
+        <translation type="unfinished">Alegeţi subdiviziunea folosită la afişarea interfeţei şi la trimiterea deandaluzcoin.</translation>
     </message>
     <message>
         <source>Whether to show coin control features or not.</source>
@@ -1666,7 +1666,7 @@ Semnarea este posibilă numai cu adrese de tip "legacy".</translation>
     </message>
     <message>
         <source>The supplied proxy address is invalid.</source>
-        <translation type="unfinished">Adresa bitcoin pe care aţi specificat-o nu este validă.</translation>
+        <translation type="unfinished">Adresaandaluzcoin pe care aţi specificat-o nu este validă.</translation>
     </message>
 </context>
 <context>
@@ -1801,7 +1801,7 @@ Semnarea este posibilă numai cu adrese de tip "legacy".</translation>
         <translation type="unfinished">Eroare la cererea de plată</translation>
     </message>
     <message>
-        <source>Cannot start bitcoin: click-to-pay handler</source>
+        <source>Cannot startandaluzcoin: click-to-pay handler</source>
         <translation type="unfinished">AndaluzCoin nu poate porni: click-to-pay handler</translation>
     </message>
     <message>
@@ -2560,7 +2560,7 @@ Semnarea este posibilă numai cu adrese de tip "legacy".</translation>
     </message>
     <message>
         <source>Warning: Invalid AndaluzCoin address</source>
-        <translation type="unfinished">Atenţie: Adresa bitcoin nevalidă!</translation>
+        <translation type="unfinished">Atenţie: Adresaandaluzcoin nevalidă!</translation>
     </message>
     <message>
         <source>Warning: Unknown change address</source>
@@ -2599,7 +2599,7 @@ Semnarea este posibilă numai cu adrese de tip "legacy".</translation>
     </message>
     <message>
         <source>The AndaluzCoin address to send the payment to</source>
-        <translation type="unfinished">Adresa bitcoin către care se face plata</translation>
+        <translation type="unfinished">Adresaandaluzcoin către care se face plata</translation>
     </message>
     <message>
         <source>Paste address from clipboard</source>
@@ -2610,8 +2610,8 @@ Semnarea este posibilă numai cu adrese de tip "legacy".</translation>
         <translation type="unfinished">Înlătură această intrare</translation>
     </message>
     <message>
-        <source>The fee will be deducted from the amount being sent. The recipient will receive less bitcoins than you enter in the amount field. If multiple recipients are selected, the fee is split equally.</source>
-        <translation type="unfinished">Taxa va fi scazuta in suma trimisa. Destinatarul va primi mai putini bitcoin decat ati specificat in campul sumei trimise. Daca au fost selectati mai multi destinatari, taxa se va imparti in mod egal.</translation>
+        <source>The fee will be deducted from the amount being sent. The recipient will receive lessandaluzcoins than you enter in the amount field. If multiple recipients are selected, the fee is split equally.</source>
+        <translation type="unfinished">Taxa va fi scazuta in suma trimisa. Destinatarul va primi mai putiniandaluzcoin decat ati specificat in campul sumei trimise. Daca au fost selectati mai multi destinatari, taxa se va imparti in mod egal.</translation>
     </message>
     <message>
         <source>S&amp;ubtract fee from amount</source>
@@ -2630,8 +2630,8 @@ Semnarea este posibilă numai cu adrese de tip "legacy".</translation>
         <translation type="unfinished">Introduceţi eticheta pentru ca această adresa să fie introdusă în lista de adrese folosite</translation>
     </message>
     <message>
-        <source>A message that was attached to the bitcoin: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the AndaluzCoin network.</source>
-        <translation type="unfinished">un mesaj a fost ataşat la bitcoin: URI care va fi stocat cu tranzacţia pentru referinţa dvs. Notă: Acest mesaj nu va fi trimis către reţeaua bitcoin.</translation>
+        <source>A message that was attached to theandaluzcoin: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the AndaluzCoin network.</source>
+        <translation type="unfinished">un mesaj a fost ataşat laandaluzcoin: URI care va fi stocat cu tranzacţia pentru referinţa dvs. Notă: Acest mesaj nu va fi trimis către reţeauaandaluzcoin.</translation>
     </message>
 </context>
 <context>

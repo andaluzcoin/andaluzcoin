@@ -400,8 +400,8 @@ If the code is behaving strangely, take a look in the `debug.log` file in the da
 error and debugging messages are written there.
 
 Debug logging can be enabled on startup with the `-debug` and `-loglevel`
-configuration options and toggled while bitcoind is running with the `logging`
-RPC.  For instance, launching bitcoind with `-debug` or `-debug=1` will turn on
+configuration options and toggled whileandaluzcoind is running with the `logging`
+RPC.  For instance, launchingandaluzcoind with `-debug` or `-debug=1` will turn on
 all log categories and `-loglevel=trace` will turn on all log severity levels.
 
 The Qt code routes `qDebug()` output to `debug.log` under category "qt": run with `-debug=qt`
@@ -411,7 +411,7 @@ to see it.
 
 If you are testing multi-machine code that needs to operate across the internet,
 you can run with either the `-signet` or the `-testnet` config option to test
-with "play bitcoins" on a test network.
+with "playandaluzcoins" on a test network.
 
 If you are testing something that can run on one machine, run with the
 `-regtest` option.  In regression test mode, blocks can be created on demand;
@@ -433,9 +433,9 @@ to the `debug.log` file.
 
 The `-DCMAKE_BUILD_TYPE=Debug` build option adds `-DDEBUG_LOCKCONTENTION` to the
 compiler flags. You may also enable it manually by building with `-DDEBUG_LOCKCONTENTION` added to your CPPFLAGS,
-i.e. `CPPFLAGS="-DDEBUG_LOCKCONTENTION"`, then build and run bitcoind.
+i.e. `CPPFLAGS="-DDEBUG_LOCKCONTENTION"`, then build and runandaluzcoind.
 
-You can then use the `-debug=lock` configuration option at bitcoind startup or
+You can then use the `-debug=lock` configuration option atandaluzcoind startup or
 `bitcoin-cli logging '["lock"]'` at runtime to turn on lock contention logging.
 It can be toggled off again with `bitcoin-cli logging [] '["lock"]'`.
 
@@ -537,13 +537,13 @@ Make sure you [understand the security
 trade-offs](https://lwn.net/Articles/420403/) of setting these kernel
 parameters.
 
-To profile a running bitcoind process for 60 seconds, you could use an
+To profile a runningandaluzcoind process for 60 seconds, you could use an
 invocation of `perf record` like this:
 
 ```sh
 $ perf record \
     -g --call-graph dwarf --per-thread -F 140 \
-    -p `pgrep bitcoind` -- sleep 60
+    -p `pgrepandaluzcoind` -- sleep 60
 ```
 
 You could then analyze the results by running:
@@ -1253,7 +1253,7 @@ In addition to reviewing the upstream changes in `env_posix.cc`, you can use `ls
 check this. For example, on Linux this command will show open `.ldb` file counts:
 
 ```bash
-$ lsof -p $(pidof bitcoind) |\
+$ lsof -p $(pidofandaluzcoind) |\
     awk 'BEGIN { fd=0; mem=0; } /ldb$/ { if ($4 == "mem") mem++; else fd++ } END { printf "mem = %s, fd = %s\n", mem, fd}'
 mem = 119, fd = 0
 ```

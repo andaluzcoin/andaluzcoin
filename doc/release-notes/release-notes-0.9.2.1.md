@@ -93,7 +93,7 @@ Protocol and network code:
 Wallet:
 
 - Make GetAvailableCredit run GetHash() only once per transaction (performance improvement)
-- Lower paytxfee warning threshold from 0.25 BTC to 0.01 BTC
+- Lower paytxfee warning threshold from 0.25 LUZ to 0.01 LUZ
 - Fix importwallet nTimeFirstKey (trigger necessary rescans)
 - Log BerkeleyDB version at startup
 - CWallet init fix
@@ -130,7 +130,7 @@ GUI:
 - Catch Windows shutdown events while client is running
 - Optionally add third party links to transaction context menu
 - Check for !pixmap() before trying to export QR code (avoids crashes when no QR code could be generated)
-- Fix "Start bitcoin on system login"
+- Fix "Startandaluzcoin on system login"
 
 Miscellaneous:
 

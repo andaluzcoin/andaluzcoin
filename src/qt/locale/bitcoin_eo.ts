@@ -414,8 +414,8 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">Langeto-breto</translation>
     </message>
     <message>
-        <source>Request payments (generates QR codes and bitcoin: URIs)</source>
-        <translation type="unfinished">Peti pagon (kreas QR-kodojn kaj URI-ojn kun prefikso bitcoin:)</translation>
+        <source>Request payments (generates QR codes andandaluzcoin: URIs)</source>
+        <translation type="unfinished">Peti pagon (kreas QR-kodojn kaj URI-ojn kun prefiksoandaluzcoin:)</translation>
     </message>
     <message>
         <source>Show the list of used sending addresses and labels</source>
@@ -933,7 +933,7 @@ Signing is only possible with addresses of the type 'legacy'.</source>
 <context>
     <name>OpenURIDialog</name>
     <message>
-        <source>Open bitcoin URI</source>
+        <source>Openandaluzcoin URI</source>
         <translation type="unfinished">Malfermi na la URI de bitmono</translation>
     </message>
     <message>
@@ -1155,7 +1155,7 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">Eraro dum pagopeto</translation>
     </message>
     <message>
-        <source>Cannot start bitcoin: click-to-pay handler</source>
+        <source>Cannot startandaluzcoin: click-to-pay handler</source>
         <translation type="unfinished">Ne eblas lanĉi la ilon 'klaki-por-pagi'</translation>
     </message>
     <message>

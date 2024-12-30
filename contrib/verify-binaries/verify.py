@@ -5,7 +5,7 @@
 """Script for verifying AndaluzCoin Core release binaries.
 
 This script attempts to download the sum file SHA256SUMS and corresponding
-signature file SHA256SUMS.asc from bitcoincore.org and bitcoin.org and
+signature file SHA256SUMS.asc fromandaluzcoincore.org andandaluzcoin.org and
 compares them.
 
 The sum-signature file is signed by a number of builder keys. This script
@@ -513,7 +513,7 @@ def verify_published_handler(args: argparse.Namespace) -> ReturnCode:
         log.error(f"No files matched the platform specified. Did you mean: {closest_match}")
         return ReturnCode.NO_BINARIES_MATCH
 
-    # remove binaries that are known not to be hosted by bitcoincore.org
+    # remove binaries that are known not to be hosted byandaluzcoincore.org
     fragments_to_remove = ['-unsigned', '-debug', '-codesignatures']
     for fragment in fragments_to_remove:
         nobinaries = [i for i in hashes_to_verify if fragment in i[1]]
@@ -673,7 +673,7 @@ def main():
     pub_parser.set_defaults(func=verify_published_handler)
     pub_parser.add_argument(
         'version', type=str, help=(
-            f'version of the bitcoin release to download; of the format '
+            f'version of theandaluzcoin release to download; of the format '
             f'{VERSION_FORMAT}. Example: {VERSION_EXAMPLE}')
     )
     pub_parser.add_argument(
@@ -686,7 +686,7 @@ def main():
         default=bool_from_env('BINVERIFY_REQUIRE_ALL_HOSTS'),
         help=(
             f'If set, require all hosts ({HOST1}, {HOST2}) to provide signatures. '
-            '(Sometimes bitcoin.org lags behind bitcoincore.org.)')
+            '(Sometimesandaluzcoin.org lags behindandaluzcoincore.org.)')
     )
 
     bin_parser = subparsers.add_parser("bin", help="Verify local binaries.")

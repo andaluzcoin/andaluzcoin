@@ -5,13 +5,13 @@
 include(GNUInstallDirs)
 include(AddWindowsResources)
 
-configure_file(${PROJECT_SOURCE_DIR}/cmake/bitcoin-build-config.h.in bitcoin-build-config.h USE_SOURCE_PERMISSIONS @ONLY)
+configure_file(${PROJECT_SOURCE_DIR}/cmake/bitcoin-build-config.h.inandaluzcoin-build-config.h USE_SOURCE_PERMISSIONS @ONLY)
 include_directories(${CMAKE_CURRENT_BINARY_DIR} ${CMAKE_CURRENT_SOURCE_DIR})
 
 add_custom_target(generate_build_info
   BYPRODUCTS ${PROJECT_BINARY_DIR}/src/bitcoin-build-info.h
   COMMAND ${CMAKE_COMMAND} -DBUILD_INFO_HEADER_PATH=${PROJECT_BINARY_DIR}/src/bitcoin-build-info.h -DSOURCE_DIR=${PROJECT_SOURCE_DIR} -P ${PROJECT_SOURCE_DIR}/cmake/script/GenerateBuildInfo.cmake
-  COMMENT "Generating bitcoin-build-info.h"
+  COMMENT "Generatingandaluzcoin-build-info.h"
   VERBATIM
 )
 add_library(bitcoin_clientversion OBJECT EXCLUDE_FROM_ALL
@@ -95,7 +95,7 @@ add_library(bitcoin_consensus STATIC EXCLUDE_FROM_ALL
 target_link_libraries(bitcoin_consensus
   PRIVATE
     core_interface
-    bitcoin_crypto
+   andaluzcoin_crypto
     secp256k1
 )
 
@@ -159,8 +159,8 @@ add_library(bitcoin_common STATIC EXCLUDE_FROM_ALL
 target_link_libraries(bitcoin_common
   PRIVATE
     core_interface
-    bitcoin_consensus
-    bitcoin_util
+   andaluzcoin_consensus
+   andaluzcoin_util
     univalue
     secp256k1
     Boost::headers
@@ -175,19 +175,19 @@ if(ENABLE_WALLET)
 
   if(BUILD_WALLET_TOOL)
     add_executable(bitcoin-wallet
-      bitcoin-wallet.cpp
+     andaluzcoin-wallet.cpp
       init/bitcoin-wallet.cpp
       wallet/wallettool.cpp
     )
-    add_windows_resources(bitcoin-wallet bitcoin-wallet-res.rc)
+    add_windows_resources(bitcoin-walletandaluzcoin-wallet-res.rc)
     target_link_libraries(bitcoin-wallet
       core_interface
-      bitcoin_wallet
-      bitcoin_common
-      bitcoin_util
+     andaluzcoin_wallet
+     andaluzcoin_common
+     andaluzcoin_util
       Boost::headers
     )
-    list(APPEND installable_targets bitcoin-wallet)
+    list(APPEND installable_targetsandaluzcoin-wallet)
   endif()
 endif()
 
@@ -292,8 +292,8 @@ add_library(bitcoin_node STATIC EXCLUDE_FROM_ALL
 target_link_libraries(bitcoin_node
   PRIVATE
     core_interface
-    bitcoin_common
-    bitcoin_util
+   andaluzcoin_common
+   andaluzcoin_util
     $<TARGET_NAME_IF_EXISTS:bitcoin_zmq>
     leveldb
     minisketch
@@ -306,35 +306,35 @@ target_link_libraries(bitcoin_node
 )
 
 
-# AndaluzCoin Core bitcoind.
+# AndaluzCoin Coreandaluzcoind.
 if(BUILD_DAEMON)
   add_executable(bitcoind
-    bitcoind.cpp
+   andaluzcoind.cpp
     init/bitcoind.cpp
   )
-  add_windows_resources(bitcoind bitcoind-res.rc)
+  add_windows_resources(bitcoindandaluzcoind-res.rc)
   target_link_libraries(bitcoind
     core_interface
-    bitcoin_node
+   andaluzcoin_node
     $<TARGET_NAME_IF_EXISTS:bitcoin_wallet>
   )
-  list(APPEND installable_targets bitcoind)
+  list(APPEND installable_targetsandaluzcoind)
 endif()
 if(WITH_MULTIPROCESS)
   add_executable(bitcoin-node
-    bitcoind.cpp
+   andaluzcoind.cpp
     init/bitcoin-node.cpp
   )
   target_link_libraries(bitcoin-node
     core_interface
-    bitcoin_node
-    bitcoin_ipc
+   andaluzcoin_node
+   andaluzcoin_ipc
     $<TARGET_NAME_IF_EXISTS:bitcoin_wallet>
   )
-  list(APPEND installable_targets bitcoin-node)
+  list(APPEND installable_targetsandaluzcoin-node)
 
   if(BUILD_TESTS)
-    # bitcoin_ipc_test library target is defined here in src/CMakeLists.txt
+    #andaluzcoin_ipc_test library target is defined here in src/CMakeLists.txt
     # instead of src/test/CMakeLists.txt so capnp files in src/test/ are able to
     # reference capnp files in src/ipc/capnp/ by relative path. The Cap'n Proto
     # compiler only allows importing by relative path when the importing and
@@ -346,7 +346,7 @@ if(WITH_MULTIPROCESS)
     target_capnp_sources(bitcoin_ipc_test ${PROJECT_SOURCE_DIR}
       test/ipc_test.capnp
     )
-    add_dependencies(bitcoin_ipc_test bitcoin_ipc_headers)
+    add_dependencies(bitcoin_ipc_testandaluzcoin_ipc_headers)
   endif()
 endif()
 
@@ -364,42 +364,42 @@ target_link_libraries(bitcoin_cli
 
 # AndaluzCoin Core RPC client
 if(BUILD_CLI)
-  add_executable(bitcoin-cli bitcoin-cli.cpp)
-  add_windows_resources(bitcoin-cli bitcoin-cli-res.rc)
+  add_executable(bitcoin-cliandaluzcoin-cli.cpp)
+  add_windows_resources(bitcoin-cliandaluzcoin-cli-res.rc)
   target_link_libraries(bitcoin-cli
     core_interface
-    bitcoin_cli
-    bitcoin_common
-    bitcoin_util
+   andaluzcoin_cli
+   andaluzcoin_common
+   andaluzcoin_util
     libevent::core
     libevent::extra
   )
-  list(APPEND installable_targets bitcoin-cli)
+  list(APPEND installable_targetsandaluzcoin-cli)
 endif()
 
 
 if(BUILD_TX)
-  add_executable(bitcoin-tx bitcoin-tx.cpp)
-  add_windows_resources(bitcoin-tx bitcoin-tx-res.rc)
+  add_executable(bitcoin-txandaluzcoin-tx.cpp)
+  add_windows_resources(bitcoin-txandaluzcoin-tx-res.rc)
   target_link_libraries(bitcoin-tx
     core_interface
-    bitcoin_common
-    bitcoin_util
+   andaluzcoin_common
+   andaluzcoin_util
     univalue
   )
-  list(APPEND installable_targets bitcoin-tx)
+  list(APPEND installable_targetsandaluzcoin-tx)
 endif()
 
 
 if(BUILD_UTIL)
-  add_executable(bitcoin-util bitcoin-util.cpp)
-  add_windows_resources(bitcoin-util bitcoin-util-res.rc)
+  add_executable(bitcoin-utilandaluzcoin-util.cpp)
+  add_windows_resources(bitcoin-utilandaluzcoin-util-res.rc)
   target_link_libraries(bitcoin-util
     core_interface
-    bitcoin_common
-    bitcoin_util
+   andaluzcoin_common
+   andaluzcoin_util
   )
-  list(APPEND installable_targets bitcoin-util)
+  list(APPEND installable_targetsandaluzcoin-util)
 endif()
 
 
@@ -414,7 +414,7 @@ endif()
 
 if(BUILD_UTIL_CHAINSTATE)
   add_executable(bitcoin-chainstate
-    bitcoin-chainstate.cpp
+   andaluzcoin-chainstate.cpp
   )
   # TODO: The `SKIP_BUILD_RPATH` property setting can be deleted
   #       in the future after reordering Guix script commands to
@@ -428,7 +428,7 @@ if(BUILD_UTIL_CHAINSTATE)
   target_link_libraries(bitcoin-chainstate
     PRIVATE
       core_interface
-      bitcoinkernel
+     andaluzcoinkernel
   )
 endif()
 

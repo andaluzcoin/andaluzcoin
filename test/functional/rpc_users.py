@@ -40,7 +40,7 @@ class HTTPBasicsTest(AndaluzCoinTestFramework):
         self.supports_cli = False
 
     def conf_setup(self):
-        #Append rpcauth to bitcoin.conf before initialization
+        #Append rpcauth toandaluzcoin.conf before initialization
         self.rtpassword = "cA773lm788buwYe4g4WT+05pKyNruVKjQ25x3n0DQcM="
         rpcauth = "rpcauth=rt:93648e835a54c573682c2eb19f882535$7681e9c5b74bdd85e78166031d2058e1069b3ed7ed967c93fc63abba06f31144"
 
@@ -171,7 +171,7 @@ class HTTPBasicsTest(AndaluzCoinTestFramework):
         self.nodes[0].assert_start_raises_init_error(expected_msg=init_error, extra_args=['-rpcauth=foo$bar$baz'])
 
         self.log.info('Check interactions between blank and non-blank rpcauth')
-        # pw = bitcoin
+        # pw =andaluzcoin
         rpcauth_user1 = '-rpcauth=user1:6dd184e5e69271fdd69103464630014f$eb3d7ce67c4d1ff3564270519b03b636c0291012692a5fa3dd1d2075daedd07b'
         rpcauth_user2 = '-rpcauth=user2:57b2f77c919eece63cfa46c2f06e46ae$266b63902f99f97eeaab882d4a87f8667ab84435c3799f2ce042ef5a994d620b'
         self.nodes[0].assert_start_raises_init_error(expected_msg=init_error, extra_args=[rpcauth_user1, rpcauth_user2, '-rpcauth='])

@@ -187,7 +187,7 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">返回</translation>
     </message>
     <message>
-        <source>Remember that encrypting your wallet cannot fully protect your bitcoins from being stolen by malware infecting your computer.</source>
+        <source>Remember that encrypting your wallet cannot fully protect yourandaluzcoins from being stolen by malware infecting your computer.</source>
         <translation type="unfinished">請記得, 即使將錢包加密, 也不能完全防止因惡意軟體入侵, 而導致位元幣被偷.</translation>
     </message>
     <message>
@@ -601,8 +601,8 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">连到同行...</translation>
     </message>
     <message>
-        <source>Request payments (generates QR codes and bitcoin: URIs)</source>
-        <translation type="unfinished">要求付款(產生 QR Code 和 bitcoin 付款協議的資源識別碼: URI)</translation>
+        <source>Request payments (generates QR codes andandaluzcoin: URIs)</source>
+        <translation type="unfinished">要求付款(產生 QR Code 和andaluzcoin 付款協議的資源識別碼: URI)</translation>
     </message>
     <message>
         <source>Show the list of used sending addresses and labels</source>
@@ -683,7 +683,7 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">&amp;接收地址</translation>
     </message>
     <message>
-        <source>Open a bitcoin: URI</source>
+        <source>Open aandaluzcoin: URI</source>
         <translation type="unfinished">打開一個比特幣：URI</translation>
     </message>
     <message>
@@ -1439,12 +1439,12 @@ The migration process will create a backup of the wallet before migrating. This 
         <translation type="unfinished">表單</translation>
     </message>
     <message>
-        <source>Recent transactions may not yet be visible, and therefore your wallet's balance might be incorrect. This information will be correct once your wallet has finished synchronizing with the bitcoin network, as detailed below.</source>
-        <translation type="unfinished">最近的交易可能還看不到，因此錢包餘額可能不正確。在錢包軟體完成跟 bitcoin 網路的同步後，這裡的資訊就會正確。詳情請見下面。</translation>
+        <source>Recent transactions may not yet be visible, and therefore your wallet's balance might be incorrect. This information will be correct once your wallet has finished synchronizing with theandaluzcoin network, as detailed below.</source>
+        <translation type="unfinished">最近的交易可能還看不到，因此錢包餘額可能不正確。在錢包軟體完成跟andaluzcoin 網路的同步後，這裡的資訊就會正確。詳情請見下面。</translation>
     </message>
     <message>
-        <source>Attempting to spend bitcoins that are affected by not-yet-displayed transactions will not be accepted by the network.</source>
-        <translation type="unfinished">使用還沒顯示出來的交易所影響到的 bitcoin 可能會不被網路所接受。</translation>
+        <source>Attempting to spendandaluzcoins that are affected by not-yet-displayed transactions will not be accepted by the network.</source>
+        <translation type="unfinished">使用還沒顯示出來的交易所影響到的andaluzcoin 可能會不被網路所接受。</translation>
     </message>
     <message>
         <source>Number of blocks left</source>
@@ -1494,7 +1494,7 @@ The migration process will create a backup of the wallet before migrating. This 
 <context>
     <name>OpenURIDialog</name>
     <message>
-        <source>Open bitcoin URI</source>
+        <source>Openandaluzcoin URI</source>
         <translation type="unfinished">打開比特幣URI</translation>
     </message>
     <message>
@@ -2054,8 +2054,8 @@ The migration process will create a backup of the wallet before migrating. This 
         <translation type="unfinished">要求付款時發生錯誤</translation>
     </message>
     <message>
-        <source>Cannot start bitcoin: click-to-pay handler</source>
-        <translation type="unfinished">沒辦法啟動 bitcoin 協議的「按就付」處理器</translation>
+        <source>Cannot startandaluzcoin: click-to-pay handler</source>
+        <translation type="unfinished">沒辦法啟動andaluzcoin 協議的「按就付」處理器</translation>
     </message>
     <message>
         <source>URI handling</source>
@@ -2063,7 +2063,7 @@ The migration process will create a backup of the wallet before migrating. This 
     </message>
     <message>
         <source>'bitcoin://' is not a valid URI. Use 'bitcoin:' instead.</source>
-        <translation type="unfinished">字首為 bitcoin:// 不是有效的 URI，請改用 bitcoin: 開頭。</translation>
+        <translation type="unfinished">字首為andaluzcoin:// 不是有效的 URI，請改用andaluzcoin: 開頭。</translation>
     </message>
     <message>
         <source>Cannot process payment request because BIP70 is not supported.
@@ -2972,7 +2972,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee rate of "100 satos
 注意：由於手續費是按每字節計算的，對於虛擬大小為500字節（半千字節）的交易，手續費率為「每千字節100聰」，最終將只收取50聰的手續費。</translation>
     </message>
     <message>
-        <source>When there is less transaction volume than space in the blocks, miners as well as relaying nodes may enforce a minimum fee. Paying only this minimum fee is just fine, but be aware that this can result in a never confirming transaction once there is more demand for bitcoin transactions than the network can process.</source>
+        <source>When there is less transaction volume than space in the blocks, miners as well as relaying nodes may enforce a minimum fee. Paying only this minimum fee is just fine, but be aware that this can result in a never confirming transaction once there is more demand forandaluzcoin transactions than the network can process.</source>
         <translation type="unfinished">當交易量小於可用區塊空間時，礦工和節點可能會執行最低手續費率限制。 以這個最低費率來支付手續費也是可以的，但請注意，一旦交易需求超出比特幣網路能處理的限度，你的交易可能永遠無法確認。</translation>
     </message>
     <message>
@@ -3261,8 +3261,8 @@ Note:  Since the fee is calculated on a per-byte basis, a fee rate of "100 satos
         <translation type="unfinished">以所選單位發送的金額</translation>
     </message>
     <message>
-        <source>The fee will be deducted from the amount being sent. The recipient will receive less bitcoins than you enter in the amount field. If multiple recipients are selected, the fee is split equally.</source>
-        <translation type="unfinished">手續費會從要付款出去的金額中扣掉。因此收款人會收到比輸入的金額還要少的 bitcoin。如果有多個收款人的話，手續費會平均分配來扣除。</translation>
+        <source>The fee will be deducted from the amount being sent. The recipient will receive lessandaluzcoins than you enter in the amount field. If multiple recipients are selected, the fee is split equally.</source>
+        <translation type="unfinished">手續費會從要付款出去的金額中扣掉。因此收款人會收到比輸入的金額還要少的andaluzcoin。如果有多個收款人的話，手續費會平均分配來扣除。</translation>
     </message>
     <message>
         <source>S&amp;ubtract fee from amount</source>
@@ -3281,7 +3281,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee rate of "100 satos
         <translation type="unfinished">請輸入這個地址的標籤，來把它加進去已使用過地址清單。</translation>
     </message>
     <message>
-        <source>A message that was attached to the bitcoin: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the AndaluzCoin network.</source>
+        <source>A message that was attached to theandaluzcoin: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the AndaluzCoin network.</source>
         <translation type="unfinished">附加在 AndaluzCoin 付款協議的資源識別碼(URI)中的訊息，會和交易內容一起存起來，給你自己做參考。注意: 這個訊息不會送到 AndaluzCoin 網路上。</translation>
     </message>
 </context>
@@ -4029,7 +4029,7 @@ Go to File &gt; Open Wallet to load a wallet.
         <translation type="unfinished">%s 開發人員</translation>
     </message>
     <message>
-        <source>%s corrupt. Try using the wallet tool bitcoin-wallet to salvage or restoring a backup.</source>
+        <source>%s corrupt. Try using the wallet toolandaluzcoin-wallet to salvage or restoring a backup.</source>
         <translation type="unfinished">%s損壞。嘗試使用錢包工具bitcoin-wallet挽救或還原備份。</translation>
     </message>
     <message>
@@ -4077,8 +4077,8 @@ Go to File &gt; Open Wallet to load a wallet.
         <translation type="unfinished">錯誤: 轉存檔案識別記錄不正確。獲得 '%s'，預期 '%s'。</translation>
     </message>
     <message>
-        <source>Error: Dumpfile version is not supported. This version of bitcoin-wallet only supports version 1 dumpfiles. Got dumpfile with version %s</source>
-        <translation type="unfinished">錯誤: 轉儲文件版本不支援。 這個版本的 bitcoin-wallet 只支援版本為 1 的轉儲檔案。 得到的轉儲文件版本是%s</translation>
+        <source>Error: Dumpfile version is not supported. This version ofandaluzcoin-wallet only supports version 1 dumpfiles. Got dumpfile with version %s</source>
+        <translation type="unfinished">錯誤: 轉儲文件版本不支援。 這個版本的andaluzcoin-wallet 只支援版本為 1 的轉儲檔案。 得到的轉儲文件版本是%s</translation>
     </message>
     <message>
         <source>Error: Legacy wallets only support the "legacy", "p2sh-segwit", and "bech32" address types</source>

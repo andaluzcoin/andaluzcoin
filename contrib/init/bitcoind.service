@@ -1,7 +1,7 @@
 # It is not recommended to modify this file in-place, because it will
 # be overwritten during package upgrades. If you want to add further
 # options or overwrite existing ones then use
-# $ systemctl edit bitcoind.service
+# $ systemctl editandaluzcoind.service
 # See "man systemd.service" for details.
 
 # Note that almost all daemon options could be specified in
@@ -26,7 +26,7 @@ ExecStart=/usr/bin/bitcoind -pid=/run/bitcoind/bitcoind.pid \
 
 # Make sure the config directory is readable by the service user
 PermissionsStartOnly=true
-ExecStartPre=/bin/chgrp bitcoin /etc/bitcoin
+ExecStartPre=/bin/chgrpandaluzcoin /etc/bitcoin
 
 # Process management
 ####################
@@ -42,7 +42,7 @@ TimeoutStopSec=600
 # Directory creation and permissions
 ####################################
 
-# Run as bitcoin:bitcoin
+# Run asandaluzcoin:bitcoin
 User=bitcoin
 Group=bitcoin
 

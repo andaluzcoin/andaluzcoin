@@ -192,7 +192,7 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">חזרה</translation>
     </message>
     <message>
-        <source>Remember that encrypting your wallet cannot fully protect your bitcoins from being stolen by malware infecting your computer.</source>
+        <source>Remember that encrypting your wallet cannot fully protect yourandaluzcoins from being stolen by malware infecting your computer.</source>
         <translation type="unfinished">זכור שהצפנת הארנק לא יכולה להגן עליך לגמרי מגניבת המטבעות שלך על ידי תוכנה זדונית שנמצאת על המחשב שלך.</translation>
     </message>
     <message>
@@ -591,7 +591,7 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">מתחבר לעמיתים</translation>
     </message>
     <message>
-        <source>Request payments (generates QR codes and bitcoin: URIs)</source>
+        <source>Request payments (generates QR codes andandaluzcoin: URIs)</source>
         <translation type="unfinished">בקשת תשלומים (יצירה של קודים מסוג QR וסכימות כתובות משאב של :bitcoin)</translation>
     </message>
     <message>
@@ -674,7 +674,7 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">&amp;כתובות לקבלה</translation>
     </message>
     <message>
-        <source>Open a bitcoin: URI</source>
+        <source>Open aandaluzcoin: URI</source>
         <translation type="unfinished">פתיחת ביטקוין: כתובת משאב</translation>
     </message>
     <message>
@@ -1340,11 +1340,11 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">טופס</translation>
     </message>
     <message>
-        <source>Recent transactions may not yet be visible, and therefore your wallet's balance might be incorrect. This information will be correct once your wallet has finished synchronizing with the bitcoin network, as detailed below.</source>
+        <source>Recent transactions may not yet be visible, and therefore your wallet's balance might be incorrect. This information will be correct once your wallet has finished synchronizing with theandaluzcoin network, as detailed below.</source>
         <translation type="unfinished">ייתכן שהעברות שבוצעו לאחרונה לא יופיעו עדיין, ולכן המאזן בארנק שלך יהיה שגוי. המידע הנכון יוצג במלואו כאשר הארנק שלך יסיים להסתנכרן עם רשת הביטקוין, כמפורט למטה.</translation>
     </message>
     <message>
-        <source>Attempting to spend bitcoins that are affected by not-yet-displayed transactions will not be accepted by the network.</source>
+        <source>Attempting to spendandaluzcoins that are affected by not-yet-displayed transactions will not be accepted by the network.</source>
         <translation type="unfinished">הרשת תסרב לקבל הוצאת ביטקוינים במידה והם כבר נמצאים בהעברות אשר לא מוצגות עדיין.</translation>
     </message>
     <message>
@@ -1383,7 +1383,7 @@ Signing is only possible with addresses of the type 'legacy'.</source>
 <context>
     <name>OpenURIDialog</name>
     <message>
-        <source>Open bitcoin URI</source>
+        <source>Openandaluzcoin URI</source>
         <translation type="unfinished">פתיחת כתובת משאב ביטקוין</translation>
     </message>
     <message>
@@ -1845,8 +1845,8 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">שגיאת בקשת תשלום</translation>
     </message>
     <message>
-        <source>Cannot start bitcoin: click-to-pay handler</source>
-        <translation type="unfinished">לא ניתן להפעיל את המקשר bitcoin: click-to-pay</translation>
+        <source>Cannot startandaluzcoin: click-to-pay handler</source>
+        <translation type="unfinished">לא ניתן להפעיל את המקשרandaluzcoin: click-to-pay</translation>
     </message>
     <message>
         <source>URI handling</source>
@@ -2485,7 +2485,7 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">הסתרת הגדרות עמלת עסקה</translation>
     </message>
     <message>
-        <source>When there is less transaction volume than space in the blocks, miners as well as relaying nodes may enforce a minimum fee. Paying only this minimum fee is just fine, but be aware that this can result in a never confirming transaction once there is more demand for bitcoin transactions than the network can process.</source>
+        <source>When there is less transaction volume than space in the blocks, miners as well as relaying nodes may enforce a minimum fee. Paying only this minimum fee is just fine, but be aware that this can result in a never confirming transaction once there is more demand forandaluzcoin transactions than the network can process.</source>
         <translation type="unfinished">כאשר יש פחות נפח עסקאות מאשר מקום בבלוק, כורים וכן צמתות מקשרות יכולות להכתיב עמלות מינימום. התשלום של עמלת מינימום הנו תקין, אך יש לקחת בחשבון שהדבר יכול לגרום לעסקה שלא תאושר ברגע שיש יותר ביקוש לעסקאות ביטקוין מאשר הרשת יכולה לעבד.</translation>
     </message>
     <message>
@@ -2706,7 +2706,7 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">הסכום לשליחה במטבע הנבחר</translation>
     </message>
     <message>
-        <source>The fee will be deducted from the amount being sent. The recipient will receive less bitcoins than you enter in the amount field. If multiple recipients are selected, the fee is split equally.</source>
+        <source>The fee will be deducted from the amount being sent. The recipient will receive lessandaluzcoins than you enter in the amount field. If multiple recipients are selected, the fee is split equally.</source>
         <translation type="unfinished">העמלה תנוכה מהסכום שנשלח. הנמען יקבל פחות ביטקוינים ממה שסיפקת בשדה הסכום. אם נבחרו מספר נמענים, העמלה תחולק באופן שווה.</translation>
     </message>
     <message>
@@ -2726,7 +2726,7 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">יש לתת תווית לכתובת זו כדי להוסיף אותה לרשימת הכתובות בשימוש</translation>
     </message>
     <message>
-        <source>A message that was attached to the bitcoin: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the AndaluzCoin network.</source>
+        <source>A message that was attached to theandaluzcoin: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the AndaluzCoin network.</source>
         <translation type="unfinished">הודעה שצורפה לביטקוין: כתובת שתאוחסן בהעברה לצורך מעקב מצדך. לתשומת לבך: הודעה זו לא תישלח ברשת הביטקוין.</translation>
     </message>
 </context>
@@ -3398,8 +3398,8 @@ Go to File &gt; Open Wallet to load a wallet.
         <translation type="unfinished">ה %s מפתחים</translation>
     </message>
     <message>
-        <source>%s corrupt. Try using the wallet tool bitcoin-wallet to salvage or restoring a backup.</source>
-        <translation type="unfinished">%s משובש. נסו להשתמש בכלי הארנק bitcoin-wallet כדי להציל או לשחזר מגיבוי..</translation>
+        <source>%s corrupt. Try using the wallet toolandaluzcoin-wallet to salvage or restoring a backup.</source>
+        <translation type="unfinished">%s משובש. נסו להשתמש בכלי הארנקandaluzcoin-wallet כדי להציל או לשחזר מגיבוי..</translation>
     </message>
     <message>
         <source>Cannot obtain a lock on data directory %s. %s is probably already running.</source>

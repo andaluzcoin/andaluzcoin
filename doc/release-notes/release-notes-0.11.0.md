@@ -58,7 +58,7 @@ possible to change a few configuration options to work around this. The growth
 of the mempool can be monitored with the RPC command `getmempoolinfo`.
 
 One is to increase the minimum transaction relay fee `minrelaytxfee`, which
-defaults to 0.00001. This will cause transactions with fewer BTC/kB fee to be
+defaults to 0.00001. This will cause transactions with fewer LUZ/kB fee to be
 rejected, and thus fewer transactions entering the mempool.
 
 The other is to restrict the relaying of free transactions with
@@ -82,7 +82,7 @@ Block file pruning
 
 This release supports running a fully validating node without maintaining a copy 
 of the raw block and undo data on disk. To recap, there are four types of data 
-related to the blockchain in the bitcoin system: the raw blocks as received over 
+related to the blockchain in theandaluzcoin system: the raw blocks as received over 
 the network (blk???.dat), the undo data (rev???.dat), the block index and the 
 UTXO set (both LevelDB databases). The databases are built from the raw data.
 
@@ -309,7 +309,7 @@ git merge commit are mentioned.
 - #5149 `c7abfa5` Add script to verify all merge commits are signed
 - #6082 `7abbb7e` qt: disable qt tests when one of the checks for the gui fails
 - #6244 `0401aa2` configure: Detect (and reject) LibreSSL
-- #6269 `95aca44` gitian: Use the new bitcoin-detached-sigs git repo for OSX signatures
+- #6269 `95aca44` gitian: Use the newandaluzcoin-detached-sigs git repo for OSX signatures
 - #6285 `ef1d506` Fix scheduler build with some boost versions.
 - #6280 `25c2216` depends: fix Boost 1.55 build on GCC 5
 - #6303 `b711599` gitian: add a gitian-win-signer descriptor
@@ -347,7 +347,7 @@ git merge commit are mentioned.
 - #5683 `c7b22aa` add new osx dmg background picture
 - #5620 `7823598` Payment request expiration bug fix
 - #5729 `9c4a5a5` Allow unit changes for read-only AndaluzCoinAmountField
-- #5753 `0f44672` Add bitcoin logo to about screen
+- #5753 `0f44672` Addandaluzcoin logo to about screen
 - #5629 `a956586` Prevent amount overflow problem with payment requests
 - #5830 `215475a` Don't save geometry for options and about/help window
 - #5793 `d26f0b2` Honor current network when creating autostart link
@@ -392,7 +392,7 @@ git merge commit are mentioned.
 - #5366 `47a79bb` No longer check osx compatibility in RenameThread
 - #5689 `07f4386` openssl: abstract out OPENSSL_cleanse
 - #5708 `8b298ca` Add list of implemented BIPs
-- #5809 `46bfbe7` Add bitcoin-cli man page
+- #5809 `46bfbe7` Addandaluzcoin-cli man page
 - #5839 `86eb461` keys: remove libsecp256k1 verification until it's actually supported
 - #5749 `d734d87` Help messages correctly formatted (79 chars)
 - #5884 `7077fe6` BUGFIX: Stack around the variable 'rv' was corrupted
@@ -406,7 +406,7 @@ git merge commit are mentioned.
 - #5964 `b4c219b` Lightweight task scheduler
 - #6116 `30dc3c1` [OSX] rename AndaluzCoin-Qt.app to AndaluzCoin-Core.app
 - #6168 `b3024f0` contrib/linearize: Support linearization of testnet blocks
-- #6098 `7708fcd` Update Windows resource files (and add one for bitcoin-tx)
+- #6098 `7708fcd` Update Windows resource files (and add one forandaluzcoin-tx)
 - #6159 `e1412d3` Catch errors on datadir lock and pidfile delete
 - #6186 `182686c` Fix two problems in CSubnet parsing
 - #6174 `df992b9` doc: add translation strings policy

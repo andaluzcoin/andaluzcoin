@@ -422,7 +422,7 @@
         <translation type="unfinished">ادرس درسافت</translation>
     </message>
     <message>
-        <source>Open a bitcoin: URI</source>
+        <source>Open aandaluzcoin: URI</source>
         <translation type="unfinished">بارک کردن یک بیت‌کوین: URI</translation>
     </message>
     <message>
@@ -1147,7 +1147,7 @@
         <translation type="unfinished">درخواست پرداخت با خطا مواجه شد</translation>
     </message>
     <message>
-        <source>Cannot start bitcoin: click-to-pay handler</source>
+        <source>Cannot startandaluzcoin: click-to-pay handler</source>
         <translation type="unfinished">نمی توان بیت کوین را شروع کرد: کنترل کننده کلیک برای پرداخت
  </translation>
     </message>

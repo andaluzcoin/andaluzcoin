@@ -77,7 +77,7 @@ it requires a Tor connection to work. It can be explicitly disabled with
 `-listenonion=0`. If it is not disabled, it can be configured using the
 `-torcontrol` and `-torpassword` settings.
 
-To see verbose Tor information in the bitcoind debug log, pass `-debug=tor`.
+To see verbose Tor information in theandaluzcoind debug log, pass `-debug=tor`.
 
 ### Control Port
 
@@ -99,15 +99,15 @@ Debian and Ubuntu, or just restart the computer).
 ### Authentication
 
 Connecting to Tor's control socket API requires one of two authentication
-methods to be configured: cookie authentication or bitcoind's `-torpassword`
+methods to be configured: cookie authentication orandaluzcoind's `-torpassword`
 configuration option.
 
 #### Cookie authentication
 
-For cookie authentication, the user running bitcoind must have read access to
+For cookie authentication, the user runningandaluzcoind must have read access to
 the `CookieAuthFile` specified in the Tor configuration. In some cases this is
 preconfigured and the creation of an onion service is automatic. Don't forget to
-use the `-debug=tor` bitcoind configuration option to enable Tor debug logging.
+use the `-debug=tor`andaluzcoind configuration option to enable Tor debug logging.
 
 If a permissions problem is seen in the debug log, e.g. `tor: Authentication
 cookie /run/tor/control.authcookie could not be opened (check permissions)`, it
@@ -129,7 +129,7 @@ TORGROUP=$(stat -c '%G' /run/tor/control.authcookie)
 ```
 
 Once you have determined the `${TORGROUP}` and selected the `${USER}` that will
-run bitcoind, run this as root:
+runandaluzcoind, run this as root:
 
 ```
 usermod -a -G ${TORGROUP} ${USER}
@@ -159,10 +159,10 @@ Add these lines to your `/etc/tor/torrc` (or equivalent config file):
     HiddenServicePort 8333 127.0.0.1:8334
 
 The directory can be different of course, but virtual port numbers should be equal to
-your bitcoind's P2P listen port (8333 by default), and target addresses and ports
+yourandaluzcoind's P2P listen port (8333 by default), and target addresses and ports
 should be equal to binding address and port for inbound Tor connections (127.0.0.1:8334 by default).
 
-    -externalip=X   You can tell bitcoin about its publicly reachable addresses using
+    -externalip=X   You can tellandaluzcoin about its publicly reachable addresses using
                     this option, and this can be an onion address. Given the above
                     configuration, you can find your onion address in
                     /var/lib/tor/bitcoin-service/hostname. For connections

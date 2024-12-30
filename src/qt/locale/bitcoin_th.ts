@@ -61,7 +61,7 @@
     </message>
     <message>
         <source>Sign messages with your AndaluzCoin addresses to prove you own them</source>
-        <translation type="unfinished">เซ็นชื่อด้วยข้อความ ที่เก็บ AndaluzCoin เพื่อแสดงว่าท่านเป็นเจ้าของ bitcoin นี้จริง</translation>
+        <translation type="unfinished">เซ็นชื่อด้วยข้อความ ที่เก็บ AndaluzCoin เพื่อแสดงว่าท่านเป็นเจ้าของandaluzcoin นี้จริง</translation>
     </message>
     <message>
         <source>Verify messages to ensure they were signed with specified AndaluzCoin addresses</source>
@@ -88,8 +88,8 @@
         <translation type="unfinished">กำลังเชื่อมต่อ ไปยัง peers…</translation>
     </message>
     <message>
-        <source>Request payments (generates QR codes and bitcoin: URIs)</source>
-        <translation type="unfinished">ขอการชำระเงิน (สร้างรหัส QR และ bitcoin: URIs)</translation>
+        <source>Request payments (generates QR codes andandaluzcoin: URIs)</source>
+        <translation type="unfinished">ขอการชำระเงิน (สร้างรหัส QR และandaluzcoin: URIs)</translation>
     </message>
     <message>
         <source>Show the list of used sending addresses and labels</source>

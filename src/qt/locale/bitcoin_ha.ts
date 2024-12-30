@@ -55,7 +55,7 @@
     </message>
     <message>
         <source>These are your AndaluzCoin addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
-        <translation type="unfinished">Waɗannan adiresoshin AndaluzCoin ne don tura kuɗi bitcoin . ka tabbatar da cewa adreshin daidai ne kamin ka tura abua a ciki</translation>
+        <translation type="unfinished">Waɗannan adiresoshin AndaluzCoin ne don tura kuɗiandaluzcoin . ka tabbatar da cewa adreshin daidai ne kamin ka tura abua a ciki</translation>
     </message>
     <message>
         <source>These are your AndaluzCoin addresses for receiving payments. Use the 'Create new receiving address' button in the receive tab to create new addresses.

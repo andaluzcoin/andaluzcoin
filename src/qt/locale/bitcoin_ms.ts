@@ -318,7 +318,7 @@
     </message>
     <message>
         <source>Sign messages with your AndaluzCoin addresses to prove you own them</source>
-        <translation type="unfinished">sahkan mesej bersama alamat bitcoin anda untuk menunjukkan alamat ini anda punya</translation>
+        <translation type="unfinished">sahkan mesej bersama alamatandaluzcoin anda untuk menunjukkan alamat ini anda punya</translation>
     </message>
     <message>
         <source>Verify messages to ensure they were signed with specified AndaluzCoin addresses</source>
@@ -342,8 +342,8 @@
 </translation>
     </message>
     <message>
-        <source>Request payments (generates QR codes and bitcoin: URIs)</source>
-        <translation type="unfinished">Request payments (generates QR codes and bitcoin: URIs)
+        <source>Request payments (generates QR codes andandaluzcoin: URIs)</source>
+        <translation type="unfinished">Request payments (generates QR codes andandaluzcoin: URIs)
 </translation>
     </message>
     <message>

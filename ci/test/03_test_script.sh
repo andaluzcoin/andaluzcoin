@@ -163,7 +163,7 @@ fi
 if [ "${RUN_TIDY}" = "true" ]; then
   cmake -B /tidy-build -DLLVM_DIR=/usr/lib/llvm-"${TIDY_LLVM_V}"/cmake -DCMAKE_BUILD_TYPE=Release -S "${BASE_ROOT_DIR}"/contrib/devtools/bitcoin-tidy
   cmake --build /tidy-build "$MAKEJOBS"
-  cmake --build /tidy-build --target bitcoin-tidy-tests "$MAKEJOBS"
+  cmake --build /tidy-build --targetandaluzcoin-tidy-tests "$MAKEJOBS"
 
   set -eo pipefail
   cd "${BASE_BUILD_DIR}/src/"

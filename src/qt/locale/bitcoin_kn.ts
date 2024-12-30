@@ -34,7 +34,7 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">ವಾಲೆಟ್ ಪಾಸ್‌ಫ್ರೇಸ್ ಹಳೆಯ ಮತ್ತು ಹೊಸ ಪಾಸ್‌ಫ್ರೇಸ್ ನಮೂದಿಸಲು ಸಿದ್ಧವಿರಿ.</translation>
     </message>
     <message>
-        <source>Remember that encrypting your wallet cannot fully protect your bitcoins from being stolen by malware infecting your computer.</source>
+        <source>Remember that encrypting your wallet cannot fully protect yourandaluzcoins from being stolen by malware infecting your computer.</source>
         <translation type="unfinished">ನಿಮ್ಮ ವಾಲೆಟ್ ಎನ್ಕ್ರಿಪ್ಟ್ ಮಾಡುವುದರಿಂದ ನಿಮ್ಮ ಕಂಪ್ಯೂಟರ್ ಸೋಕಿದ ಮಲ್ವೇರ್ ನೋಂದಣಿಗೆ ಬಲಗೊಳಿಸುವ ಕಾದಂಬರಿಗೆ ನಿಮ್ಮ ಬಿಟ್‌ಕಾಯಿನ್ ಪೂರ್ತಿಯಾಗಿ ಸುರಕ್ಷಿತವಾಗುವುದಿಲ್ಲವೆಂದು ನೆನಪಿಡಿ.</translation>
     </message>
     <message>

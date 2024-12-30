@@ -188,8 +188,8 @@ Només és possible firmar amb adreces del tipus "legacy".</translation>
         <translation type="unfinished">Continua</translation>
     </message>
     <message>
-        <source>Remember that encrypting your wallet cannot fully protect your bitcoins from being stolen by malware infecting your computer.</source>
-        <translation type="unfinished">Recorda que tot i xifrant la teva cartera, els teus bitcoins no estan completament protegits de robatori a través de programari maliciós que estigui infectant el teu ordinador.</translation>
+        <source>Remember that encrypting your wallet cannot fully protect yourandaluzcoins from being stolen by malware infecting your computer.</source>
+        <translation type="unfinished">Recorda que tot i xifrant la teva cartera, els teusandaluzcoins no estan completament protegits de robatori a través de programari maliciós que estigui infectant el teu ordinador.</translation>
     </message>
     <message>
         <source>Wallet to be encrypted</source>
@@ -589,8 +589,8 @@ Només és possible firmar amb adreces del tipus "legacy".</translation>
         <translation type="unfinished">Connectant als iguals...</translation>
     </message>
     <message>
-        <source>Request payments (generates QR codes and bitcoin: URIs)</source>
-        <translation type="unfinished">Sol·licita pagaments (genera codis QR i bitcoin: URI)</translation>
+        <source>Request payments (generates QR codes andandaluzcoin: URIs)</source>
+        <translation type="unfinished">Sol·licita pagaments (genera codis QR iandaluzcoin: URI)</translation>
     </message>
     <message>
         <source>Show the list of used sending addresses and labels</source>
@@ -668,8 +668,8 @@ Només és possible firmar amb adreces del tipus "legacy".</translation>
         <translation type="unfinished">Adreces de &amp;recepció</translation>
     </message>
     <message>
-        <source>Open a bitcoin: URI</source>
-        <translation type="unfinished">Obrir un bitcoin: URI</translation>
+        <source>Open aandaluzcoin: URI</source>
+        <translation type="unfinished">Obrir unandaluzcoin: URI</translation>
     </message>
     <message>
         <source>Open Wallet</source>
@@ -1461,12 +1461,12 @@ Això és ideal per a carteres de mode només lectura.</translation>
         <translation type="unfinished">Formulari</translation>
     </message>
     <message>
-        <source>Recent transactions may not yet be visible, and therefore your wallet's balance might be incorrect. This information will be correct once your wallet has finished synchronizing with the bitcoin network, as detailed below.</source>
-        <translation type="unfinished">És possible que les transaccions recents encara no siguin visibles i, per tant, el saldo de la vostra cartera podria ser incorrecte. Aquesta informació serà correcta una vegada que la cartera hagi finalitzat la sincronització amb la xarxa bitcoin, tal com es detalla més avall.</translation>
+        <source>Recent transactions may not yet be visible, and therefore your wallet's balance might be incorrect. This information will be correct once your wallet has finished synchronizing with theandaluzcoin network, as detailed below.</source>
+        <translation type="unfinished">És possible que les transaccions recents encara no siguin visibles i, per tant, el saldo de la vostra cartera podria ser incorrecte. Aquesta informació serà correcta una vegada que la cartera hagi finalitzat la sincronització amb la xarxaandaluzcoin, tal com es detalla més avall.</translation>
     </message>
     <message>
-        <source>Attempting to spend bitcoins that are affected by not-yet-displayed transactions will not be accepted by the network.</source>
-        <translation type="unfinished">Els intents de gastar bitcoins que es veuen afectats per les transaccions que encara no s'hagin mostrat no seran acceptats per la xarxa.</translation>
+        <source>Attempting to spendandaluzcoins that are affected by not-yet-displayed transactions will not be accepted by the network.</source>
+        <translation type="unfinished">Els intents de gastarandaluzcoins que es veuen afectats per les transaccions que encara no s'hagin mostrat no seran acceptats per la xarxa.</translation>
     </message>
     <message>
         <source>Number of blocks left</source>
@@ -1516,7 +1516,7 @@ Això és ideal per a carteres de mode només lectura.</translation>
 <context>
     <name>OpenURIDialog</name>
     <message>
-        <source>Open bitcoin URI</source>
+        <source>Openandaluzcoin URI</source>
         <translation type="unfinished">Obre AndaluzCoin URI</translation>
     </message>
     <message>
@@ -2018,8 +2018,8 @@ Això és ideal per a carteres de mode només lectura.</translation>
         <translation type="unfinished">Error de la sol·licitud de pagament</translation>
     </message>
     <message>
-        <source>Cannot start bitcoin: click-to-pay handler</source>
-        <translation type="unfinished">No es pot iniciar bitcoin: controlador click-to-pay</translation>
+        <source>Cannot startandaluzcoin: click-to-pay handler</source>
+        <translation type="unfinished">No es pot iniciarandaluzcoin: controlador click-to-pay</translation>
     </message>
     <message>
         <source>URI handling</source>
@@ -2804,8 +2804,8 @@ Note:  Since the fee is calculated on a per-byte basis, a fee rate of "100 satos
 Nota: atès que la tarifa es calcula per byte, una tarifa de "100 satoshis per kvB" per a una mida de transacció de 500 bytes virtuals (la meitat d'1 kvB) donaria finalment una tarifa de només 50 satoshis.</translation>
     </message>
     <message>
-        <source>When there is less transaction volume than space in the blocks, miners as well as relaying nodes may enforce a minimum fee. Paying only this minimum fee is just fine, but be aware that this can result in a never confirming transaction once there is more demand for bitcoin transactions than the network can process.</source>
-        <translation type="unfinished">Quan no hi ha prou espai en els blocs per a encabir totes les transaccions, els miners i així mateix els nodes de trànsit poden exigir una taxa mínima. És acceptable pagar únicament la taxa mínima, però tingueu present que pot resultar que la vostra transacció no sigui mai confirmada mentre hi hagi més demanda de transaccions bitcoin de les que la xarxa pot processar.</translation>
+        <source>When there is less transaction volume than space in the blocks, miners as well as relaying nodes may enforce a minimum fee. Paying only this minimum fee is just fine, but be aware that this can result in a never confirming transaction once there is more demand forandaluzcoin transactions than the network can process.</source>
+        <translation type="unfinished">Quan no hi ha prou espai en els blocs per a encabir totes les transaccions, els miners i així mateix els nodes de trànsit poden exigir una taxa mínima. És acceptable pagar únicament la taxa mínima, però tingueu present que pot resultar que la vostra transacció no sigui mai confirmada mentre hi hagi més demanda de transaccionsandaluzcoin de les que la xarxa pot processar.</translation>
     </message>
     <message>
         <source>A too low fee might result in a never confirming transaction (read the tooltip)</source>
@@ -2891,7 +2891,7 @@ Nota: atès que la tarifa es calcula per byte, una tarifa de "100 satoshis per k
     </message>
     <message>
         <source>Creates a Partially Signed AndaluzCoin Transaction (PSBT) for use with e.g. an offline %1 wallet, or a PSBT-compatible hardware wallet.</source>
-        <translation type="unfinished">Crea una transacció bitcoin parcialment signada (PSBT) per a utilitzar, per exemple,  amb una cartera %1 fora de línia o amb una cartera compatible amb PSBT.</translation>
+        <translation type="unfinished">Crea una transaccióandaluzcoin parcialment signada (PSBT) per a utilitzar, per exemple,  amb una cartera %1 fora de línia o amb una cartera compatible amb PSBT.</translation>
     </message>
     <message>
         <source>%1 to '%2'</source>
@@ -3081,8 +3081,8 @@ Nota: atès que la tarifa es calcula per byte, una tarifa de "100 satoshis per k
         <translation type="unfinished">L’import a enviar a la unitat seleccionada</translation>
     </message>
     <message>
-        <source>The fee will be deducted from the amount being sent. The recipient will receive less bitcoins than you enter in the amount field. If multiple recipients are selected, the fee is split equally.</source>
-        <translation type="unfinished">La tarifa es deduirà de l'import que s'enviarà. El destinatari rebrà menys bitcoins que les que introduïu al camp d'import. Si se seleccionen múltiples destinataris, la tarifa es dividirà per igual.</translation>
+        <source>The fee will be deducted from the amount being sent. The recipient will receive lessandaluzcoins than you enter in the amount field. If multiple recipients are selected, the fee is split equally.</source>
+        <translation type="unfinished">La tarifa es deduirà de l'import que s'enviarà. El destinatari rebrà menysandaluzcoins que les que introduïu al camp d'import. Si se seleccionen múltiples destinataris, la tarifa es dividirà per igual.</translation>
     </message>
     <message>
         <source>S&amp;ubtract fee from amount</source>
@@ -3101,8 +3101,8 @@ Nota: atès que la tarifa es calcula per byte, una tarifa de "100 satoshis per k
         <translation type="unfinished">Introduïu una etiqueta per a aquesta adreça per afegir-la a la llista d'adreces utilitzades</translation>
     </message>
     <message>
-        <source>A message that was attached to the bitcoin: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the AndaluzCoin network.</source>
-        <translation type="unfinished">Un missatge que s'ha adjuntat al bitcoin: URI que s'emmagatzemarà amb la transacció per a la vostra referència. Nota: el missatge no s'enviarà a través de la xarxa AndaluzCoin.</translation>
+        <source>A message that was attached to theandaluzcoin: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the AndaluzCoin network.</source>
+        <translation type="unfinished">Un missatge que s'ha adjuntat alandaluzcoin: URI que s'emmagatzemarà amb la transacció per a la vostra referència. Nota: el missatge no s'enviarà a través de la xarxa AndaluzCoin.</translation>
     </message>
 </context>
 <context>
@@ -3812,8 +3812,8 @@ Ves a Arxiu &gt; Obrir Cartera per a carregar cartera.
         <translation type="unfinished">Els desenvolupadors %s</translation>
     </message>
     <message>
-        <source>%s corrupt. Try using the wallet tool bitcoin-wallet to salvage or restoring a backup.</source>
-        <translation type="unfinished">%s està malmès. Proveu d’utilitzar l’eina bitcoin-wallet per a recuperar o restaurar una còpia de seguretat.</translation>
+        <source>%s corrupt. Try using the wallet toolandaluzcoin-wallet to salvage or restoring a backup.</source>
+        <translation type="unfinished">%s està malmès. Proveu d’utilitzar l’einaandaluzcoin-wallet per a recuperar o restaurar una còpia de seguretat.</translation>
     </message>
     <message>
         <source>Cannot downgrade wallet from version %i to version %i. Wallet version unchanged.</source>
@@ -3840,8 +3840,8 @@ Ves a Arxiu &gt; Obrir Cartera per a carregar cartera.
         <translation type="unfinished">Error: el registre de l'identificador del fitxer de bolcat és incorrecte. S'ha obtingut «%s», s'esperava «%s».</translation>
     </message>
     <message>
-        <source>Error: Dumpfile version is not supported. This version of bitcoin-wallet only supports version 1 dumpfiles. Got dumpfile with version %s</source>
-        <translation type="unfinished">Error: la versió del fitxer de bolcat no és compatible. Aquesta versió de bitcoin-wallet només admet fitxers de bolcat de la versió 1. S'ha obtingut un fitxer de bolcat amb la versió %s</translation>
+        <source>Error: Dumpfile version is not supported. This version ofandaluzcoin-wallet only supports version 1 dumpfiles. Got dumpfile with version %s</source>
+        <translation type="unfinished">Error: la versió del fitxer de bolcat no és compatible. Aquesta versió deandaluzcoin-wallet només admet fitxers de bolcat de la versió 1. S'ha obtingut un fitxer de bolcat amb la versió %s</translation>
     </message>
     <message>
         <source>Error: Legacy wallets only support the "legacy", "p2sh-segwit", and "bech32" address types</source>

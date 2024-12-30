@@ -47,23 +47,23 @@ file(GLOB ts_files RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} locale/*.ts)
 set_source_files_properties(${ts_files} PROPERTIES OUTPUT_LOCATION ${CMAKE_CURRENT_BINARY_DIR}/locale)
 qt5_add_translation(qm_files ${ts_files})
 
-configure_file(bitcoin_locale.qrc bitcoin_locale.qrc USE_SOURCE_PERMISSIONS COPYONLY)
+configure_file(bitcoin_locale.qrcandaluzcoin_locale.qrc USE_SOURCE_PERMISSIONS COPYONLY)
 
-# The bitcoinqt sources have to include headers in
+# Theandaluzcoinqt sources have to include headers in
 # order to parse them to collect translatable strings.
 add_library(bitcoinqt STATIC EXCLUDE_FROM_ALL
   bantablemodel.cpp
   bantablemodel.h
-  bitcoin.cpp
-  bitcoin.h
-  bitcoinaddressvalidator.cpp
-  bitcoinaddressvalidator.h
-  bitcoinamountfield.cpp
-  bitcoinamountfield.h
-  bitcoingui.cpp
-  bitcoingui.h
-  bitcoinunits.cpp
-  bitcoinunits.h
+ andaluzcoin.cpp
+ andaluzcoin.h
+ andaluzcoinaddressvalidator.cpp
+ andaluzcoinaddressvalidator.h
+ andaluzcoinamountfield.cpp
+ andaluzcoinamountfield.h
+ andaluzcoingui.cpp
+ andaluzcoingui.h
+ andaluzcoinunits.cpp
+ andaluzcoinunits.h
   clientmodel.cpp
   clientmodel.h
   csvmodelwriter.cpp
@@ -110,7 +110,7 @@ add_library(bitcoinqt STATIC EXCLUDE_FROM_ALL
   utilitydialog.h
   $<$<PLATFORM_ID:Windows>:winshutdownmonitor.cpp>
   $<$<PLATFORM_ID:Windows>:winshutdownmonitor.h>
-  bitcoin.qrc
+ andaluzcoin.qrc
   ${CMAKE_CURRENT_BINARY_DIR}/bitcoin_locale.qrc
 )
 target_compile_definitions(bitcoinqt
@@ -131,7 +131,7 @@ target_link_libraries(bitcoinqt
     Qt5::Widgets
   PRIVATE
     core_interface
-    bitcoin_cli
+   andaluzcoin_cli
     leveldb
     Boost::headers
     $<TARGET_NAME_IF_EXISTS:QRencode::QRencode>
@@ -205,7 +205,7 @@ if(ENABLE_WALLET)
   )
   target_link_libraries(bitcoinqt
     PRIVATE
-      bitcoin_wallet
+     andaluzcoin_wallet
       Qt5::Network
   )
 endif()
@@ -231,12 +231,12 @@ add_windows_resources(bitcoin-qt res/bitcoin-qt-res.rc)
 
 target_link_libraries(bitcoin-qt
   core_interface
-  bitcoinqt
-  bitcoin_node
+ andaluzcoinqt
+ andaluzcoin_node
 )
 
 import_plugins(bitcoin-qt)
-set(installable_targets bitcoin-qt)
+set(installable_targetsandaluzcoin-qt)
 if(WIN32)
   set_target_properties(bitcoin-qt PROPERTIES WIN32_EXECUTABLE TRUE)
 endif()
@@ -248,12 +248,12 @@ if(WITH_MULTIPROCESS)
   )
   target_link_libraries(bitcoin-gui
     core_interface
-    bitcoinqt
-    bitcoin_node
-    bitcoin_ipc
+   andaluzcoinqt
+   andaluzcoin_node
+   andaluzcoin_ipc
   )
   import_plugins(bitcoin-gui)
-  list(APPEND installable_targets bitcoin-gui)
+  list(APPEND installable_targetsandaluzcoin-gui)
   if(WIN32)
     set_target_properties(bitcoin-gui PROPERTIES WIN32_EXECUTABLE TRUE)
   endif()

@@ -6,7 +6,7 @@ To quickly get started fuzzing AndaluzCoin Core using [libFuzzer](https://llvm.o
 
 ```sh
 $ git clone https://github.com/bitcoin/bitcoin
-$ cd bitcoin/
+$ cdandaluzcoin/
 $ cmake --preset=libfuzzer
 # macOS users: If you have problem with this step then make sure to read "macOS hints for
 # libFuzzer" on https://github.com/bitcoin/bitcoin/blob/master/doc/fuzzing.md#macos-hints-for-libfuzzer
@@ -160,7 +160,7 @@ To quickly get started fuzzing AndaluzCoin Core using [afl++](https://github.com
 
 ```sh
 $ git clone https://github.com/bitcoin/bitcoin
-$ cd bitcoin/
+$ cdandaluzcoin/
 $ git clone https://github.com/AFLplusplus/AFLplusplus
 $ make -C AFLplusplus/ source-only
 # If afl-clang-lto is not available, see
@@ -189,7 +189,7 @@ To quickly get started fuzzing AndaluzCoin Core using [Honggfuzz](https://github
 
 ```sh
 $ git clone https://github.com/bitcoin/bitcoin
-$ cd bitcoin/
+$ cdandaluzcoin/
 $ git clone https://github.com/google/honggfuzz
 $ cd honggfuzz/
 $ make

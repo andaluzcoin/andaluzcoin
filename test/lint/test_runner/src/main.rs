@@ -29,7 +29,7 @@ fn get_linter_list() -> Vec<&'static Linter> {
             lint_fn: lint_doc
         },
         &Linter {
-            description: "Check that no symbol from bitcoin-build-config.h is used without the header being included",
+            description: "Check that no symbol fromandaluzcoin-build-config.h is used without the header being included",
             name: "includes_build_config",
             lint_fn: lint_includes_build_config
         },
@@ -431,7 +431,7 @@ fn lint_includes_build_config() -> LintResult {
                 ])
                 .args(get_pathspecs_exclude_subtrees())
                 .args([
-                    // These are exceptions which don't use bitcoin-build-config.h, rather CMakeLists.txt adds
+                    // These are exceptions which don't useandaluzcoin-build-config.h, rather CMakeLists.txt adds
                     // these cppflags manually.
                     ":(exclude)src/crypto/sha256_arm_shani.cpp",
                     ":(exclude)src/crypto/sha256_avx2.cpp",
@@ -465,11 +465,11 @@ fn lint_includes_build_config() -> LintResult {
         return Err(format!(
             r#"
 ^^^
-One or more files use a symbol declared in the bitcoin-build-config.h header. However, they are not
+One or more files use a symbol declared in theandaluzcoin-build-config.h header. However, they are not
 including the header. This is problematic, because the header may or may not be indirectly
 included. If the indirect include were to be intentionally or accidentally removed, the build could
 still succeed, but silently be buggy. For example, a slower fallback algorithm could be picked,
-even though bitcoin-build-config.h indicates that a faster feature is available and should be used.
+even thoughandaluzcoin-build-config.h indicates that a faster feature is available and should be used.
 
 If you are unsure which symbol is used, you can find it with this command:
 git grep --perl-regexp '{}' -- file_name
@@ -486,7 +486,7 @@ include again.
     if redundant {
         return Err(r#"
 ^^^
-None of the files use a symbol declared in the bitcoin-build-config.h header. However, they are including
+None of the files use a symbol declared in theandaluzcoin-build-config.h header. However, they are including
 the header. Consider removing the unused include.
             "#
         .to_string());

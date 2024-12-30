@@ -1,15 +1,15 @@
-# bash programmable completion for bitcoin-tx(1)
+# bash programmable completion forandaluzcoin-tx(1)
 # Copyright (c) 2016-2022 The AndaluzCoin Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 _bitcoin_tx() {
     local cur prev words=() cword
-    local bitcoin_tx
+    localandaluzcoin_tx
 
-    # save and use original argument to invoke bitcoin-tx for -help
+    # save and use original argument to invokeandaluzcoin-tx for -help
     # it might not be in $PATH
-    bitcoin_tx="$1"
+   andaluzcoin_tx="$1"
 
     COMPREPLY=()
     _get_comp_words_by_ref -n =: cur prev words cword
@@ -27,7 +27,7 @@ _bitcoin_tx() {
 
     if [[ "$cword" == 1 || ( "$prev" != "-create" && "$prev" == -* ) ]]; then
         # only options (or an uncompletable hex-string) allowed
-        # parse bitcoin-tx -help for options
+        # parseandaluzcoin-tx -help for options
         local helpopts
         helpopts=$($bitcoin_tx -help | sed -e '/^  -/ p' -e d )
         COMPREPLY=( $( compgen -W "$helpopts" -- "$cur" ) )
@@ -46,7 +46,7 @@ _bitcoin_tx() {
 
     return 0
 } &&
-complete -F _bitcoin_tx bitcoin-tx
+complete -F _bitcoin_txandaluzcoin-tx
 
 # Local variables:
 # mode: shell-script

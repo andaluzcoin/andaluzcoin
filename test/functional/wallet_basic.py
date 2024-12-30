@@ -98,7 +98,7 @@ class WalletTest(AndaluzCoinTestFramework):
         txout = self.nodes[0].gettxout(txid=confirmed_txid, n=confirmed_index, include_mempool=True)
         assert_equal(txout['value'], 50)
 
-        # Send 21 BTC from 0 to 2 using sendtoaddress call.
+        # Send 21 LUZ from 0 to 2 using sendtoaddress call.
         self.nodes[0].sendtoaddress(self.nodes[2].getnewaddress(), 11)
         mempool_txid = self.nodes[0].sendtoaddress(self.nodes[2].getnewaddress(), 10)
 
@@ -206,7 +206,7 @@ class WalletTest(AndaluzCoinTestFramework):
         # Have node1 generate 100 blocks (so node0 can recover the fee)
         self.generate(self.nodes[1], COINBASE_MATURITY, sync_fun=lambda: self.sync_all(self.nodes[0:3]))
 
-        # node0 should end up with 100 btc in block rewards plus fees, but
+        # node0 should end up with 100luz in block rewards plus fees, but
         # minus the 21 plus fees sent to node2
         assert_equal(self.nodes[0].getbalance(), 100 - 21)
         assert_equal(self.nodes[2].getbalance(), 21)
@@ -241,7 +241,7 @@ class WalletTest(AndaluzCoinTestFramework):
         spent_0 = {"txid": node0utxos[0]["txid"], "vout": node0utxos[0]["vout"]}
         assert_raises_rpc_error(-8, "Invalid parameter, expected unspent output", self.nodes[0].lockunspent, False, [spent_0])
 
-        # Send 10 BTC normal
+        # Send 10 LUZ normal
         address = self.nodes[0].getnewaddress("test")
         fee_per_byte = Decimal('0.001') / 1000
         self.nodes[2].settxfee(fee_per_byte * 1000)
@@ -250,7 +250,7 @@ class WalletTest(AndaluzCoinTestFramework):
         node_2_bal = self.check_fee_amount(self.nodes[2].getbalance(), Decimal('84'), fee_per_byte, self.get_vsize(self.nodes[2].gettransaction(txid)['hex']))
         assert_equal(self.nodes[0].getbalance(), Decimal('10'))
 
-        # Send 10 BTC with subtract fee from amount
+        # Send 10 LUZ with subtract fee from amount
         txid = self.nodes[2].sendtoaddress(address, 10, "", "", True)
         self.generate(self.nodes[2], 1, sync_fun=lambda: self.sync_all(self.nodes[0:3]))
         node_2_bal -= Decimal('10')
@@ -259,21 +259,21 @@ class WalletTest(AndaluzCoinTestFramework):
 
         self.log.info("Test sendmany")
 
-        # Sendmany 10 BTC
+        # Sendmany 10 LUZ
         txid = self.nodes[2].sendmany('', {address: 10}, 0, "", [])
         self.generate(self.nodes[2], 1, sync_fun=lambda: self.sync_all(self.nodes[0:3]))
         node_0_bal += Decimal('10')
         node_2_bal = self.check_fee_amount(self.nodes[2].getbalance(), node_2_bal - Decimal('10'), fee_per_byte, self.get_vsize(self.nodes[2].gettransaction(txid)['hex']))
         assert_equal(self.nodes[0].getbalance(), node_0_bal)
 
-        # Sendmany 10 BTC with subtract fee from amount
+        # Sendmany 10 LUZ with subtract fee from amount
         txid = self.nodes[2].sendmany('', {address: 10}, 0, "", [address])
         self.generate(self.nodes[2], 1, sync_fun=lambda: self.sync_all(self.nodes[0:3]))
         node_2_bal -= Decimal('10')
         assert_equal(self.nodes[2].getbalance(), node_2_bal)
         node_0_bal = self.check_fee_amount(self.nodes[0].getbalance(), node_0_bal + Decimal('10'), fee_per_byte, self.get_vsize(self.nodes[2].gettransaction(txid)['hex']))
 
-        # Sendmany 5 BTC to two addresses with subtracting fee from both addresses
+        # Sendmany 5 LUZ to two addresses with subtracting fee from both addresses
         a0 = self.nodes[0].getnewaddress()
         a1 = self.nodes[0].getnewaddress()
         txid = self.nodes[2].sendmany(dummy='', amounts={a0: 5, a1: 5}, subtractfeefrom=[a0, a1])

@@ -68,7 +68,7 @@ Notable changes
 The `listtransactions` RPC `account` parameter which was deprecated in 0.17.0
 and renamed to `dummy` has been un-deprecated and renamed again to `label`.
 
-When bitcoin is configured with the `-deprecatedrpc=accounts` setting, specifying
+Whenandaluzcoin is configured with the `-deprecatedrpc=accounts` setting, specifying
 a label/account/dummy argument will return both outgoing and incoming
 transactions. Without the `-deprecatedrpc=accounts` setting, it will only return
 incoming transactions (because it used to be possible to create transactions
@@ -112,7 +112,7 @@ confusion.
 
 ### Build system
 - #14647 `7edebed` Remove illegal spacing in darwin.mk (ch4ot1c)
-- #14698 `ec71f06` Add bitcoin-tx.exe into Windows installer (ken2812221)
+- #14698 `ec71f06` Addandaluzcoin-tx.exe into Windows installer (ken2812221)
 
 ### Tests and QA
 - #13965 `29899ec` Fix extended functional tests fail (ken2812221)

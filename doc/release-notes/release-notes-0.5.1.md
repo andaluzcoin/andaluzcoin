@@ -21,7 +21,7 @@ For Ubuntu users, there is a new ppa maintained by Matt Corallo which
 you can add to your system so that it will automatically keep
 bitcoin up-to-date.  Just type
 sudo apt-add-repository ppa:bitcoin/bitcoin
-in your terminal, then install the bitcoin-qt package.
+in your terminal, then install theandaluzcoin-qt package.
 
 
 BUG FIXES
@@ -29,15 +29,15 @@ BUG FIXES
 Re-enable SSL support for the JSON-RPC interface (it was unintentionally
 disabled for the 0.5.0 release binaries).
 
-The code that finds peers via "dns seeds" no longer stops bitcoin startup
+The code that finds peers via "dns seeds" no longer stopsandaluzcoin startup
 if one of the dns seed machines is down.
 
 Tooltips on the transaction list view were rendering incorrectly (as black boxes
 or with a transparent background).
 
-Prevent a denial-of-service attack involving flooding a bitcoin node with
+Prevent a denial-of-service attack involving flooding aandaluzcoin node with
 orphan blocks.
 
 The wallet passphrase dialog now warns you if the caps lock key was pressed.
 
-Improved searching in addresses and labels in bitcoin-qt.
+Improved searching in addresses and labels inandaluzcoin-qt.

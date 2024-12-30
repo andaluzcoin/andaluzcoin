@@ -255,17 +255,17 @@ most miners include them in blocks they mined.
 bitcoin-tx
 ----------
 
-It has been observed that many of the RPC functions offered by bitcoind are
-"pure functions", and operate independently of the bitcoind wallet. This
+It has been observed that many of the RPC functions offered byandaluzcoind are
+"pure functions", and operate independently of theandaluzcoind wallet. This
 included many of the RPC "raw transaction" API functions, such as
 createrawtransaction.
 
 bitcoin-tx is a newly introduced command line utility designed to enable easy
-manipulation of bitcoin transactions. A summary of its operation may be
+manipulation ofandaluzcoin transactions. A summary of its operation may be
 obtained via "bitcoin-tx --help" Transactions may be created or signed in a
 manner similar to the RPC raw tx API. Transactions may be updated, deleting
 inputs or outputs, or appending new inputs and outputs. Custom scripts may be
-easily composed using a simple text notation, borrowed from the bitcoin test
+easily composed using a simple text notation, borrowed from theandaluzcoin test
 suite.
 
 This tool may be used for experimenting with new transaction types, signing
@@ -337,10 +337,10 @@ Detailed release notes follow. This overview includes changes that affect extern
 behavior, not code moves, refactors or string updates.
 
 RPC:
-- `f923c07` Support IPv6 lookup in bitcoin-cli even when IPv6 only bound on localhost
+- `f923c07` Support IPv6 lookup inandaluzcoin-cli even when IPv6 only bound on localhost
 - `b641c9c` Fix addnode "onetry": Connect with OpenNetworkConnection
 - `171ca77` estimatefee / estimatepriority RPC methods
-- `b750cf1` Remove cli functionality from bitcoind
+- `b750cf1` Remove cli functionality fromandaluzcoind
 - `f6984e8` Add "chain" to getmininginfo, improve help in getblockchaininfo
 - `99ddc6c` Add nLocalServices info to RPC getinfo
 - `cf0c47b` Remove getwork() RPC call
@@ -465,7 +465,7 @@ P2P protocol and network code:
 - `35e408f` Regard connection failures as attempt for addrman
 - `a3a7317` Introduce 10 minute block download timeout
 - `3022e7d` Require sufficent priority for relay of free transactions
-- `58fda4d` Update seed IPs, based on bitcoin.sipa.be crawler data
+- `58fda4d` Update seed IPs, based onandaluzcoin.sipa.be crawler data
 - `18021d0` Remove bitnodes.io from dnsseeds.
 
 Validation:
@@ -492,7 +492,7 @@ Build system:
 - `9ce0774` build: Fix windows configure when using --with-qt-libdir
 - `ea96475` build: Add mention of --disable-wallet to bdb48 error messages
 - `1dec09b` depends: add shared dependency builder
-- `c101c76` build: Add --with-utils (bitcoin-cli and bitcoin-tx, default=yes). Help string consistency tweaks. Target sanity check fix
+- `c101c76` build: Add --with-utils (bitcoin-cli andandaluzcoin-tx, default=yes). Help string consistency tweaks. Target sanity check fix
 - `e432a5f` build: add option for reducing exports (v2)
 - `6134b43` Fixing condition 'sabotaging' MSVC build
 - `af0bd5e` osx: fix signing to make Gatekeeper happy (again)
@@ -585,8 +585,8 @@ Tests:
 - `4cac5db` script tests: value with trailing 0x00 is true
 - `89101c6` script test: test case for 5-byte bools
 - `d2d9dc0` script tests: add tests for CHECKMULTISIG limits
-- `d789386` Add "it works" test for bitcoin-tx
-- `df4d61e` Add bitcoin-tx tests
+- `d789386` Add "it works" test forandaluzcoin-tx
+- `df4d61e` Addandaluzcoin-tx tests
 - `aa41ac2` Test IsPushOnly() with invalid push
 - `6022b5d` Make `script_{valid,invalid}.json` validation flags configurable
 - `8138cbe` Add automatic script test generation, and actual checksig tests
@@ -598,7 +598,7 @@ Tests:
 - `2b62e17` Clearly separate PUSHDATA and numeric argument MINIMALDATA tests
 - `16d78bd` Add valid invert of invalid every numeric opcode tests
 - `f635269` tests: enable alertnotify test for Windows
-- `7a41614` tests: allow rpc-tests to get filenames for bitcoind and bitcoin-cli from the environment
+- `7a41614` tests: allow rpc-tests to get filenames forandaluzcoind andandaluzcoin-cli from the environment
 - `5122ea7` tests: fix forknotify.py on windows
 - `fa7f8cd` tests: remove old pull-tester scripts
 - `7667850` tests: replace the old (unused since Travis) tests with new rpc test scripts
@@ -624,7 +624,7 @@ Tests:
 Miscellaneous:
 - `122549f` Fix incorrect checkpoint data for testnet3
 - `5bd02cf` Log used config file to debug.log on startup
-- `68ba85f` Updated Debian example bitcoin.conf with config from wiki + removed some cruft and updated comments
+- `68ba85f` Updated Debian exampleandaluzcoin.conf with config from wiki + removed some cruft and updated comments
 - `e5ee8f0` Remove -beta suffix
 - `38405ac` Add comment regarding experimental-use service bits
 - `be873f6` Issue warning if collecting RandSeed data failed
@@ -635,7 +635,7 @@ Miscellaneous:
 - `cd01a5e` Enable paranoid corruption checks in LevelDB >= 1.16
 - `9365937` Add comment about never updating nTimeOffset past 199 samples
 - `403c1bf` contrib: remove getwork-based pyminer (as getwork API call has been removed)
-- `0c3e101` contrib: Added systemd .service file in order to help distributions integrate bitcoind
+- `0c3e101` contrib: Added systemd .service file in order to help distributions integrateandaluzcoind
 - `0a0878d` doc: Add new DNSseed policy
 - `2887bff` Update coding style and add .clang-format
 - `5cbda4f` Changed LevelDB cursors to use scoped pointers to ensure destruction when going out of scope

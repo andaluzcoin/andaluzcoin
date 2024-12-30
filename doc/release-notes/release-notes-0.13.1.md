@@ -19,7 +19,7 @@ Compatibility
 
 Microsoft ended support for Windows XP on [April 8th, 2014](https://www.microsoft.com/en-us/WindowsForBusiness/end-of-xp-support),
 an OS initially released in 2001. This means that not even critical security
-updates will be released anymore. Without security updates, using a bitcoin
+updates will be released anymore. Without security updates, using aandaluzcoin
 wallet on a XP machine is irresponsible at least.
 
 In addition to that, with 0.12.x there have been varied reports of AndaluzCoin Core
@@ -89,8 +89,8 @@ covered by the txid. This provides several immediate benefits:
   (such as hardware wallets), reduces the amount of data the signature
   generator needs to download, and allows the signature generator to operate
   more quickly.  This is made possible by having the generator sign the amount
-  of bitcoins they think they are spending, and by having full nodes refuse to
-  accept those signatures unless the amount of bitcoins being spent is exactly
+  ofandaluzcoins they think they are spending, and by having full nodes refuse to
+  accept those signatures unless the amount ofandaluzcoins being spent is exactly
   the same as was signed.  For non-segwit transactions, wallets instead had to
   download the complete previous transactions being spent for every payment
   they made, which could be a slow operation on hardware wallets and in other
@@ -243,7 +243,7 @@ git merge commit are mentioned.
 
 ### Consensus
 - #8636 `9dfa0c8` Implement NULLDUMMY softfork (BIP147) (jl2012)
-- #8848 `7a34a46` Add NULLDUMMY verify flag in bitcoinconsensus.h (jl2012)
+- #8848 `7a34a46` Add NULLDUMMY verify flag inandaluzcoinconsensus.h (jl2012)
 - #8937 `8b66659` Define start and end time for segwit deployment (sipa)
 
 ### RPC and other APIs
@@ -320,10 +320,10 @@ git merge commit are mentioned.
 - #8418 `ff893aa` Add tests for compact blocks (sdaftuar)
 - #8803 `375437c` Ping regularly in p2p-segwit.py to keep connection alive (jl2012)
 - #8827 `9bbe66e` Split up slow RPC calls to avoid pruning test timeouts (sdaftuar)
-- #8829 `2a8bca4` Add bitcoin-tx JSON tests (jnewbery)
+- #8829 `2a8bca4` Addandaluzcoin-tx JSON tests (jnewbery)
 - #8834 `1dd1783` blockstore: Switch to dumb dbm (MarcoFalke)
 - #8835 `d87227d` nulldummy.py: Don't run unused code (MarcoFalke)
-- #8836 `eb18cc1` bitcoin-util-test.py should fail if the output file is empty (jnewbery)
+- #8836 `eb18cc1`andaluzcoin-util-test.py should fail if the output file is empty (jnewbery)
 - #8839 `31ab2f8` Avoid ConnectionResetErrors during RPC tests (laanwj)
 - #8840 `cbc3fe5` Explicitly set encoding to utf8 when opening text files (laanwj)
 - #8841 `3e4abb5` Fix nulldummy test (jl2012)
@@ -337,7 +337,7 @@ git merge commit are mentioned.
 - #8754 `0e2c6bd` Target protobuf 2.6 in OS X build notes. (fanquake)
 - #8461 `b17a3f9` Document return value of networkhashps for getmininginfo RPC endpoint (jlopp)
 - #8512 `156e305` Corrected JSON typo on setban of net.cpp (sevastos)
-- #8683 `8a7d7ff` Fix incorrect file name bitcoin.qrc  (bitcoinsSG)
+- #8683 `8a7d7ff` Fix incorrect file nameandaluzcoin.qrc  (bitcoinsSG)
 - #8891 `5e0dd9e` Update bips.md for Segregated Witness (fanquake)
 - #8545 `863ae74` Update git-subtree-check.sh README (MarcoFalke)
 - #8607 `486650a` Fix doxygen off-by-one comments, fix typos (MarcoFalke)
@@ -352,7 +352,7 @@ git merge commit are mentioned.
 - #8742 `d31ac72` Specify Protobuf version 2 in paymentrequest.proto (fanquake)
 - #8414,#8558,#8676,#8700,#8701,#8702 Add missing copyright headers (isle2983, kazcw)
 - #8899 `4ed2627` Fix wake from sleep issue with Boost 1.59.0 (fanquake)
-- #8817 `bcf3806` update bitcoin-tx to output witness data (jnewbery)
+- #8817 `bcf3806` updateandaluzcoin-tx to output witness data (jnewbery)
 - #8513 `4e5fc31` Fix a type error that would not compile on OSX. (JeremyRubin)
 - #8392 `30eac2d` Fix several node initialization issues (sipa)
 - #8548 `305d8ac` Use `__func__` to get function name for output printing (MarcoFalke)

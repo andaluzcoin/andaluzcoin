@@ -65,7 +65,7 @@ Perform these checks when reviewing the release PR (see below):
 
    If other maintainers are not present to approve the PR, it can be merged without ACKs.
 5. Create a new GitHub release with a link to the corresponding entry in [CHANGELOG.md](../CHANGELOG.md).
-6. Send an announcement email to the bitcoin-dev mailing list.
+6. Send an announcement email to theandaluzcoin-dev mailing list.
 
 ## Maintenance release
 
@@ -90,5 +90,5 @@ Note that bug fixes need to be backported only to releases for which no compatib
    git push git@github.com:bitcoin-core/secp256k1.git v$MAJOR.$MINOR.$PATCH
    ```
 6. Create a new GitHub release with a link to the corresponding entry in [CHANGELOG.md](../CHANGELOG.md).
-7. Send an announcement email to the bitcoin-dev mailing list.
+7. Send an announcement email to theandaluzcoin-dev mailing list.
 8. Open PR to the master branch that includes a commit (with commit message `"release notes: add $MAJOR.$MINOR.$PATCH"`, for example) that adds release notes to [CHANGELOG.md](../CHANGELOG.md).

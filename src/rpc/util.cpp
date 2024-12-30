@@ -111,7 +111,7 @@ CAmount AmountFromValue(const UniValue& value, int decimals)
 CFeeRate ParseFeeRate(const UniValue& json)
 {
     CAmount val{AmountFromValue(json)};
-    if (val >= COIN) throw JSONRPCError(RPC_INVALID_PARAMETER, "Fee rates larger than or equal to 1BTC/kvB are not accepted");
+    if (val >= COIN) throw JSONRPCError(RPC_INVALID_PARAMETER, "Fee rates larger than or equal to 1LUZ/kvB are not accepted");
     return CFeeRate{val};
 }
 
@@ -183,12 +183,12 @@ std::string ShellQuoteIfNeeded(const std::string& s)
 
 std::string HelpExampleCli(const std::string& methodname, const std::string& args)
 {
-    return "> bitcoin-cli " + methodname + " " + args + "\n";
+    return ">andaluzcoin-cli " + methodname + " " + args + "\n";
 }
 
 std::string HelpExampleCliNamed(const std::string& methodname, const RPCArgList& args)
 {
-    std::string result = "> bitcoin-cli -named " + methodname;
+    std::string result = ">andaluzcoin-cli -named " + methodname;
     for (const auto& argpair: args) {
         const auto& value = argpair.second.isStr()
                 ? argpair.second.get_str()

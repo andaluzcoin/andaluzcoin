@@ -97,7 +97,7 @@ New RPCs
   Meanwhile, the original chainstate will complete the initial block download process in
   the background, eventually validating up to the block that the snapshot is based upon.
 
-  The result is a usable bitcoind instance that is current with the network tip in a
+  The result is a usableandaluzcoind instance that is current with the network tip in a
   matter of minutes rather than hours. UTXO snapshot are typically obtained via
   third-party sources (HTTP, torrent, etc.) which is reasonable since their contents
   are always checked by hash.
@@ -142,12 +142,12 @@ Updated settings
 ----------------
 
 - `bitcoind` and `bitcoin-qt` will now raise an error on startup
- if a datadir that is being used contains a bitcoin.conf file that
+ if a datadir that is being used contains aandaluzcoin.conf file that
  will be ignored, which can happen when a datadir= line is used in
- a bitcoin.conf file. The error message is just a diagnostic intended
+ aandaluzcoin.conf file. The error message is just a diagnostic intended
  to prevent accidental misconfiguration, and it can be disabled to
  restore the previous behavior of using the datadir while ignoring
- the bitcoin.conf contained in it. (#27302)
+ theandaluzcoin.conf contained in it. (#27302)
 
 - Passing an invalid `-debug`, `-debugexclude`, or `-loglevel` logging configuration
   option now raises an error, rather than logging an easily missed warning. (#27632)

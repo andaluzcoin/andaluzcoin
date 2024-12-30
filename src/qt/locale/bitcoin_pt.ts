@@ -192,8 +192,8 @@ A assinatura só é possível com endereços do tipo "legado".</translation>
         <translation type="unfinished">Voltar</translation>
     </message>
     <message>
-        <source>Remember that encrypting your wallet cannot fully protect your bitcoins from being stolen by malware infecting your computer.</source>
-        <translation type="unfinished">Lembre-se que a encriptação da sua carteira não impede totalmente os seus bitcoins de serem roubados por programas maliciosos (malware) que infetem o seu computador.</translation>
+        <source>Remember that encrypting your wallet cannot fully protect yourandaluzcoins from being stolen by malware infecting your computer.</source>
+        <translation type="unfinished">Lembre-se que a encriptação da sua carteira não impede totalmente os seusandaluzcoins de serem roubados por programas maliciosos (malware) que infetem o seu computador.</translation>
     </message>
     <message>
         <source>Wallet to be encrypted</source>
@@ -603,8 +603,8 @@ A assinatura só é possível com endereços do tipo "legado".</translation>
         <translation type="unfinished">A conectar aos pares…</translation>
     </message>
     <message>
-        <source>Request payments (generates QR codes and bitcoin: URIs)</source>
-        <translation type="unfinished">Solicitar pagamentos (gera códigos QR e bitcoin: URIs)</translation>
+        <source>Request payments (generates QR codes andandaluzcoin: URIs)</source>
+        <translation type="unfinished">Solicitar pagamentos (gera códigos QR eandaluzcoin: URIs)</translation>
     </message>
     <message>
         <source>Show the list of used sending addresses and labels</source>
@@ -686,8 +686,8 @@ A assinatura só é possível com endereços do tipo "legado".</translation>
         <translation type="unfinished">&amp;Endereços de receção</translation>
     </message>
     <message>
-        <source>Open a bitcoin: URI</source>
-        <translation type="unfinished">Abrir um bitcoin URI</translation>
+        <source>Open aandaluzcoin: URI</source>
+        <translation type="unfinished">Abrir umandaluzcoin URI</translation>
     </message>
     <message>
         <source>Open Wallet</source>
@@ -1307,7 +1307,7 @@ O processo de migração criará uma cópia de segurança da carteira antes da m
     </message>
     <message>
         <source>The entered address "%1" is not a valid AndaluzCoin address.</source>
-        <translation type="unfinished">O endereço introduzido "%1" não é um endereço bitcoin válido.</translation>
+        <translation type="unfinished">O endereço introduzido "%1" não é um endereçoandaluzcoin válido.</translation>
     </message>
     <message>
         <source>Address "%1" already exists as a receiving address with label "%2" and so cannot be added as a sending address.</source>
@@ -1482,12 +1482,12 @@ O processo de migração criará uma cópia de segurança da carteira antes da m
         <translation type="unfinished">Formulário</translation>
     </message>
     <message>
-        <source>Recent transactions may not yet be visible, and therefore your wallet's balance might be incorrect. This information will be correct once your wallet has finished synchronizing with the bitcoin network, as detailed below.</source>
-        <translation type="unfinished">As transações recentes podem ainda não ser visíveis e, por isso, o saldo da sua carteira pode estar incorreto. Esta informação estará correta assim que a sua carteira terminar a sincronização com a rede bitcoin, conforme detalhado abaixo.</translation>
+        <source>Recent transactions may not yet be visible, and therefore your wallet's balance might be incorrect. This information will be correct once your wallet has finished synchronizing with theandaluzcoin network, as detailed below.</source>
+        <translation type="unfinished">As transações recentes podem ainda não ser visíveis e, por isso, o saldo da sua carteira pode estar incorreto. Esta informação estará correta assim que a sua carteira terminar a sincronização com a redeandaluzcoin, conforme detalhado abaixo.</translation>
     </message>
     <message>
-        <source>Attempting to spend bitcoins that are affected by not-yet-displayed transactions will not be accepted by the network.</source>
-        <translation type="unfinished">A rede não aceitará tentativas de gastar bitcoins afetados por transações que ainda não foram mostradas.</translation>
+        <source>Attempting to spendandaluzcoins that are affected by not-yet-displayed transactions will not be accepted by the network.</source>
+        <translation type="unfinished">A rede não aceitará tentativas de gastarandaluzcoins afetados por transações que ainda não foram mostradas.</translation>
     </message>
     <message>
         <source>Number of blocks left</source>
@@ -1537,8 +1537,8 @@ O processo de migração criará uma cópia de segurança da carteira antes da m
 <context>
     <name>OpenURIDialog</name>
     <message>
-        <source>Open bitcoin URI</source>
-        <translation type="unfinished">Abrir um URI de bitcoin</translation>
+        <source>Openandaluzcoin URI</source>
+        <translation type="unfinished">Abrir um URI deandaluzcoin</translation>
     </message>
     <message>
         <source>Paste address from clipboard</source>
@@ -2110,8 +2110,8 @@ ID da transação: %1</translation>
         <translation type="unfinished">Erro do pedido de pagamento</translation>
     </message>
     <message>
-        <source>Cannot start bitcoin: click-to-pay handler</source>
-        <translation type="unfinished">Não é possível iniciar o bitcoin: manipulador do click-to-pay</translation>
+        <source>Cannot startandaluzcoin: click-to-pay handler</source>
+        <translation type="unfinished">Não é possível iniciar oandaluzcoin: manipulador do click-to-pay</translation>
     </message>
     <message>
         <source>URI handling</source>
@@ -3036,8 +3036,8 @@ Note:  Since the fee is calculated on a per-byte basis, a fee rate of "100 satos
 Nota: como a taxa é calculada por byte, uma taxa de "100 satoshis por kvB" para um tamanho de transação de 500 bytes virtuais (metade de 1 kvB) resultaria em uma taxa de apenas 50 satoshis.</translation>
     </message>
     <message>
-        <source>When there is less transaction volume than space in the blocks, miners as well as relaying nodes may enforce a minimum fee. Paying only this minimum fee is just fine, but be aware that this can result in a never confirming transaction once there is more demand for bitcoin transactions than the network can process.</source>
-        <translation type="unfinished">Quando há menos volume de transações do que espaço nos blocos, os mineradores, bem como os pares de retransmissão, podem impor uma taxa mínima. Pagar apenas esta taxa mínima não faz mal, mas tenha em atenção que isto pode resultar numa transação nunca confirmada, uma vez que há mais procura de transações de bitcoin do que a rede pode processar.</translation>
+        <source>When there is less transaction volume than space in the blocks, miners as well as relaying nodes may enforce a minimum fee. Paying only this minimum fee is just fine, but be aware that this can result in a never confirming transaction once there is more demand forandaluzcoin transactions than the network can process.</source>
+        <translation type="unfinished">Quando há menos volume de transações do que espaço nos blocos, os mineradores, bem como os pares de retransmissão, podem impor uma taxa mínima. Pagar apenas esta taxa mínima não faz mal, mas tenha em atenção que isto pode resultar numa transação nunca confirmada, uma vez que há mais procura de transações deandaluzcoin do que a rede pode processar.</translation>
     </message>
     <message>
         <source>A too low fee might result in a never confirming transaction (read the tooltip)</source>
@@ -3326,8 +3326,8 @@ Nota: como a taxa é calculada por byte, uma taxa de "100 satoshis por kvB" para
         <translation type="unfinished">A quantia a enviar na unidade selecionada</translation>
     </message>
     <message>
-        <source>The fee will be deducted from the amount being sent. The recipient will receive less bitcoins than you enter in the amount field. If multiple recipients are selected, the fee is split equally.</source>
-        <translation type="unfinished">A taxa será deduzida à quantia que está a ser enviada. O destinatário irá receber menos bitcoins do que as que inseridas no campo da quantia. Se estiverem selecionados múltiplos destinatários, a taxa será repartida equitativamente.</translation>
+        <source>The fee will be deducted from the amount being sent. The recipient will receive lessandaluzcoins than you enter in the amount field. If multiple recipients are selected, the fee is split equally.</source>
+        <translation type="unfinished">A taxa será deduzida à quantia que está a ser enviada. O destinatário irá receber menosandaluzcoins do que as que inseridas no campo da quantia. Se estiverem selecionados múltiplos destinatários, a taxa será repartida equitativamente.</translation>
     </message>
     <message>
         <source>S&amp;ubtract fee from amount</source>
@@ -3346,8 +3346,8 @@ Nota: como a taxa é calculada por byte, uma taxa de "100 satoshis por kvB" para
         <translation type="unfinished">Introduza uma etiqueta para este endereço para o adicionar à sua lista de endereços usados</translation>
     </message>
     <message>
-        <source>A message that was attached to the bitcoin: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the AndaluzCoin network.</source>
-        <translation type="unfinished">Uma mensagem que foi anexada ao bitcoin: URI que será armazenada com a transação para sua referência. Nota: esta mensagem não será enviada através da rede AndaluzCoin.</translation>
+        <source>A message that was attached to theandaluzcoin: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the AndaluzCoin network.</source>
+        <translation type="unfinished">Uma mensagem que foi anexada aoandaluzcoin: URI que será armazenada com a transação para sua referência. Nota: esta mensagem não será enviada através da rede AndaluzCoin.</translation>
     </message>
 </context>
 <context>
@@ -3372,8 +3372,8 @@ Nota: como a taxa é calculada por byte, uma taxa de "100 satoshis por kvB" para
         <translation type="unfinished">&amp;Assinar mensagem</translation>
     </message>
     <message>
-        <source>You can sign messages/agreements with your legacy (P2PKH) addresses to prove you can receive bitcoins sent to them. Be careful not to sign anything vague or random, as phishing attacks may try to trick you into signing your identity over to them. Only sign fully-detailed statements you agree to.</source>
-        <translation type="unfinished">Você pode assinar mensagens com seus endereços legados (P2PKH) para provar que pode receber bitcoins enviados a eles. Tenha cuidado para não assinar nada vago ou aleatório, pois ataques de phishing podem tentar enganá-lo para assinar sua identidade para eles. Assine apenas declarações totalmente detalhadas com as quais você concorda.</translation>
+        <source>You can sign messages/agreements with your legacy (P2PKH) addresses to prove you can receiveandaluzcoins sent to them. Be careful not to sign anything vague or random, as phishing attacks may try to trick you into signing your identity over to them. Only sign fully-detailed statements you agree to.</source>
+        <translation type="unfinished">Você pode assinar mensagens com seus endereços legados (P2PKH) para provar que pode receberandaluzcoins enviados a eles. Tenha cuidado para não assinar nada vago ou aleatório, pois ataques de phishing podem tentar enganá-lo para assinar sua identidade para eles. Assine apenas declarações totalmente detalhadas com as quais você concorda.</translation>
     </message>
     <message>
         <source>The AndaluzCoin address to sign the message with</source>
@@ -4100,8 +4100,8 @@ Vá ao menu Ficheiro &gt; Abrir carteira para carregar uma carteira
         <translation type="unfinished">Os programadores de %s</translation>
     </message>
     <message>
-        <source>%s corrupt. Try using the wallet tool bitcoin-wallet to salvage or restoring a backup.</source>
-        <translation type="unfinished">%s corrompido. Tente utilizar a ferramenta de carteira bitcoin-wallet para recuperar ou restaurar uma cópia de segurança.</translation>
+        <source>%s corrupt. Try using the wallet toolandaluzcoin-wallet to salvage or restoring a backup.</source>
+        <translation type="unfinished">%s corrompido. Tente utilizar a ferramenta de carteiraandaluzcoin-wallet para recuperar ou restaurar uma cópia de segurança.</translation>
     </message>
     <message>
         <source>%s failed to validate the -assumeutxo snapshot state. This indicates a hardware problem, or a bug in the software, or a bad software modification that allowed an invalid snapshot to be loaded. As a result of this, the node will shut down and stop using any state that was built on the snapshot, resetting the chain height from %d to %d. On the next restart, the node will resume syncing from %d without using any snapshot data. Please report this incident to %s, including how you obtained the snapshot. The invalid snapshot chainstate will be left on disk in case it is helpful in diagnosing the issue that caused this error.</source>
@@ -4148,8 +4148,8 @@ Vá ao menu Ficheiro &gt; Abrir carteira para carregar uma carteira
         <translation type="unfinished">Erro: o registo do identificador do ficheiro de dump está incorreto. Obteve-se "%s", mas era esperado "%s".</translation>
     </message>
     <message>
-        <source>Error: Dumpfile version is not supported. This version of bitcoin-wallet only supports version 1 dumpfiles. Got dumpfile with version %s</source>
-        <translation type="unfinished">Erro: esta versão do bitcoin-wallet apenas suporta ficheiros dump na versão 1. (Versão atual: %s)</translation>
+        <source>Error: Dumpfile version is not supported. This version ofandaluzcoin-wallet only supports version 1 dumpfiles. Got dumpfile with version %s</source>
+        <translation type="unfinished">Erro: esta versão doandaluzcoin-wallet apenas suporta ficheiros dump na versão 1. (Versão atual: %s)</translation>
     </message>
     <message>
         <source>Error: Legacy wallets only support the "legacy", "p2sh-segwit", and "bech32" address types</source>

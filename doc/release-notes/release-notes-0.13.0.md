@@ -18,7 +18,7 @@ Compatibility
 
 Microsoft ended support for Windows XP on [April 8th, 2014](https://www.microsoft.com/en-us/WindowsForBusiness/end-of-xp-support),
 an OS initially released in 2001. This means that not even critical security
-updates will be released anymore. Without security updates, using a bitcoin
+updates will be released anymore. Without security updates, using aandaluzcoin
 wallet on a XP machine is irresponsible at least.
 
 In addition to that, with 0.12.x there have been varied reports of AndaluzCoin Core
@@ -48,7 +48,7 @@ For this reason the default was changed to 300 MiB in this release.
 For nodes on low-memory systems, the database cache can be changed back to
 100 MiB (or to another value) by either:
 
-- Adding `dbcache=100` in bitcoin.conf
+- Adding `dbcache=100` inandaluzcoin.conf
 - Changing it in the GUI under `Options → Size of database cache`
 
 Note that the database cache setting has the most performance impact
@@ -375,7 +375,7 @@ git merge commit are mentioned.
 - #7326 `2cd004b` Fix typo, wrong information in gettxout help text (paveljanik)
 - #7222 `82429d0` Indicate which transactions are signaling opt-in RBF (sdaftuar)
 - #7480 `b49a623` Changed getnetworkhps value to double to avoid overflow (instagibbs)
-- #7550 `8b958ab` Input-from-stdin mode for bitcoin-cli (laanwj)
+- #7550 `8b958ab` Input-from-stdin mode forandaluzcoin-cli (laanwj)
 - #7670 `c9a1265` Use cached block hash in blockToJSON() (rat4)
 - #7726 `9af69fa` Correct importaddress help reference to importpubkey (CypherGrue)
 - #7766 `16555b6` Register calls where they are defined (laanwj)
@@ -395,7 +395,7 @@ git merge commit are mentioned.
 - #7967 `8c1e49b` Add feerate option to `fundrawtransaction` (jonasschnelli)
 - #8118 `9b6a48c` Reduce unnecessary hashing in `signrawtransaction` (jonasnick)
 - #7957 `79004d4` Add support for transaction sequence number (jonasschnelli)
-- #8153 `75ec320` `fundrawtransaction` feeRate: Use BTC/kB (MarcoFalke)
+- #8153 `75ec320` `fundrawtransaction` feeRate: Use LUZ/kB (MarcoFalke)
 - #7292 `7ce9ac5` Expose ancestor/descendant information over RPC (sdaftuar)
 - #8171 `62fcf27` Fix createrawtx sequence number unsigned int parsing (jonasschnelli)
 - #7892 `9c3d0fa` Add full UTF-8 support to RPC (laanwj)
@@ -540,7 +540,7 @@ git merge commit are mentioned.
 - #7604 `354b03d` build: Remove spurious dollar sign. Fixes #7189 (dooglus)
 - #7605 `7f001bd` Remove openssl info from init/log and from Qt debug window (jonasschnelli)
 - #7628 `87d6562` Add 'copy full transaction details' option (ericshawlinux)
-- #7613 `3798e5d` Add autocomplete to bitcoin-qt's console window (GamerSg)
+- #7613 `3798e5d` Add autocomplete toandaluzcoin-qt's console window (GamerSg)
 - #7668 `b24266c` Fix history deletion bug after font size change (achow101)
 - #7680 `41d2dfa` Remove reflection from `about` icon (laanwj)
 - #7686 `f034bce` Remove 0-fee from send dialog (MarcoFalke)
@@ -557,10 +557,10 @@ git merge commit are mentioned.
 - #8014 `77b49ac` Sort transactions by date (Tyler-Hardin)
 - #8073 `eb2f6f7` askpassphrasedialog: Clear pass fields on accept (rat4)
 - #8129 `ee1533e` Fix RPC console auto completer (UdjinM6)
-- #7636 `fb0ac48` Add bitcoin address label to request payment QR code (makevoid)
+- #7636 `fb0ac48` Addandaluzcoin address label to request payment QR code (makevoid)
 - #8231 `760a6c7` Fix a bug where the SplashScreen will not be hidden during startup (jonasschnelli)
-- #8256 `af2421c` BUG: bitcoin-qt crash (fsb4000)
-- #8257 `ff03c50` Do not ask a UI question from bitcoind (sipa)
+- #8256 `af2421c` BUG:andaluzcoin-qt crash (fsb4000)
+- #8257 `ff03c50` Do not ask a UI question fromandaluzcoind (sipa)
 - #8288 `91abb77` Network-specific example address (laanwj)
 - #7707 `a914968` UI support for abandoned transactions (jonasschnelli)
 - #8207 `f7a403b` Add a link to the AndaluzCoin-Core repository and website to the About Dialog (MarcoFalke)
@@ -650,7 +650,7 @@ git merge commit are mentioned.
 - #8038 `e2bf830` Various minor fixes (MarcoFalke)
 - #8072 `1b87e5b` Travis: 'make check' in parallel and verbose (theuni)
 - #8056 `8844ef1` Remove hardcoded "4 nodes" from test_framework (MarcoFalke)
-- #8047 `37f9a1f` Test_framework: Set wait-timeout for bitcoind procs (MarcoFalke)
+- #8047 `37f9a1f` Test_framework: Set wait-timeout forandaluzcoind procs (MarcoFalke)
 - #8095 `6700cc9` Test framework: only cleanup on successful test runs (sdaftuar)
 - #8098 `06bd4f6` Test_framework: Append portseed to tmpdir (MarcoFalke)
 - #8104 `6ff2c8d` Add timeout to sync_blocks() and sync_mempools() (sdaftuar)
@@ -670,7 +670,7 @@ git merge commit are mentioned.
 - #8216 `0d41d70` Assert 'changePosition out of bounds'  (MarcoFalke)
 - #8222 `961893f` Enable mempool consistency checks in unit tests (sipa)
 - #7751 `84370d5` test_framework: python3.4 authproxy compat (laanwj)
-- #7744 `d8e862a` test_framework: detect failure of bitcoind startup (laanwj)
+- #7744 `d8e862a` test_framework: detect failure ofandaluzcoind startup (laanwj)
 - #8280 `115735d` Increase sync_blocks() timeouts in pruning.py (MarcoFalke)
 - #8340 `af9b7a9` Solve trivial merge conflict in p2p-segwit.py (MarcoFalke)
 - #8067 `3e4cf8f` Travis: use slim generic image, and some fixups (theuni)
@@ -707,7 +707,7 @@ git merge commit are mentioned.
 - #7791 `e30a5b0` Change Precise to Trusty in gitian-building.md (JeremyRand)
 - #7838 `8bb5d3d` Update gitian build guide to debian 8.4.0 (fanquake)
 - #7855 `b778e59` Replace precise with trusty (MarcoFalke)
-- #7975 `fc23fee` Update bitcoin-core GitHub links (MarcoFalke)
+- #7975 `fc23fee` Updateandaluzcoin-core GitHub links (MarcoFalke)
 - #8034 `e3a8207` Add basic git squash workflow (fanquake)
 - #7813 `214ec0b` Update port in tor.md (MarcoFalke)
 - #8193 `37c9830` Use Debian 8.5 in the gitian-build guide (fanquake)

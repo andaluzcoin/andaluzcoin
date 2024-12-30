@@ -7,7 +7,7 @@
 #       consensus engine, this list will shrink to only those
 #       which are absolutely necessary.
 add_library(bitcoinkernel
-  bitcoinkernel.cpp
+ andaluzcoinkernel.cpp
   chain.cpp
   checks.cpp
   chainparams.cpp
@@ -81,8 +81,8 @@ add_library(bitcoinkernel
 target_link_libraries(bitcoinkernel
   PRIVATE
     core_interface
-    bitcoin_clientversion
-    bitcoin_crypto
+   andaluzcoin_clientversion
+   andaluzcoin_crypto
     leveldb
     secp256k1
     $<TARGET_NAME_IF_EXISTS:USDT::headers>
@@ -101,7 +101,7 @@ set_target_properties(bitcoinkernel PROPERTIES
 )
 
 # When building the static library, install all static libraries the
-# bitcoinkernel depends on.
+#andaluzcoinkernel depends on.
 if(NOT BUILD_SHARED_LIBS)
   # Recursively get all the static libraries a target depends on and put them in libs_out
   function(get_target_static_link_libs target libs_out)
@@ -131,7 +131,7 @@ configure_file(${PROJECT_SOURCE_DIR}/libbitcoinkernel.pc.in ${PROJECT_BINARY_DIR
 install(FILES ${PROJECT_BINARY_DIR}/libbitcoinkernel.pc DESTINATION "${CMAKE_INSTALL_LIBDIR}/pkgconfig" COMPONENT Kernel)
 
 include(GNUInstallDirs)
-install(TARGETS bitcoinkernel
+install(TARGETSandaluzcoinkernel
   RUNTIME
     DESTINATION ${CMAKE_INSTALL_BINDIR}
     COMPONENT Kernel

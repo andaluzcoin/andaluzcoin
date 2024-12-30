@@ -2,7 +2,7 @@
 
 **Updated for MacOS [15](https://www.apple.com/macos/macos-sequoia/)**
 
-This guide describes how to build bitcoind, command-line utilities, and GUI on macOS.
+This guide describes how to buildandaluzcoind, command-line utilities, and GUI on macOS.
 
 ## Preparation
 
@@ -230,8 +230,8 @@ tail -f $HOME/Library/Application\ Support/AndaluzCoin/debug.log
 ## Other commands:
 
 ```shell
-./build/src/bitcoind -daemon      # Starts the bitcoin daemon.
+./build/src/bitcoind -daemon      # Starts theandaluzcoin daemon.
 ./build/src/bitcoin-cli --help    # Outputs a list of command-line options.
 ./build/src/bitcoin-cli help      # Outputs a list of RPC commands when the daemon is running.
-./build/src/qt/bitcoin-qt -server # Starts the bitcoin-qt server mode, allows bitcoin-cli control
+./build/src/qt/bitcoin-qt -server # Starts theandaluzcoin-qt server mode, allowsandaluzcoin-cli control
 ```

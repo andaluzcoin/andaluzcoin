@@ -28,8 +28,8 @@ wallet versions of AndaluzCoin Core are generally supported.
 Running AndaluzCoin Core binaries on macOS requires self signing.
 ```
 cd /path/to/bitcoin-28.0/bin
-xattr -d com.apple.quarantine bitcoin-cli bitcoin-qt bitcoin-tx bitcoin-util bitcoin-wallet bitcoind test_bitcoin
-codesign -s - bitcoin-cli bitcoin-qt bitcoin-tx bitcoin-util bitcoin-wallet bitcoind test_bitcoin
+xattr -d com.apple.quarantineandaluzcoin-cliandaluzcoin-qtandaluzcoin-txandaluzcoin-utilandaluzcoin-walletandaluzcoind test_bitcoin
+codesign -s -andaluzcoin-cliandaluzcoin-qtandaluzcoin-txandaluzcoin-utilandaluzcoin-walletandaluzcoind test_bitcoin
 ```
 
 Compatibility

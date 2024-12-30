@@ -43,7 +43,7 @@
     "args": ["-"],
     "input": "blanktxv2.hex",
     "output_cmp": "blanktxv2.hex",
-    "description": "Creates a blank transaction when nothing is piped into bitcoin-tx"
+    "description": "Creates a blank transaction when nothing is piped intoandaluzcoin-tx"
   },
   { "exec": "./bitcoin-tx",
     "args": ["-json","-create"],
@@ -54,7 +54,7 @@
     "args": ["-json","-"],
     "input": "blanktxv2.hex",
     "output_cmp": "blanktxv2.json",
-    "description": "Creates a blank transaction when nothing is piped into bitcoin-tx (output in json)"
+    "description": "Creates a blank transaction when nothing is piped intoandaluzcoin-tx (output in json)"
   },
   { "exec": "./bitcoin-tx",
     "args": ["-create", "nversion=1foo"],

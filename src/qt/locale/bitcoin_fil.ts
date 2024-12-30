@@ -162,8 +162,8 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">Ipasok ang lumang passphrase at bagong passphrase para sa pitaka.</translation>
     </message>
     <message>
-        <source>Remember that encrypting your wallet cannot fully protect your bitcoins from being stolen by malware infecting your computer.</source>
-        <translation type="unfinished">Tandaan na ang pag-eenkripto ng iyong pitaka ay hindi buong makakaprotekta sa inyong mga bitcoin mula sa pagnanakaw ng mga nag-iimpektong malware.</translation>
+        <source>Remember that encrypting your wallet cannot fully protect yourandaluzcoins from being stolen by malware infecting your computer.</source>
+        <translation type="unfinished">Tandaan na ang pag-eenkripto ng iyong pitaka ay hindi buong makakaprotekta sa inyong mgaandaluzcoin mula sa pagnanakaw ng mga nag-iimpektong malware.</translation>
     </message>
     <message>
         <source>Wallet to be encrypted</source>
@@ -427,8 +427,8 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">Tulong</translation>
     </message>
     <message>
-        <source>Request payments (generates QR codes and bitcoin: URIs)</source>
-        <translation type="unfinished">Humiling ng bayad (lumilikha ng QR codes at bitcoin: URIs)</translation>
+        <source>Request payments (generates QR codes andandaluzcoin: URIs)</source>
+        <translation type="unfinished">Humiling ng bayad (lumilikha ng QR codes atandaluzcoin: URIs)</translation>
     </message>
     <message>
         <source>Show the list of used sending addresses and labels</source>
@@ -998,12 +998,12 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">Anyo</translation>
     </message>
     <message>
-        <source>Recent transactions may not yet be visible, and therefore your wallet's balance might be incorrect. This information will be correct once your wallet has finished synchronizing with the bitcoin network, as detailed below.</source>
-        <translation type="unfinished">Ang mga bagong transaksyon ay hindi pa makikita kaya ang balanse ng iyong walet ay maaaring hindi tama. Ang impormasyong ito ay maiitama pagkatapos ma-synchronize ng iyong walet sa bitcoin network, ayon sa ibaba.</translation>
+        <source>Recent transactions may not yet be visible, and therefore your wallet's balance might be incorrect. This information will be correct once your wallet has finished synchronizing with theandaluzcoin network, as detailed below.</source>
+        <translation type="unfinished">Ang mga bagong transaksyon ay hindi pa makikita kaya ang balanse ng iyong walet ay maaaring hindi tama. Ang impormasyong ito ay maiitama pagkatapos ma-synchronize ng iyong walet saandaluzcoin network, ayon sa ibaba.</translation>
     </message>
     <message>
-        <source>Attempting to spend bitcoins that are affected by not-yet-displayed transactions will not be accepted by the network.</source>
-        <translation type="unfinished">Ang pagtangkang gastusin ang mga bitcoin na apektado ng mga transaksyon na hindi pa naipapakita ay hindi tatanggapin ng network.</translation>
+        <source>Attempting to spendandaluzcoins that are affected by not-yet-displayed transactions will not be accepted by the network.</source>
+        <translation type="unfinished">Ang pagtangkang gastusin ang mgaandaluzcoin na apektado ng mga transaksyon na hindi pa naipapakita ay hindi tatanggapin ng network.</translation>
     </message>
     <message>
         <source>Number of blocks left</source>
@@ -1403,8 +1403,8 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">Kamalian sa paghiling ng bayad</translation>
     </message>
     <message>
-        <source>Cannot start bitcoin: click-to-pay handler</source>
-        <translation type="unfinished">Hindi masimulan ang bitcoin: click-to-pay handler</translation>
+        <source>Cannot startandaluzcoin: click-to-pay handler</source>
+        <translation type="unfinished">Hindi masimulan angandaluzcoin: click-to-pay handler</translation>
     </message>
     <message>
         <source>'bitcoin://' is not a valid URI. Use 'bitcoin:' instead.</source>
@@ -1968,8 +1968,8 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">Itago ang mga Setting ng bayad sa Transaksyon</translation>
     </message>
     <message>
-        <source>When there is less transaction volume than space in the blocks, miners as well as relaying nodes may enforce a minimum fee. Paying only this minimum fee is just fine, but be aware that this can result in a never confirming transaction once there is more demand for bitcoin transactions than the network can process.</source>
-        <translation type="unfinished">Kapag mas kaunti ang dami ng transaksyon kaysa sa puwang sa mga blocks, ang mga minero pati na rin ang mga relaying node ay maaaring magpatupad ng minimum na bayad. Ang pagbabayad lamang ng minimum na bayad na ito ay maayos, ngunit malaman na maaari itong magresulta sa hindi kailanmang nagkukumpirmang transaksyon sa sandaling magkaroon ng higit na pangangailangan para sa mga transaksyon ng bitcoin kaysa sa kayang i-proseso ng network.</translation>
+        <source>When there is less transaction volume than space in the blocks, miners as well as relaying nodes may enforce a minimum fee. Paying only this minimum fee is just fine, but be aware that this can result in a never confirming transaction once there is more demand forandaluzcoin transactions than the network can process.</source>
+        <translation type="unfinished">Kapag mas kaunti ang dami ng transaksyon kaysa sa puwang sa mga blocks, ang mga minero pati na rin ang mga relaying node ay maaaring magpatupad ng minimum na bayad. Ang pagbabayad lamang ng minimum na bayad na ito ay maayos, ngunit malaman na maaari itong magresulta sa hindi kailanmang nagkukumpirmang transaksyon sa sandaling magkaroon ng higit na pangangailangan para sa mga transaksyon ngandaluzcoin kaysa sa kayang i-proseso ng network.</translation>
     </message>
     <message>
         <source>A too low fee might result in a never confirming transaction (read the tooltip)</source>
@@ -2167,8 +2167,8 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">Alisin ang entry na ito</translation>
     </message>
     <message>
-        <source>The fee will be deducted from the amount being sent. The recipient will receive less bitcoins than you enter in the amount field. If multiple recipients are selected, the fee is split equally.</source>
-        <translation type="unfinished">Ibabawas ang bayad mula sa halagang ipapadala. Ang tatanggap ay makakatanggap ng mas kaunting mga bitcoin kaysa sa pinasok mo sa patlang ng halaga. Kung napili ang maraming tatanggap, ang bayad ay paghihiwalayin.</translation>
+        <source>The fee will be deducted from the amount being sent. The recipient will receive lessandaluzcoins than you enter in the amount field. If multiple recipients are selected, the fee is split equally.</source>
+        <translation type="unfinished">Ibabawas ang bayad mula sa halagang ipapadala. Ang tatanggap ay makakatanggap ng mas kaunting mgaandaluzcoin kaysa sa pinasok mo sa patlang ng halaga. Kung napili ang maraming tatanggap, ang bayad ay paghihiwalayin.</translation>
     </message>
     <message>
         <source>S&amp;ubtract fee from amount</source>
@@ -2187,8 +2187,8 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">Mag-enter ng label para sa address na ito upang idagdag ito sa listahan ng mga gamit na address.</translation>
     </message>
     <message>
-        <source>A message that was attached to the bitcoin: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the AndaluzCoin network.</source>
-        <translation type="unfinished">Mensahe na nakalakip sa bitcoin: URI na kung saan maiimbak kasama ang transaksyon para sa iyong sanggunian. Tandaan: Ang mensaheng ito ay hindi ipapadala sa network ng AndaluzCoin.</translation>
+        <source>A message that was attached to theandaluzcoin: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the AndaluzCoin network.</source>
+        <translation type="unfinished">Mensahe na nakalakip saandaluzcoin: URI na kung saan maiimbak kasama ang transaksyon para sa iyong sanggunian. Tandaan: Ang mensaheng ito ay hindi ipapadala sa network ng AndaluzCoin.</translation>
     </message>
 </context>
 <context>

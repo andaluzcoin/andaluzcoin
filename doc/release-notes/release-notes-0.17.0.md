@@ -78,7 +78,7 @@ Changed configuration options
   includeconf=relative.conf
   ```
 
-  as bitcoin.conf will still include `relative.conf`.
+  asandaluzcoin.conf will still include `relative.conf`.
 
 GUI changes
 -----------
@@ -109,7 +109,7 @@ same as before.
 Dynamic loading and creation of wallets
 ---------------------------------------
 
-Previously, wallets could only be loaded or created at startup, by specifying `-wallet` parameters on the command line or in the bitcoin.conf file. It is now possible to load, create and unload wallets dynamically at runtime:
+Previously, wallets could only be loaded or created at startup, by specifying `-wallet` parameters on the command line or in theandaluzcoin.conf file. It is now possible to load, create and unload wallets dynamically at runtime:
 
 - Existing wallets can be loaded by calling the `loadwallet` RPC. The wallet can be specified as file/directory basename (which must be located in the `walletdir` directory), or as an absolute path to a file/directory.
 - New wallets can be created (and loaded) by calling the `createwallet` RPC. The provided name must not match a wallet file in the `walletdir` directory or the name of a wallet that is currently loaded.
@@ -151,7 +151,7 @@ outside of sections.
 
 A new 'label' API has been introduced for the wallet. This is intended as a
 replacement for the deprecated 'account' API. The 'account' can continue to
-be used in V0.17 by starting bitcoind with the '-deprecatedrpc=accounts'
+be used in V0.17 by startingandaluzcoind with the '-deprecatedrpc=accounts'
 argument, and will be fully removed in V0.18.
 
 The label RPC methods mirror the account functionality, with the following functional differences:
@@ -286,13 +286,13 @@ Low-level RPC changes
   `getrawtransaction` RPC commands.
 - New `fees` field introduced in `getrawmempool`, `getmempoolancestors`, `getmempooldescendants` and
    `getmempoolentry` when verbosity is set to `true` with sub-fields `ancestor`, `base`, `modified`
-   and `descendant` denominated in BTC. This new field deprecates previous fee fields, such as
+   and `descendant` denominated in LUZ. This new field deprecates previous fee fields, such as
    `fee`, `modifiedfee`, `ancestorfee` and `descendantfee`.
 - The new RPC `getzmqnotifications` returns information about active ZMQ
   notifications.
-- When bitcoin is not started with any `-wallet=<path>` options, the name of
+- Whenandaluzcoin is not started with any `-wallet=<path>` options, the name of
   the default wallet returned by `getwalletinfo` and `listwallets` RPCs is
-  now the empty string `""` instead of `"wallet.dat"`. If bitcoin is started
+  now the empty string `""` instead of `"wallet.dat"`. Ifandaluzcoin is started
   with any `-wallet=<path>` options, there is no change in behavior, and the
   name of any wallet is just its `<path>` string.
 - Passing an empty string (`""`) as the `address_type` parameter to
@@ -322,7 +322,7 @@ Low-level RPC changes
   `pubkeys`, `sigsrequired`, `pubkey`, `addresses`, `embedded`, `iscompressed`,
   `account`, `timestamp`, `hdkeypath`, `hdmasterkeyid`.
 - `signrawtransaction` is deprecated and will be fully removed in v0.18. To use
-  `signrawtransaction` in v0.17, restart bitcoind with
+  `signrawtransaction` in v0.17, restartandaluzcoind with
   `-deprecatedrpc=signrawtransaction`. Projects should transition to using
   `signrawtransactionwithkey` and `signrawtransactionwithwallet` before
   upgrading to v0.18.
@@ -336,7 +336,7 @@ Other API changes
 
 - The log timestamp format is now ISO 8601 (e.g. "2018-02-28T12:34:56Z").
 
-- When running bitcoind with `-debug` but without `-daemon`, logging to stdout
+- When runningandaluzcoind with `-debug` but without `-daemon`, logging to stdout
   is now the default behavior. Setting `-printtoconsole=1` no longer implicitly
   disables logging to debug.log. Instead, logging to file can be explicitly disabled
   by setting `-debuglogfile=0`.
@@ -345,7 +345,7 @@ Transaction index changes
 -------------------------
 
 The transaction index is now built separately from the main node procedure,
-meaning the `-txindex` flag can be toggled without a full reindex. If bitcoind
+meaning the `-txindex` flag can be toggled without a full reindex. Ifandaluzcoind
 is run with `-txindex` on a node that is already partially or fully synced
 without one, the transaction index will be built in the background and become
 available once caught up. When switching from running `-txindex` to running
@@ -536,7 +536,7 @@ Support for Python 2 has been discontinued for all test files and tools.
 - #11200 `5f2a399` Allow for aborting rescans in the GUI (achow101)
 - #12791 `3a8a4dc` Expose a transaction's weight via RPC (TheBlueMatt)
 - #12436 `6e67754` Adds a functional test to validate the transaction version number in the RPC output (251Labs)
-- #12240 `6f8b345` Introduced a new `fees` structure that aggregates all sub-field fee types denominated in BTC (mryandao)
+- #12240 `6f8b345` Introduced a new `fees` structure that aggregates all sub-field fee types denominated in LUZ (mryandao)
 - #12321 `eac067a` p2wsh and p2sh-p2wsh address in decodescript (fivepiece)
 - #13090 `17266a1` Remove Safe mode (achow101, laanwj)
 - #12639 `7eb7076` Reduce `cs_main` lock in listunspent (promag)
@@ -568,7 +568,7 @@ Support for Python 2 has been discontinued for all test files and tools.
 - #12080 `56cc022` Add support to search the address book (promag)
 - #12621 `2bac3e4` Avoid querying unnecessary model data when filtering transactions (promag)
 - #12721 `e476826` remove "new" button during receive-mode in addressbook (jonasschnelli)
-- #12723 `310dc61` Qt5: Warning users about invalid-BIP21 URI bitcoin:// (krab)
+- #12723 `310dc61` Qt5: Warning users about invalid-BIP21 URIandaluzcoin:// (krab)
 - #12610 `25cf18f` Multiwallet for the GUI (jonasschnelli)
 - #12779 `f4353da` Remove unused method setupAmountWidget(…) (practicalswift)
 - #12795 `68484d6` do not truncate .dat extension for wallets in gui (instagibbs)
@@ -633,7 +633,7 @@ Support for Python 2 has been discontinued for all test files and tools.
 - #13659 `90b1c7e` add missing leveldb defines (theuni)
 - #13368 `c0f1569` Update gitian-build.sh for docker (achow101)
 - #13171 `19d8ca5` Change gitian-descriptors to use bionic instead (ken2812221)
-- #13604 `75bea05` Add depends 32-bit arm support for bitcoin-qt (TheCharlatan)
+- #13604 `75bea05` Add depends 32-bit arm support forandaluzcoin-qt (TheCharlatan)
 - #13623 `9cdb19f` Migrate gitian-build.sh to python (ken2812221)
 - #13689 `8c36432` disable Werror when building zmq (greenaddress)
 - #13617 `cf7f9ae` release: Require macos 10.10+ (fanquake)
@@ -641,7 +641,7 @@ Support for Python 2 has been discontinued for all test files and tools.
 - #13095 `415f2bf` update `ax_boost_chrono`/`unit_test_framework` (fanquake)
 - #13732 `e8ffec6` Fix Qt's rcc determinism (Fuzzbawls)
 - #13782 `8284f1d` Fix osslsigncode compile issue in gitian-build (ken2812221)
-- #13696 `2ab7208` Add aarch64 qt depends support for cross compiling bitcoin-qt (TheCharlatan)
+- #13696 `2ab7208` Add aarch64 qt depends support for cross compilingandaluzcoin-qt (TheCharlatan)
 - #13705 `b413ba0` Add format string linter (practicalswift)
 - #14000 `48c8459` fix qt determinism (theuni)
 - #14018 `3e4829a` Bugfix: NSIS: Exclude `Makefile*` from docs (luke-jr)
@@ -657,7 +657,7 @@ Support for Python 2 has been discontinued for all test files and tools.
 - #12425 `26dc2da` Add some script tests (richardkiss)
 - #12455 `23481fa` Fix bip68 sequence test to reflect updated rpc error message (Empact)
 - #12477 `acd1e61` Plug memory leaks and stack-use-after-scope (MarcoFalke)
-- #12443 `07090c5` Move common args to bitcoin.conf (MarcoFalke)
+- #12443 `07090c5` Move common args toandaluzcoin.conf (MarcoFalke)
 - #12570 `39dcac2` Add test cases for HexStr (`std::reverse_iterator` and corner cases) (kostaz)
 - #12582 `6012f1c` Fix ListCoins test failure due to unset `g_wallet_allow_fallback_fee` (ryanofsky)
 - #12516 `7f99964` Avoid unintentional unsigned integer wraparounds in tests (practicalswift)
@@ -809,8 +809,8 @@ Support for Python 2 has been discontinued for all test files and tools.
 - #10694 `ae5bcc7` Remove redundant code in MutateTxSign(CMutableTransaction&, const std::string&) (practicalswift)
 - #12659 `3d16f58` Improve Fatal LevelDB Log Messages (eklitzke)
 - #12643 `0f0229d` util: Remove unused `sync_chain` (MarcoFalke)
-- #12102 `7fb8fb4` Apply hardening measures in bitcoind systemd service file (Flowdalic)
-- #12652 `55f490a` bitcoin-cli: Provide a better error message when bitcoind is not running (practicalswift)
+- #12102 `7fb8fb4` Apply hardening measures inandaluzcoind systemd service file (Flowdalic)
+- #12652 `55f490a`andaluzcoin-cli: Provide a better error message whenandaluzcoind is not running (practicalswift)
 - #12630 `c290508` Provide useful error message if datadir is not writable (murrayn)
 - #11881 `624bee9` Remove Python2 support (jnewbery)
 - #12821 `082e26c` contrib: Remove unused import string (MarcoFalke)
@@ -831,7 +831,7 @@ Support for Python 2 has been discontinued for all test files and tools.
 - #13031 `826acc9` Fix for utiltime to compile with msvc (sipsorcery)
 - #13119 `81743b5` Remove script to clean up datadirs (MarcoFalke)
 - #12954 `5a66642` util: Refactor logging code into a global object (jimpo)
-- #12769 `35eb9d6` Add systemd service to bitcoind in debian package (ghost)
+- #12769 `35eb9d6` Add systemd service toandaluzcoind in debian package (ghost)
 - #13146 `0bc980b` rpcauth: Make it possible to provide a custom password (laanwj)
 - #13148 `b62b437` logging: Fix potential use-after-free in logprintstr(…) (practicalswift)
 - #13214 `0612d96` Enable Travis checking for two Python linting rules we are currently not violating (practicalswift)
@@ -840,7 +840,7 @@ Support for Python 2 has been discontinued for all test files and tools.
 - #13228 `d792e47` Add script to detect circular dependencies between source modules (sipa)
 - #13320 `e08c130` Ensure gitian-build.sh uses bash (jhfrontz)
 - #13301 `e4082d5` lint: Add linter to error on `#include <*.cpp>` (Empact)
-- #13374 `56f6936` utils and libraries: checking for bitcoin address in translations (kaplanmaxe)
+- #13374 `56f6936` utils and libraries: checking forandaluzcoin address in translations (kaplanmaxe)
 - #13230 `7c32b41` Simplify include analysis by enforcing the developer guide's include syntax (practicalswift)
 - #13450 `32bf4c6` Add linter: Enforce the source code file naming convention described in the developer notes (practicalswift)
 - #13479 `fa2ea37` contrib: Fix cve-2018-12356 by hardening the regex (loganaden)
@@ -848,7 +848,7 @@ Support for Python 2 has been discontinued for all test files and tools.
 - #13494 `d67eff8` Follow-up to #13454: Fix broken build by exporting `LC_ALL=C` (practicalswift)
 - #13510 `03f3925` Scripts and tools: Obsolete #!/bin/bash shebang (DesWurstes)
 - #13577 `c9eb8d1` logging: Avoid nstart may be used uninitialized in appinitmain warning (mruddy)
-- #13603 `453ae5e` bitcoin-tx: Stricter check for valid integers (domob1812)
+- #13603 `453ae5e`andaluzcoin-tx: Stricter check for valid integers (domob1812)
 - #13118 `c05c93c` RPCAuth Detection in Logs (Linrono)
 - #13647 `4027ec1` Scripts and tools: Fix `BIND_NOW` check in security-check.py (conradoplg)
 - #13692 `f5d166a` contrib: Clone core repo in gitian-build (MarcoFalke)
@@ -872,7 +872,7 @@ Support for Python 2 has been discontinued for all test files and tools.
 - #13441 `4a7e64f` Prevent shared conf files from failing with different available options in different binaries (achow101)
 - #13471 `5eca4e8` For AVX2 code, also check for AVX, XSAVE, and OS support (sipa)
 - #13503 `c655b2c` Document FreeBSD quirk. Fix FreeBSD build: Use std::min<int>(…) to allow for compilation under certain FreeBSD versions (practicalswift)
-- #13725 `07ce278` Fix bitcoin-cli --version (Empact)
+- #13725 `07ce278` Fixandaluzcoin-cli --version (Empact)
 
 ### Documentation
 - #12306 `216f9a4` Improvements to UNIX documentation (axvr)
@@ -898,7 +898,7 @@ Support for Python 2 has been discontinued for all test files and tools.
 - #12800 `2d97611` Add note about our preference for scoped enumerations ("enum class") (practicalswift)
 - #12798 `174d016` Refer to witness reserved value as spec. in the BIP (MarcoFalke)
 - #12759 `d3908e2` Improve formatting of developer notes (eklitzke)
-- #12877 `2b54155` Use bitcoind in Tor documentation (knoxcard)
+- #12877 `2b54155` Useandaluzcoind in Tor documentation (knoxcard)
 - #12896 `b15485e` Fix conflicting statements about initialization in developer notes (practicalswift)
 - #12850 `319991d` add qrencode to brew install instructions (buddilla)
 - #12007 `cd8e45b` Clarify the meaning of fee delta not being a fee rate in prioritisetransaction RPC (honzik666)
@@ -915,7 +915,7 @@ Support for Python 2 has been discontinued for all test files and tools.
 - #13165 `627c376` Mention good first issue list in CONTRIBUTING.md (fanquake)
 - #13295 `fb77310` Update OpenBSD build instructions for OpenBSD 6.3 (practicalswift)
 - #13340 `3a8e3f4` remove leftover check-doc documentation (fanquake)
-- #13346 `60f0358` update bitcoin-dot-org links in release-process.md (fanquake)
+- #13346 `60f0358` updateandaluzcoin-dot-org links in release-process.md (fanquake)
 - #13372 `f014933` split FreeBSD build instructions out of build-unix.md (steverusso)
 - #13366 `861de3b` Rename “OS X” to the newer “macOS” convention (giulio92)
 - #13369 `f8bcef3` update transifex doc link (mess110)
@@ -935,7 +935,7 @@ Support for Python 2 has been discontinued for all test files and tools.
 - #13625 `7146672` Add release notes for -printtoconsole and -debuglogfile changes (satwo)
 - #13718 `f7f574d` Specify preferred Python string formatting technique (masonicboom)
 - #12764 `10b9a81` Remove field in getblocktemplate help that has never been used (conscott)
-- #13742 `d2186b3` Adjust bitcoincore.org links (MarcoFalke)
+- #13742 `d2186b3` Adjustandaluzcoincore.org links (MarcoFalke)
 - #13706 `94dd89e` Minor improvements to release-process.md (MitchellCash)
 - #13775 `ef4fac0` Remove newlines from error message (practicalswift)
 - #13803 `feb7dd9` add note to contributor docs about warranted PR's (kallewoof)
@@ -948,7 +948,7 @@ Support for Python 2 has been discontinued for all test files and tools.
 - #13895 `1cd5f2c` fix GetWarnings docs to reflect behavior (Empact)
 - #13911 `3e3a50a` Revert translated string change, clarify wallet log messages (PierreRochard)
 - #13908 `d6faea4` upgrade rescan time warning from minutes to >1 hour (masonicboom)
-- #13905 `73a09b4` fixed bitcoin-cli -help output for help2man (hebasto)
+- #13905 `73a09b4` fixedandaluzcoin-cli -help output for help2man (hebasto)
 - #14100 `2936dbc` Change documentation for =0 for non-boolean options (laanwj)
 - #14096 `465a583` Add reference documentation for descriptors language (sipa)
 - #12757 `0c5f67b` Clarify include guard naming convention (practicalswift)

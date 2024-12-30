@@ -354,7 +354,7 @@
         <translation type="unfinished">‫الاتصال بالأقران…‬</translation>
     </message>
     <message>
-        <source>Request payments (generates QR codes and bitcoin: URIs)</source>
+        <source>Request payments (generates QR codes andandaluzcoin: URIs)</source>
         <translation type="unfinished">‫أطلب مدفوعات (أنشئ رموز استجابة (QR Codes) وعناوين بتكوين)‬</translation>
     </message>
     <message>
@@ -441,7 +441,7 @@
         <translation type="unfinished">‫&amp;عناوين الإستلام‬</translation>
     </message>
     <message>
-        <source>Open a bitcoin: URI</source>
+        <source>Open aandaluzcoin: URI</source>
         <translation type="unfinished">‫افتح رابط بتكوين: URI‬</translation>
     </message>
     <message>
@@ -1277,7 +1277,7 @@
         <translation type="unfinished">خطأ في طلب الدفع</translation>
     </message>
     <message>
-        <source>Cannot start bitcoin: click-to-pay handler</source>
+        <source>Cannot startandaluzcoin: click-to-pay handler</source>
         <translation type="unfinished">لا يمكن تشغيل بتكوين: معالج النقر للدفع</translation>
     </message>
     <message>

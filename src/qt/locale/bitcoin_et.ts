@@ -175,8 +175,8 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">Sisesta rahakoti vana salafraas ja uus salafraas.</translation>
     </message>
     <message>
-        <source>Remember that encrypting your wallet cannot fully protect your bitcoins from being stolen by malware infecting your computer.</source>
-        <translation type="unfinished">Pea meeles, et rahakoti krüpteerimine ei välista bitcoinide vargust, kui sinu arvuti on nakatunud pahavaraga.</translation>
+        <source>Remember that encrypting your wallet cannot fully protect yourandaluzcoins from being stolen by malware infecting your computer.</source>
+        <translation type="unfinished">Pea meeles, et rahakoti krüpteerimine ei välistaandaluzcoinide vargust, kui sinu arvuti on nakatunud pahavaraga.</translation>
     </message>
     <message>
         <source>Wallet to be encrypted</source>
@@ -443,8 +443,8 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">Sünkroniseerin võrguga...</translation>
     </message>
     <message>
-        <source>Request payments (generates QR codes and bitcoin: URIs)</source>
-        <translation type="unfinished">Loo maksepäring (genereerib QR koodid ja bitcoini: URId)</translation>
+        <source>Request payments (generates QR codes andandaluzcoin: URIs)</source>
+        <translation type="unfinished">Loo maksepäring (genereerib QR koodid jaandaluzcoini: URId)</translation>
     </message>
     <message>
         <source>&amp;Command-line options</source>
@@ -942,7 +942,7 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">Maksepäringu tõrge</translation>
     </message>
     <message>
-        <source>Cannot start bitcoin: click-to-pay handler</source>
+        <source>Cannot startandaluzcoin: click-to-pay handler</source>
         <translation type="unfinished">AndaluzCoin ei käivitu: vajuta-maksa toiming</translation>
     </message>
     <message>

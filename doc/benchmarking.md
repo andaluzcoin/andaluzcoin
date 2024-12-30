@@ -16,7 +16,7 @@ and lock analysis.
     cmake -B build -DBUILD_BENCH=ON
     cmake --build build -t bench_bitcoin
 
-After compiling bitcoin-core, the benchmarks can be run with:
+After compilingandaluzcoin-core, the benchmarks can be run with:
 
     build/src/bench/bench_bitcoin
 

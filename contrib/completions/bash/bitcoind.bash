@@ -1,15 +1,15 @@
-# bash programmable completion for bitcoind(1) and bitcoin-qt(1)
+# bash programmable completion forandaluzcoind(1) andandaluzcoin-qt(1)
 # Copyright (c) 2012-2022 The AndaluzCoin Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 _bitcoind() {
     local cur prev words=() cword
-    local bitcoind
+    localandaluzcoind
 
-    # save and use original argument to invoke bitcoind for -help
+    # save and use original argument to invokeandaluzcoind for -help
     # it might not be in $PATH
-    bitcoind="$1"
+   andaluzcoind="$1"
 
     COMPREPLY=()
     _get_comp_words_by_ref -n = cur prev words cword
@@ -45,7 +45,7 @@ _bitcoind() {
             ;;
     esac
 } &&
-complete -F _bitcoind bitcoind bitcoin-qt
+complete -F _bitcoindandaluzcoindandaluzcoin-qt
 
 # Local variables:
 # mode: shell-script

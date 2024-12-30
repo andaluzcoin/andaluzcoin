@@ -25,7 +25,7 @@ find_program(CLANG_TIDY_EXE NAMES "clang-tidy-${LLVM_VERSION_MAJOR}" "clang-tidy
 message(STATUS "Found LLVM ${LLVM_PACKAGE_VERSION}")
 message(STATUS "Found clang-tidy: ${CLANG_TIDY_EXE}")
 
-add_library(bitcoin-tidy MODULE bitcoin-tidy.cpp nontrivial-threadlocal.cpp)
+add_library(bitcoin-tidy MODULEandaluzcoin-tidy.cpp nontrivial-threadlocal.cpp)
 target_include_directories(bitcoin-tidy SYSTEM PRIVATE ${LLVM_INCLUDE_DIRS})
 
 # Disable RTTI and exceptions as necessary
@@ -59,9 +59,9 @@ endif()
 
 # Create a dummy library that runs clang-tidy tests as a side-effect of building
 add_library(bitcoin-tidy-tests OBJECT EXCLUDE_FROM_ALL example_nontrivial-threadlocal.cpp)
-add_dependencies(bitcoin-tidy-tests bitcoin-tidy)
+add_dependencies(bitcoin-tidy-testsandaluzcoin-tidy)
 
 set_target_properties(bitcoin-tidy-tests PROPERTIES CXX_CLANG_TIDY "${CLANG_TIDY_COMMAND}")
 
 
-install(TARGETS bitcoin-tidy LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR})
+install(TARGETSandaluzcoin-tidy LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR})

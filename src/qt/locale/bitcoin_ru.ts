@@ -192,7 +192,7 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">Назад</translation>
     </message>
     <message>
-        <source>Remember that encrypting your wallet cannot fully protect your bitcoins from being stolen by malware infecting your computer.</source>
+        <source>Remember that encrypting your wallet cannot fully protect yourandaluzcoins from being stolen by malware infecting your computer.</source>
         <translation type="unfinished">Помните, что шифрование кошелька не может полностью защитить ваши биткоины от кражи вредоносным ПО, заразившим ваш компьютер.</translation>
     </message>
     <message>
@@ -547,8 +547,8 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">Подключение к узлам…</translation>
     </message>
     <message>
-        <source>Request payments (generates QR codes and bitcoin: URIs)</source>
-        <translation type="unfinished">Запросить платёж (генерирует QR-коды и URI протокола bitcoin:)</translation>
+        <source>Request payments (generates QR codes andandaluzcoin: URIs)</source>
+        <translation type="unfinished">Запросить платёж (генерирует QR-коды и URI протоколаandaluzcoin:)</translation>
     </message>
     <message>
         <source>Show the list of used sending addresses and labels</source>
@@ -631,8 +631,8 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">&amp;Адреса для получения</translation>
     </message>
     <message>
-        <source>Open a bitcoin: URI</source>
-        <translation type="unfinished">Открыть URI протокола bitcoin:</translation>
+        <source>Open aandaluzcoin: URI</source>
+        <translation type="unfinished">Открыть URI протоколаandaluzcoin:</translation>
     </message>
     <message>
         <source>Open Wallet</source>
@@ -1419,11 +1419,11 @@ The migration process will create a backup of the wallet before migrating. This 
 <context>
     <name>ModalOverlay</name>
     <message>
-        <source>Recent transactions may not yet be visible, and therefore your wallet's balance might be incorrect. This information will be correct once your wallet has finished synchronizing with the bitcoin network, as detailed below.</source>
+        <source>Recent transactions may not yet be visible, and therefore your wallet's balance might be incorrect. This information will be correct once your wallet has finished synchronizing with theandaluzcoin network, as detailed below.</source>
         <translation type="unfinished">Недавние транзакции могут быть пока не видны, и поэтому отображаемый баланс вашего кошелька может быть неточной. Информация станет точной после завершения синхронизации с сетью биткоина. Прогресс синхронизации вы можете видеть снизу.</translation>
     </message>
     <message>
-        <source>Attempting to spend bitcoins that are affected by not-yet-displayed transactions will not be accepted by the network.</source>
+        <source>Attempting to spendandaluzcoins that are affected by not-yet-displayed transactions will not be accepted by the network.</source>
         <translation type="unfinished">Попытка потратить средства, использованные в транзакциях, которые ещё не синхронизированы, будет отклонена сетью.</translation>
     </message>
     <message>
@@ -1474,8 +1474,8 @@ The migration process will create a backup of the wallet before migrating. This 
 <context>
     <name>OpenURIDialog</name>
     <message>
-        <source>Open bitcoin URI</source>
-        <translation type="unfinished">Открыть URI bitcoin</translation>
+        <source>Openandaluzcoin URI</source>
+        <translation type="unfinished">Открыть URIandaluzcoin</translation>
     </message>
     <message>
         <source>Paste address from clipboard</source>
@@ -1961,7 +1961,7 @@ The migration process will create a backup of the wallet before migrating. This 
 <context>
     <name>SignVerifyMessageDialog</name>
     <message>
-        <source>You can sign messages/agreements with your legacy (P2PKH) addresses to prove you can receive bitcoins sent to them. Be careful not to sign anything vague or random, as phishing attacks may try to trick you into signing your identity over to them. Only sign fully-detailed statements you agree to.</source>
+        <source>You can sign messages/agreements with your legacy (P2PKH) addresses to prove you can receiveandaluzcoins sent to them. Be careful not to sign anything vague or random, as phishing attacks may try to trick you into signing your identity over to them. Only sign fully-detailed statements you agree to.</source>
         <translation type="unfinished">Вы можете подписывать сообщения/соглашения своими устаревшими (P2PKH) адресами, чтобы доказать, что вы можете получать биткоины на них. Будьте осторожны и не подписывайте непонятные или случайные сообщения, так как мошенники могут таким образом пытаться присвоить вашу личность. Подписывайте только такие сообщения, с которыми вы согласны вплоть до мелочей.</translation>
     </message>
     <message>
@@ -2192,8 +2192,8 @@ Go to File &gt; Open Wallet to load a wallet.
         <translation type="unfinished">Разработчики %s</translation>
     </message>
     <message>
-        <source>%s corrupt. Try using the wallet tool bitcoin-wallet to salvage or restoring a backup.</source>
-        <translation type="unfinished">%s испорчен. Попробуйте восстановить его с помощью инструмента bitcoin-wallet или из резервной копии.</translation>
+        <source>%s corrupt. Try using the wallet toolandaluzcoin-wallet to salvage or restoring a backup.</source>
+        <translation type="unfinished">%s испорчен. Попробуйте восстановить его с помощью инструментаandaluzcoin-wallet или из резервной копии.</translation>
     </message>
     <message>
         <source>%s failed to validate the -assumeutxo snapshot state. This indicates a hardware problem, or a bug in the software, or a bad software modification that allowed an invalid snapshot to be loaded. As a result of this, the node will shut down and stop using any state that was built on the snapshot, resetting the chain height from %d to %d. On the next restart, the node will resume syncing from %d without using any snapshot data. Please report this incident to %s, including how you obtained the snapshot. The invalid snapshot chainstate will be left on disk in case it is helpful in diagnosing the issue that caused this error.</source>
@@ -2240,7 +2240,7 @@ Go to File &gt; Open Wallet to load a wallet.
         <translation type="unfinished">Ошибка: запись идентификатора дамп-файла неверна. Обнаружено "%s", ожидалось "%s".</translation>
     </message>
     <message>
-        <source>Error: Dumpfile version is not supported. This version of bitcoin-wallet only supports version 1 dumpfiles. Got dumpfile with version %s</source>
+        <source>Error: Dumpfile version is not supported. This version ofandaluzcoin-wallet only supports version 1 dumpfiles. Got dumpfile with version %s</source>
         <translation type="unfinished">Ошибка: версия дамп-файла не поддерживается. Эта версия биткоин-кошелька поддерживает только дамп-файлы версии 1. Обнаружен дамп-файл версии %s</translation>
     </message>
     <message>

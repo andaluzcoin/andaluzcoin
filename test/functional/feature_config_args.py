@@ -96,7 +96,7 @@ class ConfArgsTest(AndaluzCoinTestFramework):
     def test_config_file_parser(self):
         self.log.info('Test config file parser')
 
-        # Check that startup fails if conf= is set in bitcoin.conf or in an included conf file
+        # Check that startup fails if conf= is set inandaluzcoin.conf or in an included conf file
         bad_conf_file_path = self.nodes[0].datadir_path / "bitcoin_bad.conf"
         util.write_config(bad_conf_file_path, n=0, chain='', extra_config='conf=some.conf\n')
         conf_in_config_file_err = 'Error: Error reading configuration file: conf cannot be set in the configuration file; use includeconf= if you want to include additional config files'
@@ -187,11 +187,11 @@ class ConfArgsTest(AndaluzCoinTestFramework):
         self.log.info('Test that correct configuration path is changed when configuration file changes the datadir')
 
         # Create a temporary directory that will be treated as the default data
-        # directory by bitcoind.
+        # directory byandaluzcoind.
         env, default_datadir = util.get_temp_default_datadir(Path(self.options.tmpdir, "test_config_file_log"))
         default_datadir.mkdir(parents=True)
 
-        # Write a bitcoin.conf file in the default data directory containing a
+        # Write aandaluzcoin.conf file in the default data directory containing a
         # datadir= line pointing at the node datadir.
         node = self.nodes[0]
         conf_text = node.bitcoinconf.read_text()
@@ -394,7 +394,7 @@ class ConfArgsTest(AndaluzCoinTestFramework):
         self.stop_node(0)
 
     def test_ignored_conf(self):
-        self.log.info('Test error is triggered when the datadir in use contains a bitcoin.conf file that would be ignored '
+        self.log.info('Test error is triggered when the datadir in use contains aandaluzcoin.conf file that would be ignored '
                       'because a conflicting -conf file argument is passed.')
         node = self.nodes[0]
         with tempfile.NamedTemporaryFile(dir=self.options.tmpdir, mode="wt", delete=False) as temp_conf:
@@ -405,7 +405,7 @@ class ConfArgsTest(AndaluzCoinTestFramework):
             f'is being used instead.') + r"[\s\S]*", match=ErrorMatch.FULL_REGEX)
 
         # Test that passing a redundant -conf command line argument pointing to
-        # the same bitcoin.conf that would be loaded anyway does not trigger an
+        # the sameandaluzcoin.conf that would be loaded anyway does not trigger an
         # error.
         self.start_node(0, [f'-conf={node.datadir_path}/bitcoin.conf'])
         self.stop_node(0)
@@ -416,18 +416,18 @@ class ConfArgsTest(AndaluzCoinTestFramework):
         if platform.system() == "Windows":
             return
 
-        self.log.info('Test error is triggered when bitcoin.conf in the default data directory sets another datadir '
-                      'and it contains a different bitcoin.conf file that would be ignored')
+        self.log.info('Test error is triggered whenandaluzcoin.conf in the default data directory sets another datadir '
+                      'and it contains a differentandaluzcoin.conf file that would be ignored')
 
         # Create a temporary directory that will be treated as the default data
-        # directory by bitcoind.
+        # directory byandaluzcoind.
         env, default_datadir = util.get_temp_default_datadir(Path(self.options.tmpdir, "home"))
         default_datadir.mkdir(parents=True)
 
-        # Write a bitcoin.conf file in the default data directory containing a
+        # Write aandaluzcoin.conf file in the default data directory containing a
         # datadir= line pointing at the node datadir. This will trigger a
         # startup error because the node datadir contains a different
-        # bitcoin.conf that would be ignored.
+        #andaluzcoin.conf that would be ignored.
         node = self.nodes[0]
         (default_datadir / "bitcoin.conf").write_text(f"datadir={node.datadir_path}\n")
 

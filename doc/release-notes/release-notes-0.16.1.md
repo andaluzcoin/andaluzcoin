@@ -97,11 +97,11 @@ weights.
 - #12804 `4bdb0ce` Fix intermittent rpc_net.py failure. (jnewbery)
 - #12553 `0e98f96` Prefer wait_until over polling with time.sleep (Empact)
 - #12486 `cfebd40` Round target fee to 8 decimals in assert_fee_amount (kallewoof)
-- #12843 `df38b13` Test starting bitcoind with -h and -version (jnewbery)
+- #12843 `df38b13` Test startingandaluzcoind with -h and -version (jnewbery)
 - #12475 `41c29f6` Fix python TypeError in script.py (MarcoFalke)
 - #12638 `0a76ed2` Cache only chain and wallet for regtest datadir (MarcoFalke)
 - #12902 `7460945` Handle potential cookie race when starting node (sdaftuar)
-- #12904 `6c26df0` Ensure bitcoind processes are cleaned up when tests end (sdaftuar)
+- #12904 `6c26df0` Ensureandaluzcoind processes are cleaned up when tests end (sdaftuar)
 - #13049 `9ea62a3` Backports (MarcoFalke)
 - #13201 `b8aacd6` Handle disconnect_node race (sdaftuar)
 

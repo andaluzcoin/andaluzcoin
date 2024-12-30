@@ -126,7 +126,7 @@ static bool ParseArgs(NodeContext& node, int argc, char* argv[])
     // Error out when loose non-argument tokens are encountered on command line
     for (int i = 1; i < argc; i++) {
         if (!IsSwitchChar(argv[i][0])) {
-            return InitError(Untranslated(strprintf("Command line contains unexpected token '%s', see bitcoind -h for a list of options.", argv[i])));
+            return InitError(Untranslated(strprintf("Command line contains unexpected token '%s', seeandaluzcoind -h for a list of options.", argv[i])));
         }
     }
     return true;
@@ -147,7 +147,7 @@ static bool ProcessInitCommands(ArgsManager& args)
                 "There is an optional wallet component which provides transaction services.\n\n"
                 "It can be used in a headless environment or as part of a server setup.\n"
                 "\n"
-                "Usage: bitcoind [options]\n"
+                "Usage:andaluzcoind [options]\n"
                 "\n";
             strUsage += args.GetHelpMessage();
         }
@@ -175,7 +175,7 @@ static bool AppInit(NodeContext& node)
     std::any context{&node};
     try
     {
-        // -server defaults to true for bitcoind but not for the GUI so do this here
+        // -server defaults to true forandaluzcoind but not for the GUI so do this here
         args.SoftSetBoolArg("-server", true);
         // Set this early so that parameter interactions go to console
         InitLogging(args);
@@ -268,7 +268,7 @@ MAIN_FUNCTION
 
     SetupEnvironment();
 
-    // Connect bitcoind signal handlers
+    // Connectandaluzcoind signal handlers
     noui_connect();
 
     util::ThreadSetInternalName("init");

@@ -2,7 +2,7 @@
 # Copyright (c) 2017-present The AndaluzCoin Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
-"""Combine logs from multiple bitcoin nodes as well as the test_framework log.
+"""Combine logs from multipleandaluzcoin nodes as well as the test_framework log.
 
 This streams the combined log output to stdout. Use combine_logs.py > outputfile
 to write to an outputfile.

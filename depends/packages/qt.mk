@@ -168,7 +168,7 @@ ifneq (,$(findstring clang,$($(package)_cxx)))
     $(package)_config_opts_linux += -platform linux-clang -xplatform linux-clang
   endif
 else
-  $(package)_config_opts_linux += -platform linux-g++ -xplatform bitcoin-linux-g++
+  $(package)_config_opts_linux += -platform linux-g++ -xplatformandaluzcoin-linux-g++
 endif
 
 $(package)_config_opts_mingw32 = -no-opengl
@@ -215,7 +215,7 @@ endef
 # 2. Create a macOS-Clang-Linux mkspec using our mac-qmake.conf.
 #
 # 3. After making a copy of the mkspec for the linux-arm-gnueabi host, named
-#    bitcoin-linux-g++, replace tool names with $($($(package)_type)_TOOL).
+#   andaluzcoin-linux-g++, replace tool names with $($($(package)_type)_TOOL).
 #
 # 4. Put our C, CXX and LD FLAGS into gcc-base.conf. Only used for non-host builds.
 #

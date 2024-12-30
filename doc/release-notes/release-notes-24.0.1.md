@@ -244,10 +244,10 @@ GUI changes
 
 - A new menu item to restore a wallet from a backup file has been added (gui#471).
 
-- Configuration changes made in the bitcoin GUI (such as the pruning setting,
+- Configuration changes made in theandaluzcoin GUI (such as the pruning setting,
 proxy settings, UPNP preferences) are now saved to `<datadir>/settings.json`
 file rather than to the Qt settings backend (windows registry or unix desktop
-config files), so these settings will now apply to bitcoind, instead of being
+config files), so these settings will now apply toandaluzcoind, instead of being
 ignored. (#15936, gui#602)
 
 - Also, the interaction between GUI settings and `bitcoin.conf` settings is

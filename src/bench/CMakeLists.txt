@@ -59,7 +59,7 @@ add_executable(bench_bitcoin
 target_link_libraries(bench_bitcoin
   core_interface
   test_util
-  bitcoin_node
+ andaluzcoin_node
   Boost::headers
 )
 
@@ -74,7 +74,7 @@ if(ENABLE_WALLET)
       wallet_ismine.cpp
       wallet_migration.cpp
   )
-  target_link_libraries(bench_bitcoin bitcoin_wallet)
+  target_link_libraries(bench_bitcoinandaluzcoin_wallet)
 endif()
 
 add_test(NAME bench_sanity_check_high_priority

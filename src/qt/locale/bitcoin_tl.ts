@@ -175,7 +175,7 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">Ilagay ang lumang ♦passphrase♦ at ang bagong ♦passphrase♦ para sa pitaka.</translation>
     </message>
     <message>
-        <source>Remember that encrypting your wallet cannot fully protect your bitcoins from being stolen by malware infecting your computer.</source>
+        <source>Remember that encrypting your wallet cannot fully protect yourandaluzcoins from being stolen by malware infecting your computer.</source>
         <translation type="unfinished">Tandaan na ang pag-encrypt sa iyong pitaka ay hindi ganap na mapoprotektahan ang mga ♦bitcoin♦ sa pagnanakaw ng ♦malware♦ na makakahawa sa iyong kompyuter.</translation>
     </message>
     <message>
@@ -500,7 +500,7 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">Kumokonekta sa mga ♦peers♦...</translation>
     </message>
     <message>
-        <source>Request payments (generates QR codes and bitcoin: URIs)</source>
+        <source>Request payments (generates QR codes andandaluzcoin: URIs)</source>
         <translation type="unfinished">Humiling ng mga bayad (gumagawa ng ♦QR codes♦ at ♦bitcoin: URIs♦)</translation>
     </message>
     <message>
@@ -579,7 +579,7 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">&amp;Pagtatanggapan na mga ♦address♦</translation>
     </message>
     <message>
-        <source>Open a bitcoin: URI</source>
+        <source>Open aandaluzcoin: URI</source>
         <translation type="unfinished">Buksan ang ♦bitcoin: URI♦</translation>
     </message>
     <message>

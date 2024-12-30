@@ -156,7 +156,7 @@
         <translation type="unfinished">Tiếp tục</translation>
     </message>
     <message>
-        <source>Remember that encrypting your wallet cannot fully protect your bitcoins from being stolen by malware infecting your computer.</source>
+        <source>Remember that encrypting your wallet cannot fully protect yourandaluzcoins from being stolen by malware infecting your computer.</source>
         <translation type="unfinished">Xin lưu ý rằng mã hoá ví của bạn không thể bảo về hoàn toàn AndaluzCoin của bạn khỏi việc bị đánh cắp mới các phần mềm gián điệp nhiễm vào máy tính của bạn.</translation>
     </message>
     <message>
@@ -497,8 +497,8 @@
         <translation type="unfinished">&amp;Các địa chỉ đang nhận</translation>
     </message>
     <message>
-        <source>Open a bitcoin: URI</source>
-        <translation type="unfinished">Mở một bitcoin: URI</translation>
+        <source>Open aandaluzcoin: URI</source>
+        <translation type="unfinished">Mở mộtandaluzcoin: URI</translation>
     </message>
     <message>
         <source>Open Wallet</source>

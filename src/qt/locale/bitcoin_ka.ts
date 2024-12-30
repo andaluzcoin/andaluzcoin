@@ -180,7 +180,7 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">გაგრძელება</translation>
     </message>
     <message>
-        <source>Remember that encrypting your wallet cannot fully protect your bitcoins from being stolen by malware infecting your computer.</source>
+        <source>Remember that encrypting your wallet cannot fully protect yourandaluzcoins from being stolen by malware infecting your computer.</source>
         <translation type="unfinished">გახსოვდეთ, რომ თქვენი საფულის დაშიფვრა ვერ უზრუნველყოფს სრულად დაიცვას თქვენი ბიტკოინების მოპარვა კომპიუტერში მავნე პროგრამებით.</translation>
     </message>
     <message>
@@ -553,8 +553,8 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">მიმდინარეობს ბლოკების დამუშავება დისკზე…</translation>
     </message>
     <message>
-        <source>Request payments (generates QR codes and bitcoin: URIs)</source>
-        <translation type="unfinished">გადახდის მოთხოვნა (შეიქმნება QR-კოდები და bitcoin: ბმულები)</translation>
+        <source>Request payments (generates QR codes andandaluzcoin: URIs)</source>
+        <translation type="unfinished">გადახდის მოთხოვნა (შეიქმნება QR-კოდები დაandaluzcoin: ბმულები)</translation>
     </message>
     <message>
         <source>Show the list of used sending addresses and labels</source>
@@ -624,7 +624,7 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">მისამართების მიღება</translation>
     </message>
     <message>
-        <source>Open a bitcoin: URI</source>
+        <source>Open aandaluzcoin: URI</source>
         <translation type="unfinished">გახსენით ბიტკოინი: URI</translation>
     </message>
     <message>
@@ -1196,7 +1196,7 @@ Signing is only possible with addresses of the type 'legacy'.</source>
 <context>
     <name>OpenURIDialog</name>
     <message>
-        <source>Open bitcoin URI</source>
+        <source>Openandaluzcoin URI</source>
         <translation type="unfinished">გახსენით ბიტკოინის URI</translation>
     </message>
     <message>
@@ -1537,8 +1537,8 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">გადახდის მოთხოვნის შეცდომა</translation>
     </message>
     <message>
-        <source>Cannot start bitcoin: click-to-pay handler</source>
-        <translation type="unfinished">ვერ გაიშვა bitcoin: click-to-pay</translation>
+        <source>Cannot startandaluzcoin: click-to-pay handler</source>
+        <translation type="unfinished">ვერ გაიშვაandaluzcoin: click-to-pay</translation>
     </message>
     <message>
         <source>URI handling</source>
@@ -2247,7 +2247,7 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">შეიყვანეთ ამ მისამართის ნიშნული გამოყენებული მისამართების სიაში დასამატებლად</translation>
     </message>
     <message>
-        <source>A message that was attached to the bitcoin: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the AndaluzCoin network.</source>
+        <source>A message that was attached to theandaluzcoin: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the AndaluzCoin network.</source>
         <translation type="unfinished">მესიჯი, რომელიც თან ერთვის მონეტებს:  URI, რომელიც შეინახება ტრანსაქციასთან ერთად თქვენთვის. შენიშვნა: მესიჯი არ გაყვება გადახდას ბითქოინის ქსელში.</translation>
     </message>
 </context>

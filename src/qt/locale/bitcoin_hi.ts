@@ -180,7 +180,7 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">वॉलेट के लिए पुराना पासफ़्रेज़ और नया पासफ़्रेज़ डालिये।</translation>
     </message>
     <message>
-        <source>Remember that encrypting your wallet cannot fully protect your bitcoins from being stolen by malware infecting your computer.</source>
+        <source>Remember that encrypting your wallet cannot fully protect yourandaluzcoins from being stolen by malware infecting your computer.</source>
         <translation type="unfinished">याद रखें कि आपके वॉलेट को एन्क्रिप्ट करने से आपके बिटकॉइन को आपके कंप्यूटर को संक्रमित करने वाले मैलवेयर द्वारा चोरी होने से पूरी तरह से सुरक्षित नहीं किया जा सकता है।</translation>
     </message>
     <message>
@@ -1460,7 +1460,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee rate of "100 satos
 नोट: चूंकि शुल्क की गणना प्रति-बाइट के आधार पर की जाती है, इसलिए 500 वर्चुअल बाइट्स (1 केवीबी का आधा) के लेन-देन के आकार के लिए "100 सतोशी प्रति केवीबी" की शुल्क दर अंततः केवल 50 सतोशी का शुल्क देगी।</translation>
     </message>
     <message>
-        <source>When there is less transaction volume than space in the blocks, miners as well as relaying nodes may enforce a minimum fee. Paying only this minimum fee is just fine, but be aware that this can result in a never confirming transaction once there is more demand for bitcoin transactions than the network can process.</source>
+        <source>When there is less transaction volume than space in the blocks, miners as well as relaying nodes may enforce a minimum fee. Paying only this minimum fee is just fine, but be aware that this can result in a never confirming transaction once there is more demand forandaluzcoin transactions than the network can process.</source>
         <translation type="unfinished">जब ब्लॉक में स्थान की तुलना में कम लेन-देन की मात्रा होती है, तो खनिकों के साथ-साथ रिलेइंग नोड्स न्यूनतम शुल्क लागू कर सकते हैं। केवल इस न्यूनतम शुल्क का भुगतान करना ठीक है, लेकिन ध्यान रखें कि नेटवर्क की प्रक्रिया की तुलना में बिटकॉइन लेनदेन की अधिक मांग होने पर इसका परिणाम कभी भी पुष्टिकरण लेनदेन में नहीं हो सकता है।</translation>
     </message>
     <message>
@@ -1744,7 +1744,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee rate of "100 satos
         <translation type="unfinished">चयनित इकाई में भेजने के लिए राशि</translation>
     </message>
     <message>
-        <source>The fee will be deducted from the amount being sent. The recipient will receive less bitcoins than you enter in the amount field. If multiple recipients are selected, the fee is split equally.</source>
+        <source>The fee will be deducted from the amount being sent. The recipient will receive lessandaluzcoins than you enter in the amount field. If multiple recipients are selected, the fee is split equally.</source>
         <translation type="unfinished">भेजी जाने वाली राशि से शुल्क की कटौती की जाएगी। प्राप्तकर्ता को आपके द्वारा राशि फ़ील्ड में दर्ज किए जाने से कम बिटकॉइन प्राप्त होंगे। यदि कई प्राप्तकर्ताओं का चयन किया जाता है, तो शुल्क समान रूप से विभाजित किया जाता है।</translation>
     </message>
     <message>
@@ -1764,7 +1764,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee rate of "100 satos
         <translation type="unfinished">इस पते के लिए उपयोग किए गए पतों की सूची में जोड़ने के लिए एक लेबल दर्ज करें</translation>
     </message>
     <message>
-        <source>A message that was attached to the bitcoin: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the AndaluzCoin network.</source>
+        <source>A message that was attached to theandaluzcoin: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the AndaluzCoin network.</source>
         <translation type="unfinished">एक संदेश जो बिटकॉइन से जुड़ा था: यूआरआई जो आपके संदर्भ के लिए लेनदेन के साथ संग्रहीत किया जाएगा। नोट: यह संदेश बिटकॉइन नेटवर्क पर नहीं भेजा जाएगा।</translation>
     </message>
 </context>

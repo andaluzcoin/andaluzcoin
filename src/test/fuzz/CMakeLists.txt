@@ -136,9 +136,9 @@ add_executable(fuzz
 target_link_libraries(fuzz
   core_interface
   test_fuzz
-  bitcoin_cli
-  bitcoin_common
-  bitcoin_util
+ andaluzcoin_cli
+ andaluzcoin_common
+ andaluzcoin_util
   minisketch
   leveldb
   univalue

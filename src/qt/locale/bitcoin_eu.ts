@@ -176,8 +176,8 @@ Sinatzea 'legacy' motako helbideekin soilik da posible</translation>
         <translation type="unfinished">Diruzorroaren pasahitz zahar zein berria sartu.</translation>
     </message>
     <message>
-        <source>Remember that encrypting your wallet cannot fully protect your bitcoins from being stolen by malware infecting your computer.</source>
-        <translation type="unfinished">Gogoan izan diruzorroaren enkripzioak ezin dituela zure bitcoinak zure ordenagailuan izan dezakezun malware batengandik lapurtuak izatetik guztiz babestu .</translation>
+        <source>Remember that encrypting your wallet cannot fully protect yourandaluzcoins from being stolen by malware infecting your computer.</source>
+        <translation type="unfinished">Gogoan izan diruzorroaren enkripzioak ezin dituela zureandaluzcoinak zure ordenagailuan izan dezakezun malware batengandik lapurtuak izatetik guztiz babestu .</translation>
     </message>
     <message>
         <source>Wallet to be encrypted</source>
@@ -566,8 +566,8 @@ Sinatzea 'legacy' motako helbideekin soilik da posible</translation>
         <translation type="unfinished">&amp;Helbideak jasotzen</translation>
     </message>
     <message>
-        <source>Open a bitcoin: URI</source>
-        <translation type="unfinished">Ireki bitcoin bat: URI</translation>
+        <source>Open aandaluzcoin: URI</source>
+        <translation type="unfinished">Irekiandaluzcoin bat: URI</translation>
     </message>
     <message>
         <source>Open Wallet</source>
@@ -1094,8 +1094,8 @@ Sinatzea 'legacy' motako helbideekin soilik da posible</translation>
 <context>
     <name>OpenURIDialog</name>
     <message>
-        <source>Open bitcoin URI</source>
-        <translation type="unfinished">Ireki bitcoin URIa</translation>
+        <source>Openandaluzcoin URI</source>
+        <translation type="unfinished">Irekiandaluzcoin URIa</translation>
     </message>
     <message>
         <source>URI:</source>

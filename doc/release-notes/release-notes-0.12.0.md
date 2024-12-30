@@ -173,7 +173,7 @@ overridden with the option `-rpccookiefile`.
 This is similar to Tor's CookieAuthentication: see
 https://www.torproject.org/docs/tor-manual.html.en
 
-This allows running bitcoind without having to do any manual configuration.
+This allows runningandaluzcoind without having to do any manual configuration.
 
 Relay: Any sequence of pushdatas in OP_RETURN outputs now allowed
 -----------------------------------------------------------------
@@ -273,10 +273,10 @@ with `-txconfirmtarget=<m>` (default: `2`).
 
 Sometimes, it is not possible to give good estimates, or an estimate
 at all. Therefore, a fallback value can be set with `-fallbackfee=<f>`
-(default: `0.0002` BTC/kB).
+(default: `0.0002` LUZ/kB).
 
 At all times, AndaluzCoin Core will cap fees at `-maxtxfee=<x>` (default:
-0.10) BTC.
+0.10) LUZ.
 Furthermore, AndaluzCoin Core will never create transactions paying less than
 the current minimum relay fee.
 Finally, a user can set the minimum fee rate for all transactions with
@@ -436,9 +436,9 @@ caching. A sample config for apache2 could look like:
         # AuthType Digest
         # ...
 
-        # optional bypass bitcoind rpc basic auth
+        # optional bypassandaluzcoind rpc basic auth
         # RequestHeader set Authorization "Basic <hash>"
-        # get the <hash> from the shell with: base64 <<< bitcoinrpc:<password>
+        # get the <hash> from the shell with: base64 <<<andaluzcoinrpc:<password>
     </Location>
 
     # Or, balance the load:
@@ -459,7 +459,7 @@ Other P2P Changes
 -----------------
 
 The list of banned peers is now stored on disk rather than in memory.
-Restarting bitcoind will no longer clear out the list of banned peers; instead
+Restartingandaluzcoind will no longer clear out the list of banned peers; instead
 a new RPC call (`clearbanned`) can be used to manually clear the list.  The new
 `setban` RPC call can also be used to manually ban or unban a peer.
 
@@ -639,12 +639,12 @@ git merge commit are mentioned.
 - #6210 `0e4f2a0` build: disable optional use of gmp in internal secp256k1 build (Wladimir J. van der Laan)
 - #6214 `87406aa` [OSX] revert renaming of AndaluzCoin-Qt.app and use CFBundleDisplayName (partial revert of #6116) (Jonas Schnelli)
 - #6218 `9d67b10` build/gitian misc updates (Cory Fields)
-- #6269 `d4565b6` gitian: Use the new bitcoin-detached-sigs git repo for OSX signatures (Cory Fields)
+- #6269 `d4565b6` gitian: Use the newandaluzcoin-detached-sigs git repo for OSX signatures (Cory Fields)
 - #6418 `d4a910c` Add autogen.sh to source tarball. (randy-waterhouse)
 - #6373 `1ae3196` depends: non-qt bumps for 0.12 (Cory Fields)
 - #6434 `059b352` Preserve user-passed CXXFLAGS with --enable-debug (Gavin Andresen)
 - #6501 `fee6554` Misc build fixes (Cory Fields)
-- #6600 `ef4945f` Include bitcoin-tx binary on Debian/Ubuntu (Zak Wilcox)
+- #6600 `ef4945f` Includeandaluzcoin-tx binary on Debian/Ubuntu (Zak Wilcox)
 - #6619 `4862708` depends: bump miniupnpc and ccache (Michael Ford)
 - #6801 `ae69a75` [depends] Latest config.guess and config.sub (Michael Ford)
 - #6938 `193f7b5` build: If both Qt4 and Qt5 are installed, use Qt5 (Wladimir J. van der Laan)
@@ -719,7 +719,7 @@ git merge commit are mentioned.
 - #6337 `0564c5b` Testing infrastructure: mocktime fixes (Gavin Andresen)
 - #6350 `60abba1` add unit tests for the decodescript rpc (mruddy)
 - #5881 `3203a08` Fix and improve txn_doublespend.py test (Tom Harding)
-- #6390 `6a73d66` tests: Fix bitcoin-tx signing test case (Wladimir J. van der Laan)
+- #6390 `6a73d66` tests: Fixandaluzcoin-tx signing test case (Wladimir J. van der Laan)
 - #6368 `7fc25c2` CLTV: Add more tests to improve coverage (Esteban Ordano)
 - #6414 `5121c68` Fix intermittent test failure, reduce test time (Tom Harding)
 - #6417 `44fa82d` [QA] fix possible reorg issue in (fund)rawtransaction(s).py RPC test (Jonas Schnelli)
@@ -732,7 +732,7 @@ git merge commit are mentioned.
 - #6509 `bb4faee` Fix race condition on test node shutdown (Casey Rodarmor)
 - #6523 `561f8af` Add p2p-fullblocktest.py (Casey Rodarmor)
 - #6590 `981fd92` Fix stale socket rebinding and re-enable python tests for Windows (Cory Fields)
-- #6730 `cb4d6d0` build: Remove dependency of bitcoin-cli on secp256k1 (Wladimir J. van der Laan)
+- #6730 `cb4d6d0` build: Remove dependency ofandaluzcoin-cli on secp256k1 (Wladimir J. van der Laan)
 - #6616 `5ab5dca` Regression Tests: Migrated rpc-tests.sh to all Python rpc-tests.py (Peter Tschipper)
 - #6720 `d479311` Creates unittests for addrman, makes addrman more testable. (Ethan Heilman)
 - #6853 `c834f56` Added fPowNoRetargeting field to Consensus::Params (Eric Lombrozo)
@@ -772,7 +772,7 @@ git merge commit are mentioned.
 - #6149 `633fe10` Buffer log messages and explicitly open logs (Adam Weiss)
 - #6488 `7cbed7f` Avoid leaking file descriptors in RegisterLoad (Casey Rodarmor)
 - #6497 `a2bf40d` Make sure LogPrintf strings are line-terminated (Wladimir J. van der Laan)
-- #6504 `b6fee6b` Rationalize currency unit to "BTC" (Ross Nicoll)
+- #6504 `b6fee6b` Rationalize currency unit to "LUZ" (Ross Nicoll)
 - #6507 `9bb4dd8` Removed contrib/bitrpc (Casey Rodarmor)
 - #6527 `41d650f` Use unique name for AlertNotify tempfile (Casey Rodarmor)
 - #6561 `e08a7d9` limitedmap fixes and tests (Casey Rodarmor)

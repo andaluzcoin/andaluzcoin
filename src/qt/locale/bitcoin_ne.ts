@@ -174,7 +174,7 @@
         <translation type="unfinished">वालेटको लागि पुरानो पासफ्रेज र नयाँ पासफ्रेज प्रविष्ट गर्नुहोस्।</translation>
     </message>
     <message>
-        <source>Remember that encrypting your wallet cannot fully protect your bitcoins from being stolen by malware infecting your computer.</source>
+        <source>Remember that encrypting your wallet cannot fully protect yourandaluzcoins from being stolen by malware infecting your computer.</source>
         <translation type="unfinished">याद गर्नुहोस् कि तपाईको वालेट इन्क्रिप्ट गर्नाले तपाईको बिटकोइनलाई तपाईको कम्प्युटरमा मालवेयरले चोरी हुनबाट पूर्णतया सुरक्षित गर्न सक्दैन।</translation>
     </message>
     <message>
@@ -834,7 +834,7 @@
         <translation type="unfinished">पहिला प्रयोग गरिएको ठेगाना प्रयोग गर्नुहोस्</translation>
     </message>
     <message>
-        <source>The fee will be deducted from the amount being sent. The recipient will receive less bitcoins than you enter in the amount field. If multiple recipients are selected, the fee is split equally.</source>
+        <source>The fee will be deducted from the amount being sent. The recipient will receive lessandaluzcoins than you enter in the amount field. If multiple recipients are selected, the fee is split equally.</source>
         <translation type="unfinished">पठाइँदै गरेको रकमबाट शुल्क कटौती गरिनेछ । प्राप्तकर्ताले तपाईंले रकम क्षेत्रमा प्रवेष गरेको भन्दा थोरै बिटकोइन प्राप्त गर्ने छन् । धेरै प्राप्तकर्ता चयन गरिएको छ भने समान रूपमा शुल्क विभाजित गरिनेछ ।</translation>
     </message>
     <message>
@@ -842,7 +842,7 @@
         <translation type="unfinished">यो ठेगानालाई प्रयोग गरिएको ठेगानाको सूचीमा थप्न एउटा लेबल प्रविष्ट गर्नुहोस्</translation>
     </message>
     <message>
-        <source>A message that was attached to the bitcoin: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the AndaluzCoin network.</source>
+        <source>A message that was attached to theandaluzcoin: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the AndaluzCoin network.</source>
         <translation type="unfinished">बिटकोइनमा संलग्न गरिएको सन्देश: तपाईंको मध्यस्थको लागि कारोबारको साथमा भण्डारण गरिने URI । नोट: यो सन्देश बिटकोइन नेटवर्क मार्फत पठाइने छैन ।</translation>
     </message>
 </context>

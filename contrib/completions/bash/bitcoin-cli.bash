@@ -1,4 +1,4 @@
-# bash programmable completion for bitcoin-cli(1)
+# bash programmable completion forandaluzcoin-cli(1)
 # Copyright (c) 2012-2022 The AndaluzCoin Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
@@ -19,11 +19,11 @@ _bitcoin_rpc() {
 
 _bitcoin_cli() {
     local cur prev words=() cword
-    local bitcoin_cli
+    localandaluzcoin_cli
 
-    # save and use original argument to invoke bitcoin-cli for -help, help and RPC
-    # as bitcoin-cli might not be in $PATH
-    bitcoin_cli="$1"
+    # save and use original argument to invokeandaluzcoin-cli for -help, help and RPC
+    # asandaluzcoin-cli might not be in $PATH
+   andaluzcoin_cli="$1"
 
     COMPREPLY=()
     _get_comp_words_by_ref -n = cur prev words cword
@@ -130,7 +130,7 @@ _bitcoin_cli() {
             ;;
     esac
 } &&
-complete -F _bitcoin_cli bitcoin-cli
+complete -F _bitcoin_cliandaluzcoin-cli
 
 # Local variables:
 # mode: shell-script

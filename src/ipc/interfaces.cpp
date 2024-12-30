@@ -65,7 +65,7 @@ public:
             // Treat "auto" the same as "unix" except don't treat it an as error
             // if the connection is not accepted. Just return null so the caller
             // can work offline without a connection, or spawn a new
-            // bitcoin-node process and connect to it.
+            //andaluzcoin-node process and connect to it.
             address = "unix";
             try {
                 fd = m_process->connect(gArgs.GetDataDirNet(), "bitcoin-node", address);

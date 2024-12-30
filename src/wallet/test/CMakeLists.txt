@@ -28,4 +28,4 @@ if(USE_BDB)
       db_tests.cpp
   )
 endif()
-target_link_libraries(test_bitcoin bitcoin_wallet)
+target_link_libraries(test_bitcoinandaluzcoin_wallet)

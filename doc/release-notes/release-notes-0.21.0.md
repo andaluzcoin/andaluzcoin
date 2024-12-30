@@ -471,18 +471,18 @@ was already being broken by the move to descriptors.
   is introduced to the `sendtoaddress`, `sendmany`, `fundrawtransaction` and
   `walletcreatefundedpsbt` RPCs as well as to the experimental new `send`
   RPC. The legacy `feeRate` option in `fundrawtransaction` and
-  `walletcreatefundedpsbt` still exists for setting a fee rate in BTC per 1,000
-  vbytes (BTC/kvB), but it is expected to be deprecated soon to avoid
-  confusion. For these RPCs, the fee rate error message is updated from BTC/kB
-  to sat/vB and the help documentation in BTC/kB is updated to BTC/kvB. The
+  `walletcreatefundedpsbt` still exists for setting a fee rate in LUZ per 1,000
+  vbytes (LUZ/kvB), but it is expected to be deprecated soon to avoid
+  confusion. For these RPCs, the fee rate error message is updated from LUZ/kB
+  to sat/vB and the help documentation in LUZ/kB is updated to LUZ/kvB. The
   `send` and `sendtoaddress` RPC examples are updated to aid users in creating
   transactions with explicit fee rates. (#20305, #11413)
 
-- The `bumpfee` RPC `fee_rate` option is changed from BTC/kvB to sat/vB and the
+- The `bumpfee` RPC `fee_rate` option is changed from LUZ/kvB to sat/vB and the
   help documentation is updated. Users are warned that this is a breaking API
   change, but it should be relatively benign: the large (100,000 times)
-  difference between BTC/kvB and sat/vB units means that a transaction with a
-  fee rate mistakenly calculated in BTC/kvB rather than sat/vB should raise an
+  difference between LUZ/kvB and sat/vB units means that a transaction with a
+  fee rate mistakenly calculated in LUZ/kvB rather than sat/vB should raise an
   error due to the fee rate being set too low. In the worst case, the
   transaction may send at 1 sat/vB, but as Replace-by-Fee (BIP125 RBF) is active
   by default when an explicit fee rate is used, the transaction fee can be
@@ -697,7 +697,7 @@ Tests
 - #20130 Remove db mode string (S3RK)
 - #19077 Add sqlite as an alternative wallet database and use it for new descriptor wallets (achow101)
 - #20125 Expose database format in getwalletinfo (promag)
-- #20198 Show name, format and if uses descriptors in bitcoin-wallet tool (jonasschnelli)
+- #20198 Show name, format and if uses descriptors inandaluzcoin-wallet tool (jonasschnelli)
 - #20216 Fix buffer over-read in SQLite file magic check (theStack)
 - #20186 Make -wallet setting not create wallets (ryanofsky)
 - #20230 Fix bug when just created encrypted wallet cannot get address (hebasto)
@@ -734,7 +734,7 @@ Tests
 - #19282 Rephrase generatetoaddress help, and use `PACKAGE_NAME` (luke-jr)
 - #16377 don't automatically append inputs in walletcreatefundedpsbt (Sjors)
 - #19200 Remove deprecated getaddressinfo fields (jonatack)
-- #19133 rpc, cli, test: add bitcoin-cli -generate command (jonatack)
+- #19133 rpc, cli, test: addandaluzcoin-cli -generate command (jonatack)
 - #19469 Deprecate banscore field in getpeerinfo (jonatack)
 - #16525 Dump transaction version as an unsigned integer in RPC/TxToUniv (TheBlueMatt)
 - #19555 Deduplicate WriteHDKeypath() used in decodepsbt (theStack)
@@ -759,7 +759,7 @@ Tests
 - #19725 Add connection type to getpeerinfo, improve logs (amitiuttarwar)
 - #19969 Send RPC bug fix and touch-ups (Sjors)
 - #18309 zmq: Add support to listen on multiple interfaces (n-thumann)
-- #20055 Set HTTP Content-Type in bitcoin-cli (laanwj)
+- #20055 Set HTTP Content-Type inandaluzcoin-cli (laanwj)
 - #19956 Improve invalid vout value rpc error message (n1rna)
 - #20101 Change no wallet loaded message to be clearer (achow101)
 - #19998 Add `via_tor` to `getpeerinfo` output (hebasto)
@@ -820,7 +820,7 @@ Tests
 - gui#120 Fix multiwallet transaction notifications (promag)
 
 ### Build system
-- #18504 Drop bitcoin-tx and bitcoin-wallet dependencies on libevent (ryanofsky)
+- #18504 Dropandaluzcoin-tx andandaluzcoin-wallet dependencies on libevent (ryanofsky)
 - #18586 Bump gitian descriptors to 0.21 (laanwj)
 - #17595 guix: Enable building for `x86_64-w64-mingw32` target (dongcarl)
 - #17929 add linker optimisation flags to gitian & guix (Linux) (fanquake)
@@ -907,7 +907,7 @@ Tests
 - #18628 Add various low-level p2p tests (MarcoFalke)
 - #18615 Avoid accessing free'd memory in `validation_chainstatemanager_tests` (MarcoFalke)
 - #18571 fuzz: Disable debug log file (MarcoFalke)
-- #18653 add coverage for bitcoin-cli -rpcwait (jonatack)
+- #18653 add coverage forandaluzcoin-cli -rpcwait (jonatack)
 - #18660 Verify findCommonAncestor always initializes outputs (ryanofsky)
 - #17669 Have coins simulation test also use CCoinsViewDB (jamesob)
 - #18662 Replace gArgs with local argsman in bench (MarcoFalke)
@@ -1161,7 +1161,7 @@ Tests
 - #19765 Fix getmempoolancestors RPC result doc (MarcoFalke)
 - #19786 Remove label from good first issue template (MarcoFalke)
 - #19646 Updated outdated help command for getblocktemplate (jakeleventhal)
-- #18817 Document differences in bitcoind and bitcoin-qt locale handling (practicalswift)
+- #18817 Document differences inandaluzcoind andandaluzcoin-qt locale handling (practicalswift)
 - #19870 update PyZMQ install instructions, fix `zmq_sub.py` file permissions (jonatack)
 - #19903 Update build-openbsd.md with GUI support (grubles)
 - #19241 help: Generate checkpoint height from chainparams (luke-jr)

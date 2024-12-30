@@ -148,9 +148,9 @@ add_executable(test_bitcoin
 target_link_libraries(test_bitcoin
   core_interface
   test_util
-  bitcoin_cli
-  bitcoin_node
-  bitcoin_consensus
+ andaluzcoin_cli
+ andaluzcoin_node
+ andaluzcoin_consensus
   minisketch
   secp256k1
   Boost::headers
@@ -172,7 +172,7 @@ if(WITH_MULTIPROCESS)
     PRIVATE
       ipc_tests.cpp
   )
-  target_link_libraries(test_bitcoin bitcoin_ipc_test bitcoin_ipc)
+  target_link_libraries(test_bitcoinandaluzcoin_ipc_testandaluzcoin_ipc)
 endif()
 
 function(add_boost_test source_file)
