@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# Copyright (c) 2020-2022 The Bitcoin Core developers
+# Copyright (c) 2020-2022 The AndaluzCoin Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 """Test the send RPC command."""
@@ -9,7 +9,7 @@ from itertools import product
 
 from test_framework.authproxy import JSONRPCException
 from test_framework.descriptors import descsum_create
-from test_framework.test_framework import BitcoinTestFramework
+from test_framework.test_framework import AndaluzCoinTestFramework
 from test_framework.util import (
     assert_equal,
     assert_fee_amount,
@@ -23,7 +23,7 @@ from test_framework.wallet_util import (
 )
 
 
-class WalletSendTest(BitcoinTestFramework):
+class WalletSendTest(AndaluzCoinTestFramework):
     def add_options(self, parser):
         self.add_wallet_options(parser)
 

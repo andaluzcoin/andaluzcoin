@@ -1,18 +1,18 @@
 #!/usr/bin/env python3
-# Copyright (c) 2018-2022 The Bitcoin Core developers
+# Copyright (c) 2018-2022 The AndaluzCoin Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 """Check that it's not possible to start a second bitcoind instance using the same datadir or wallet."""
 import random
 import string
 
-from test_framework.test_framework import BitcoinTestFramework
+from test_framework.test_framework import AndaluzCoinTestFramework
 from test_framework.test_node import (
     BITCOIN_PID_FILENAME_DEFAULT,
     ErrorMatch,
 )
 
-class FilelockTest(BitcoinTestFramework):
+class FilelockTest(AndaluzCoinTestFramework):
     def add_options(self, parser):
         self.add_wallet_options(parser)
 

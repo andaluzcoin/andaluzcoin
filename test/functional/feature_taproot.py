@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# Copyright (c) 2019-2022 The Bitcoin Core developers
+# Copyright (c) 2019-2022 The AndaluzCoin Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 # Test Taproot softfork (BIPs 340-342)
@@ -91,7 +91,7 @@ from test_framework.script_util import (
     script_to_p2sh_script,
     script_to_p2wsh_script,
 )
-from test_framework.test_framework import BitcoinTestFramework
+from test_framework.test_framework import AndaluzCoinTestFramework
 from test_framework.util import (
     assert_raises_rpc_error,
     assert_equal,
@@ -1273,7 +1273,7 @@ def dump_json_test(tx, input_utxos, idx, success, failure):
 UTXOData = namedtuple('UTXOData', 'outpoint,output,spender')
 
 
-class TaprootTest(BitcoinTestFramework):
+class TaprootTest(AndaluzCoinTestFramework):
     def add_options(self, parser):
         self.add_wallet_options(parser)
         parser.add_argument("--dumptests", dest="dump_tests", default=False, action="store_true",

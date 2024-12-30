@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# Copyright (c) 2015-2022 The Bitcoin Core developers
+# Copyright (c) 2015-2022 The AndaluzCoin Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 '''
@@ -120,7 +120,7 @@ def check_ELF_CONTROL_FLOW(binary) -> bool:
 def check_ELF_FORTIFY(binary) -> bool:
 
     # bitcoin-util does not currently contain any fortified functions
-    if 'Bitcoin Core bitcoin-util utility version ' in binary.strings:
+    if 'AndaluzCoin Core bitcoin-util utility version ' in binary.strings:
         return True
 
     chk_funcs = set()
