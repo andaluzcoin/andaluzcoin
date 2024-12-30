@@ -1,7 +1,7 @@
 0.19.1 Release Notes
 ===============================
 
-AndaluzCoin Core version 0.19.1 is now available from:
+Andaluzcoin Core version 0.19.1 is now available from:
 
   <https://bitcoincore.org/bin/bitcoin-core-0.19.1/>
 
@@ -21,26 +21,26 @@ How to Upgrade
 
 If you are running an older version, shut it down. Wait until it has completely
 shut down (which might take a few minutes for older versions), then run the
-installer (on Windows) or just copy over `/Applications/AndaluzCoin-Qt` (on Mac)
+installer (on Windows) or just copy over `/Applications/Andaluzcoin-Qt` (on Mac)
 or `bitcoind`/`bitcoin-qt` (on Linux).
 
-Upgrading directly from a version of AndaluzCoin Core that has reached its EOL is
+Upgrading directly from a version of Andaluzcoin Core that has reached its EOL is
 possible, but it might take some time if the datadir needs to be migrated. Old
-wallet versions of AndaluzCoin Core are generally supported.
+wallet versions of Andaluzcoin Core are generally supported.
 
 Compatibility
 ==============
 
-AndaluzCoin Core is supported and extensively tested on operating systems using
+Andaluzcoin Core is supported and extensively tested on operating systems using
 the Linux kernel, macOS 10.10+, and Windows 7 and newer. It is not recommended
-to use AndaluzCoin Core on unsupported systems.
+to use Andaluzcoin Core on unsupported systems.
 
-AndaluzCoin Core should also work on most other Unix-like systems but is not
+Andaluzcoin Core should also work on most other Unix-like systems but is not
 as frequently tested on them.
 
-From AndaluzCoin Core 0.17.0 onwards, macOS versions earlier than 10.10 are no
-longer supported, as AndaluzCoin Core is now built using Qt 5.9.x which requires
-macOS 10.10+. Additionally, AndaluzCoin Core does not yet change appearance when
+From Andaluzcoin Core 0.17.0 onwards, macOS versions earlier than 10.10 are no
+longer supported, as Andaluzcoin Core is now built using Qt 5.9.x which requires
+macOS 10.10+. Additionally, Andaluzcoin Core does not yet change appearance when
 macOS "dark mode" is activated.
 
 In addition to previously supported CPU platforms, this release's pre-compiled

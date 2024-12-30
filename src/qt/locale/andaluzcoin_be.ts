@@ -58,7 +58,7 @@
         <translation type="unfinished">Выбраць</translation>
     </message>
     <message>
-        <source>These are your AndaluzCoin addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
+        <source>These are your Andaluzcoin addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
         <translation type="unfinished">Тут знаходзяцца Біткойн-адрасы для высылання плацяжоў. Заўсёды спраўджвайце колькасць і адрас прызначэння перад здзяйсненнем транзакцыі.</translation>
     </message>
     <message>
@@ -265,7 +265,7 @@
     </message>
     </context>
 <context>
-    <name>AndaluzCoinGUI</name>
+    <name>AndaluzcoinGUI</name>
     <message>
         <source>&amp;Overview</source>
         <translation type="unfinished">Агляд</translation>
@@ -299,7 +299,7 @@
         <translation type="unfinished">Паказаць інфармацыю аб Qt</translation>
     </message>
     <message>
-        <source>Send coins to a AndaluzCoin address</source>
+        <source>Send coins to a Andaluzcoin address</source>
         <translation type="unfinished">Даслаць манеты на Біткойн-адрас</translation>
     </message>
     <message>
@@ -323,11 +323,11 @@
         <translation type="unfinished">Зашыфраваць прыватныя ключы, якия належаць вашаму гаманцу</translation>
     </message>
     <message>
-        <source>Sign messages with your AndaluzCoin addresses to prove you own them</source>
+        <source>Sign messages with your Andaluzcoin addresses to prove you own them</source>
         <translation type="unfinished">Падпісаць паведамленне з дапамогай Біткойн-адраса каб даказаць, што яно належыць вам</translation>
     </message>
     <message>
-        <source>Verify messages to ensure they were signed with specified AndaluzCoin addresses</source>
+        <source>Verify messages to ensure they were signed with specified Andaluzcoin addresses</source>
         <translation type="unfinished">Спраўдзіць паведамленне з дапамогай Біткойн-адраса каб даказаць, што яно належыць вам</translation>
     </message>
     <message>
@@ -395,7 +395,7 @@
         <translation type="unfinished">Сінхранізавана</translation>
     </message>
     <message numerus="yes">
-        <source>%n active connection(s) to AndaluzCoin network.</source>
+        <source>%n active connection(s) to Andaluzcoin network.</source>
         <extracomment>A substring of the tooltip.</extracomment>
         <translation type="unfinished">
             <numerusform />
@@ -593,7 +593,7 @@
 <context>
     <name>Intro</name>
     <message>
-        <source>AndaluzCoin</source>
+        <source>Andaluzcoin</source>
         <translation type="unfinished">Біткойн</translation>
     </message>
     <message numerus="yes">

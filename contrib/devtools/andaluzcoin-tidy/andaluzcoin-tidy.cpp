@@ -1,4 +1,4 @@
-// Copyright (c) 2023 AndaluzCoin Developers
+// Copyright (c) 2023 Andaluzcoin Developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -7,7 +7,7 @@
 #include <clang-tidy/ClangTidyModule.h>
 #include <clang-tidy/ClangTidyModuleRegistry.h>
 
-class AndaluzCoinModule final : public clang::tidy::ClangTidyModule
+class AndaluzcoinModule final : public clang::tidy::ClangTidyModule
 {
 public:
     void addCheckFactories(clang::tidy::ClangTidyCheckFactories& CheckFactories) override
@@ -16,7 +16,7 @@ public:
     }
 };
 
-static clang::tidy::ClangTidyModuleRegistry::Add<AndaluzCoinModule>
+static clang::tidy::ClangTidyModuleRegistry::Add<AndaluzcoinModule>
     X("bitcoin-module", "Addsandaluzcoin checks.");
 
-volatile int AndaluzCoinModuleAnchorSource = 0;
+volatile int AndaluzcoinModuleAnchorSource = 0;

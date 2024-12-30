@@ -51,13 +51,13 @@ Click-derecho para editar direccion o nivel</translation>
         <translation type="unfinished">Eliga la direccion para recibir monedas con</translation>
     </message>
     <message>
-        <source>These are your AndaluzCoin addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
-        <translation type="unfinished">Esta es tu direccion para enviar pagos con AndaluzCoin. Siempre revisa la cantidad y la direccion correcta de monedas antes de enviar.</translation>
+        <source>These are your Andaluzcoin addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
+        <translation type="unfinished">Esta es tu direccion para enviar pagos con Andaluzcoin. Siempre revisa la cantidad y la direccion correcta de monedas antes de enviar.</translation>
     </message>
     <message>
-        <source>These are your AndaluzCoin addresses for receiving payments. Use the 'Create new receiving address' button in the receive tab to create new addresses.
+        <source>These are your Andaluzcoin addresses for receiving payments. Use the 'Create new receiving address' button in the receive tab to create new addresses.
 Signing is only possible with addresses of the type 'legacy'.</source>
-        <translation type="unfinished">Esta es la direccion de AndaluzCoin para recibir pagos. Usa el botton ‘Crea nueva direccion de pagos’ en la pestaña crear nueva direccion. 
+        <translation type="unfinished">Esta es la direccion de Andaluzcoin para recibir pagos. Usa el botton ‘Crea nueva direccion de pagos’ en la pestaña crear nueva direccion. 
 la entrada solo es posible con las direcciones del tipo ‘legacy’</translation>
     </message>
     <message>
@@ -235,7 +235,7 @@ la entrada solo es posible con las direcciones del tipo ‘legacy’</translatio
     </message>
 </context>
 <context>
-    <name>AndaluzCoinGUI</name>
+    <name>AndaluzcoinGUI</name>
     <message>
         <source>Change the passphrase used for wallet encryption</source>
         <translation type="unfinished">Cambiar la contraseña usada para la encriptación de la cartera</translation>
@@ -261,16 +261,16 @@ la entrada solo es posible con las direcciones del tipo ‘legacy’</translatio
         <translation type="unfinished">Firmar &amp;mensaje...</translation>
     </message>
     <message>
-        <source>Sign messages with your AndaluzCoin addresses to prove you own them</source>
-        <translation type="unfinished">Firme mensajes con sus direcciones de AndaluzCoin para demostrar que los posee</translation>
+        <source>Sign messages with your Andaluzcoin addresses to prove you own them</source>
+        <translation type="unfinished">Firme mensajes con sus direcciones de Andaluzcoin para demostrar que los posee</translation>
     </message>
     <message>
         <source>&amp;Verify message…</source>
         <translation type="unfinished">&amp;Verificar mensaje...</translation>
     </message>
     <message>
-        <source>Verify messages to ensure they were signed with specified AndaluzCoin addresses</source>
-        <translation type="unfinished">Verifique los mensajes para asegurarse de que se firmaron con direcciones de AndaluzCoin especificadas.</translation>
+        <source>Verify messages to ensure they were signed with specified Andaluzcoin addresses</source>
+        <translation type="unfinished">Verifique los mensajes para asegurarse de que se firmaron con direcciones de Andaluzcoin especificadas.</translation>
     </message>
     <message>
         <source>&amp;Load PSBT from file…</source>
@@ -393,11 +393,11 @@ la entrada solo es posible con las direcciones del tipo ‘legacy’</translatio
         <translation type="unfinished">&amp;Mostrar</translation>
     </message>
     <message numerus="yes">
-        <source>%n active connection(s) to AndaluzCoin network.</source>
+        <source>%n active connection(s) to Andaluzcoin network.</source>
         <extracomment>A substring of the tooltip.</extracomment>
         <translation type="unfinished">
-            <numerusform>%n conexiones activas con la red AndaluzCoin</numerusform>
-            <numerusform>%n conexiones activas con la red AndaluzCoin </numerusform>
+            <numerusform>%n conexiones activas con la red Andaluzcoin</numerusform>
+            <numerusform>%n conexiones activas con la red Andaluzcoin </numerusform>
         </translation>
     </message>
     <message>
@@ -563,8 +563,8 @@ la entrada solo es posible con las direcciones del tipo ‘legacy’</translatio
         <translation type="unfinished">Direcciones locales</translation>
     </message>
     <message>
-        <source>Network addresses that your AndaluzCoin node is currently using to communicate with other nodes.</source>
-        <translation type="unfinished">Direcciones de red que tu nodo AndaluzCoin usa actualmente para comunicarse con otros nodos.</translation>
+        <source>Network addresses that your Andaluzcoin node is currently using to communicate with other nodes.</source>
+        <translation type="unfinished">Direcciones de red que tu nodo Andaluzcoin usa actualmente para comunicarse con otros nodos.</translation>
     </message>
     <message>
         <source>Hide Peers Detail</source>

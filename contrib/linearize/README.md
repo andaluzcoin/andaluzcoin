@@ -1,5 +1,5 @@
 # Linearize
-Construct a linear, no-fork, best version of the AndaluzCoin blockchain.
+Construct a linear, no-fork, best version of the Andaluzcoin blockchain.
 
 ## Step 1: Download hash list
 

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# Copyright (c) 2019-2021 The AndaluzCoin Core developers
+# Copyright (c) 2019-2021 The Andaluzcoin Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -9,12 +9,12 @@ Test seednode interaction with the AddrMan
 import random
 import time
 
-from test_framework.test_framework import AndaluzCoinTestFramework
+from test_framework.test_framework import AndaluzcoinTestFramework
 
 ADD_NEXT_SEEDNODE = 10
 
 
-class P2PSeedNodes(AndaluzCoinTestFramework):
+class P2PSeedNodes(AndaluzcoinTestFramework):
     def set_test_params(self):
         self.num_nodes = 1
         self.disable_autoconnect = False

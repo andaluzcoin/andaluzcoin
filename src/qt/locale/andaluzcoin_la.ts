@@ -49,7 +49,7 @@
     </message>
     </context>
 <context>
-    <name>AndaluzCoinGUI</name>
+    <name>AndaluzcoinGUI</name>
     <message>
         <source>&amp;Overview</source>
         <translation type="unfinished">&amp;Summarium</translation>
@@ -91,8 +91,8 @@
         <translation type="unfinished">Creare novum cassidilium</translation>
     </message>
     <message>
-        <source>Send coins to a AndaluzCoin address</source>
-        <translation type="unfinished">Mitte nummos ad inscriptionem AndaluzCoin</translation>
+        <source>Send coins to a Andaluzcoin address</source>
+        <translation type="unfinished">Mitte nummos ad inscriptionem Andaluzcoin</translation>
     </message>
     <message>
         <source>Backup wallet to another location</source>
@@ -115,12 +115,12 @@
         <translation type="unfinished">Cifra claves privatas quae cassidili tui sunt</translation>
     </message>
     <message>
-        <source>Sign messages with your AndaluzCoin addresses to prove you own them</source>
-        <translation type="unfinished">Signa nuntios cum tuis inscriptionibus AndaluzCoin ut demonstres te eas possidere</translation>
+        <source>Sign messages with your Andaluzcoin addresses to prove you own them</source>
+        <translation type="unfinished">Signa nuntios cum tuis inscriptionibus Andaluzcoin ut demonstres te eas possidere</translation>
     </message>
     <message>
-        <source>Verify messages to ensure they were signed with specified AndaluzCoin addresses</source>
-        <translation type="unfinished">Verifica nuntios ut certus sis eos signatos esse cum specificatis inscriptionibus AndaluzCoin</translation>
+        <source>Verify messages to ensure they were signed with specified Andaluzcoin addresses</source>
+        <translation type="unfinished">Verifica nuntios ut certus sis eos signatos esse cum specificatis inscriptionibus Andaluzcoin</translation>
     </message>
     <message>
         <source>&amp;File</source>
@@ -178,11 +178,11 @@
         <translation type="unfinished">&amp;Fenestra</translation>
     </message>
     <message numerus="yes">
-        <source>%n active connection(s) to AndaluzCoin network.</source>
+        <source>%n active connection(s) to Andaluzcoin network.</source>
         <extracomment>A substring of the tooltip.</extracomment>
         <translation type="unfinished">
-            <numerusform>%n active connection(s) to AndaluzCoin network.</numerusform>
-            <numerusform>%n active connection(s) to AndaluzCoin network.</numerusform>
+            <numerusform>%n active connection(s) to Andaluzcoin network.</numerusform>
+            <numerusform>%n active connection(s) to Andaluzcoin network.</numerusform>
         </translation>
     </message>
     </context>
@@ -260,8 +260,8 @@
         <translation type="unfinished">Cassidile</translation>
     </message>
     <message>
-        <source>Automatically open the AndaluzCoin client port on the router. This only works when your router supports UPnP and it is enabled.</source>
-        <translation type="unfinished">Aperi per se portam clientis AndaluzCoin in itineratore.  Hoc tantum effectivum est si itineratrum tuum supportat UPnP et id activum est.</translation>
+        <source>Automatically open the Andaluzcoin client port on the router. This only works when your router supports UPnP and it is enabled.</source>
+        <translation type="unfinished">Aperi per se portam clientis Andaluzcoin in itineratore.  Hoc tantum effectivum est si itineratrum tuum supportat UPnP et id activum est.</translation>
     </message>
     <message>
         <source>Map port using &amp;UPnP</source>
@@ -336,8 +336,8 @@
         <translation type="unfinished">Schema</translation>
     </message>
     <message>
-        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the AndaluzCoin network after a connection is established, but this process has not completed yet.</source>
-        <translation type="unfinished">Monstrata informatio fortasse non recentissima est.  Tuum cassidile per se synchronizat cum rete AndaluzCoin postquam conexio constabilita est, sed hoc actio nondum perfecta est.</translation>
+        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the Andaluzcoin network after a connection is established, but this process has not completed yet.</source>
+        <translation type="unfinished">Monstrata informatio fortasse non recentissima est.  Tuum cassidile per se synchronizat cum rete Andaluzcoin postquam conexio constabilita est, sed hoc actio nondum perfecta est.</translation>
     </message>
     <message>
         <source>Immature:</source>
@@ -359,7 +359,7 @@
     <name>PaymentServer</name>
     <message>
         <source>Cannot startandaluzcoin: click-to-pay handler</source>
-        <translation type="unfinished">AndaluzCoin incipere non potest: cliccare-ad-pensandum handler</translation>
+        <translation type="unfinished">Andaluzcoin incipere non potest: cliccare-ad-pensandum handler</translation>
     </message>
     <message>
         <source>URI handling</source>

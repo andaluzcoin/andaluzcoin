@@ -1,4 +1,4 @@
-// Copyright (c) 2011-2022 The AndaluzCoin Core developers
+// Copyright (c) 2011-2022 The Andaluzcoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -19,7 +19,7 @@ static constexpr auto SHUTDOWN_POLLING_DELAY{200ms};
 /* AskPassphraseDialog -- Maximum passphrase length */
 static const int MAX_PASSPHRASE_SIZE = 1024;
 
-/* AndaluzCoinGUI -- Size of icons in status bar */
+/* AndaluzcoinGUI -- Size of icons in status bar */
 static const int STATUSBAR_ICONSIZE = 16;
 
 static const bool DEFAULT_SPLASHSCREEN = true;
@@ -46,13 +46,13 @@ static const int TOOLTIP_WRAP_THRESHOLD = 80;
 /* Number of frames in spinner animation */
 #define SPINNER_FRAMES 36
 
-#define QAPP_ORG_NAME "AndaluzCoin"
+#define QAPP_ORG_NAME "Andaluzcoin"
 #define QAPP_ORG_DOMAIN "bitcoin.org"
-#define QAPP_APP_NAME_DEFAULT "AndaluzCoin-Qt"
-#define QAPP_APP_NAME_TESTNET "AndaluzCoin-Qt-testnet"
-#define QAPP_APP_NAME_TESTNET4 "AndaluzCoin-Qt-testnet4"
-#define QAPP_APP_NAME_SIGNET "AndaluzCoin-Qt-signet"
-#define QAPP_APP_NAME_REGTEST "AndaluzCoin-Qt-regtest"
+#define QAPP_APP_NAME_DEFAULT "Andaluzcoin-Qt"
+#define QAPP_APP_NAME_TESTNET "Andaluzcoin-Qt-testnet"
+#define QAPP_APP_NAME_TESTNET4 "Andaluzcoin-Qt-testnet4"
+#define QAPP_APP_NAME_SIGNET "Andaluzcoin-Qt-signet"
+#define QAPP_APP_NAME_REGTEST "Andaluzcoin-Qt-regtest"
 
 /* One gigabyte (GB) in bytes */
 static constexpr uint64_t GB_BYTES{1000000000};

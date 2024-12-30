@@ -1,4 +1,4 @@
-// Copyright (c) 2011-2021 The AndaluzCoin Core developers
+// Copyright (c) 2011-2021 The Andaluzcoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -26,17 +26,17 @@
 #define THIN_SP_UTF8 REAL_THIN_SP_UTF8
 #define THIN_SP_HTML HTML_HACK_SP
 
-/** AndaluzCoin unit definitions. Encapsulates parsing and formatting
+/** Andaluzcoin unit definitions. Encapsulates parsing and formatting
    and serves as list model for drop-down selection boxes.
 */
-class AndaluzCoinUnits: public QAbstractListModel
+class AndaluzcoinUnits: public QAbstractListModel
 {
     Q_OBJECT
 
 public:
-    explicit AndaluzCoinUnits(QObject *parent);
+    explicit AndaluzcoinUnits(QObject *parent);
 
-    /** AndaluzCoin units.
+    /** Andaluzcoin units.
       @note Source: https://en.bitcoin.it/wiki/Units . Please add only sensible ones
      */
     enum class Unit {
@@ -108,9 +108,9 @@ public:
 private:
     QList<Unit> unitlist;
 };
-typedef AndaluzCoinUnits::Unit AndaluzCoinUnit;
+typedef AndaluzcoinUnits::Unit AndaluzcoinUnit;
 
-QDataStream& operator<<(QDataStream& out, const AndaluzCoinUnit& unit);
-QDataStream& operator>>(QDataStream& in, AndaluzCoinUnit& unit);
+QDataStream& operator<<(QDataStream& out, const AndaluzcoinUnit& unit);
+QDataStream& operator>>(QDataStream& in, AndaluzcoinUnit& unit);
 
 #endif // BITCOIN_QT_BITCOINUNITS_H

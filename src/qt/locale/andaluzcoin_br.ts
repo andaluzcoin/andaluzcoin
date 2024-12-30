@@ -11,7 +11,7 @@
     </message>
     </context>
 <context>
-    <name>AndaluzCoinApplication</name>
+    <name>AndaluzcoinApplication</name>
     <message>
         <source>Internal error</source>
         <translation type="unfinished">Fazi diabarzh</translation>
@@ -67,7 +67,7 @@
     </message>
     </context>
 <context>
-    <name>AndaluzCoinGUI</name>
+    <name>AndaluzcoinGUI</name>
     <message numerus="yes">
         <source>Processed %n block(s) of transaction history.</source>
         <translation type="unfinished">
@@ -80,7 +80,7 @@
         <translation type="unfinished">Fazi</translation>
     </message>
     <message numerus="yes">
-        <source>%n active connection(s) to AndaluzCoin network.</source>
+        <source>%n active connection(s) to Andaluzcoin network.</source>
         <extracomment>A substring of the tooltip.</extracomment>
         <translation type="unfinished">
             <numerusform />

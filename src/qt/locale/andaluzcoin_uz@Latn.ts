@@ -58,11 +58,11 @@
         <translation type="unfinished">&amp;Tanlash</translation>
     </message>
     <message>
-        <source>These are your AndaluzCoin addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
-        <translation type="unfinished">Quyida to'lovlarni yuborish uchun AndaluzCoin manzillaringiz. Coinlarni yuborishdan oldin har doim miqdor va qabul qilish manzilini tekshiring.</translation>
+        <source>These are your Andaluzcoin addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
+        <translation type="unfinished">Quyida to'lovlarni yuborish uchun Andaluzcoin manzillaringiz. Coinlarni yuborishdan oldin har doim miqdor va qabul qilish manzilini tekshiring.</translation>
     </message>
     <message>
-        <source>These are your AndaluzCoin addresses for receiving payments. Use the 'Create new receiving address' button in the receive tab to create new addresses.
+        <source>These are your Andaluzcoin addresses for receiving payments. Use the 'Create new receiving address' button in the receive tab to create new addresses.
 Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">Bular to'lovlarni qabul qilish uchun mo'ljallangan Bitkoin manzillar. Yangi manzillar yaratish uchun 'Yangi qabul qilish manzili yaratish' tugmasini ishlating.
 Kirish faqat 'legacy' turidagi manzillar uchun.</translation>
@@ -232,7 +232,7 @@ Kirish faqat 'legacy' turidagi manzillar uchun.</translation>
     </message>
 </context>
 <context>
-    <name>AndaluzCoinApplication</name>
+    <name>AndaluzcoinApplication</name>
     <message>
         <source>Runaway exception</source>
         <translation type="unfinished">qo'shimcha istisno</translation>
@@ -279,8 +279,8 @@ Kirish faqat 'legacy' turidagi manzillar uchun.</translation>
         <translation type="unfinished">Miqdor</translation>
     </message>
     <message>
-        <source>Enter a AndaluzCoin address (e.g. %1)</source>
-        <translation type="unfinished">AndaluzCoin манзилини киритинг (масалан.  %1)</translation>
+        <source>Enter a Andaluzcoin address (e.g. %1)</source>
+        <translation type="unfinished">Andaluzcoin манзилини киритинг (масалан.  %1)</translation>
     </message>
     <message>
         <source>Inbound</source>
@@ -376,7 +376,7 @@ Kirish faqat 'legacy' turidagi manzillar uchun.</translation>
     </message>
 </context>
 <context>
-    <name>AndaluzCoinGUI</name>
+    <name>AndaluzcoinGUI</name>
     <message>
         <source>&amp;Overview</source>
         <translation type="unfinished">&amp;Umumiy ko'rinish</translation>
@@ -443,7 +443,7 @@ Kirish faqat 'legacy' turidagi manzillar uchun.</translation>
         <translation type="unfinished">Proksi &lt;b&gt;yoqildi&lt;/b&gt;: %1</translation>
     </message>
     <message>
-        <source>Send coins to a AndaluzCoin address</source>
+        <source>Send coins to a Andaluzcoin address</source>
         <translation type="unfinished">Bitkoin manziliga coinlarni yuborish</translation>
     </message>
     <message>
@@ -487,16 +487,16 @@ Kirish faqat 'legacy' turidagi manzillar uchun.</translation>
         <translation type="unfinished">Xabarni &amp;signlash...</translation>
     </message>
     <message>
-        <source>Sign messages with your AndaluzCoin addresses to prove you own them</source>
-        <translation type="unfinished">AndaluzCoin манзилидан унинг эгаси эканлигингизни исботлаш учун хабарлар ёзинг</translation>
+        <source>Sign messages with your Andaluzcoin addresses to prove you own them</source>
+        <translation type="unfinished">Andaluzcoin манзилидан унинг эгаси эканлигингизни исботлаш учун хабарлар ёзинг</translation>
     </message>
     <message>
         <source>&amp;Verify message…</source>
         <translation type="unfinished">&amp;Xabarni tasdiqlash...</translation>
     </message>
     <message>
-        <source>Verify messages to ensure they were signed with specified AndaluzCoin addresses</source>
-        <translation type="unfinished">Хабарларни махсус AndaluzCoin манзилларингиз билан ёзилганлигига ишонч ҳосил қилиш учун уларни тасдиқланг</translation>
+        <source>Verify messages to ensure they were signed with specified Andaluzcoin addresses</source>
+        <translation type="unfinished">Хабарларни махсус Andaluzcoin манзилларингиз билан ёзилганлигига ишонч ҳосил қилиш учун уларни тасдиқланг</translation>
     </message>
     <message>
         <source>&amp;Load PSBT from file…</source>
@@ -610,7 +610,7 @@ Kirish faqat 'legacy' turidagi manzillar uchun.</translation>
         <translation type="unfinished">Hozirgi kunda</translation>
     </message>
     <message>
-        <source>Load Partially Signed AndaluzCoin Transaction</source>
+        <source>Load Partially Signed Andaluzcoin Transaction</source>
         <translation type="unfinished">Qisman signlangan Bitkoin tranzaksiyasini yuklash</translation>
     </message>
     <message>
@@ -618,7 +618,7 @@ Kirish faqat 'legacy' turidagi manzillar uchun.</translation>
         <translation type="unfinished">&amp;Nusxalanganlar dan PSBT ni yuklash</translation>
     </message>
     <message>
-        <source>Load Partially Signed AndaluzCoin Transaction from clipboard</source>
+        <source>Load Partially Signed Andaluzcoin Transaction from clipboard</source>
         <translation type="unfinished">Nusxalanganlar qisman signlangan Bitkoin tranzaksiyalarini yuklash</translation>
     </message>
     <message>
@@ -658,7 +658,7 @@ Kirish faqat 'legacy' turidagi manzillar uchun.</translation>
         <translation type="unfinished">Barcha hamyonlarni yopish</translation>
     </message>
     <message>
-        <source>Show the %1 help message to get a list with possible AndaluzCoin command-line options</source>
+        <source>Show the %1 help message to get a list with possible Andaluzcoin command-line options</source>
         <translation type="unfinished">Yozilishi mumkin bo'lgan command-line sozlamalar ro'yxatini olish uchun %1 yordam xabarini ko'rsatish</translation>
     </message>
     <message>
@@ -699,7 +699,7 @@ Kirish faqat 'legacy' turidagi manzillar uchun.</translation>
         <translation type="unfinished">Ko'&amp;rsatish</translation>
     </message>
     <message numerus="yes">
-        <source>%n active connection(s) to AndaluzCoin network.</source>
+        <source>%n active connection(s) to Andaluzcoin network.</source>
         <extracomment>A substring of the tooltip.</extracomment>
         <translation type="unfinished">
             <numerusform>Bitkoin tarmog'iga %n aktiv ulanishlar.</numerusform>
@@ -1122,8 +1122,8 @@ Kirish faqat 'legacy' turidagi manzillar uchun.</translation>
         <translation type="unfinished">Жунатилувчи манзилни тахрирлаш</translation>
     </message>
     <message>
-        <source>The entered address "%1" is not a valid AndaluzCoin address.</source>
-        <translation type="unfinished">Киритилган "%1" манзили тўғри AndaluzCoin манзили эмас.</translation>
+        <source>The entered address "%1" is not a valid Andaluzcoin address.</source>
+        <translation type="unfinished">Киритилган "%1" манзили тўғри Andaluzcoin манзили эмас.</translation>
     </message>
     <message>
         <source>Address "%1" already exists as a receiving address with label "%2" and so cannot be added as a sending address.</source>
@@ -1205,8 +1205,8 @@ Kirish faqat 'legacy' turidagi manzillar uchun.</translation>
         </translation>
     </message>
     <message>
-        <source>%1 will download and store a copy of the AndaluzCoin block chain.</source>
-        <translation type="unfinished"> AndaluzCoin blok zanjirining%1 nusxasini yuklab oladi va saqlaydi</translation>
+        <source>%1 will download and store a copy of the Andaluzcoin block chain.</source>
+        <translation type="unfinished"> Andaluzcoin blok zanjirining%1 nusxasini yuklab oladi va saqlaydi</translation>
     </message>
     <message>
         <source>The wallet will also be stored in this directory.</source>
@@ -1575,8 +1575,8 @@ Kirish faqat 'legacy' turidagi manzillar uchun.</translation>
         <translation type="unfinished">Шакл</translation>
     </message>
     <message>
-        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the AndaluzCoin network after a connection is established, but this process has not completed yet.</source>
-        <translation type="unfinished">Кўрсатилган маълумот эскирган бўлиши мумкин. Ҳамёнингиз алоқа ўрнатилгандан сўнг AndaluzCoin тармоқ билан автоматик тарзда синхронланади, аммо жараён ҳалигача тугалланмади.</translation>
+        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the Andaluzcoin network after a connection is established, but this process has not completed yet.</source>
+        <translation type="unfinished">Кўрсатилган маълумот эскирган бўлиши мумкин. Ҳамёнингиз алоқа ўрнатилгандан сўнг Andaluzcoin тармоқ билан автоматик тарзда синхронланади, аммо жараён ҳалигача тугалланмади.</translation>
     </message>
     <message>
         <source>Watch-only:</source>
@@ -2113,8 +2113,8 @@ Kirish faqat 'legacy' turidagi manzillar uchun.</translation>
         </translation>
     </message>
     <message>
-        <source>Warning: Invalid AndaluzCoin address</source>
-        <translation type="unfinished">Диққат: Нотўғр AndaluzCoin манзили</translation>
+        <source>Warning: Invalid Andaluzcoin address</source>
+        <translation type="unfinished">Диққат: Нотўғр Andaluzcoin манзили</translation>
     </message>
     <message>
         <source>Warning: Unknown change address</source>

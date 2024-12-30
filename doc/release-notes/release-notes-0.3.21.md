@@ -1,5 +1,5 @@
-Binaries for AndaluzCoin version 0.3.21 are available at:
-  https://sourceforge.net/projects/bitcoin/files/AndaluzCoin/bitcoin-0.3.21/
+Binaries for Andaluzcoin version 0.3.21 are available at:
+  https://sourceforge.net/projects/bitcoin/files/Andaluzcoin/bitcoin-0.3.21/
 
 Changes and new features from the 0.3.20 release include:
 

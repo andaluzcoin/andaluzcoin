@@ -14,8 +14,8 @@ BEGIN
     BEGIN
         BLOCK "040904E4" // U.S. English - multilingual (hex)
         BEGIN
-            VALUE "CompanyName",        "AndaluzCoin"
-            VALUE "FileDescription",    "bitcoin-tx (CLI AndaluzCoin transaction editor utility)"
+            VALUE "CompanyName",        "Andaluzcoin"
+            VALUE "FileDescription",    "bitcoin-tx (CLI Andaluzcoin transaction editor utility)"
             VALUE "FileVersion",        CLIENT_VERSION_STRING
             VALUE "InternalName",       "bitcoin-tx"
             VALUE "LegalCopyright",     COPYRIGHT_STR

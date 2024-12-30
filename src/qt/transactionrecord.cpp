@@ -1,4 +1,4 @@
-// Copyright (c) 2011-2022 The AndaluzCoin Core developers
+// Copyright (c) 2011-2022 The Andaluzcoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -83,7 +83,7 @@ QList<TransactionRecord> TransactionRecord::decomposeTransaction(const interface
 
                 if (!std::get_if<CNoDestination>(&wtx.txout_address[i]))
                 {
-                    // Sent to AndaluzCoin Address
+                    // Sent to Andaluzcoin Address
                     sub.type = TransactionRecord::SendToAddress;
                     sub.address = EncodeDestination(wtx.txout_address[i]);
                 }
@@ -119,7 +119,7 @@ QList<TransactionRecord> TransactionRecord::decomposeTransaction(const interface
                 sub.involvesWatchAddress = mine & ISMINE_WATCH_ONLY;
                 if (wtx.txout_address_is_mine[i])
                 {
-                    // Received by AndaluzCoin Address
+                    // Received by Andaluzcoin Address
                     sub.type = TransactionRecord::RecvWithAddress;
                     sub.address = EncodeDestination(wtx.txout_address[i]);
                 }

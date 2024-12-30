@@ -1,4 +1,4 @@
-// Copyright (c) 2011-2021 The AndaluzCoin Core developers
+// Copyright (c) 2011-2021 The Andaluzcoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -18,7 +18,7 @@ QT_END_NAMESPACE
 
 /** Widget for enteringandaluzcoin amounts.
   */
-class AndaluzCoinAmountField: public QWidget
+class AndaluzcoinAmountField: public QWidget
 {
     Q_OBJECT
 
@@ -27,7 +27,7 @@ class AndaluzCoinAmountField: public QWidget
     Q_PROPERTY(qint64 value READ value WRITE setValue NOTIFY valueChanged USER true)
 
 public:
-    explicit AndaluzCoinAmountField(QWidget *parent = nullptr);
+    explicit AndaluzcoinAmountField(QWidget *parent = nullptr);
 
     CAmount value(bool *value=nullptr) const;
     void setValue(const CAmount& value);
@@ -53,7 +53,7 @@ public:
     bool validate();
 
     /** Change unit used to display amount. */
-    void setDisplayUnit(AndaluzCoinUnit new_unit);
+    void setDisplayUnit(AndaluzcoinUnit new_unit);
 
     /** Make field empty and ready for new input. */
     void clear();

@@ -1,5 +1,5 @@
-AndaluzCoin version 0.5.1 is now available for download at:
-http://sourceforge.net/projects/bitcoin/files/AndaluzCoin/bitcoin-0.5.1/
+Andaluzcoin version 0.5.1 is now available for download at:
+http://sourceforge.net/projects/bitcoin/files/Andaluzcoin/bitcoin-0.5.1/
 
 This is a bugfix-only release.
 

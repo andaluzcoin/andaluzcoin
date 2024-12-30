@@ -1,4 +1,4 @@
-// Copyright (c) 2018-2022 The AndaluzCoin Core developers
+// Copyright (c) 2018-2022 The Andaluzcoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -51,7 +51,7 @@ void TestRpcCommand(RPCConsole* console)
 }
 } // namespace
 
-//! Entry point for AndaluzCoinApplication tests.
+//! Entry point for AndaluzcoinApplication tests.
 void AppTests::appTests()
 {
 #ifdef Q_OS_MACOS
@@ -72,7 +72,7 @@ void AppTests::appTests()
     QScopedPointer<const NetworkStyle> style(NetworkStyle::instantiate(Params().GetChainType()));
     m_app.setupPlatformStyle();
     m_app.createWindow(style.data());
-    connect(&m_app, &AndaluzCoinApplication::windowShown, this, &AppTests::guiTests);
+    connect(&m_app, &AndaluzcoinApplication::windowShown, this, &AppTests::guiTests);
     expectCallback("guiTests");
     m_app.baseInitialize();
     m_app.requestInitialize();
@@ -84,11 +84,11 @@ void AppTests::appTests()
     LogInstance().DisconnectTestLogger();
 }
 
-//! Entry point for AndaluzCoinGUI tests.
-void AppTests::guiTests(AndaluzCoinGUI* window)
+//! Entry point for AndaluzcoinGUI tests.
+void AppTests::guiTests(AndaluzcoinGUI* window)
 {
     HandleCallback callback{"guiTests", *this};
-    connect(window, &AndaluzCoinGUI::consoleShown, this, &AppTests::consoleTests);
+    connect(window, &AndaluzcoinGUI::consoleShown, this, &AppTests::consoleTests);
     expectCallback("consoleTests");
     QAction* action = window->findChild<QAction*>("openRPCConsoleAction");
     action->activate(QAction::Trigger);

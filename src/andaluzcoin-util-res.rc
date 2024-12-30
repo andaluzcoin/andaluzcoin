@@ -14,8 +14,8 @@ BEGIN
     BEGIN
         BLOCK "040904E4" // U.S. English - multilingual (hex)
         BEGIN
-            VALUE "CompanyName",        "AndaluzCoin"
-            VALUE "FileDescription",    "bitcoin-util (CLI AndaluzCoin utility)"
+            VALUE "CompanyName",        "Andaluzcoin"
+            VALUE "FileDescription",    "bitcoin-util (CLI Andaluzcoin utility)"
             VALUE "FileVersion",        CLIENT_VERSION_STRING
             VALUE "InternalName",       "bitcoin-util"
             VALUE "LegalCopyright",     COPYRIGHT_STR

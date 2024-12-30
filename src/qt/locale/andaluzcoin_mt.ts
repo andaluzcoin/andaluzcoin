@@ -58,13 +58,13 @@
         <translation type="unfinished">Agħżel</translation>
     </message>
     <message>
-        <source>These are your AndaluzCoin addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
-        <translation type="unfinished">Dawn huma l-indirizzi AndaluzCoin tiegħek biex tibgħat il-ħlasijiet. Dejjem iċċekkja l-ammont u l-indirizz li tirċievi qabel ma tibgħat muniti.</translation>
+        <source>These are your Andaluzcoin addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
+        <translation type="unfinished">Dawn huma l-indirizzi Andaluzcoin tiegħek biex tibgħat il-ħlasijiet. Dejjem iċċekkja l-ammont u l-indirizz li tirċievi qabel ma tibgħat muniti.</translation>
     </message>
     <message>
-        <source>These are your AndaluzCoin addresses for receiving payments. Use the 'Create new receiving address' button in the receive tab to create new addresses.
+        <source>These are your Andaluzcoin addresses for receiving payments. Use the 'Create new receiving address' button in the receive tab to create new addresses.
 Signing is only possible with addresses of the type 'legacy'.</source>
-        <translation type="unfinished">Dawn huma l-indirizzi AndaluzCoin tiegħek biex tirċievi ħlasijiet. Uża l-buttuna 'Oħloq indirizz riċevitur ġdid' fit-tab tar-riċeviment biex toħloq indirizzi ġodda.
+        <translation type="unfinished">Dawn huma l-indirizzi Andaluzcoin tiegħek biex tirċievi ħlasijiet. Uża l-buttuna 'Oħloq indirizz riċevitur ġdid' fit-tab tar-riċeviment biex toħloq indirizzi ġodda.
 L-iffirmar huwa possibbli biss b'indirizzi tat-tip 'legacy'.</translation>
     </message>
     <message>
@@ -244,7 +244,7 @@ L-iffirmar huwa possibbli biss b'indirizzi tat-tip 'legacy'.</translation>
     </message>
 </context>
 <context>
-    <name>AndaluzCoinApplication</name>
+    <name>AndaluzcoinApplication</name>
     <message>
         <source>Settings file %1 might be corrupt or invalid.</source>
         <translation type="unfinished">Il-fajl tas-settings %1jista' jkun korrott jew invalidu.</translation>
@@ -346,7 +346,7 @@ L-iffirmar huwa possibbli biss b'indirizzi tat-tip 'legacy'.</translation>
     </message>
 </context>
 <context>
-    <name>AndaluzCoinGUI</name>
+    <name>AndaluzcoinGUI</name>
     <message>
         <source>&amp;Overview</source>
         <translation type="unfinished">&amp;Ħarsa ġenerali</translation>
@@ -413,8 +413,8 @@ L-iffirmar huwa possibbli biss b'indirizzi tat-tip 'legacy'.</translation>
         <translation type="unfinished">Proxy huwa &lt;b&gt;attivat&lt;/b&gt;:%1</translation>
     </message>
     <message>
-        <source>Send coins to a AndaluzCoin address</source>
-        <translation type="unfinished">Ibgħat muniti f'indirizz AndaluzCoin</translation>
+        <source>Send coins to a Andaluzcoin address</source>
+        <translation type="unfinished">Ibgħat muniti f'indirizz Andaluzcoin</translation>
     </message>
     <message>
         <source>Backup wallet to another location</source>
@@ -457,16 +457,16 @@ L-iffirmar huwa possibbli biss b'indirizzi tat-tip 'legacy'.</translation>
         <translation type="unfinished">Iffirma &amp;messaġġ...</translation>
     </message>
     <message>
-        <source>Sign messages with your AndaluzCoin addresses to prove you own them</source>
-        <translation type="unfinished">Iffirma messaġġi bl-indirizzi AndaluzCoin tiegħek biex tipprova li inti stess</translation>
+        <source>Sign messages with your Andaluzcoin addresses to prove you own them</source>
+        <translation type="unfinished">Iffirma messaġġi bl-indirizzi Andaluzcoin tiegħek biex tipprova li inti stess</translation>
     </message>
     <message>
         <source>&amp;Verify message…</source>
         <translation type="unfinished">&amp;Ivverifika l-messaġġ...</translation>
     </message>
     <message>
-        <source>Verify messages to ensure they were signed with specified AndaluzCoin addresses</source>
-        <translation type="unfinished">Ivverifika l-messaġġi biex tiżgura li ġew iffirmati b'indirizzi AndaluzCoin speċifikati</translation>
+        <source>Verify messages to ensure they were signed with specified Andaluzcoin addresses</source>
+        <translation type="unfinished">Ivverifika l-messaġġi biex tiżgura li ġew iffirmati b'indirizzi Andaluzcoin speċifikati</translation>
     </message>
     <message>
         <source>&amp;Load PSBT from file…</source>
@@ -574,16 +574,16 @@ L-iffirmar huwa possibbli biss b'indirizzi tat-tip 'legacy'.</translation>
         <translation type="unfinished">Aġġornat</translation>
     </message>
     <message>
-        <source>Load Partially Signed AndaluzCoin Transaction</source>
-        <translation type="unfinished">Tagħbija Transazzjoni AndaluzCoin iffirmata parzjalment</translation>
+        <source>Load Partially Signed Andaluzcoin Transaction</source>
+        <translation type="unfinished">Tagħbija Transazzjoni Andaluzcoin iffirmata parzjalment</translation>
     </message>
     <message>
         <source>Load PSBT from &amp;clipboard…</source>
         <translation type="unfinished">Tagħbija PSBT minn &amp;clipboard...</translation>
     </message>
     <message>
-        <source>Load Partially Signed AndaluzCoin Transaction from clipboard</source>
-        <translation type="unfinished">Tagħbija Transazzjoni AndaluzCoin iffirmata parzjalment mill-clipboard</translation>
+        <source>Load Partially Signed Andaluzcoin Transaction from clipboard</source>
+        <translation type="unfinished">Tagħbija Transazzjoni Andaluzcoin iffirmata parzjalment mill-clipboard</translation>
     </message>
     <message>
         <source>Node window</source>
@@ -632,8 +632,8 @@ L-iffirmar huwa possibbli biss b'indirizzi tat-tip 'legacy'.</translation>
         <translation type="unfinished">Agħlaq il-kartieri kollha</translation>
     </message>
     <message>
-        <source>Show the %1 help message to get a list with possible AndaluzCoin command-line options</source>
-        <translation type="unfinished">Uri %1l-messaġġ ta 'għajnuna biex tikseb lista b'għażliet possibbli tal-linja tal-kmand AndaluzCoin</translation>
+        <source>Show the %1 help message to get a list with possible Andaluzcoin command-line options</source>
+        <translation type="unfinished">Uri %1l-messaġġ ta 'għajnuna biex tikseb lista b'għażliet possibbli tal-linja tal-kmand Andaluzcoin</translation>
     </message>
     <message>
         <source>&amp;Mask values</source>
@@ -688,13 +688,13 @@ L-iffirmar huwa possibbli biss b'indirizzi tat-tip 'legacy'.</translation>
         <translation type="unfinished">Uri</translation>
     </message>
     <message numerus="yes">
-        <source>%n active connection(s) to AndaluzCoin network.</source>
+        <source>%n active connection(s) to Andaluzcoin network.</source>
         <extracomment>A substring of the tooltip.</extracomment>
         <translation type="unfinished">
-            <numerusform>%nkonnessjoni(jiet) attiva(i) man-netwerk AndaluzCoin.</numerusform>
-            <numerusform>%nkonnessjoni(jiet) attiva(i) man-netwerk AndaluzCoin.</numerusform>
-            <numerusform>%nkonnessjoni(jiet) attiva(i) man-netwerk AndaluzCoin.</numerusform>
-            <numerusform>%nkonnessjoni(jiet) attiva(i) man-netwerk AndaluzCoin.</numerusform>
+            <numerusform>%nkonnessjoni(jiet) attiva(i) man-netwerk Andaluzcoin.</numerusform>
+            <numerusform>%nkonnessjoni(jiet) attiva(i) man-netwerk Andaluzcoin.</numerusform>
+            <numerusform>%nkonnessjoni(jiet) attiva(i) man-netwerk Andaluzcoin.</numerusform>
+            <numerusform>%nkonnessjoni(jiet) attiva(i) man-netwerk Andaluzcoin.</numerusform>
         </translation>
     </message>
     <message>

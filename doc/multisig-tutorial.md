@@ -1,6 +1,6 @@
 # 1. Multisig Tutorial
 
-Currently, it is possible to create a multisig wallet using AndaluzCoin Core only.
+Currently, it is possible to create a multisig wallet using Andaluzcoin Core only.
 
 Although there is already a brief explanation about the multisig in the [Descriptors documentation](https://github.com/bitcoin/bitcoin/blob/master/doc/descriptors.md#multisig), this tutorial proposes to use the signet (instead of regtest), bringing the reader closer to a real environment and explaining some functions in more detail.
 
@@ -14,7 +14,7 @@ Before starting this tutorial, start theandaluzcoin node on the signet network.
 
 This tutorial also uses the default WPKH derivation path to get the xpubs and does not conform to [BIP 45](https://github.com/bitcoin/bips/blob/master/bip-0045.mediawiki) or [BIP 87](https://github.com/bitcoin/bips/blob/master/bip-0087.mediawiki).
 
-At the time of writing, there is no way to extract a specific path from wallets in AndaluzCoin Core. For this, an external signer/xpub can be used.
+At the time of writing, there is no way to extract a specific path from wallets in Andaluzcoin Core. For this, an external signer/xpub can be used.
 
 ## 1.1 Basic Multisig Workflow
 
@@ -31,7 +31,7 @@ do
 done
 ```
 
-Extract the xpub of each wallet. To do this, the `listdescriptors` RPC is used. By default, AndaluzCoin Core single-sig wallets are created using path `m/44'/1'/0'` for PKH, `m/84'/1'/0'` for WPKH, `m/49'/1'/0'` for P2WPKH-nested-in-P2SH and `m/86'/1'/0'` for P2TR based accounts. Each of them uses the chain 0 for external addresses and chain 1 for internal ones, as shown in the example below.
+Extract the xpub of each wallet. To do this, the `listdescriptors` RPC is used. By default, Andaluzcoin Core single-sig wallets are created using path `m/44'/1'/0'` for PKH, `m/84'/1'/0'` for WPKH, `m/49'/1'/0'` for P2WPKH-nested-in-P2SH and `m/86'/1'/0'` for P2TR based accounts. Each of them uses the chain 0 for external addresses and chain 1 for internal ones, as shown in the example below.
 
 ```
 wpkh([1004658e/84'/1'/0']tpubDCBEcmVKbfC9KfdydyLbJ2gfNL88grZu1XcWSW9ytTM6fitvaRmVyr8Ddf7SjZ2ZfMx9RicjYAXhuh3fmLiVLPodPEqnQQURUfrBKiiVZc8/0/*)#g8l47ngv
@@ -40,7 +40,7 @@ wpkh([1004658e/84'/1'/0']tpubDCBEcmVKbfC9KfdydyLbJ2gfNL88grZu1XcWSW9ytTM6fitvaRm
 ```
 
 The suffix (after #) is the checksum. Descriptors can optionally be suffixed with a checksum to protect against typos or copy-paste errors.
-All RPCs in AndaluzCoin Core will include the checksum in their output.
+All RPCs in Andaluzcoin Core will include the checksum in their output.
 
 ```bash
 declare -A xpubs
@@ -61,7 +61,7 @@ The following command can be used to verify if the xpub was generated correctly.
 for x in "${!xpubs[@]}"; do printf "[%s]=%s\n" "$x" "${xpubs[$x]}" ; done
 ```
 
-As previously mentioned, this step extracts the `m/84'/1'/0'` account instead of the path defined in [BIP 45](https://github.com/bitcoin/bips/blob/master/bip-0045.mediawiki) or [BIP 87](https://github.com/bitcoin/bips/blob/master/bip-0087.mediawiki), since there is no way to extract a specific path in AndaluzCoin Core at the time of writing.
+As previously mentioned, this step extracts the `m/84'/1'/0'` account instead of the path defined in [BIP 45](https://github.com/bitcoin/bips/blob/master/bip-0045.mediawiki) or [BIP 87](https://github.com/bitcoin/bips/blob/master/bip-0087.mediawiki), since there is no way to extract a specific path in Andaluzcoin Core at the time of writing.
 
 ### 1.2 Define the Multisig Descriptors
 
@@ -150,9 +150,9 @@ The `getbalances` RPC may be used to check the balance. Coins with `trusted` sta
 
 ### 1.5 Create a PSBT
 
-Unlike singlesig wallets, multisig wallets cannot create and sign transactions directly because they require the signatures of the co-signers. Instead they create a Partially Signed AndaluzCoin Transaction (PSBT).
+Unlike singlesig wallets, multisig wallets cannot create and sign transactions directly because they require the signatures of the co-signers. Instead they create a Partially Signed Andaluzcoin Transaction (PSBT).
 
-PSBT is a data format that allows wallets and other tools to exchange information about a AndaluzCoin transaction and the signatures necessary to complete it. [[source](https://bitcoinops.org/en/topics/psbt/)]
+PSBT is a data format that allows wallets and other tools to exchange information about a Andaluzcoin transaction and the signatures necessary to complete it. [[source](https://bitcoinops.org/en/topics/psbt/)]
 
 The current PSBT version (v0) is defined in [BIP 174](https://github.com/bitcoin/bips/blob/master/bip-0174.mediawiki).
 

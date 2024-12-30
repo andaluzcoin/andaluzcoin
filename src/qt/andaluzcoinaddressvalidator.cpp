@@ -1,4 +1,4 @@
-// Copyright (c) 2011-2018 The AndaluzCoin Core developers
+// Copyright (c) 2011-2018 The Andaluzcoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -15,12 +15,12 @@
   - All lower-case letters except for 'l'
 */
 
-AndaluzCoinAddressEntryValidator::AndaluzCoinAddressEntryValidator(QObject *parent) :
+AndaluzcoinAddressEntryValidator::AndaluzcoinAddressEntryValidator(QObject *parent) :
     QValidator(parent)
 {
 }
 
-QValidator::State AndaluzCoinAddressEntryValidator::validate(QString &input, int &pos) const
+QValidator::State AndaluzcoinAddressEntryValidator::validate(QString &input, int &pos) const
 {
     Q_UNUSED(pos);
 
@@ -80,15 +80,15 @@ QValidator::State AndaluzCoinAddressEntryValidator::validate(QString &input, int
     return state;
 }
 
-AndaluzCoinAddressCheckValidator::AndaluzCoinAddressCheckValidator(QObject *parent) :
+AndaluzcoinAddressCheckValidator::AndaluzcoinAddressCheckValidator(QObject *parent) :
     QValidator(parent)
 {
 }
 
-QValidator::State AndaluzCoinAddressCheckValidator::validate(QString &input, int &pos) const
+QValidator::State AndaluzcoinAddressCheckValidator::validate(QString &input, int &pos) const
 {
     Q_UNUSED(pos);
-    // Validate the passed AndaluzCoin address
+    // Validate the passed Andaluzcoin address
     if (IsValidDestinationString(input.toStdString())) {
         return QValidator::Acceptable;
     }

@@ -1,5 +1,5 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
-// Copyright (c) 2009-2022 The AndaluzCoin Core developers
+// Copyright (c) 2009-2022 The Andaluzcoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -1074,7 +1074,7 @@ bool AppInitParameterInteraction(const ArgsManager& args)
 
 static bool LockDataDirectory(bool probeOnly)
 {
-    // Make sure only a single AndaluzCoin process is using the data directory.
+    // Make sure only a single Andaluzcoin process is using the data directory.
     const fs::path& datadir = gArgs.GetDataDirNet();
     switch (util::LockDirectory(datadir, ".lock", probeOnly)) {
     case util::LockResult::ErrorWrite:

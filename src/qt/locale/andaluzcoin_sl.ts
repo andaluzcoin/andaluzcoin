@@ -58,11 +58,11 @@
         <translation type="unfinished">&amp;Izberi</translation>
     </message>
     <message>
-        <source>These are your AndaluzCoin addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
+        <source>These are your Andaluzcoin addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
         <translation type="unfinished">To so vašiandaluzcoin-naslovi za pošiljanje. Pred pošiljanjem vedno preverite znesek in prejemnikov naslov.</translation>
     </message>
     <message>
-        <source>These are your AndaluzCoin addresses for receiving payments. Use the 'Create new receiving address' button in the receive tab to create new addresses.
+        <source>These are your Andaluzcoin addresses for receiving payments. Use the 'Create new receiving address' button in the receive tab to create new addresses.
 Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">To so vašiandaluzcoin-naslovi, ki jih uporabljate za prejemanje plačil. Za tvorbo novega naslova uporabite gumb "Ustvari nov prejemni naslov" v zavihku Prejmi.
 Podpisovanje je možno le s podedovanimi ("legacy") naslovi.</translation>
@@ -248,7 +248,7 @@ Podpisovanje je možno le s podedovanimi ("legacy") naslovi.</translation>
     </message>
 </context>
 <context>
-    <name>AndaluzCoinApplication</name>
+    <name>AndaluzcoinApplication</name>
     <message>
         <source>Settings file %1 might be corrupt or invalid.</source>
         <translation type="unfinished">Datoteka z nastavitvami %1 je morda ovkarjena ali neveljavna.</translation>
@@ -299,7 +299,7 @@ Podpisovanje je možno le s podedovanimi ("legacy") naslovi.</translation>
         <translation type="unfinished">Znesek</translation>
     </message>
     <message>
-        <source>Enter a AndaluzCoin address (e.g. %1)</source>
+        <source>Enter a Andaluzcoin address (e.g. %1)</source>
         <translation type="unfinished">Vnesiteandaluzcoin-naslov (npr. %1)</translation>
     </message>
     <message>
@@ -409,7 +409,7 @@ Podpisovanje je možno le s podedovanimi ("legacy") naslovi.</translation>
     </message>
 </context>
 <context>
-    <name>AndaluzCoinGUI</name>
+    <name>AndaluzcoinGUI</name>
     <message>
         <source>&amp;Overview</source>
         <translation type="unfinished">Pre&amp;gled</translation>
@@ -476,7 +476,7 @@ Podpisovanje je možno le s podedovanimi ("legacy") naslovi.</translation>
         <translation type="unfinished">Posredniški strežnik je &lt;b&gt;omogočen&lt;/b&gt;: %1</translation>
     </message>
     <message>
-        <source>Send coins to a AndaluzCoin address</source>
+        <source>Send coins to a Andaluzcoin address</source>
         <translation type="unfinished">Pošljite novce naandaluzcoin-naslov</translation>
     </message>
     <message>
@@ -520,7 +520,7 @@ Podpisovanje je možno le s podedovanimi ("legacy") naslovi.</translation>
         <translation type="unfinished">&amp;Podpiši sporočilo...</translation>
     </message>
     <message>
-        <source>Sign messages with your AndaluzCoin addresses to prove you own them</source>
+        <source>Sign messages with your Andaluzcoin addresses to prove you own them</source>
         <translation type="unfinished">Podpišite poljubno sporočilo z enim svojihandaluzcoin-naslovov, da prejemniku sporočila dokažete, da je ta naslov v vaši lasti.</translation>
     </message>
     <message>
@@ -528,7 +528,7 @@ Podpisovanje je možno le s podedovanimi ("legacy") naslovi.</translation>
         <translation type="unfinished">P&amp;reveri podpis...</translation>
     </message>
     <message>
-        <source>Verify messages to ensure they were signed with specified AndaluzCoin addresses</source>
+        <source>Verify messages to ensure they were signed with specified Andaluzcoin addresses</source>
         <translation type="unfinished">Preverite, če je bilo prejeto sporočilo podpisano z določenimandaluzcoin-naslovom.</translation>
     </message>
     <message>
@@ -601,7 +601,7 @@ Podpisovanje je možno le s podedovanimi ("legacy") naslovi.</translation>
         </translation>
     </message>
     <message>
-        <source>Load Partially Signed AndaluzCoin Transaction</source>
+        <source>Load Partially Signed Andaluzcoin Transaction</source>
         <translation type="unfinished">Naloži delno podpisanoandaluzcoin-transakcijo</translation>
     </message>
     <message>
@@ -609,7 +609,7 @@ Podpisovanje je možno le s podedovanimi ("legacy") naslovi.</translation>
         <translation type="unfinished">Naloži DPBT z &amp;odložišča...</translation>
     </message>
     <message>
-        <source>Load Partially Signed AndaluzCoin Transaction from clipboard</source>
+        <source>Load Partially Signed Andaluzcoin Transaction from clipboard</source>
         <translation type="unfinished">Naloži delno podpisanoandaluzcoin-transakcijo z odložišča</translation>
     </message>
     <message>
@@ -659,7 +659,7 @@ Podpisovanje je možno le s podedovanimi ("legacy") naslovi.</translation>
         <translation type="unfinished">Zapri vse denarnice</translation>
     </message>
     <message>
-        <source>Show the %1 help message to get a list with possible AndaluzCoin command-line options</source>
+        <source>Show the %1 help message to get a list with possible Andaluzcoin command-line options</source>
         <translation type="unfinished">Pokaži %1 sporočilo za pomoč s seznamom vseh možnosti v ukazni vrstici</translation>
     </message>
     <message>
@@ -719,7 +719,7 @@ Podpisovanje je možno le s podedovanimi ("legacy") naslovi.</translation>
         <translation type="unfinished">&amp;Prikaži</translation>
     </message>
     <message numerus="yes">
-        <source>%n active connection(s) to AndaluzCoin network.</source>
+        <source>%n active connection(s) to Andaluzcoin network.</source>
         <extracomment>A substring of the tooltip.</extracomment>
         <translation type="unfinished">
             <numerusform>%n aktivna povezava v omrežjeandaluzcoin. </numerusform>
@@ -1184,7 +1184,7 @@ Podpisovanje je možno le s podedovanimi ("legacy") naslovi.</translation>
         <translation type="unfinished">Uredi naslov za pošiljanje</translation>
     </message>
     <message>
-        <source>The entered address "%1" is not a valid AndaluzCoin address.</source>
+        <source>The entered address "%1" is not a valid Andaluzcoin address.</source>
         <translation type="unfinished">Vnešeni naslov "%1" ni veljavenandaluzcoin-naslov.</translation>
     </message>
     <message>
@@ -1279,7 +1279,7 @@ Podpisovanje je možno le s podedovanimi ("legacy") naslovi.</translation>
         </translation>
     </message>
     <message>
-        <source>%1 will download and store a copy of the AndaluzCoin block chain.</source>
+        <source>%1 will download and store a copy of the Andaluzcoin block chain.</source>
         <translation type="unfinished">%1 bo prenesel in shranil kopijo verige blokov.</translation>
     </message>
     <message>
@@ -1583,7 +1583,7 @@ Podpisovanje je možno le s podedovanimi ("legacy") naslovi.</translation>
         <translation type="unfinished">&amp;Pot do zunanjega podpisnika</translation>
     </message>
     <message>
-        <source>Automatically open the AndaluzCoin client port on the router. This only works when your router supports UPnP and it is enabled.</source>
+        <source>Automatically open the Andaluzcoin client port on the router. This only works when your router supports UPnP and it is enabled.</source>
         <translation type="unfinished">Samodejno odpiranje vrat zaandaluzcoin-odjemalec na usmerjevalniku (routerju). To deluje le, če usmerjevalnik podpira UPnP in je ta funkcija na usmerjevalniku omogočena.</translation>
     </message>
     <message>
@@ -1591,7 +1591,7 @@ Podpisovanje je možno le s podedovanimi ("legacy") naslovi.</translation>
         <translation type="unfinished">Preslikaj vrata z uporabo &amp;UPnP</translation>
     </message>
     <message>
-        <source>Automatically open the AndaluzCoin client port on the router. This only works when your router supports NAT-PMP and it is enabled. The external port could be random.</source>
+        <source>Automatically open the Andaluzcoin client port on the router. This only works when your router supports NAT-PMP and it is enabled. The external port could be random.</source>
         <translation type="unfinished">Samodejno odpiranje vrat zaandaluzcoin-odjemalec na usmerjevalniku. To deluje le, če usmerjevalnik podpira NAT-PMP in je ta funkcija na usmerjevalniku omogočena. Zunanja številka vrat je lahko naključna.</translation>
     </message>
     <message>
@@ -1607,8 +1607,8 @@ Podpisovanje je možno le s podedovanimi ("legacy") naslovi.</translation>
         <translation type="unfinished">Dovoli &amp;dohodne povezave</translation>
     </message>
     <message>
-        <source>Connect to the AndaluzCoin network through a SOCKS5 proxy.</source>
-        <translation type="unfinished">Poveži se v omrežje AndaluzCoin preko posredniškega strežnika SOCKS5.</translation>
+        <source>Connect to the Andaluzcoin network through a SOCKS5 proxy.</source>
+        <translation type="unfinished">Poveži se v omrežje Andaluzcoin preko posredniškega strežnika SOCKS5.</translation>
     </message>
     <message>
         <source>&amp;Connect through SOCKS5 proxy (default proxy):</source>
@@ -1687,8 +1687,8 @@ Podpisovanje je možno le s podedovanimi ("legacy") naslovi.</translation>
         <translation type="unfinished">Omogoči dodatne možnosti podrobnega nadzora nad  kovanci v transakcijah.</translation>
     </message>
     <message>
-        <source>Connect to the AndaluzCoin network through a separate SOCKS5 proxy for Tor onion services.</source>
-        <translation type="unfinished">Poveži se v omrežje AndaluzCoin prek ločenega posredniškega strežnika SOCKS5 za storitve onion (Tor).</translation>
+        <source>Connect to the Andaluzcoin network through a separate SOCKS5 proxy for Tor onion services.</source>
+        <translation type="unfinished">Poveži se v omrežje Andaluzcoin prek ločenega posredniškega strežnika SOCKS5 za storitve onion (Tor).</translation>
     </message>
     <message>
         <source>Use separate SOCKS&amp;5 proxy to reach peers via Tor onion services:</source>
@@ -1784,8 +1784,8 @@ Podpisovanje je možno le s podedovanimi ("legacy") naslovi.</translation>
         <translation type="unfinished">Obrazec</translation>
     </message>
     <message>
-        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the AndaluzCoin network after a connection is established, but this process has not completed yet.</source>
-        <translation type="unfinished">Prikazani podatki so morda zastareli. Program ob vzpostavitvi povezave samodejno sinhronizira denarnico z omrežjem AndaluzCoin, a trenutno ta postopek še ni zaključen.</translation>
+        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the Andaluzcoin network after a connection is established, but this process has not completed yet.</source>
+        <translation type="unfinished">Prikazani podatki so morda zastareli. Program ob vzpostavitvi povezave samodejno sinhronizira denarnico z omrežjem Andaluzcoin, a trenutno ta postopek še ni zaključen.</translation>
     </message>
     <message>
         <source>Watch-only:</source>
@@ -2015,7 +2015,7 @@ Zaradi široko razširjenih varnostih hib v BIP70 vam toplo priporočamo, da mor
 Svetujemo, da prodajalca prosite, naj vam priskrbi URI na podlagi BIP21.</translation>
     </message>
     <message>
-        <source>URI cannot be parsed! This can be caused by an invalid AndaluzCoin address or malformed URI parameters.</source>
+        <source>URI cannot be parsed! This can be caused by an invalid Andaluzcoin address or malformed URI parameters.</source>
         <translation type="unfinished">URI je nerazumljiv. Možno je, da jeandaluzcoin-naslov neveljaven ali pa so parametri URI-ja napačno oblikovani.</translation>
     </message>
     <message>
@@ -2581,7 +2581,7 @@ Za več informacij glede uporabe konzole uporabite ukaz %6.
         <translation type="unfinished">&amp;Sporočilo:</translation>
     </message>
     <message>
-        <source>An optional message to attach to the payment request, which will be displayed when the request is opened. Note: The message will not be sent with the payment over the AndaluzCoin network.</source>
+        <source>An optional message to attach to the payment request, which will be displayed when the request is opened. Note: The message will not be sent with the payment over the Andaluzcoin network.</source>
         <translation type="unfinished">Neobvezno sporočilo kot priponka zahtevku za plačilo, ki bo prikazano, ko bo zahtevek odprt. Opomba: Opravljeno plačilo v omrežjuandaluzcoin tega sporočila ne bo vsebovalo.</translation>
     </message>
     <message>
@@ -2968,7 +2968,7 @@ Opomba: Ker se provizija izračuna na bajt, bi provizija "100 satoshijev na kvB"
         <translation type="unfinished">Ustvari n&amp;epodpisano</translation>
     </message>
     <message>
-        <source>Creates a Partially Signed AndaluzCoin Transaction (PSBT) for use with e.g. an offline %1 wallet, or a PSBT-compatible hardware wallet.</source>
+        <source>Creates a Partially Signed Andaluzcoin Transaction (PSBT) for use with e.g. an offline %1 wallet, or a PSBT-compatible hardware wallet.</source>
         <translation type="unfinished">Ustvari delno podpisanoandaluzcoin-transakcijo (DPBT, angl. PSBT), ki jo lahko kopirate in potem podpišete n.pr. z nepovezano (offline) %1 denarnico ali pa s hardversko denarnico, ki podpira DPBT.</translation>
     </message>
     <message>
@@ -3024,7 +3024,7 @@ Opomba: Ker se provizija izračuna na bajt, bi provizija "100 satoshijev na kvB"
         <translation type="unfinished">Provizijo lahko zvišate kasneje (vsebuje Replace-By-Fee, BIP-125).</translation>
     </message>
     <message>
-        <source>Please, review your transaction proposal. This will produce a Partially Signed AndaluzCoin Transaction (PSBT) which you can save or copy and then sign with e.g. an offline %1 wallet, or a PSBT-compatible hardware wallet.</source>
+        <source>Please, review your transaction proposal. This will produce a Partially Signed Andaluzcoin Transaction (PSBT) which you can save or copy and then sign with e.g. an offline %1 wallet, or a PSBT-compatible hardware wallet.</source>
         <extracomment>Text to inform a user attempting to create a transaction of their current options. At this stage, a user can only create a PSBT. This string is displayed when private keys are disabled and an external signer is not available.</extracomment>
         <translation type="unfinished">Prosimo, preglejte predlog za transakcijo. Ustvarjena bo delno podpisanaandaluzcoin-transakcija (DPBT), ki jo lahko shranite ali kopirate in potem podpišete n.pr. z nepovezano (offline) %1 denarnico ali pa s hardversko denarnico, ki podpira DPBT.</translation>
     </message>
@@ -3034,7 +3034,7 @@ Opomba: Ker se provizija izračuna na bajt, bi provizija "100 satoshijev na kvB"
         <translation type="unfinished">Želite ustvariti takšno transakcijo?</translation>
     </message>
     <message>
-        <source>Please, review your transaction. You can create and send this transaction or create a Partially Signed AndaluzCoin Transaction (PSBT), which you can save or copy and then sign with, e.g., an offline %1 wallet, or a PSBT-compatible hardware wallet.</source>
+        <source>Please, review your transaction. You can create and send this transaction or create a Partially Signed Andaluzcoin Transaction (PSBT), which you can save or copy and then sign with, e.g., an offline %1 wallet, or a PSBT-compatible hardware wallet.</source>
         <extracomment>Text to inform a user attempting to create a transaction of their current options. At this stage, a user can send their transaction or create a PSBT. This string is displayed when both private keys and PSBT controls are enabled.</extracomment>
         <translation type="unfinished">Prosimo, preglejte podrobnosti transakcije. Transakcijo lahko ustvarite in pošljete, lahko pa tudi ustvarite delno podpisanoandaluzcoin-transakcijo (DPBT, angl. PSBT), ki jo lahko shranite ali kopirate na odložišče in kasneje prodpišete n.pr. z nepovezano %1 denarnico ali z denarnico, ki podpiral DPBT.</translation>
     </message>
@@ -3115,7 +3115,7 @@ Opomba: Ker se provizija izračuna na bajt, bi provizija "100 satoshijev na kvB"
         </translation>
     </message>
     <message>
-        <source>Warning: Invalid AndaluzCoin address</source>
+        <source>Warning: Invalid Andaluzcoin address</source>
         <translation type="unfinished">Opozorilo: Neveljavenandaluzcoin-naslov</translation>
     </message>
     <message>
@@ -3154,8 +3154,8 @@ Opomba: Ker se provizija izračuna na bajt, bi provizija "100 satoshijev na kvB"
         <translation type="unfinished">Izberite enega od že uporabljenih naslovov</translation>
     </message>
     <message>
-        <source>The AndaluzCoin address to send the payment to</source>
-        <translation type="unfinished">AndaluzCoin-naslov, na katerega bo plačilo poslano</translation>
+        <source>The Andaluzcoin address to send the payment to</source>
+        <translation type="unfinished">Andaluzcoin-naslov, na katerega bo plačilo poslano</translation>
     </message>
     <message>
         <source>Paste address from clipboard</source>
@@ -3190,8 +3190,8 @@ Opomba: Ker se provizija izračuna na bajt, bi provizija "100 satoshijev na kvB"
         <translation type="unfinished">Če vnesete oznako za zgornji naslov, se bo skupaj z naslovom shranila v imenik že uporabljenih naslovov</translation>
     </message>
     <message>
-        <source>A message that was attached to theandaluzcoin: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the AndaluzCoin network.</source>
-        <translation type="unfinished">Sporočilo, ki je bilo pripeto na URI tipaandaluzcoin: in bo shranjeno skupaj s podatki o transakciji. Opomba: Sporočilo ne bo poslano preko omrežja AndaluzCoin.</translation>
+        <source>A message that was attached to theandaluzcoin: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the Andaluzcoin network.</source>
+        <translation type="unfinished">Sporočilo, ki je bilo pripeto na URI tipaandaluzcoin: in bo shranjeno skupaj s podatki o transakciji. Opomba: Sporočilo ne bo poslano preko omrežja Andaluzcoin.</translation>
     </message>
 </context>
 <context>
@@ -3216,8 +3216,8 @@ Opomba: Ker se provizija izračuna na bajt, bi provizija "100 satoshijev na kvB"
         <translation type="unfinished">&amp;Podpiši sporočilo</translation>
     </message>
     <message>
-        <source>The AndaluzCoin address to sign the message with</source>
-        <translation type="unfinished">AndaluzCoin-naslov, s katerim podpisujete sporočilo</translation>
+        <source>The Andaluzcoin address to sign the message with</source>
+        <translation type="unfinished">Andaluzcoin-naslov, s katerim podpisujete sporočilo</translation>
     </message>
     <message>
         <source>Choose previously used address</source>
@@ -3240,7 +3240,7 @@ Opomba: Ker se provizija izračuna na bajt, bi provizija "100 satoshijev na kvB"
         <translation type="unfinished">Kopirj trenutni podpis v sistemsko odložišče.</translation>
     </message>
     <message>
-        <source>Sign the message to prove you own this AndaluzCoin address</source>
+        <source>Sign the message to prove you own this Andaluzcoin address</source>
         <translation type="unfinished">Podpišite sporočilo, da dokažete lastništvo zgornjega naslova.</translation>
     </message>
     <message>
@@ -3264,8 +3264,8 @@ Opomba: Ker se provizija izračuna na bajt, bi provizija "100 satoshijev na kvB"
         <translation type="unfinished">Da preverite verodostojnost sporočila, spodaj vnesite: prejemnikov naslov, prejeto sporočilo (pazljivo skopirajte vse prelome vrstic, presledke, tabulatorje itd.) ter prejeti podpis. Da se izognete napadom tipa man-in-the-middle, vedite, da iz veljavnega podpisa ne sledi nič drugega, kot tisto, kar je navedeno v sporočilu. Podpis samo potrjuje dejstvo, da ima podpisnik v lasti prejemni naslov, ne more pa dokazati pošiljanja nobene transakcije!</translation>
     </message>
     <message>
-        <source>The AndaluzCoin address the message was signed with</source>
-        <translation type="unfinished">AndaluzCoin-naslov, s katerim je bilo sporočilo podpisano</translation>
+        <source>The Andaluzcoin address the message was signed with</source>
+        <translation type="unfinished">Andaluzcoin-naslov, s katerim je bilo sporočilo podpisano</translation>
     </message>
     <message>
         <source>The signed message to verify</source>
@@ -3276,7 +3276,7 @@ Opomba: Ker se provizija izračuna na bajt, bi provizija "100 satoshijev na kvB"
         <translation type="unfinished">Podpis, ustvarjen ob podpisovanju sporočila</translation>
     </message>
     <message>
-        <source>Verify the message to ensure it was signed with the specified AndaluzCoin address</source>
+        <source>Verify the message to ensure it was signed with the specified Andaluzcoin address</source>
         <translation type="unfinished">Preverite, ali je bilo sporočilo v resnici podpisano z navedenimandaluzcoin-naslovom.</translation>
     </message>
     <message>

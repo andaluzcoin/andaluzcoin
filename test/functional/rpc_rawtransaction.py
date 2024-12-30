@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# Copyright (c) 2014-2022 The AndaluzCoin Core developers
+# Copyright (c) 2014-2022 The Andaluzcoin Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 """Test the rawtransaction RPCs.
@@ -29,7 +29,7 @@ from test_framework.script import (
     OP_INVALIDOPCODE,
     OP_RETURN,
 )
-from test_framework.test_framework import AndaluzCoinTestFramework
+from test_framework.test_framework import AndaluzcoinTestFramework
 from test_framework.util import (
     assert_equal,
     assert_greater_than,
@@ -62,7 +62,7 @@ class multidict(dict):
         return self.x
 
 
-class RawTransactionsTest(AndaluzCoinTestFramework):
+class RawTransactionsTest(AndaluzcoinTestFramework):
     def add_options(self, parser):
         self.add_wallet_options(parser, descriptors=False)
 
@@ -293,7 +293,7 @@ class RawTransactionsTest(AndaluzCoinTestFramework):
         self.nodes[0].createrawtransaction(inputs=[], outputs={})  # Should not throw for backwards compatibility
         self.nodes[0].createrawtransaction(inputs=[], outputs=[])
         assert_raises_rpc_error(-8, "Data must be hexadecimal string", self.nodes[0].createrawtransaction, [], {'data': 'foo'})
-        assert_raises_rpc_error(-5, "Invalid AndaluzCoin address", self.nodes[0].createrawtransaction, [], {'foo': 0})
+        assert_raises_rpc_error(-5, "Invalid Andaluzcoin address", self.nodes[0].createrawtransaction, [], {'foo': 0})
         assert_raises_rpc_error(-3, "Invalid amount", self.nodes[0].createrawtransaction, [], {address: 'foo'})
         assert_raises_rpc_error(-3, "Amount out of range", self.nodes[0].createrawtransaction, [], {address: -1})
         assert_raises_rpc_error(-8, "Invalid parameter, duplicated address: %s" % address, self.nodes[0].createrawtransaction, [], multidict([(address, 1), (address, 1)]))

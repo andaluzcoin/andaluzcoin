@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# Copyright (c) 2016-2022 The AndaluzCoin Core developers
+# Copyright (c) 2016-2022 The Andaluzcoin Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 """Test compact blocks (BIP 152)."""
@@ -55,7 +55,7 @@ from test_framework.script import (
     OP_DROP,
     OP_TRUE,
 )
-from test_framework.test_framework import AndaluzCoinTestFramework
+from test_framework.test_framework import AndaluzcoinTestFramework
 from test_framework.util import (
     assert_equal,
     softfork_active,
@@ -141,7 +141,7 @@ class TestP2PConn(P2PInterface):
         self.send_message(message)
         self.wait_for_disconnect(timeout=timeout)
 
-class CompactBlocksTest(AndaluzCoinTestFramework):
+class CompactBlocksTest(AndaluzcoinTestFramework):
     def set_test_params(self):
         self.setup_clean_chain = True
         self.num_nodes = 1

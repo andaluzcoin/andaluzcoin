@@ -6,7 +6,7 @@ The `macdeployqtplus` script should not be run manually. Instead, after building
 make deploy
 ```
 
-When complete, it will have produced `AndaluzCoin-Core.zip`.
+When complete, it will have produced `Andaluzcoin-Core.zip`.
 
 ## SDK Extraction
 

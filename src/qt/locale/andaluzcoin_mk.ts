@@ -58,11 +58,11 @@
         <translation type="unfinished">Избери</translation>
     </message>
     <message>
-        <source>These are your AndaluzCoin addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
-        <translation type="unfinished">Ова се вашите AndaluzCoin-адреси за испраќање плаќања. Секогаш проверувајте ја количината и адресите за примање пред да испраќате монети.</translation>
+        <source>These are your Andaluzcoin addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
+        <translation type="unfinished">Ова се вашите Andaluzcoin-адреси за испраќање плаќања. Секогаш проверувајте ја количината и адресите за примање пред да испраќате монети.</translation>
     </message>
     <message>
-        <source>These are your AndaluzCoin addresses for receiving payments. Use the 'Create new receiving address' button in the receive tab to create new addresses.
+        <source>These are your Andaluzcoin addresses for receiving payments. Use the 'Create new receiving address' button in the receive tab to create new addresses.
 Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">Ова се вашите биткоин-адреси за примање плаќања. Користете го копчето „Создавање нови адреси“ во јазичето за примање за да создадете нови адреси. Потпишувањето е можно само со „наследни“ адреси.</translation>
     </message>
@@ -239,7 +239,7 @@ Signing is only possible with addresses of the type 'legacy'.</source>
     </message>
 </context>
 <context>
-    <name>AndaluzCoinApplication</name>
+    <name>AndaluzcoinApplication</name>
     <message>
         <source>Settings file %1 might be corrupt or invalid.</source>
         <translation type="unfinished">Датотеката со поставки %1 може да е оштетена или неважечка.</translation>
@@ -371,7 +371,7 @@ Signing is only possible with addresses of the type 'legacy'.</source>
     </message>
 </context>
 <context>
-    <name>AndaluzCoinGUI</name>
+    <name>AndaluzcoinGUI</name>
     <message>
         <source>&amp;Overview</source>
         <translation type="unfinished">Преглед</translation>
@@ -438,7 +438,7 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">Проксито е &lt;b&gt;дозволено&lt;/b&gt;: %1</translation>
     </message>
     <message>
-        <source>Send coins to a AndaluzCoin address</source>
+        <source>Send coins to a Andaluzcoin address</source>
         <translation type="unfinished">Испрати биткоини на биткоин-адреса</translation>
     </message>
     <message>
@@ -482,7 +482,7 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">Потпиши &amp;порака...</translation>
     </message>
     <message>
-        <source>Sign messages with your AndaluzCoin addresses to prove you own them</source>
+        <source>Sign messages with your Andaluzcoin addresses to prove you own them</source>
         <translation type="unfinished">Напишете пораки со вашата биткоин-адреса за да докажете дека е ваша.</translation>
     </message>
     <message>
@@ -490,7 +490,7 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">&amp;Потврди порака...</translation>
     </message>
     <message>
-        <source>Verify messages to ensure they were signed with specified AndaluzCoin addresses</source>
+        <source>Verify messages to ensure they were signed with specified Andaluzcoin addresses</source>
         <translation type="unfinished">Потврдување на пораките за да се знае дека се напишани со дадените биткоин-адреси.</translation>
     </message>
     <message>
@@ -606,7 +606,7 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">Во тек</translation>
     </message>
     <message>
-        <source>Load Partially Signed AndaluzCoin Transaction</source>
+        <source>Load Partially Signed Andaluzcoin Transaction</source>
         <translation type="unfinished">Вчитајте делумно потпишана биткоин-трансакција</translation>
     </message>
     <message>
@@ -614,7 +614,7 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">Вчитајте PSBT од &amp;клипбордот...</translation>
     </message>
     <message>
-        <source>Load Partially Signed AndaluzCoin Transaction from clipboard</source>
+        <source>Load Partially Signed Andaluzcoin Transaction from clipboard</source>
         <translation type="unfinished">Вчитајте делумно потпишана биткоин-трансакција од клипбордот</translation>
     </message>
     <message>
@@ -664,7 +664,7 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">Затвори ги сите паричници</translation>
     </message>
     <message>
-        <source>Show the %1 help message to get a list with possible AndaluzCoin command-line options</source>
+        <source>Show the %1 help message to get a list with possible Andaluzcoin command-line options</source>
         <translation type="unfinished">Прикажи %1 помошна порака за да добиеш список на можни биткоин-команди.</translation>
     </message>
     <message>
@@ -724,7 +724,7 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">&amp;Покажи</translation>
     </message>
     <message numerus="yes">
-        <source>%n active connection(s) to AndaluzCoin network.</source>
+        <source>%n active connection(s) to Andaluzcoin network.</source>
         <extracomment>A substring of the tooltip.</extracomment>
         <translation type="unfinished">
             <numerusform />
@@ -954,7 +954,7 @@ Signing is only possible with addresses of the type 'legacy'.</source>
 <context>
     <name>Intro</name>
     <message>
-        <source>AndaluzCoin</source>
+        <source>Andaluzcoin</source>
         <translation type="unfinished">Биткоин</translation>
     </message>
     <message numerus="yes">

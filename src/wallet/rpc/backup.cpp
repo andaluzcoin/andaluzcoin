@@ -1,4 +1,4 @@
-// Copyright (c) 2009-present The AndaluzCoin Core developers
+// Copyright (c) 2009-present The Andaluzcoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -231,7 +231,7 @@ RPCHelpMan importaddress()
             "Note: Use \"getwalletinfo\" to query the scanning progress.\n"
             "Note: This command is only compatible with legacy wallets. Use \"importdescriptors\" for descriptor wallets.\n",
                 {
-                    {"address", RPCArg::Type::STR, RPCArg::Optional::NO, "The AndaluzCoin address (or hex-encoded script)"},
+                    {"address", RPCArg::Type::STR, RPCArg::Optional::NO, "The Andaluzcoin address (or hex-encoded script)"},
                     {"label", RPCArg::Type::STR, RPCArg::Default{""}, "An optional label"},
                     {"rescan", RPCArg::Type::BOOL, RPCArg::Default{true}, "Scan the chain and mempool for wallet transactions."},
                     {"p2sh", RPCArg::Type::BOOL, RPCArg::Default{false}, "Add the P2SH version of the script as well"},
@@ -304,7 +304,7 @@ RPCHelpMan importaddress()
 
             pwallet->ImportScriptPubKeys(strLabel, scripts, /*have_solving_data=*/false, /*apply_label=*/true, /*timestamp=*/1);
         } else {
-            throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid AndaluzCoin address or script");
+            throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid Andaluzcoin address or script");
         }
     }
     if (fRescan)
@@ -664,7 +664,7 @@ RPCHelpMan dumpprivkey()
     std::string strAddress = request.params[0].get_str();
     CTxDestination dest = DecodeDestination(strAddress);
     if (!IsValidDestination(dest)) {
-        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid AndaluzCoin address");
+        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid Andaluzcoin address");
     }
     auto keyid = GetKeyForDestination(spk_man, dest);
     if (keyid.IsNull()) {

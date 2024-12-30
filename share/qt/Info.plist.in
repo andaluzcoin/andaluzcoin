@@ -34,16 +34,16 @@
   <string>????</string>
 
   <key>CFBundleExecutable</key>
-  <string>AndaluzCoin-Qt</string>
+  <string>Andaluzcoin-Qt</string>
 
   <key>CFBundleName</key>
-  <string>AndaluzCoin-Qt</string>
+  <string>Andaluzcoin-Qt</string>
 
   <key>LSHasLocalizedDisplayName</key>
   <true/>
 
   <key>CFBundleIdentifier</key>
-  <string>org.bitcoinfoundation.AndaluzCoin-Qt</string>
+  <string>org.bitcoinfoundation.Andaluzcoin-Qt</string>
 
   <key>CFBundleURLTypes</key>
   <array>
@@ -51,7 +51,7 @@
       <key>CFBundleTypeRole</key>
       <string>Editor</string>
       <key>CFBundleURLName</key>
-      <string>org.bitcoin.AndaluzCoinPayment</string>
+      <string>org.bitcoin.AndaluzcoinPayment</string>
       <key>CFBundleURLSchemes</key>
       <array>
         <string>bitcoin</string>

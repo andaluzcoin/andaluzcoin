@@ -1,5 +1,5 @@
-AndaluzCoin version 0.4.0 is now available for download at:
-http://sourceforge.net/projects/bitcoin/files/AndaluzCoin/bitcoin-0.4.0/
+Andaluzcoin version 0.4.0 is now available for download at:
+http://sourceforge.net/projects/bitcoin/files/Andaluzcoin/bitcoin-0.4.0/
 
 The main feature in this release is wallet private key encryption;
 you can set a passphrase that must be entered before sending coins.
@@ -27,14 +27,14 @@ Optimize database writes for large (lots of inputs) transactions
 
 Wallet Encryption
 
-AndaluzCoin supports native wallet encryption so that people who steal your
-wallet file don't automatically get access to all of your AndaluzCoins.
+Andaluzcoin supports native wallet encryption so that people who steal your
+wallet file don't automatically get access to all of your Andaluzcoins.
 In order to enable this feature, choose "Encrypt Wallet" from the
 Options menu.  You will be prompted to enter a passphrase, which
 will be used as the key to encrypt your wallet and will be needed
-every time you wish to send AndaluzCoins.  If you lose this passphrase,
+every time you wish to send Andaluzcoins.  If you lose this passphrase,
 you will lose access to spend all of theandaluzcoins in your wallet,
-no one, not even the AndaluzCoin developers can recover your AndaluzCoins.
+no one, not even the Andaluzcoin developers can recover your Andaluzcoins.
 This means you are responsible for your own security, store your
 passphrase in a secure location and do not forget it.
 
@@ -46,24 +46,24 @@ relevant transactions, you are only protected from someone spending
 your coins.
 
 It is recommended that you backup your wallet file before you
-encrypt your wallet.  To do this, close the AndaluzCoin client and
+encrypt your wallet.  To do this, close the Andaluzcoin client and
 copy the wallet.dat file from ~/.bitcoin/ on Linux, /Users/(user
-name)/Application Support/AndaluzCoin/ on Mac OSX, and %APPDATA%/AndaluzCoin/
-on Windows (that is /Users/(user name)/AppData/Roaming/AndaluzCoin on
+name)/Application Support/Andaluzcoin/ on Mac OSX, and %APPDATA%/Andaluzcoin/
+on Windows (that is /Users/(user name)/AppData/Roaming/Andaluzcoin on
 Windows Vista and 7 and /Documents and Settings/(user name)/Application
-Data/AndaluzCoin on Windows XP).  Once you have copied that file to a
-safe location, reopen the AndaluzCoin client and Encrypt your wallet.
+Data/Andaluzcoin on Windows XP).  Once you have copied that file to a
+safe location, reopen the Andaluzcoin client and Encrypt your wallet.
 If everything goes fine, delete the backup and enjoy your encrypted
 wallet.  Note that once you encrypt your wallet, you will never be
-able to go back to a version of the AndaluzCoin client older than 0.4.
+able to go back to a version of the Andaluzcoin client older than 0.4.
 
 Keep in mind that you are always responsible for your own security.
 All it takes is a slightly more advanced wallet-stealing trojan which
 installs a keylogger to steal your wallet passphrase as you enter it
-in addition to your wallet file and you have lost all your AndaluzCoins.
+in addition to your wallet file and you have lost all your Andaluzcoins.
 Wallet encryption cannot keep you safe if you do not practice
 good security, such as running up-to-date antivirus software, only
-entering your wallet passphrase in the AndaluzCoin client and using the
+entering your wallet passphrase in the Andaluzcoin client and using the
 same passphrase only as your wallet passphrase.
 
 See the doc/README file in theandaluzcoin source for technical details

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# Copyright (c) 2015-2022 The AndaluzCoin Core developers
+# Copyright (c) 2015-2022 The Andaluzcoin Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 """Testandaluzcoind with different proxy configuration.
@@ -45,7 +45,7 @@ import socket
 import tempfile
 
 from test_framework.socks5 import Socks5Configuration, Socks5Command, Socks5Server, AddressType
-from test_framework.test_framework import AndaluzCoinTestFramework
+from test_framework.test_framework import AndaluzcoinTestFramework
 from test_framework.util import (
     assert_equal,
     p2p_port,
@@ -66,7 +66,7 @@ NETWORKS = frozenset({NET_IPV4, NET_IPV6, NET_ONION, NET_I2P, NET_CJDNS})
 # Use the shortest temp path possible since UNIX sockets may have as little as 92-char limit
 socket_path = tempfile.NamedTemporaryFile().name
 
-class ProxyTest(AndaluzCoinTestFramework):
+class ProxyTest(AndaluzcoinTestFramework):
     def set_test_params(self):
         self.num_nodes = 7
         self.setup_clean_chain = True

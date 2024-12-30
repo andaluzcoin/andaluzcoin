@@ -1,5 +1,5 @@
 #!/bin/sh
-# Copyright (c) 2014-2022 The AndaluzCoin Core developers
+# Copyright (c) 2014-2022 The Andaluzcoin Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -7,8 +7,8 @@ export LC_ALL=C
 set -e
 
 ROOTDIR=dist
-BUNDLE="${ROOTDIR}/AndaluzCoin-Qt.app"
-BINARY="${BUNDLE}/Contents/MacOS/AndaluzCoin-Qt"
+BUNDLE="${ROOTDIR}/Andaluzcoin-Qt.app"
+BINARY="${BUNDLE}/Contents/MacOS/Andaluzcoin-Qt"
 SIGNAPPLE=signapple
 TEMPDIR=sign.temp
 ARCH=$(${SIGNAPPLE} info ${BINARY} | head -n 1 | cut -d " " -f 1)

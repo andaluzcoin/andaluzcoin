@@ -1,4 +1,4 @@
-// Copyright (c) 2011-2020 The AndaluzCoin Core developers
+// Copyright (c) 2011-2020 The Andaluzcoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -10,24 +10,24 @@
 /** Base58 entry widget validator, checks for valid characters and
  * removes some whitespace.
  */
-class AndaluzCoinAddressEntryValidator : public QValidator
+class AndaluzcoinAddressEntryValidator : public QValidator
 {
     Q_OBJECT
 
 public:
-    explicit AndaluzCoinAddressEntryValidator(QObject *parent);
+    explicit AndaluzcoinAddressEntryValidator(QObject *parent);
 
     State validate(QString &input, int &pos) const override;
 };
 
-/** AndaluzCoin address widget validator, checks for a validandaluzcoin address.
+/** Andaluzcoin address widget validator, checks for a validandaluzcoin address.
  */
-class AndaluzCoinAddressCheckValidator : public QValidator
+class AndaluzcoinAddressCheckValidator : public QValidator
 {
     Q_OBJECT
 
 public:
-    explicit AndaluzCoinAddressCheckValidator(QObject *parent);
+    explicit AndaluzcoinAddressCheckValidator(QObject *parent);
 
     State validate(QString &input, int &pos) const override;
 };

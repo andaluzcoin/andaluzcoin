@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# Copyright (c) 2014-2024 The AndaluzCoin Core developers
+# Copyright (c) 2014-2024 The Andaluzcoin Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 """Tests for orphan related RPCs."""
@@ -16,11 +16,11 @@ from test_framework.util import (
     assert_equal,
     assert_raises_rpc_error,
 )
-from test_framework.test_framework import AndaluzCoinTestFramework
+from test_framework.test_framework import AndaluzcoinTestFramework
 from test_framework.wallet import MiniWallet
 
 
-class OrphanRPCsTest(AndaluzCoinTestFramework):
+class OrphanRPCsTest(AndaluzcoinTestFramework):
     def set_test_params(self):
         self.num_nodes = 1
 

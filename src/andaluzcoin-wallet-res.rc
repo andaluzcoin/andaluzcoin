@@ -14,7 +14,7 @@ BEGIN
     BEGIN
         BLOCK "040904E4" // U.S. English - multilingual (hex)
         BEGIN
-            VALUE "CompanyName",        "AndaluzCoin"
+            VALUE "CompanyName",        "Andaluzcoin"
             VALUE "FileDescription",    "bitcoin-wallet (CLI tool for " CLIENT_NAME " wallets)"
             VALUE "FileVersion",        CLIENT_VERSION_STRING
             VALUE "InternalName",       "bitcoin-wallet"

@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Copyright (c) 2019-2022 The AndaluzCoin Core developers
+# Copyright (c) 2019-2022 The Andaluzcoin Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 export LC_ALL=C
@@ -244,7 +244,7 @@ mkdir -p "$DISTSRC"
           -DWITH_CCACHE=OFF \
           ${CONFIGFLAGS}
 
-    # Build AndaluzCoin Core
+    # Build Andaluzcoin Core
     cmake --build build -j "$JOBS" ${V:+--verbose}
 
     # Check that symbol/security checks tools are sane.
@@ -264,12 +264,12 @@ mkdir -p "$DISTSRC"
             ;;
     esac
 
-    # Setup the directory where our AndaluzCoin Core build for HOST will be
+    # Setup the directory where our Andaluzcoin Core build for HOST will be
     # installed. This directory will also later serve as the input for our
     # binary tarballs.
     INSTALLPATH="${PWD}/installed/${DISTNAME}"
     mkdir -p "${INSTALLPATH}"
-    # Install built AndaluzCoin Core to $INSTALLPATH
+    # Install built Andaluzcoin Core to $INSTALLPATH
     case "$HOST" in
         *darwin*)
             # This workaround can be dropped for CMake >= 3.27.
@@ -286,7 +286,7 @@ mkdir -p "$DISTSRC"
     case "$HOST" in
         *darwin*)
             cmake --build build --target deploy ${V:+--verbose}
-            mv build/dist/AndaluzCoin-Core.zip "${OUTDIR}/${DISTNAME}-${HOST}-unsigned.zip"
+            mv build/dist/Andaluzcoin-Core.zip "${OUTDIR}/${DISTNAME}-${HOST}-unsigned.zip"
             mkdir -p "unsigned-app-${HOST}"
             cp  --target-directory="unsigned-app-${HOST}" \
                 contrib/macdeploy/detached-sig-create.sh

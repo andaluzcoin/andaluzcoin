@@ -1,4 +1,4 @@
-// Copyright (c) 2011-2021 The AndaluzCoin Core developers
+// Copyright (c) 2011-2021 The Andaluzcoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -12,15 +12,15 @@
 
 static constexpr auto MAX_DIGITS_LUZ = 16;
 
-AndaluzCoinUnits::AndaluzCoinUnits(QObject *parent):
+AndaluzcoinUnits::AndaluzcoinUnits(QObject *parent):
         QAbstractListModel(parent),
         unitlist(availableUnits())
 {
 }
 
-QList<AndaluzCoinUnit> AndaluzCoinUnits::availableUnits()
+QList<AndaluzcoinUnit> AndaluzcoinUnits::availableUnits()
 {
-    QList<AndaluzCoinUnit> unitlist;
+    QList<AndaluzcoinUnit> unitlist;
     unitlist.append(Unit::LUZ);
     unitlist.append(Unit::mLUZ);
     unitlist.append(Unit::uLUZ);
@@ -28,7 +28,7 @@ QList<AndaluzCoinUnit> AndaluzCoinUnits::availableUnits()
     return unitlist;
 }
 
-QString AndaluzCoinUnits::longName(Unit unit)
+QString AndaluzcoinUnits::longName(Unit unit)
 {
     switch (unit) {
     case Unit::LUZ: return QString("LUZ");
@@ -39,7 +39,7 @@ QString AndaluzCoinUnits::longName(Unit unit)
     assert(false);
 }
 
-QString AndaluzCoinUnits::shortName(Unit unit)
+QString AndaluzcoinUnits::shortName(Unit unit)
 {
     switch (unit) {
     case Unit::LUZ: return longName(unit);
@@ -50,18 +50,18 @@ QString AndaluzCoinUnits::shortName(Unit unit)
     assert(false);
 }
 
-QString AndaluzCoinUnits::description(Unit unit)
+QString AndaluzcoinUnits::description(Unit unit)
 {
     switch (unit) {
-    case Unit::LUZ: return QString("AndaluzCoins");
-    case Unit::mLUZ: return QString("Milli-AndaluzCoins (1 / 1" THIN_SP_UTF8 "000)");
-    case Unit::uLUZ: return QString("Micro-AndaluzCoins (bits) (1 / 1" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
+    case Unit::LUZ: return QString("Andaluzcoins");
+    case Unit::mLUZ: return QString("Milli-Andaluzcoins (1 / 1" THIN_SP_UTF8 "000)");
+    case Unit::uLUZ: return QString("Micro-Andaluzcoins (bits) (1 / 1" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
     case Unit::SAT: return QString("Satoshi (sat) (1 / 100" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
     } // no default case, so the compiler can warn about missing cases
     assert(false);
 }
 
-qint64 AndaluzCoinUnits::factor(Unit unit)
+qint64 AndaluzcoinUnits::factor(Unit unit)
 {
     switch (unit) {
     case Unit::LUZ: return 100'000'000;
@@ -72,7 +72,7 @@ qint64 AndaluzCoinUnits::factor(Unit unit)
     assert(false);
 }
 
-int AndaluzCoinUnits::decimals(Unit unit)
+int AndaluzcoinUnits::decimals(Unit unit)
 {
     switch (unit) {
     case Unit::LUZ: return 8;
@@ -83,7 +83,7 @@ int AndaluzCoinUnits::decimals(Unit unit)
     assert(false);
 }
 
-QString AndaluzCoinUnits::format(Unit unit, const CAmount& nIn, bool fPlus, SeparatorStyle separators, bool justify)
+QString AndaluzcoinUnits::format(Unit unit, const CAmount& nIn, bool fPlus, SeparatorStyle separators, bool justify)
 {
     // Note: not using straight sprintf here because we do NOT want
     // localized number formatting.
@@ -128,19 +128,19 @@ QString AndaluzCoinUnits::format(Unit unit, const CAmount& nIn, bool fPlus, Sepa
 // Please take care to use formatHtmlWithUnit instead, when
 // appropriate.
 
-QString AndaluzCoinUnits::formatWithUnit(Unit unit, const CAmount& amount, bool plussign, SeparatorStyle separators)
+QString AndaluzcoinUnits::formatWithUnit(Unit unit, const CAmount& amount, bool plussign, SeparatorStyle separators)
 {
     return format(unit, amount, plussign, separators) + QString(" ") + shortName(unit);
 }
 
-QString AndaluzCoinUnits::formatHtmlWithUnit(Unit unit, const CAmount& amount, bool plussign, SeparatorStyle separators)
+QString AndaluzcoinUnits::formatHtmlWithUnit(Unit unit, const CAmount& amount, bool plussign, SeparatorStyle separators)
 {
     QString str(formatWithUnit(unit, amount, plussign, separators));
     str.replace(QChar(THIN_SP_CP), QString(THIN_SP_HTML));
     return QString("<span style='white-space: nowrap;'>%1</span>").arg(str);
 }
 
-QString AndaluzCoinUnits::formatWithPrivacy(Unit unit, const CAmount& amount, SeparatorStyle separators, bool privacy)
+QString AndaluzcoinUnits::formatWithPrivacy(Unit unit, const CAmount& amount, SeparatorStyle separators, bool privacy)
 {
     assert(amount >= 0);
     QString value;
@@ -152,7 +152,7 @@ QString AndaluzCoinUnits::formatWithPrivacy(Unit unit, const CAmount& amount, Se
     return value + QString(" ") + shortName(unit);
 }
 
-bool AndaluzCoinUnits::parse(Unit unit, const QString& value, CAmount* val_out)
+bool AndaluzcoinUnits::parse(Unit unit, const QString& value, CAmount* val_out)
 {
     if (value.isEmpty()) {
         return false; // Refuse to parse invalid unit or empty string
@@ -192,18 +192,18 @@ bool AndaluzCoinUnits::parse(Unit unit, const QString& value, CAmount* val_out)
     return ok;
 }
 
-QString AndaluzCoinUnits::getAmountColumnTitle(Unit unit)
+QString AndaluzcoinUnits::getAmountColumnTitle(Unit unit)
 {
     return QObject::tr("Amount") + " (" + shortName(unit) + ")";
 }
 
-int AndaluzCoinUnits::rowCount(const QModelIndex &parent) const
+int AndaluzcoinUnits::rowCount(const QModelIndex &parent) const
 {
     Q_UNUSED(parent);
     return unitlist.size();
 }
 
-QVariant AndaluzCoinUnits::data(const QModelIndex &index, int role) const
+QVariant AndaluzcoinUnits::data(const QModelIndex &index, int role) const
 {
     int row = index.row();
     if(row >= 0 && row < unitlist.size())
@@ -223,41 +223,41 @@ QVariant AndaluzCoinUnits::data(const QModelIndex &index, int role) const
     return QVariant();
 }
 
-CAmount AndaluzCoinUnits::maxMoney()
+CAmount AndaluzcoinUnits::maxMoney()
 {
     return MAX_MONEY;
 }
 
 namespace {
-qint8 ToQint8(AndaluzCoinUnit unit)
+qint8 ToQint8(AndaluzcoinUnit unit)
 {
     switch (unit) {
-    case AndaluzCoinUnit::LUZ: return 0;
-    case AndaluzCoinUnit::mLUZ: return 1;
-    case AndaluzCoinUnit::uLUZ: return 2;
-    case AndaluzCoinUnit::SAT: return 3;
+    case AndaluzcoinUnit::LUZ: return 0;
+    case AndaluzcoinUnit::mLUZ: return 1;
+    case AndaluzcoinUnit::uLUZ: return 2;
+    case AndaluzcoinUnit::SAT: return 3;
     } // no default case, so the compiler can warn about missing cases
     assert(false);
 }
 
-AndaluzCoinUnit FromQint8(qint8 num)
+AndaluzcoinUnit FromQint8(qint8 num)
 {
     switch (num) {
-    case 0: return AndaluzCoinUnit::LUZ;
-    case 1: return AndaluzCoinUnit::mLUZ;
-    case 2: return AndaluzCoinUnit::uLUZ;
-    case 3: return AndaluzCoinUnit::SAT;
+    case 0: return AndaluzcoinUnit::LUZ;
+    case 1: return AndaluzcoinUnit::mLUZ;
+    case 2: return AndaluzcoinUnit::uLUZ;
+    case 3: return AndaluzcoinUnit::SAT;
     }
     assert(false);
 }
 } // namespace
 
-QDataStream& operator<<(QDataStream& out, const AndaluzCoinUnit& unit)
+QDataStream& operator<<(QDataStream& out, const AndaluzcoinUnit& unit)
 {
     return out << ToQint8(unit);
 }
 
-QDataStream& operator>>(QDataStream& in, AndaluzCoinUnit& unit)
+QDataStream& operator>>(QDataStream& in, AndaluzcoinUnit& unit)
 {
     qint8 input;
     in >> input;

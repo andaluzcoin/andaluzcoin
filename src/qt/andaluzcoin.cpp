@@ -1,4 +1,4 @@
-// Copyright (c) 2011-2022 The AndaluzCoin Core developers
+// Copyright (c) 2011-2022 The Andaluzcoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -92,9 +92,9 @@ static void RegisterMetaTypes()
     qRegisterMetaType<interfaces::BlockAndHeaderTipInfo>("interfaces::BlockAndHeaderTipInfo");
 
 #if (QT_VERSION < QT_VERSION_CHECK(6, 0, 0))
-    qRegisterMetaTypeStreamOperators<AndaluzCoinUnit>("AndaluzCoinUnit");
+    qRegisterMetaTypeStreamOperators<AndaluzcoinUnit>("AndaluzcoinUnit");
 #else
-    qRegisterMetaType<AndaluzCoinUnit>("AndaluzCoinUnit");
+    qRegisterMetaType<AndaluzcoinUnit>("AndaluzcoinUnit");
 #endif
 }
 
@@ -206,7 +206,7 @@ void DebugMessageHandler(QtMsgType type, const QMessageLogContext& context, cons
 static int qt_argc = 1;
 static const char* qt_argv = "bitcoin-qt";
 
-AndaluzCoinApplication::AndaluzCoinApplication()
+AndaluzcoinApplication::AndaluzcoinApplication()
     : QApplication(qt_argc, const_cast<char**>(&qt_argv))
 {
     // Qt runs setlocale(LC_ALL, "") on initialization.
@@ -214,20 +214,20 @@ AndaluzCoinApplication::AndaluzCoinApplication()
     setQuitOnLastWindowClosed(false);
 }
 
-void AndaluzCoinApplication::setupPlatformStyle()
+void AndaluzcoinApplication::setupPlatformStyle()
 {
     // UI per-platform customization
-    // This must be done inside the AndaluzCoinApplication constructor, or after it, because
+    // This must be done inside the AndaluzcoinApplication constructor, or after it, because
     // PlatformStyle::instantiate requires a QApplication
     std::string platformName;
-    platformName = gArgs.GetArg("-uiplatform", AndaluzCoinGUI::DEFAULT_UIPLATFORM);
+    platformName = gArgs.GetArg("-uiplatform", AndaluzcoinGUI::DEFAULT_UIPLATFORM);
     platformStyle = PlatformStyle::instantiate(QString::fromStdString(platformName));
     if (!platformStyle) // Fall back to "other" if specified name not found
         platformStyle = PlatformStyle::instantiate("other");
     assert(platformStyle);
 }
 
-AndaluzCoinApplication::~AndaluzCoinApplication()
+AndaluzcoinApplication::~AndaluzcoinApplication()
 {
     m_executor.reset();
 
@@ -238,13 +238,13 @@ AndaluzCoinApplication::~AndaluzCoinApplication()
 }
 
 #ifdef ENABLE_WALLET
-void AndaluzCoinApplication::createPaymentServer()
+void AndaluzcoinApplication::createPaymentServer()
 {
     paymentServer = new PaymentServer(this);
 }
 #endif
 
-bool AndaluzCoinApplication::createOptionsModel(bool resetSettings)
+bool AndaluzcoinApplication::createOptionsModel(bool resetSettings)
 {
     optionsModel = new OptionsModel(node(), this);
     if (resetSettings) {
@@ -266,10 +266,10 @@ bool AndaluzCoinApplication::createOptionsModel(bool resetSettings)
     return true;
 }
 
-void AndaluzCoinApplication::createWindow(const NetworkStyle *networkStyle)
+void AndaluzcoinApplication::createWindow(const NetworkStyle *networkStyle)
 {
-    window = new AndaluzCoinGUI(node(), platformStyle, networkStyle, nullptr);
-    connect(window, &AndaluzCoinGUI::quitRequested, this, &AndaluzCoinApplication::requestShutdown);
+    window = new AndaluzcoinGUI(node(), platformStyle, networkStyle, nullptr);
+    connect(window, &AndaluzcoinGUI::quitRequested, this, &AndaluzcoinApplication::requestShutdown);
 
     pollShutdownTimer = new QTimer(window);
     connect(pollShutdownTimer, &QTimer::timeout, [this]{
@@ -279,41 +279,41 @@ void AndaluzCoinApplication::createWindow(const NetworkStyle *networkStyle)
     });
 }
 
-void AndaluzCoinApplication::createSplashScreen(const NetworkStyle *networkStyle)
+void AndaluzcoinApplication::createSplashScreen(const NetworkStyle *networkStyle)
 {
     assert(!m_splash);
     m_splash = new SplashScreen(networkStyle);
     m_splash->show();
 }
 
-void AndaluzCoinApplication::createNode(interfaces::Init& init)
+void AndaluzcoinApplication::createNode(interfaces::Init& init)
 {
     assert(!m_node);
     m_node = init.makeNode();
     if (m_splash) m_splash->setNode(*m_node);
 }
 
-bool AndaluzCoinApplication::baseInitialize()
+bool AndaluzcoinApplication::baseInitialize()
 {
     return node().baseInitialize();
 }
 
-void AndaluzCoinApplication::startThread()
+void AndaluzcoinApplication::startThread()
 {
     assert(!m_executor);
     m_executor.emplace(node());
 
     /*  communication to and from thread */
-    connect(&m_executor.value(), &InitExecutor::initializeResult, this, &AndaluzCoinApplication::initializeResult);
+    connect(&m_executor.value(), &InitExecutor::initializeResult, this, &AndaluzcoinApplication::initializeResult);
     connect(&m_executor.value(), &InitExecutor::shutdownResult, this, [] {
         QCoreApplication::exit(0);
     });
-    connect(&m_executor.value(), &InitExecutor::runawayException, this, &AndaluzCoinApplication::handleRunawayException);
-    connect(this, &AndaluzCoinApplication::requestedInitialize, &m_executor.value(), &InitExecutor::initialize);
-    connect(this, &AndaluzCoinApplication::requestedShutdown, &m_executor.value(), &InitExecutor::shutdown);
+    connect(&m_executor.value(), &InitExecutor::runawayException, this, &AndaluzcoinApplication::handleRunawayException);
+    connect(this, &AndaluzcoinApplication::requestedInitialize, &m_executor.value(), &InitExecutor::initialize);
+    connect(this, &AndaluzcoinApplication::requestedShutdown, &m_executor.value(), &InitExecutor::shutdown);
 }
 
-void AndaluzCoinApplication::parameterSetup()
+void AndaluzcoinApplication::parameterSetup()
 {
     // Default printtoconsole to false for the GUI. GUI programs should not
     // print to the console unnecessarily.
@@ -323,19 +323,19 @@ void AndaluzCoinApplication::parameterSetup()
     InitParameterInteraction(gArgs);
 }
 
-void AndaluzCoinApplication::InitPruneSetting(int64_t prune_MiB)
+void AndaluzcoinApplication::InitPruneSetting(int64_t prune_MiB)
 {
     optionsModel->SetPruneTargetGB(PruneMiBtoGB(prune_MiB));
 }
 
-void AndaluzCoinApplication::requestInitialize()
+void AndaluzcoinApplication::requestInitialize()
 {
     qDebug() << __func__ << ": Requesting initialize";
     startThread();
     Q_EMIT requestedInitialize();
 }
 
-void AndaluzCoinApplication::requestShutdown()
+void AndaluzcoinApplication::requestShutdown()
 {
     for (const auto w : QGuiApplication::topLevelWindows()) {
         w->hide();
@@ -385,7 +385,7 @@ void AndaluzCoinApplication::requestShutdown()
     Q_EMIT requestedShutdown();
 }
 
-void AndaluzCoinApplication::initializeResult(bool success, interfaces::BlockAndHeaderTipInfo tip_info)
+void AndaluzcoinApplication::initializeResult(bool success, interfaces::BlockAndHeaderTipInfo tip_info)
 {
     qDebug() << __func__ << ": Initialization result: " << success;
 
@@ -424,8 +424,8 @@ void AndaluzCoinApplication::initializeResult(bool success, interfaces::BlockAnd
         // Now that initialization/startup is done, process any command-line
         //andaluzcoin: URIs or payment requests:
         if (paymentServer) {
-            connect(paymentServer, &PaymentServer::receivedPaymentRequest, window, &AndaluzCoinGUI::handlePaymentRequest);
-            connect(window, &AndaluzCoinGUI::receivedURI, paymentServer, &PaymentServer::handleURIOrFile);
+            connect(paymentServer, &PaymentServer::receivedPaymentRequest, window, &AndaluzcoinGUI::handlePaymentRequest);
+            connect(window, &AndaluzcoinGUI::receivedURI, paymentServer, &PaymentServer::handleURIOrFile);
             connect(paymentServer, &PaymentServer::message, [this](const QString& title, const QString& message, unsigned int style) {
                 window->message(title, message, style);
             });
@@ -438,7 +438,7 @@ void AndaluzCoinApplication::initializeResult(bool success, interfaces::BlockAnd
     }
 }
 
-void AndaluzCoinApplication::handleRunawayException(const QString &message)
+void AndaluzcoinApplication::handleRunawayException(const QString &message)
 {
     QMessageBox::critical(
         nullptr, tr("Runaway exception"),
@@ -447,7 +447,7 @@ void AndaluzCoinApplication::handleRunawayException(const QString &message)
     ::exit(EXIT_FAILURE);
 }
 
-void AndaluzCoinApplication::handleNonFatalException(const QString& message)
+void AndaluzcoinApplication::handleNonFatalException(const QString& message)
 {
     assert(QThread::currentThread() == thread());
     QMessageBox::warning(
@@ -457,7 +457,7 @@ void AndaluzCoinApplication::handleNonFatalException(const QString& message)
         QLatin1String("<br><br>") + GUIUtil::MakeHtmlLink(message, CLIENT_BUGREPORT));
 }
 
-WId AndaluzCoinApplication::getMainWinId() const
+WId AndaluzcoinApplication::getMainWinId() const
 {
     if (!window)
         return 0;
@@ -465,7 +465,7 @@ WId AndaluzCoinApplication::getMainWinId() const
     return window->winId();
 }
 
-bool AndaluzCoinApplication::event(QEvent* e)
+bool AndaluzcoinApplication::event(QEvent* e)
 {
     if (e->type() == QEvent::Quit) {
         requestShutdown();
@@ -482,7 +482,7 @@ static void SetupUIArgs(ArgsManager& argsman)
     argsman.AddArg("-min", "Start minimized", ArgsManager::ALLOW_ANY, OptionsCategory::GUI);
     argsman.AddArg("-resetguisettings", "Reset all settings changed in the GUI", ArgsManager::ALLOW_ANY, OptionsCategory::GUI);
     argsman.AddArg("-splash", strprintf("Show splash screen on startup (default: %u)", DEFAULT_SPLASHSCREEN), ArgsManager::ALLOW_ANY, OptionsCategory::GUI);
-    argsman.AddArg("-uiplatform", strprintf("Select platform to customize UI for (one of windows, macosx, other; default: %s)", AndaluzCoinGUI::DEFAULT_UIPLATFORM), ArgsManager::ALLOW_ANY | ArgsManager::DEBUG_ONLY, OptionsCategory::GUI);
+    argsman.AddArg("-uiplatform", strprintf("Select platform to customize UI for (one of windows, macosx, other; default: %s)", AndaluzcoinGUI::DEFAULT_UIPLATFORM), ArgsManager::ALLOW_ANY | ArgsManager::DEBUG_ONLY, OptionsCategory::GUI);
 }
 
 int GuiMain(int argc, char* argv[])
@@ -520,7 +520,7 @@ int GuiMain(int argc, char* argv[])
     QApplication::setAttribute(Qt::AA_DontUseNativeDialogs);
 #endif
 
-    AndaluzCoinApplication app;
+    AndaluzcoinApplication app;
     GUIUtil::LoadFont(QStringLiteral(":/fonts/monospace"));
 
     /// 2. Parse command-line options. We do this after qt in order to show an error if there are problems parsing these

@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
-# Copyright (c) 2020-2021 The AndaluzCoin Core developers
+# Copyright (c) 2020-2021 The Andaluzcoin Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
-"""Script for verifying AndaluzCoin Core release binaries.
+"""Script for verifying Andaluzcoin Core release binaries.
 
 This script attempts to download the sum file SHA256SUMS and corresponding
 signature file SHA256SUMS.asc fromandaluzcoincore.org andandaluzcoin.org and
@@ -378,7 +378,7 @@ def verify_shasums_signature(
 
     # Decide which keys we trust, though not "trust" in the GPG sense, but rather
     # which pubkeys convince us that this sums file is legitimate. In other words,
-    # which pubkeys within the AndaluzCoin community do we trust for the purposes of
+    # which pubkeys within the Andaluzcoin community do we trust for the purposes of
     # binary verification?
     trusted_keys = set()
     if args.trusted_keys:

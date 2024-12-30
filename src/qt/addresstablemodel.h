@@ -1,4 +1,4 @@
-// Copyright (c) 2011-2020 The AndaluzCoin Core developers
+// Copyright (c) 2011-2020 The Andaluzcoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -35,7 +35,7 @@ public:
 
     enum ColumnIndex {
         Label = 0,   /**< User specified label */
-        Address = 1  /**< AndaluzCoin address */
+        Address = 1  /**< Andaluzcoin address */
     };
 
     enum RoleIndex {

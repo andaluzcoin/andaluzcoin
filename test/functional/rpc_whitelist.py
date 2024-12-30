@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
-# Copyright (c) 2017-2019 The AndaluzCoin Core developers
+# Copyright (c) 2017-2019 The Andaluzcoin Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 """
 A test for RPC users with restricted permissions
 """
-from test_framework.test_framework import AndaluzCoinTestFramework
+from test_framework.test_framework import AndaluzcoinTestFramework
 from test_framework.util import (
     assert_equal,
     str_to_b64str,
@@ -24,7 +24,7 @@ def rpccall(node, user, method):
     return resp
 
 
-class RPCWhitelistTest(AndaluzCoinTestFramework):
+class RPCWhitelistTest(AndaluzcoinTestFramework):
     def set_test_params(self):
         self.num_nodes = 1
 

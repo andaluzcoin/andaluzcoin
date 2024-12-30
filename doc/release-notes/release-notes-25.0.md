@@ -1,7 +1,7 @@
 25.0 Release Notes
 ==================
 
-AndaluzCoin Core version 25.0 is now available from:
+Andaluzcoin Core version 25.0 is now available from:
 
   <https://bitcoincore.org/bin/bitcoin-core-25.0/>
 
@@ -21,20 +21,20 @@ How to Upgrade
 
 If you are running an older version, shut it down. Wait until it has completely
 shut down (which might take a few minutes in some cases), then run the
-installer (on Windows) or just copy over `/Applications/AndaluzCoin-Qt` (on macOS)
+installer (on Windows) or just copy over `/Applications/Andaluzcoin-Qt` (on macOS)
 or `bitcoind`/`bitcoin-qt` (on Linux).
 
-Upgrading directly from a version of AndaluzCoin Core that has reached its EOL is
+Upgrading directly from a version of Andaluzcoin Core that has reached its EOL is
 possible, but it might take some time if the data directory needs to be migrated. Old
-wallet versions of AndaluzCoin Core are generally supported.
+wallet versions of Andaluzcoin Core are generally supported.
 
 Compatibility
 ==============
 
-AndaluzCoin Core is supported and extensively tested on operating systems
-using the Linux kernel, macOS 10.15+, and Windows 7 and newer.  AndaluzCoin
+Andaluzcoin Core is supported and extensively tested on operating systems
+using the Linux kernel, macOS 10.15+, and Windows 7 and newer.  Andaluzcoin
 Core should also work on most other Unix-like systems but is not as
-frequently tested on them.  It is not recommended to use AndaluzCoin Core on
+frequently tested on them.  It is not recommended to use Andaluzcoin Core on
 unsupported systems.
 
 Notable changes
@@ -114,7 +114,7 @@ Updated settings
 
 - If the `-checkblocks` or `-checklevel` options are explicitly provided by the
 user, but the verification checks cannot be completed due to an insufficient
-dbcache, AndaluzCoin Core will now return an error at startup. (#25574)
+dbcache, Andaluzcoin Core will now return an error at startup. (#25574)
 
 - Ports specified in `-port` and `-rpcport` options are now validated at startup.
   Values that previously worked and were considered valid can now result in errors. (#22087)
@@ -137,7 +137,7 @@ New settings
 ------------
 
 - The `shutdownnotify` option is used to specify a command to execute synchronously
-before AndaluzCoin Core has begun its shutdown sequence. (#23395)
+before Andaluzcoin Core has begun its shutdown sequence. (#23395)
 
 
 Wallet
@@ -244,7 +244,7 @@ Thanks to everyone who directly contributed to this release:
 - Antoine Poinsot
 - Aurèle Oulès
 - Ben Woosley
-- AndaluzCoin Hodler
+- Andaluzcoin Hodler
 - brunoerg
 - Bushstar
 - Carl Dong

@@ -47,11 +47,11 @@ wallet</translation>
         <translation type="unfinished">&amp;Choose</translation>
     </message>
     <message>
-        <source>These are your AndaluzCoin addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
-        <translation type="unfinished">Ini adalah alamat AndaluzCoin Anda untuk mengirim pembayaran. Selalu periksa jumlah dan alamat penerima sebelum mengirim koin.</translation>
+        <source>These are your Andaluzcoin addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
+        <translation type="unfinished">Ini adalah alamat Andaluzcoin Anda untuk mengirim pembayaran. Selalu periksa jumlah dan alamat penerima sebelum mengirim koin.</translation>
     </message>
     <message>
-        <source>These are your AndaluzCoin addresses for receiving payments. Use the 'Create new receiving address' button in the receive tab to create new addresses.
+        <source>These are your Andaluzcoin addresses for receiving payments. Use the 'Create new receiving address' button in the receive tab to create new addresses.
 Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">Berikut ini adalah alamat-alamatandaluzcoinmu untuk menerima pembayaran. Gunakan tombol 'Buat alamat penerima baru' di tab menerima untuk membuat alamat baru.
 Tanda tangan hanya bisa digunakan dengan tipe alamat 'warisan'</translation>
@@ -233,7 +233,7 @@ Tanda tangan hanya bisa digunakan dengan tipe alamat 'warisan'</translation>
     </message>
 </context>
 <context>
-    <name>AndaluzCoinApplication</name>
+    <name>AndaluzcoinApplication</name>
     <message>
         <source>Settings file %1 might be corrupt or invalid.</source>
         <translation type="unfinished">File pengaturan %1 mungkin rusak atau tidak valid.</translation>
@@ -321,7 +321,7 @@ Tanda tangan hanya bisa digunakan dengan tipe alamat 'warisan'</translation>
     </message>
 </context>
 <context>
-    <name>AndaluzCoinGUI</name>
+    <name>AndaluzcoinGUI</name>
     <message>
         <source>Change the passphrase used for wallet encryption</source>
         <translation type="unfinished">Ubah kata kunci yang digunakan untuk enkripsi dompet</translation>
@@ -347,16 +347,16 @@ Tanda tangan hanya bisa digunakan dengan tipe alamat 'warisan'</translation>
         <translation type="unfinished">Tanda tangani dan kirim pessan...</translation>
     </message>
     <message>
-        <source>Sign messages with your AndaluzCoin addresses to prove you own them</source>
-        <translation type="unfinished">Tanda tangani sebuah pesan menggunakan alamat AndaluzCoin Anda untuk membuktikan bahwa Anda adalah pemiliknya</translation>
+        <source>Sign messages with your Andaluzcoin addresses to prove you own them</source>
+        <translation type="unfinished">Tanda tangani sebuah pesan menggunakan alamat Andaluzcoin Anda untuk membuktikan bahwa Anda adalah pemiliknya</translation>
     </message>
     <message>
         <source>&amp;Verify message…</source>
         <translation type="unfinished">&amp;Verifikasi pesan...</translation>
     </message>
     <message>
-        <source>Verify messages to ensure they were signed with specified AndaluzCoin addresses</source>
-        <translation type="unfinished">Verifikasi pesan untuk memastikan bahwa pesan tersebut ditanda tangani oleh suatu alamat AndaluzCoin tertentu</translation>
+        <source>Verify messages to ensure they were signed with specified Andaluzcoin addresses</source>
+        <translation type="unfinished">Verifikasi pesan untuk memastikan bahwa pesan tersebut ditanda tangani oleh suatu alamat Andaluzcoin tertentu</translation>
     </message>
     <message>
         <source>&amp;Load PSBT from file…</source>
@@ -469,16 +469,16 @@ Tanda tangan hanya bisa digunakan dengan tipe alamat 'warisan'</translation>
         <translation type="unfinished">Terbaru</translation>
     </message>
     <message>
-        <source>Load Partially Signed AndaluzCoin Transaction</source>
-        <translation type="unfinished">Muat transaksi AndaluzCoin yang ditandatangani seperapat</translation>
+        <source>Load Partially Signed Andaluzcoin Transaction</source>
+        <translation type="unfinished">Muat transaksi Andaluzcoin yang ditandatangani seperapat</translation>
     </message>
     <message>
         <source>Load PSBT from &amp;clipboard…</source>
         <translation type="unfinished">Masukkan PSBT dari &amp;clipboard</translation>
     </message>
     <message>
-        <source>Load Partially Signed AndaluzCoin Transaction from clipboard</source>
-        <translation type="unfinished">Muat transaksi AndaluzCoin yang ditandatangani seperapat dari clipboard</translation>
+        <source>Load Partially Signed Andaluzcoin Transaction from clipboard</source>
+        <translation type="unfinished">Muat transaksi Andaluzcoin yang ditandatangani seperapat dari clipboard</translation>
     </message>
     <message>
         <source>Node window</source>
@@ -535,8 +535,8 @@ Tanda tangan hanya bisa digunakan dengan tipe alamat 'warisan'</translation>
         <translation type="unfinished">Migrasi sebuah dompet</translation>
     </message>
     <message>
-        <source>Show the %1 help message to get a list with possible AndaluzCoin command-line options</source>
-        <translation type="unfinished">Tampilkan %1 pesan bantuan untuk mendapatkan daftar opsi baris perintah AndaluzCoin yang memungkinkan</translation>
+        <source>Show the %1 help message to get a list with possible Andaluzcoin command-line options</source>
+        <translation type="unfinished">Tampilkan %1 pesan bantuan untuk mendapatkan daftar opsi baris perintah Andaluzcoin yang memungkinkan</translation>
     </message>
     <message>
         <source>&amp;Mask values</source>
@@ -579,10 +579,10 @@ Tanda tangan hanya bisa digunakan dengan tipe alamat 'warisan'</translation>
         <translation type="unfinished">Jendela Utama</translation>
     </message>
     <message numerus="yes">
-        <source>%n active connection(s) to AndaluzCoin network.</source>
+        <source>%n active connection(s) to Andaluzcoin network.</source>
         <extracomment>A substring of the tooltip.</extracomment>
         <translation type="unfinished">
-            <numerusform>%n active connection(s) to AndaluzCoin network.</numerusform>
+            <numerusform>%n active connection(s) to Andaluzcoin network.</numerusform>
         </translation>
     </message>
     <message>
@@ -862,8 +862,8 @@ Proses migrasi akan mencadangkan dompet sebelum melakukan pemindahan. Fail cadan
         <translation type="unfinished">Ubah alamat pengirim</translation>
     </message>
     <message>
-        <source>The entered address "%1" is not a valid AndaluzCoin address.</source>
-        <translation type="unfinished">Alamat yang dimasukkan "%1" bukanlah alamat AndaluzCoin yang valid.</translation>
+        <source>The entered address "%1" is not a valid Andaluzcoin address.</source>
+        <translation type="unfinished">Alamat yang dimasukkan "%1" bukanlah alamat Andaluzcoin yang valid.</translation>
     </message>
     <message>
         <source>Address "%1" already exists as a receiving address with label "%2" and so cannot be added as a sending address.</source>
@@ -945,8 +945,8 @@ Proses migrasi akan mencadangkan dompet sebelum melakukan pemindahan. Fail cadan
         </translation>
     </message>
     <message>
-        <source>%1 will download and store a copy of the AndaluzCoin block chain.</source>
-        <translation type="unfinished">%1 akan mengunduh dan menyimpan salinan rantai blok AndaluzCoin.</translation>
+        <source>%1 will download and store a copy of the Andaluzcoin block chain.</source>
+        <translation type="unfinished">%1 akan mengunduh dan menyimpan salinan rantai blok Andaluzcoin.</translation>
     </message>
     <message>
         <source>The wallet will also be stored in this directory.</source>
@@ -1035,7 +1035,7 @@ Proses migrasi akan mencadangkan dompet sebelum melakukan pemindahan. Fail cadan
     </message>
     <message>
         <source>Recent transactions may not yet be visible, and therefore your wallet's balance might be incorrect. This information will be correct once your wallet has finished synchronizing with theandaluzcoin network, as detailed below.</source>
-        <translation type="unfinished">Transaksi-transaksi terkini mungkin belum terlihat dan oleh karenanya, saldo dompet Anda mungkin tidak tepat. Informasi ini akan akurat ketika dompet Anda tersinkronisasi dengan jaringan AndaluzCoin, seperti rincian berikut.</translation>
+        <translation type="unfinished">Transaksi-transaksi terkini mungkin belum terlihat dan oleh karenanya, saldo dompet Anda mungkin tidak tepat. Informasi ini akan akurat ketika dompet Anda tersinkronisasi dengan jaringan Andaluzcoin, seperti rincian berikut.</translation>
     </message>
     <message>
         <source>Attempting to spendandaluzcoins that are affected by not-yet-displayed transactions will not be accepted by the network.</source>

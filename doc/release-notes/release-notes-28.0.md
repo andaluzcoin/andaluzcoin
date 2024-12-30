@@ -1,4 +1,4 @@
-AndaluzCoin Core version 28.0 is now available from:
+Andaluzcoin Core version 28.0 is now available from:
 
   <https://bitcoincore.org/bin/bitcoin-core-28.0/>
 
@@ -18,14 +18,14 @@ How to Upgrade
 
 If you are running an older version, shut it down. Wait until it has completely
 shut down (which might take a few minutes in some cases), then run the
-installer (on Windows) or just copy over `/Applications/AndaluzCoin-Qt` (on macOS)
+installer (on Windows) or just copy over `/Applications/Andaluzcoin-Qt` (on macOS)
 or `bitcoind`/`bitcoin-qt` (on Linux).
 
-Upgrading directly from a version of AndaluzCoin Core that has reached its EOL is
+Upgrading directly from a version of Andaluzcoin Core that has reached its EOL is
 possible, but it might take some time if the data directory needs to be migrated. Old
-wallet versions of AndaluzCoin Core are generally supported.
+wallet versions of Andaluzcoin Core are generally supported.
 
-Running AndaluzCoin Core binaries on macOS requires self signing.
+Running Andaluzcoin Core binaries on macOS requires self signing.
 ```
 cd /path/to/bitcoin-28.0/bin
 xattr -d com.apple.quarantineandaluzcoin-cliandaluzcoin-qtandaluzcoin-txandaluzcoin-utilandaluzcoin-walletandaluzcoind test_bitcoin
@@ -35,10 +35,10 @@ codesign -s -andaluzcoin-cliandaluzcoin-qtandaluzcoin-txandaluzcoin-utilandaluzc
 Compatibility
 ==============
 
-AndaluzCoin Core is supported and extensively tested on operating systems
-using the Linux Kernel 3.17+, macOS 11.0+, and Windows 7 and newer. AndaluzCoin
+Andaluzcoin Core is supported and extensively tested on operating systems
+using the Linux Kernel 3.17+, macOS 11.0+, and Windows 7 and newer. Andaluzcoin
 Core should also work on most other UNIX-like systems but is not as
-frequently tested on them. It is not recommended to use AndaluzCoin Core on
+frequently tested on them. It is not recommended to use Andaluzcoin Core on
 unsupported systems.
 
 Notable changes
@@ -58,8 +58,8 @@ release. (#29775)
 Windows Data Directory
 ----------------------
 
-The default data directory on Windows has been moved from `C:\Users\Username\AppData\Roaming\AndaluzCoin`
-to `C:\Users\Username\AppData\Local\AndaluzCoin`. AndaluzCoin Core will check the existence
+The default data directory on Windows has been moved from `C:\Users\Username\AppData\Roaming\Andaluzcoin`
+to `C:\Users\Username\AppData\Local\Andaluzcoin`. Andaluzcoin Core will check the existence
 of the old directory first and continue to use that directory for backwards
 compatibility if it is present. (#27064)
 
@@ -81,7 +81,7 @@ The libbitcoin-consensus library was deprecated in 27.0 and is now completely re
 P2P and Network Changes
 -----------------------
 
-- Previously if AndaluzCoin Core was listening for P2P connections, either using
+- Previously if Andaluzcoin Core was listening for P2P connections, either using
   default settings or via `bind=addr:port` it would always also bind to
   `127.0.0.1:8334` to listen for Tor connections. It was not possible to switch
   this off, even if the node didn't use Tor. This has been changed and now
@@ -93,7 +93,7 @@ P2P and Network Changes
   `127.0.0.1:8334`, you need to now make this explicit by using
   `bind=... bind=127.0.0.1:8334=onion`. (#22729)
 
-- AndaluzCoin Core will now fail to start up if any of its P2P binds fail, rather
+- Andaluzcoin Core will now fail to start up if any of its P2P binds fail, rather
   than the previous behaviour where it would only abort startup if all P2P
   binds had failed. (#22729)
 
@@ -160,7 +160,7 @@ Updated RPCs
 - The `warnings` field in `getblockchaininfo`, `getmininginfo` and
   `getnetworkinfo` now returns all the active node warnings as an array
   of strings, instead of a single warning. The current behaviour
-  can be temporarily restored by running AndaluzCoin Core with the configuration
+  can be temporarily restored by running Andaluzcoin Core with the configuration
   option `-deprecatedrpc=warnings`. (#29845)
 
 - Previously when using the `sendrawtransaction` RPC and specifying outputs
@@ -193,9 +193,9 @@ Build System
 ------------
 
 - GCC 11.1 or later, or Clang 16.0 or later,
-are now required to compile AndaluzCoin Core. (#29091, #30263)
+are now required to compile Andaluzcoin Core. (#29091, #30263)
 
-- The minimum required glibc to run AndaluzCoin Core is now
+- The minimum required glibc to run Andaluzcoin Core is now
 2.31. This means that RHEL 8 and Ubuntu 18.04 (Bionic)
 are no-longer supported. (#29987)
 
@@ -267,7 +267,7 @@ Blockstorage
 ------------
 
 - Block files are now XOR'd by default with a key stored in the blocksdir.
-Previous releases of AndaluzCoin Core or previous external software will not be able to read the blocksdir with a non-zero XOR-key.
+Previous releases of Andaluzcoin Core or previous external software will not be able to read the blocksdir with a non-zero XOR-key.
 Refer to the `-blocksxor` help for more details. (#28052)
 
 Chainstate

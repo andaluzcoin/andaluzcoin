@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# Copyright (c) 2018-2022 The AndaluzCoin Core developers
+# Copyright (c) 2018-2022 The Andaluzcoin Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 """Backwards compatibility functional test
@@ -18,7 +18,7 @@ import os
 import shutil
 
 from test_framework.blocktools import COINBASE_MATURITY
-from test_framework.test_framework import AndaluzCoinTestFramework
+from test_framework.test_framework import AndaluzcoinTestFramework
 from test_framework.descriptors import descsum_create
 
 from test_framework.util import (
@@ -27,7 +27,7 @@ from test_framework.util import (
 )
 
 
-class BackwardsCompatibilityTest(AndaluzCoinTestFramework):
+class BackwardsCompatibilityTest(AndaluzcoinTestFramework):
     def add_options(self, parser):
         self.add_wallet_options(parser)
 
@@ -108,7 +108,7 @@ class BackwardsCompatibilityTest(AndaluzCoinTestFramework):
         assert wallet.getaddressinfo(address_18075)["solvable"]
         node_v19.unloadwallet("w1_v19")
 
-        # Copy the 0.19 wallet to the last AndaluzCoin Core version and open it:
+        # Copy the 0.19 wallet to the last Andaluzcoin Core version and open it:
         shutil.copytree(
             os.path.join(node_v19.wallets_path, "w1_v19"),
             os.path.join(node_master.wallets_path, "w1_v19")
@@ -282,7 +282,7 @@ class BackwardsCompatibilityTest(AndaluzCoinTestFramework):
             node_v17.assert_start_raises_init_error(["-wallet=w3"], "Error: wallet.dat corrupt, salvage failed")
         else:
             self.log.info("Test blank wallet incompatibility with v17")
-            node_v17.assert_start_raises_init_error(["-wallet=w3"], "Error: Error loading w3: Wallet requires newer version of AndaluzCoin Core")
+            node_v17.assert_start_raises_init_error(["-wallet=w3"], "Error: Error loading w3: Wallet requires newer version of Andaluzcoin Core")
         self.start_node(node_v17.index)
 
         # When descriptors are enabled, w1 cannot be opened by 0.21 since it contains a taproot descriptor

@@ -1,4 +1,4 @@
-// Copyright (c) 2012-2022 The AndaluzCoin Core developers
+// Copyright (c) 2012-2022 The Andaluzcoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -74,9 +74,9 @@ std::string CopyrightHolders(const std::string& strPrefix)
     const auto copyright_devs = strprintf(_(COPYRIGHT_HOLDERS), COPYRIGHT_HOLDERS_SUBSTITUTION).translated;
     std::string strCopyrightHolders = strPrefix + copyright_devs;
 
-    // Make sure AndaluzCoin Core copyright is not removed by accident
-    if (copyright_devs.find("AndaluzCoin Core") == std::string::npos) {
-        strCopyrightHolders += "\n" + strPrefix + "The AndaluzCoin Core developers";
+    // Make sure Andaluzcoin Core copyright is not removed by accident
+    if (copyright_devs.find("Andaluzcoin Core") == std::string::npos) {
+        strCopyrightHolders += "\n" + strPrefix + "The Andaluzcoin Core developers";
     }
     return strCopyrightHolders;
 }

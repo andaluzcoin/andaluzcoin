@@ -1,4 +1,4 @@
-# Copyright (c) 2023-present The AndaluzCoin Core developers
+# Copyright (c) 2023-present The Andaluzcoin Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or https://opensource.org/license/mit/.
 
@@ -306,7 +306,7 @@ target_link_libraries(bitcoin_node
 )
 
 
-# AndaluzCoin Coreandaluzcoind.
+# Andaluzcoin Coreandaluzcoind.
 if(BUILD_DAEMON)
   add_executable(bitcoind
    andaluzcoind.cpp
@@ -362,7 +362,7 @@ target_link_libraries(bitcoin_cli
 )
 
 
-# AndaluzCoin Core RPC client
+# Andaluzcoin Core RPC client
 if(BUILD_CLI)
   add_executable(bitcoin-cliandaluzcoin-cli.cpp)
   add_windows_resources(bitcoin-cliandaluzcoin-cli-res.rc)

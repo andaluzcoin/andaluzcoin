@@ -1,4 +1,4 @@
-// Copyright (c) 2011-2022 The AndaluzCoin Core developers
+// Copyright (c) 2011-2022 The Andaluzcoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -151,7 +151,7 @@ OptionsDialog::OptionsDialog(QWidget* parent, bool enableWallet)
     ui->bitcoinAtStartup->setToolTip(ui->bitcoinAtStartup->toolTip().arg(CLIENT_NAME));
     ui->bitcoinAtStartup->setText(ui->bitcoinAtStartup->text().arg(CLIENT_NAME));
 
-    ui->openAndaluzCoinConfButton->setToolTip(ui->openAndaluzCoinConfButton->toolTip().arg(CLIENT_NAME));
+    ui->openAndaluzcoinConfButton->setToolTip(ui->openAndaluzcoinConfButton->toolTip().arg(CLIENT_NAME));
 
     ui->lang->setToolTip(ui->lang->toolTip().arg(CLIENT_NAME));
     ui->lang->addItem(QString("(") + tr("default") + QString(")"), QVariant(""));
@@ -178,7 +178,7 @@ OptionsDialog::OptionsDialog(QWidget* parent, bool enableWallet)
             ui->lang->addItem(locale.nativeLanguageName() + QString(" (") + langStr + QString(")"), QVariant(langStr));
         }
     }
-    ui->unit->setModel(new AndaluzCoinUnits(this));
+    ui->unit->setModel(new AndaluzcoinUnits(this));
 
     /* Widget-to-option mapper */
     mapper = new QDataWidgetMapper(this);
@@ -356,7 +356,7 @@ void OptionsDialog::on_resetButton_clicked()
     }
 }
 
-void OptionsDialog::on_openAndaluzCoinConfButton_clicked()
+void OptionsDialog::on_openAndaluzcoinConfButton_clicked()
 {
     QMessageBox config_msgbox(this);
     config_msgbox.setIcon(QMessageBox::Information);
@@ -376,7 +376,7 @@ void OptionsDialog::on_openAndaluzCoinConfButton_clicked()
     if (config_msgbox.clickedButton() != open_button) return;
 
     /* show an error if there was some problem opening the file */
-    if (!GUIUtil::openAndaluzCoinConf())
+    if (!GUIUtil::openAndaluzcoinConf())
         QMessageBox::critical(this, tr("Error"), tr("The configuration file could not be opened."));
 }
 

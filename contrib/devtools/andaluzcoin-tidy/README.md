@@ -1,4 +1,4 @@
-# AndaluzCoin Tidy
+# Andaluzcoin Tidy
 
 Example Usage:
 

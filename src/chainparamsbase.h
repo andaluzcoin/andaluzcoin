@@ -1,4 +1,4 @@
-// Copyright (c) 2014-2020 The AndaluzCoin Core developers
+// Copyright (c) 2014-2020 The Andaluzcoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -15,7 +15,7 @@ class ArgsManager;
 
 /**
  * CBaseChainParams defines the base parameters (shared betweenandaluzcoin-cli andandaluzcoind)
- * of a given instance of the AndaluzCoin system.
+ * of a given instance of the Andaluzcoin system.
  */
 class CBaseChainParams
 {

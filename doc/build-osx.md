@@ -16,7 +16,7 @@ macOS comes with a built-in Terminal located in:
 ### 1. Xcode Command Line Tools
 
 The Xcode Command Line Tools are a collection of build tools for macOS.
-These tools must be installed in order to build AndaluzCoin Core from source.
+These tools must be installed in order to build Andaluzcoin Core from source.
 
 To install, run the following command from your terminal:
 
@@ -51,10 +51,10 @@ To install, run the following from your terminal:
 brew install cmake boost pkgconf libevent
 ```
 
-### 4. Clone AndaluzCoin repository
+### 4. Clone Andaluzcoin repository
 
 `git` should already be installed by default on your system.
-Now that all the required dependencies are installed, let's clone the AndaluzCoin Core repository to a directory.
+Now that all the required dependencies are installed, let's clone the Andaluzcoin Core repository to a directory.
 All build scripts and commands will run from this directory.
 
 ``` bash
@@ -88,7 +88,7 @@ brew install berkeley-db@4
 
 ###### Qt
 
-AndaluzCoin Core includes a GUI built with the cross-platform Qt Framework. To compile the GUI, we need to install
+Andaluzcoin Core includes a GUI built with the cross-platform Qt Framework. To compile the GUI, we need to install
 Qt, libqrencode and pass `-DBUILD_GUI=ON`. Skip if you don't intend to use the GUI.
 
 ``` bash
@@ -138,14 +138,14 @@ brew install python
 
 #### Deploy Dependencies
 
-You can [deploy](#3-deploy-optional) a `.zip` containing the AndaluzCoin Core application.
+You can [deploy](#3-deploy-optional) a `.zip` containing the Andaluzcoin Core application.
 It is required that you have `python` installed.
 
-## Building AndaluzCoin Core
+## Building Andaluzcoin Core
 
 ### 1. Configuration
 
-There are many ways to configure AndaluzCoin Core, here are a few common examples:
+There are many ways to configure Andaluzcoin Core, here are a few common examples:
 
 ##### Wallet (BDB + SQlite) Support, No GUI:
 
@@ -182,7 +182,7 @@ cmake -B build -LH
 ### 2. Compile
 
 After configuration, you are ready to compile.
-Run the following in your terminal to compile AndaluzCoin Core:
+Run the following in your terminal to compile Andaluzcoin Core:
 
 ``` bash
 cmake --build build     # Use "-j N" here for N parallel jobs.
@@ -197,9 +197,9 @@ You can also create a  `.zip` containing the `.app` bundle by running the follow
 cmake --build build --target deploy
 ```
 
-## Running AndaluzCoin Core
+## Running Andaluzcoin Core
 
-AndaluzCoin Core should now be available at `./build/src/bitcoind`.
+Andaluzcoin Core should now be available at `./build/src/bitcoind`.
 If you compiled support for the GUI, it should be available at `./build/src/qt/bitcoin-qt`.
 
 The first time you run `bitcoind` or `bitcoin-qt`, it will start downloading the blockchain.
@@ -208,23 +208,23 @@ This process could take many hours, or even days on slower than average systems.
 By default, blockchain and wallet data files will be stored in:
 
 ``` bash
-/Users/${USER}/Library/Application Support/AndaluzCoin/
+/Users/${USER}/Library/Application Support/Andaluzcoin/
 ```
 
 Before running, you may create an empty configuration file:
 
 ```shell
-mkdir -p "/Users/${USER}/Library/Application Support/AndaluzCoin"
+mkdir -p "/Users/${USER}/Library/Application Support/Andaluzcoin"
 
-touch "/Users/${USER}/Library/Application Support/AndaluzCoin/bitcoin.conf"
+touch "/Users/${USER}/Library/Application Support/Andaluzcoin/bitcoin.conf"
 
-chmod 600 "/Users/${USER}/Library/Application Support/AndaluzCoin/bitcoin.conf"
+chmod 600 "/Users/${USER}/Library/Application Support/Andaluzcoin/bitcoin.conf"
 ```
 
 You can monitor the download process by looking at the debug.log file:
 
 ```shell
-tail -f $HOME/Library/Application\ Support/AndaluzCoin/debug.log
+tail -f $HOME/Library/Application\ Support/Andaluzcoin/debug.log
 ```
 
 ## Other commands:

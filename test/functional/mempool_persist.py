@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# Copyright (c) 2014-2022 The AndaluzCoin Core developers
+# Copyright (c) 2014-2022 The Andaluzcoin Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 """Test mempool persistence.
@@ -40,7 +40,7 @@ import os
 import time
 
 from test_framework.p2p import P2PTxInvStore
-from test_framework.test_framework import AndaluzCoinTestFramework
+from test_framework.test_framework import AndaluzcoinTestFramework
 from test_framework.util import (
     assert_equal,
     assert_greater_than_or_equal,
@@ -49,7 +49,7 @@ from test_framework.util import (
 from test_framework.wallet import MiniWallet, COIN
 
 
-class MempoolPersistTest(AndaluzCoinTestFramework):
+class MempoolPersistTest(AndaluzcoinTestFramework):
     def add_options(self, parser):
         self.add_wallet_options(parser, legacy=False)
 

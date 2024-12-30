@@ -58,8 +58,8 @@
         <translation type="unfinished">Т&amp;аңдау</translation>
     </message>
     <message>
-        <source>These are your AndaluzCoin addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
-        <translation type="unfinished">Бұл сіздің төлем жіберетін AndaluzCoin мекенжайларыңыз. Тиын жібермес бұрын, әрқашан сома мен алушы мекенжайды тексеріңіз.</translation>
+        <source>These are your Andaluzcoin addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
+        <translation type="unfinished">Бұл сіздің төлем жіберетін Andaluzcoin мекенжайларыңыз. Тиын жібермес бұрын, әрқашан сома мен алушы мекенжайды тексеріңіз.</translation>
     </message>
     <message>
         <source>&amp;Copy Address</source>
@@ -226,7 +226,7 @@
     </message>
     </context>
 <context>
-    <name>AndaluzCoinApplication</name>
+    <name>AndaluzcoinApplication</name>
     <message>
         <source>Internal error</source>
         <translation type="unfinished">Ішкі қате</translation>
@@ -294,7 +294,7 @@
     </message>
     </context>
 <context>
-    <name>AndaluzCoinGUI</name>
+    <name>AndaluzcoinGUI</name>
     <message>
         <source>&amp;Overview</source>
         <translation type="unfinished">&amp;Шолу</translation>
@@ -357,8 +357,8 @@
         <translation type="unfinished">Прокси &lt;b&gt;қосулы&lt;/b&gt;: %1</translation>
     </message>
     <message>
-        <source>Send coins to a AndaluzCoin address</source>
-        <translation type="unfinished">AndaluzCoin мекенжайына тиын жіберу</translation>
+        <source>Send coins to a Andaluzcoin address</source>
+        <translation type="unfinished">Andaluzcoin мекенжайына тиын жіберу</translation>
     </message>
     <message>
         <source>Backup wallet to another location</source>
@@ -401,16 +401,16 @@
         <translation type="unfinished">Хатқа &amp;қол қою…</translation>
     </message>
     <message>
-        <source>Sign messages with your AndaluzCoin addresses to prove you own them</source>
-        <translation type="unfinished">Хатқа AndaluzCoin мекенжайларын қосып, олар сізге тиесілі екенін дәлелдеу</translation>
+        <source>Sign messages with your Andaluzcoin addresses to prove you own them</source>
+        <translation type="unfinished">Хатқа Andaluzcoin мекенжайларын қосып, олар сізге тиесілі екенін дәлелдеу</translation>
     </message>
     <message>
         <source>&amp;Verify message…</source>
         <translation type="unfinished">&amp;Хат тексеру…</translation>
     </message>
     <message>
-        <source>Verify messages to ensure they were signed with specified AndaluzCoin addresses</source>
-        <translation type="unfinished">Хат тексеріп, берілген AndaluzCoin мекенжайлары қосылғанына көз жеткізу</translation>
+        <source>Verify messages to ensure they were signed with specified Andaluzcoin addresses</source>
+        <translation type="unfinished">Хат тексеріп, берілген Andaluzcoin мекенжайлары қосылғанына көз жеткізу</translation>
     </message>
     <message>
         <source>&amp;Load PSBT from file…</source>
@@ -520,7 +520,7 @@
         <translation type="unfinished">&amp;Терезе</translation>
     </message>
     <message numerus="yes">
-        <source>%n active connection(s) to AndaluzCoin network.</source>
+        <source>%n active connection(s) to Andaluzcoin network.</source>
         <extracomment>A substring of the tooltip.</extracomment>
         <translation type="unfinished">
             <numerusform />
@@ -599,7 +599,7 @@
 <context>
     <name>Intro</name>
     <message>
-        <source>AndaluzCoin</source>
+        <source>Andaluzcoin</source>
         <translation type="unfinished">Биткоин</translation>
     </message>
     <message numerus="yes">
@@ -632,8 +632,8 @@
         </translation>
     </message>
     <message>
-        <source>%1 will download and store a copy of the AndaluzCoin block chain.</source>
-        <translation type="unfinished">%1 AndaluzCoin блокчейнінің көшірмесін жүктеп сақтайды.</translation>
+        <source>%1 will download and store a copy of the Andaluzcoin block chain.</source>
+        <translation type="unfinished">%1 Andaluzcoin блокчейнінің көшірмесін жүктеп сақтайды.</translation>
     </message>
     <message>
         <source>Error</source>

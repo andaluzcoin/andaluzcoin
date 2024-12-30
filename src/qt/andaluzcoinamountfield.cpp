@@ -1,4 +1,4 @@
-// Copyright (c) 2011-2022 The AndaluzCoin Core developers
+// Copyright (c) 2011-2022 The Andaluzcoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -59,7 +59,7 @@ public:
 
         if (valid) {
             val = qBound(m_min_amount, val, m_max_amount);
-            input = AndaluzCoinUnits::format(currentUnit, val, false, AndaluzCoinUnits::SeparatorStyle::ALWAYS);
+            input = AndaluzcoinUnits::format(currentUnit, val, false, AndaluzcoinUnits::SeparatorStyle::ALWAYS);
             lineEdit()->setText(input);
         }
     }
@@ -71,7 +71,7 @@ public:
 
     void setValue(const CAmount& value)
     {
-        lineEdit()->setText(AndaluzCoinUnits::format(currentUnit, value, false, AndaluzCoinUnits::SeparatorStyle::ALWAYS));
+        lineEdit()->setText(AndaluzcoinUnits::format(currentUnit, value, false, AndaluzcoinUnits::SeparatorStyle::ALWAYS));
         Q_EMIT valueChanged();
     }
 
@@ -99,13 +99,13 @@ public:
         setValue(val);
     }
 
-    void setDisplayUnit(AndaluzCoinUnit unit)
+    void setDisplayUnit(AndaluzcoinUnit unit)
     {
         bool valid = false;
         CAmount val = value(&valid);
 
         currentUnit = unit;
-        lineEdit()->setPlaceholderText(AndaluzCoinUnits::format(currentUnit, m_min_amount, false, AndaluzCoinUnits::SeparatorStyle::ALWAYS));
+        lineEdit()->setPlaceholderText(AndaluzcoinUnits::format(currentUnit, m_min_amount, false, AndaluzcoinUnits::SeparatorStyle::ALWAYS));
         if(valid)
             setValue(val);
         else
@@ -125,7 +125,7 @@ public:
 
             const QFontMetrics fm(fontMetrics());
             int h = lineEdit()->minimumSizeHint().height();
-            int w = GUIUtil::TextWidth(fm, AndaluzCoinUnits::format(AndaluzCoinUnit::LUZ, AndaluzCoinUnits::maxMoney(), false, AndaluzCoinUnits::SeparatorStyle::ALWAYS));
+            int w = GUIUtil::TextWidth(fm, AndaluzcoinUnits::format(AndaluzcoinUnit::LUZ, AndaluzcoinUnits::maxMoney(), false, AndaluzcoinUnits::SeparatorStyle::ALWAYS));
             w += 2; // cursor blinking space
 
             QStyleOptionSpinBox opt;
@@ -150,12 +150,12 @@ public:
     }
 
 private:
-    AndaluzCoinUnit currentUnit{AndaluzCoinUnit::LUZ};
+    AndaluzcoinUnit currentUnit{AndaluzcoinUnit::LUZ};
     CAmount singleStep{CAmount(100000)}; // satoshis
     mutable QSize cachedMinimumSizeHint;
     bool m_allow_empty{true};
     CAmount m_min_amount{CAmount(0)};
-    CAmount m_max_amount{AndaluzCoinUnits::maxMoney()};
+    CAmount m_max_amount{AndaluzcoinUnits::maxMoney()};
 
     /**
      * Parse a string into a number of base monetary units and
@@ -165,10 +165,10 @@ private:
     CAmount parse(const QString &text, bool *valid_out=nullptr) const
     {
         CAmount val = 0;
-        bool valid = AndaluzCoinUnits::parse(currentUnit, text, &val);
+        bool valid = AndaluzcoinUnits::parse(currentUnit, text, &val);
         if(valid)
         {
-            if(val < 0 || val > AndaluzCoinUnits::maxMoney())
+            if(val < 0 || val > AndaluzcoinUnits::maxMoney())
                 valid = false;
         }
         if(valid_out)
@@ -217,7 +217,7 @@ Q_SIGNALS:
 
 #include <qt/bitcoinamountfield.moc>
 
-AndaluzCoinAmountField::AndaluzCoinAmountField(QWidget* parent)
+AndaluzcoinAmountField::AndaluzcoinAmountField(QWidget* parent)
     : QWidget(parent)
 {
     amount = new AmountSpinBox(this);
@@ -228,7 +228,7 @@ AndaluzCoinAmountField::AndaluzCoinAmountField(QWidget* parent)
     QHBoxLayout *layout = new QHBoxLayout(this);
     layout->addWidget(amount);
     unit = new QValueComboBox(this);
-    unit->setModel(new AndaluzCoinUnits(this));
+    unit->setModel(new AndaluzcoinUnits(this));
     layout->addWidget(unit);
     layout->addStretch(1);
     layout->setContentsMargins(0,0,0,0);
@@ -239,26 +239,26 @@ AndaluzCoinAmountField::AndaluzCoinAmountField(QWidget* parent)
     setFocusProxy(amount);
 
     // If one if the widgets changes, the combined content changes as well
-    connect(amount, &AmountSpinBox::valueChanged, this, &AndaluzCoinAmountField::valueChanged);
-    connect(unit, qOverload<int>(&QComboBox::currentIndexChanged), this, &AndaluzCoinAmountField::unitChanged);
+    connect(amount, &AmountSpinBox::valueChanged, this, &AndaluzcoinAmountField::valueChanged);
+    connect(unit, qOverload<int>(&QComboBox::currentIndexChanged), this, &AndaluzcoinAmountField::unitChanged);
 
     // Set default based on configuration
     unitChanged(unit->currentIndex());
 }
 
-void AndaluzCoinAmountField::clear()
+void AndaluzcoinAmountField::clear()
 {
     amount->clear();
     unit->setCurrentIndex(0);
 }
 
-void AndaluzCoinAmountField::setEnabled(bool fEnabled)
+void AndaluzcoinAmountField::setEnabled(bool fEnabled)
 {
     amount->setEnabled(fEnabled);
     unit->setEnabled(fEnabled);
 }
 
-bool AndaluzCoinAmountField::validate()
+bool AndaluzcoinAmountField::validate()
 {
     bool valid = false;
     value(&valid);
@@ -266,7 +266,7 @@ bool AndaluzCoinAmountField::validate()
     return valid;
 }
 
-void AndaluzCoinAmountField::setValid(bool valid)
+void AndaluzcoinAmountField::setValid(bool valid)
 {
     if (valid)
         amount->setStyleSheet("");
@@ -274,7 +274,7 @@ void AndaluzCoinAmountField::setValid(bool valid)
         amount->setStyleSheet(STYLE_INVALID);
 }
 
-bool AndaluzCoinAmountField::eventFilter(QObject *object, QEvent *event)
+bool AndaluzcoinAmountField::eventFilter(QObject *object, QEvent *event)
 {
     if (event->type() == QEvent::FocusIn)
     {
@@ -284,60 +284,60 @@ bool AndaluzCoinAmountField::eventFilter(QObject *object, QEvent *event)
     return QWidget::eventFilter(object, event);
 }
 
-QWidget *AndaluzCoinAmountField::setupTabChain(QWidget *prev)
+QWidget *AndaluzcoinAmountField::setupTabChain(QWidget *prev)
 {
     QWidget::setTabOrder(prev, amount);
     QWidget::setTabOrder(amount, unit);
     return unit;
 }
 
-CAmount AndaluzCoinAmountField::value(bool *valid_out) const
+CAmount AndaluzcoinAmountField::value(bool *valid_out) const
 {
     return amount->value(valid_out);
 }
 
-void AndaluzCoinAmountField::setValue(const CAmount& value)
+void AndaluzcoinAmountField::setValue(const CAmount& value)
 {
     amount->setValue(value);
 }
 
-void AndaluzCoinAmountField::SetAllowEmpty(bool allow)
+void AndaluzcoinAmountField::SetAllowEmpty(bool allow)
 {
     amount->SetAllowEmpty(allow);
 }
 
-void AndaluzCoinAmountField::SetMinValue(const CAmount& value)
+void AndaluzcoinAmountField::SetMinValue(const CAmount& value)
 {
     amount->SetMinValue(value);
 }
 
-void AndaluzCoinAmountField::SetMaxValue(const CAmount& value)
+void AndaluzcoinAmountField::SetMaxValue(const CAmount& value)
 {
     amount->SetMaxValue(value);
 }
 
-void AndaluzCoinAmountField::setReadOnly(bool fReadOnly)
+void AndaluzcoinAmountField::setReadOnly(bool fReadOnly)
 {
     amount->setReadOnly(fReadOnly);
 }
 
-void AndaluzCoinAmountField::unitChanged(int idx)
+void AndaluzcoinAmountField::unitChanged(int idx)
 {
     // Use description tooltip for current unit for the combobox
     unit->setToolTip(unit->itemData(idx, Qt::ToolTipRole).toString());
 
     // Determine new unit ID
-    QVariant new_unit = unit->currentData(AndaluzCoinUnits::UnitRole);
+    QVariant new_unit = unit->currentData(AndaluzcoinUnits::UnitRole);
     assert(new_unit.isValid());
-    amount->setDisplayUnit(new_unit.value<AndaluzCoinUnit>());
+    amount->setDisplayUnit(new_unit.value<AndaluzcoinUnit>());
 }
 
-void AndaluzCoinAmountField::setDisplayUnit(AndaluzCoinUnit new_unit)
+void AndaluzcoinAmountField::setDisplayUnit(AndaluzcoinUnit new_unit)
 {
     unit->setValue(QVariant::fromValue(new_unit));
 }
 
-void AndaluzCoinAmountField::setSingleStep(const CAmount& step)
+void AndaluzcoinAmountField::setSingleStep(const CAmount& step)
 {
     amount->setSingleStep(step);
 }

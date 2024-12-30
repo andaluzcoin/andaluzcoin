@@ -1,5 +1,5 @@
-AndaluzCoin version 0.5.0 is now available for download at:
-http://sourceforge.net/projects/bitcoin/files/AndaluzCoin/bitcoin-0.5.0/
+Andaluzcoin version 0.5.0 is now available for download at:
+http://sourceforge.net/projects/bitcoin/files/Andaluzcoin/bitcoin-0.5.0/
 
 The major change for this release is a completely new graphical interface that uses the Qt user interface toolkit.
 
@@ -13,30 +13,30 @@ For Ubuntu users, there is a new ppa maintained by Matt Corallo which you can ad
 
 MAJOR BUG FIX  (CVE-2011-4447)
 
-The wallet encryption feature introduced in AndaluzCoin version 0.4.0 did not sufficiently secure the private keys. An attacker who
+The wallet encryption feature introduced in Andaluzcoin version 0.4.0 did not sufficiently secure the private keys. An attacker who
 managed to get a copy of your encrypted wallet.dat file might be able to recover some or all of the unencrypted keys and steal the
 associated coins.
 
-If you have a previously encrypted wallet.dat, the first time you runandaluzcoin-qt orandaluzcoind the wallet will be rewritten, AndaluzCoin will
+If you have a previously encrypted wallet.dat, the first time you runandaluzcoin-qt orandaluzcoind the wallet will be rewritten, Andaluzcoin will
 shut down, and you will be prompted to restart it to run with the new, properly encrypted file.
 
 If you had a previously encrypted wallet.dat that might have been copied or stolen (for example, you backed it up to a public
 location) you should send all of yourandaluzcoins to yourself using a newandaluzcoin address and stop using any previously generated addresses.
 
-Wallets encrypted with this version of AndaluzCoin are written properly.
+Wallets encrypted with this version of Andaluzcoin are written properly.
 
 Technical note: the encrypted wallet's 'keypool' will be regenerated the first time you request a newandaluzcoin address; to be certain that the
 new private keys are properly backed up you should:
 
-1. Run AndaluzCoin and let it rewrite the wallet.dat file
+1. Run Andaluzcoin and let it rewrite the wallet.dat file
 
 2. Run it again, then ask it for a newandaluzcoin address.
-AndaluzCoin-Qt: Address Book, then New Address...
+Andaluzcoin-Qt: Address Book, then New Address...
 bitcoind: run the 'walletpassphrase' RPC command to unlock the wallet,  then run the 'getnewaddress' RPC command.
 
 3. If your encrypted wallet.dat may have been copied or stolen, send  all of yourandaluzcoins to the newandaluzcoin address.
 
-4. Shut down AndaluzCoin, then backup the wallet.dat file.
+4. Shut down Andaluzcoin, then backup the wallet.dat file.
 IMPORTANT: be sure to request a newandaluzcoin address before backing up, so that the 'keypool' is regenerated and backed up.
 
 "Security in depth" is always a good idea, so choosing a secure location for the backup and/or encrypting the backup before uploading it is recommended. And as in previous releases, if your machine is infected by malware there are several ways an attacker might steal yourandaluzcoins.

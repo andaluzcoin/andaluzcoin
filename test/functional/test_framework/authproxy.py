@@ -47,7 +47,7 @@ import urllib.parse
 HTTP_TIMEOUT = 30
 USER_AGENT = "AuthServiceProxy/0.1"
 
-log = logging.getLogger("AndaluzCoinRPC")
+log = logging.getLogger("AndaluzcoinRPC")
 
 class JSONRPCException(Exception):
     def __init__(self, rpc_error, http_status=None):

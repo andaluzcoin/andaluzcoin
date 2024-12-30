@@ -58,13 +58,13 @@
         <translation type="unfinished">C&amp;hoisir</translation>
     </message>
     <message>
-        <source>These are your AndaluzCoin addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
-        <translation type="unfinished">Ce sont vos adresses AndaluzCoin pour envoyer des paiements. Vérifiez toujours le montant et l’adresse du destinataire avant d’envoyer des pièces.</translation>
+        <source>These are your Andaluzcoin addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
+        <translation type="unfinished">Ce sont vos adresses Andaluzcoin pour envoyer des paiements. Vérifiez toujours le montant et l’adresse du destinataire avant d’envoyer des pièces.</translation>
     </message>
     <message>
-        <source>These are your AndaluzCoin addresses for receiving payments. Use the 'Create new receiving address' button in the receive tab to create new addresses.
+        <source>These are your Andaluzcoin addresses for receiving payments. Use the 'Create new receiving address' button in the receive tab to create new addresses.
 Signing is only possible with addresses of the type 'legacy'.</source>
-        <translation type="unfinished">Ce sont vos adresses AndaluzCoin pour recevoir des paiements. Utilisez le bouton « Créer une nouvelle adresse de réception » dans l’onglet Recevoir afin de créer de nouvelles adresses.
+        <translation type="unfinished">Ce sont vos adresses Andaluzcoin pour recevoir des paiements. Utilisez le bouton « Créer une nouvelle adresse de réception » dans l’onglet Recevoir afin de créer de nouvelles adresses.
 Il n’est possible de signer qu’avec les adresses de type « legacy ».</translation>
     </message>
     <message>
@@ -264,7 +264,7 @@ Il n’est possible de signer qu’avec les adresses de type « legacy ».</tr
     </message>
 </context>
 <context>
-    <name>AndaluzCoinApplication</name>
+    <name>AndaluzcoinApplication</name>
     <message>
         <source>Settings file %1 might be corrupt or invalid.</source>
         <translation type="unfinished">Le fichier de paramètres %1 est peut-être corrompu ou invalide.</translation>
@@ -327,8 +327,8 @@ Il n’est possible de signer qu’avec les adresses de type « legacy ».</tr
         <translation type="unfinished">Montant</translation>
     </message>
     <message>
-        <source>Enter a AndaluzCoin address (e.g. %1)</source>
-        <translation type="unfinished">Saisir une adresse AndaluzCoin (p. ex. %1)</translation>
+        <source>Enter a Andaluzcoin address (e.g. %1)</source>
+        <translation type="unfinished">Saisir une adresse Andaluzcoin (p. ex. %1)</translation>
     </message>
     <message>
         <source>Unroutable</source>
@@ -453,7 +453,7 @@ Il n’est possible de signer qu’avec les adresses de type « legacy ».</tr
     </message>
 </context>
 <context>
-    <name>AndaluzCoinGUI</name>
+    <name>AndaluzcoinGUI</name>
     <message>
         <source>&amp;Overview</source>
         <translation type="unfinished">&amp;Vue d’ensemble</translation>
@@ -516,8 +516,8 @@ Il n’est possible de signer qu’avec les adresses de type « legacy ».</tr
         <translation type="unfinished">Le serveur mandataire est &lt;b&gt;activé&lt;/b&gt; : %1</translation>
     </message>
     <message>
-        <source>Send coins to a AndaluzCoin address</source>
-        <translation type="unfinished">Envoyer des pièces à une adresse AndaluzCoin</translation>
+        <source>Send coins to a Andaluzcoin address</source>
+        <translation type="unfinished">Envoyer des pièces à une adresse Andaluzcoin</translation>
     </message>
     <message>
         <source>Backup wallet to another location</source>
@@ -556,16 +556,16 @@ Il n’est possible de signer qu’avec les adresses de type « legacy ».</tr
         <translation type="unfinished">Signer un &amp;message…</translation>
     </message>
     <message>
-        <source>Sign messages with your AndaluzCoin addresses to prove you own them</source>
-        <translation type="unfinished">Signer les messages avec vos adresses AndaluzCoin pour prouver que vous les détenez</translation>
+        <source>Sign messages with your Andaluzcoin addresses to prove you own them</source>
+        <translation type="unfinished">Signer les messages avec vos adresses Andaluzcoin pour prouver que vous les détenez</translation>
     </message>
     <message>
         <source>&amp;Verify message…</source>
         <translation type="unfinished">&amp;Vérifier un message…</translation>
     </message>
     <message>
-        <source>Verify messages to ensure they were signed with specified AndaluzCoin addresses</source>
-        <translation type="unfinished">Vérifier les messages pour s’assurer qu’ils ont été signés avec les adresses AndaluzCoin indiquées</translation>
+        <source>Verify messages to ensure they were signed with specified Andaluzcoin addresses</source>
+        <translation type="unfinished">Vérifier les messages pour s’assurer qu’ils ont été signés avec les adresses Andaluzcoin indiquées</translation>
     </message>
     <message>
         <source>&amp;Load PSBT from file…</source>
@@ -679,16 +679,16 @@ Il n’est possible de signer qu’avec les adresses de type « legacy ».</tr
         <translation type="unfinished">À jour</translation>
     </message>
     <message>
-        <source>Load Partially Signed AndaluzCoin Transaction</source>
-        <translation type="unfinished">Charger une transaction AndaluzCoin signée partiellement</translation>
+        <source>Load Partially Signed Andaluzcoin Transaction</source>
+        <translation type="unfinished">Charger une transaction Andaluzcoin signée partiellement</translation>
     </message>
     <message>
         <source>Load PSBT from &amp;clipboard…</source>
         <translation type="unfinished">Charger la TBSP du &amp;presse-papiers…</translation>
     </message>
     <message>
-        <source>Load Partially Signed AndaluzCoin Transaction from clipboard</source>
-        <translation type="unfinished">Charger du presse-papiers une transaction AndaluzCoin signée partiellement</translation>
+        <source>Load Partially Signed Andaluzcoin Transaction from clipboard</source>
+        <translation type="unfinished">Charger du presse-papiers une transaction Andaluzcoin signée partiellement</translation>
     </message>
     <message>
         <source>Node window</source>
@@ -745,8 +745,8 @@ Il n’est possible de signer qu’avec les adresses de type « legacy ».</tr
         <translation type="unfinished">Migrer un porte-monnaie</translation>
     </message>
     <message>
-        <source>Show the %1 help message to get a list with possible AndaluzCoin command-line options</source>
-        <translation type="unfinished">Afficher le message d’aide de %1 pour obtenir la liste des options possibles en ligne de commande AndaluzCoin</translation>
+        <source>Show the %1 help message to get a list with possible Andaluzcoin command-line options</source>
+        <translation type="unfinished">Afficher le message d’aide de %1 pour obtenir la liste des options possibles en ligne de commande Andaluzcoin</translation>
     </message>
     <message>
         <source>&amp;Mask values</source>
@@ -805,11 +805,11 @@ Il n’est possible de signer qu’avec les adresses de type « legacy ».</tr
         <translation type="unfinished">A&amp;fficher</translation>
     </message>
     <message numerus="yes">
-        <source>%n active connection(s) to AndaluzCoin network.</source>
+        <source>%n active connection(s) to Andaluzcoin network.</source>
         <extracomment>A substring of the tooltip.</extracomment>
         <translation type="unfinished">
-            <numerusform>%n connexion active avec le réseau AndaluzCoin.</numerusform>
-            <numerusform>%n connexions actives avec le réseau AndaluzCoin.</numerusform>
+            <numerusform>%n connexion active avec le réseau Andaluzcoin.</numerusform>
+            <numerusform>%n connexions actives avec le réseau Andaluzcoin.</numerusform>
         </translation>
     </message>
     <message>
@@ -1318,8 +1318,8 @@ Le processus de migration créera une sauvegarde du porte-monnaie avant migratio
         <translation type="unfinished">Modifier l’adresse d’envoi</translation>
     </message>
     <message>
-        <source>The entered address "%1" is not a valid AndaluzCoin address.</source>
-        <translation type="unfinished">L’adresse saisie « %1 » n’est pas une adresse AndaluzCoin valide.</translation>
+        <source>The entered address "%1" is not a valid Andaluzcoin address.</source>
+        <translation type="unfinished">L’adresse saisie « %1 » n’est pas une adresse Andaluzcoin valide.</translation>
     </message>
     <message>
         <source>Address "%1" already exists as a receiving address with label "%2" and so cannot be added as a sending address.</source>
@@ -1405,8 +1405,8 @@ Le processus de migration créera une sauvegarde du porte-monnaie avant migratio
         </translation>
     </message>
     <message>
-        <source>%1 will download and store a copy of the AndaluzCoin block chain.</source>
-        <translation type="unfinished">%1 téléchargera et stockera une copie de la chaîne de blocs AndaluzCoin.</translation>
+        <source>%1 will download and store a copy of the Andaluzcoin block chain.</source>
+        <translation type="unfinished">%1 téléchargera et stockera une copie de la chaîne de blocs Andaluzcoin.</translation>
     </message>
     <message>
         <source>The wallet will also be stored in this directory.</source>
@@ -1495,7 +1495,7 @@ Le processus de migration créera une sauvegarde du porte-monnaie avant migratio
     </message>
     <message>
         <source>Recent transactions may not yet be visible, and therefore your wallet's balance might be incorrect. This information will be correct once your wallet has finished synchronizing with theandaluzcoin network, as detailed below.</source>
-        <translation type="unfinished">Les transactions récentes ne sont peut-être pas encore visibles et par conséquent le solde de votre porte-monnaie est peut-être erroné. Ces renseignements seront justes quand votre porte-monnaie aura fini de se synchroniser avec le réseau AndaluzCoin, comme décrit ci-dessous.</translation>
+        <translation type="unfinished">Les transactions récentes ne sont peut-être pas encore visibles et par conséquent le solde de votre porte-monnaie est peut-être erroné. Ces renseignements seront justes quand votre porte-monnaie aura fini de se synchroniser avec le réseau Andaluzcoin, comme décrit ci-dessous.</translation>
     </message>
     <message>
         <source>Attempting to spendandaluzcoins that are affected by not-yet-displayed transactions will not be accepted by the network.</source>
@@ -1721,16 +1721,16 @@ Le processus de migration créera une sauvegarde du porte-monnaie avant migratio
         <translation type="unfinished">&amp;Chemin du script signataire externe</translation>
     </message>
     <message>
-        <source>Automatically open the AndaluzCoin client port on the router. This only works when your router supports UPnP and it is enabled.</source>
-        <translation type="unfinished">Ouvrir automatiquement le port du client AndaluzCoin sur le routeur. Cela ne fonctionne que si votre routeur prend en charge l’UPnP et si la fonction est activée.</translation>
+        <source>Automatically open the Andaluzcoin client port on the router. This only works when your router supports UPnP and it is enabled.</source>
+        <translation type="unfinished">Ouvrir automatiquement le port du client Andaluzcoin sur le routeur. Cela ne fonctionne que si votre routeur prend en charge l’UPnP et si la fonction est activée.</translation>
     </message>
     <message>
         <source>Map port using &amp;UPnP</source>
         <translation type="unfinished">Mapper le port avec l’&amp;UPnP</translation>
     </message>
     <message>
-        <source>Automatically open the AndaluzCoin client port on the router. This only works when your router supports NAT-PMP and it is enabled. The external port could be random.</source>
-        <translation type="unfinished">Ouvrir automatiquement le port du client AndaluzCoin sur le routeur. Cela ne fonctionne que si votre routeur prend en charge NAT-PMP. Le port externe peut être aléatoire.</translation>
+        <source>Automatically open the Andaluzcoin client port on the router. This only works when your router supports NAT-PMP and it is enabled. The external port could be random.</source>
+        <translation type="unfinished">Ouvrir automatiquement le port du client Andaluzcoin sur le routeur. Cela ne fonctionne que si votre routeur prend en charge NAT-PMP. Le port externe peut être aléatoire.</translation>
     </message>
     <message>
         <source>Map port using NA&amp;T-PMP</source>
@@ -1745,8 +1745,8 @@ Le processus de migration créera une sauvegarde du porte-monnaie avant migratio
         <translation type="unfinished">Permettre les connexions e&amp;ntrantes</translation>
     </message>
     <message>
-        <source>Connect to the AndaluzCoin network through a SOCKS5 proxy.</source>
-        <translation type="unfinished">Se connecter au réseau AndaluzCoin par un mandataire SOCKS5.</translation>
+        <source>Connect to the Andaluzcoin network through a SOCKS5 proxy.</source>
+        <translation type="unfinished">Se connecter au réseau Andaluzcoin par un mandataire SOCKS5.</translation>
     </message>
     <message>
         <source>&amp;Connect through SOCKS5 proxy (default proxy):</source>
@@ -1825,8 +1825,8 @@ Le processus de migration créera une sauvegarde du porte-monnaie avant migratio
         <translation type="unfinished">Afficher ou non les fonctions de contrôle des pièces.</translation>
     </message>
     <message>
-        <source>Connect to the AndaluzCoin network through a separate SOCKS5 proxy for Tor onion services.</source>
-        <translation type="unfinished">Se connecter au réseau AndaluzCoin par un mandataire SOCKS5 séparé pour les services oignon de Tor.</translation>
+        <source>Connect to the Andaluzcoin network through a separate SOCKS5 proxy for Tor onion services.</source>
+        <translation type="unfinished">Se connecter au réseau Andaluzcoin par un mandataire SOCKS5 séparé pour les services oignon de Tor.</translation>
     </message>
     <message>
         <source>Use separate SOCKS&amp;5 proxy to reach peers via Tor onion services:</source>
@@ -1922,8 +1922,8 @@ Le processus de migration créera une sauvegarde du porte-monnaie avant migratio
         <translation type="unfinished">Formulaire</translation>
     </message>
     <message>
-        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the AndaluzCoin network after a connection is established, but this process has not completed yet.</source>
-        <translation type="unfinished">Les renseignements affichés peuvent être obsolètes. Votre porte-monnaie se synchronise automatiquement avec le réseau AndaluzCoin dès qu’une connexion est établie, mais ce processus n’est pas encore achevé.</translation>
+        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the Andaluzcoin network after a connection is established, but this process has not completed yet.</source>
+        <translation type="unfinished">Les renseignements affichés peuvent être obsolètes. Votre porte-monnaie se synchronise automatiquement avec le réseau Andaluzcoin dès qu’une connexion est établie, mais ce processus n’est pas encore achevé.</translation>
     </message>
     <message>
         <source>Watch-only:</source>
@@ -2155,8 +2155,8 @@ If you are receiving this error you should request the merchant provide a BIP21 
         <translation type="unfinished">Impossible de traiter la demande de paiement, car BIP70 n’est pas pris en charge. En raison des failles de sécurité généralisées de BIP70, il est fortement recommandé d’ignorer toute demande de marchand de changer de porte-monnaie. Si vous recevez cette erreur, vous devriez demander au marchand de vous fournir une URI compatible BIP21.</translation>
     </message>
     <message>
-        <source>URI cannot be parsed! This can be caused by an invalid AndaluzCoin address or malformed URI parameters.</source>
-        <translation type="unfinished">L’URI ne peut pas être analysée. Cela peut être causé par une adresse AndaluzCoin invalide ou par des paramètres d’URI mal formés.</translation>
+        <source>URI cannot be parsed! This can be caused by an invalid Andaluzcoin address or malformed URI parameters.</source>
+        <translation type="unfinished">L’URI ne peut pas être analysée. Cela peut être causé par une adresse Andaluzcoin invalide ou par des paramètres d’URI mal formés.</translation>
     </message>
     <message>
         <source>Payment request file handling</source>
@@ -2298,8 +2298,8 @@ If you are receiving this error you should request the merchant provide a BIP21 
         <translation type="unfinished">Adresses locales</translation>
     </message>
     <message>
-        <source>Network addresses that your AndaluzCoin node is currently using to communicate with other nodes.</source>
-        <translation type="unfinished">Adresses réseau que votre nœud AndaluzCoin utilise actuellement pour communiquer avec d’autres nœuds.</translation>
+        <source>Network addresses that your Andaluzcoin node is currently using to communicate with other nodes.</source>
+        <translation type="unfinished">Adresses réseau que votre nœud Andaluzcoin utilise actuellement pour communiquer avec d’autres nœuds.</translation>
     </message>
     <message>
         <source>Block chain</source>
@@ -2736,8 +2736,8 @@ Pour plus de précisions sur cette console, tapez %6.
         <translation type="unfinished">M&amp;essage :</translation>
     </message>
     <message>
-        <source>An optional message to attach to the payment request, which will be displayed when the request is opened. Note: The message will not be sent with the payment over the AndaluzCoin network.</source>
-        <translation type="unfinished">Un message facultatif à joindre à la demande de paiement et qui sera affiché à l’ouverture de celle-ci. Note : Le message ne sera pas envoyé avec le paiement par le réseau AndaluzCoin.</translation>
+        <source>An optional message to attach to the payment request, which will be displayed when the request is opened. Note: The message will not be sent with the payment over the Andaluzcoin network.</source>
+        <translation type="unfinished">Un message facultatif à joindre à la demande de paiement et qui sera affiché à l’ouverture de celle-ci. Note : Le message ne sera pas envoyé avec le paiement par le réseau Andaluzcoin.</translation>
     </message>
     <message>
         <source>An optional label to associate with the new receiving address.</source>
@@ -3111,8 +3111,8 @@ Note : Les frais étant calculés par octet, un taux de frais de « 100 satoshi
         <translation type="unfinished">Cr&amp;éer une transaction non signée</translation>
     </message>
     <message>
-        <source>Creates a Partially Signed AndaluzCoin Transaction (PSBT) for use with e.g. an offline %1 wallet, or a PSBT-compatible hardware wallet.</source>
-        <translation type="unfinished">Crée une transaction AndaluzCoin signée partiellement (TBSP) à utiliser, par exemple, avec un porte-monnaie %1 hors ligne ou avec un porte-monnaie matériel compatible TBSP.</translation>
+        <source>Creates a Partially Signed Andaluzcoin Transaction (PSBT) for use with e.g. an offline %1 wallet, or a PSBT-compatible hardware wallet.</source>
+        <translation type="unfinished">Crée une transaction Andaluzcoin signée partiellement (TBSP) à utiliser, par exemple, avec un porte-monnaie %1 hors ligne ou avec un porte-monnaie matériel compatible TBSP.</translation>
     </message>
     <message>
         <source>%1 to '%2'</source>
@@ -3167,9 +3167,9 @@ Note : Les frais étant calculés par octet, un taux de frais de « 100 satoshi
         <translation type="unfinished">Vous pouvez augmenter les frais ultérieurement (signale Remplacer-par-des-frais, BIP-125).</translation>
     </message>
     <message>
-        <source>Please, review your transaction proposal. This will produce a Partially Signed AndaluzCoin Transaction (PSBT) which you can save or copy and then sign with e.g. an offline %1 wallet, or a PSBT-compatible hardware wallet.</source>
+        <source>Please, review your transaction proposal. This will produce a Partially Signed Andaluzcoin Transaction (PSBT) which you can save or copy and then sign with e.g. an offline %1 wallet, or a PSBT-compatible hardware wallet.</source>
         <extracomment>Text to inform a user attempting to create a transaction of their current options. At this stage, a user can only create a PSBT. This string is displayed when private keys are disabled and an external signer is not available.</extracomment>
-        <translation type="unfinished">Veuillez réviser votre proposition de transaction. Une transaction AndaluzCoin partiellement signée (TBSP) sera produite, que vous pourrez enregistrer ou copier puis signer avec, par exemple, un porte-monnaie %1 hors ligne ou avec un porte-monnaie matériel compatible TBSP.</translation>
+        <translation type="unfinished">Veuillez réviser votre proposition de transaction. Une transaction Andaluzcoin partiellement signée (TBSP) sera produite, que vous pourrez enregistrer ou copier puis signer avec, par exemple, un porte-monnaie %1 hors ligne ou avec un porte-monnaie matériel compatible TBSP.</translation>
     </message>
     <message>
         <source>%1 from wallet '%2'</source>
@@ -3181,9 +3181,9 @@ Note : Les frais étant calculés par octet, un taux de frais de « 100 satoshi
         <translation type="unfinished">Voulez-vous créer cette transaction ?</translation>
     </message>
     <message>
-        <source>Please, review your transaction. You can create and send this transaction or create a Partially Signed AndaluzCoin Transaction (PSBT), which you can save or copy and then sign with, e.g., an offline %1 wallet, or a PSBT-compatible hardware wallet.</source>
+        <source>Please, review your transaction. You can create and send this transaction or create a Partially Signed Andaluzcoin Transaction (PSBT), which you can save or copy and then sign with, e.g., an offline %1 wallet, or a PSBT-compatible hardware wallet.</source>
         <extracomment>Text to inform a user attempting to create a transaction of their current options. At this stage, a user can send their transaction or create a PSBT. This string is displayed when both private keys and PSBT controls are enabled.</extracomment>
-        <translation type="unfinished">Veuillez réviser votre transaction. Vous pouvez créer et envoyer cette transaction ou créer une transaction AndaluzCoin partiellement signée (TBSP), que vous pouvez enregistrer ou copier, et ensuite avec laquelle signer, par ex., un porte-monnaie %1 hors ligne ou avec un porte-monnaie matériel compatible TBSP.</translation>
+        <translation type="unfinished">Veuillez réviser votre transaction. Vous pouvez créer et envoyer cette transaction ou créer une transaction Andaluzcoin partiellement signée (TBSP), que vous pouvez enregistrer ou copier, et ensuite avec laquelle signer, par ex., un porte-monnaie %1 hors ligne ou avec un porte-monnaie matériel compatible TBSP.</translation>
     </message>
     <message>
         <source>Please, review your transaction.</source>
@@ -3266,8 +3266,8 @@ Note : Les frais étant calculés par octet, un taux de frais de « 100 satoshi
         </translation>
     </message>
     <message>
-        <source>Warning: Invalid AndaluzCoin address</source>
-        <translation type="unfinished">Avertissement : L’adresse AndaluzCoin est invalide</translation>
+        <source>Warning: Invalid Andaluzcoin address</source>
+        <translation type="unfinished">Avertissement : L’adresse Andaluzcoin est invalide</translation>
     </message>
     <message>
         <source>Warning: Unknown change address</source>
@@ -3305,8 +3305,8 @@ Note : Les frais étant calculés par octet, un taux de frais de « 100 satoshi
         <translation type="unfinished">Choisir une adresse utilisée précédemment</translation>
     </message>
     <message>
-        <source>The AndaluzCoin address to send the payment to</source>
-        <translation type="unfinished">L’adresse AndaluzCoin à laquelle envoyer le paiement</translation>
+        <source>The Andaluzcoin address to send the payment to</source>
+        <translation type="unfinished">L’adresse Andaluzcoin à laquelle envoyer le paiement</translation>
     </message>
     <message>
         <source>Paste address from clipboard</source>
@@ -3341,8 +3341,8 @@ Note : Les frais étant calculés par octet, un taux de frais de « 100 satoshi
         <translation type="unfinished">Saisir une étiquette pour cette adresse afin de l’ajouter à la liste d’adresses utilisées</translation>
     </message>
     <message>
-        <source>A message that was attached to theandaluzcoin: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the AndaluzCoin network.</source>
-        <translation type="unfinished">Un message qui était joint à l’URIandaluzcoin: et qui sera stocké avec la transaction pour référence. Note : Ce message ne sera pas envoyé par le réseau AndaluzCoin.</translation>
+        <source>A message that was attached to theandaluzcoin: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the Andaluzcoin network.</source>
+        <translation type="unfinished">Un message qui était joint à l’URIandaluzcoin: et qui sera stocké avec la transaction pour référence. Note : Ce message ne sera pas envoyé par le réseau Andaluzcoin.</translation>
     </message>
 </context>
 <context>
@@ -3371,8 +3371,8 @@ Note : Les frais étant calculés par octet, un taux de frais de « 100 satoshi
         <translation type="unfinished">Vous pouvez signer des messages ou des accords avec vos anciennes adresses (P2PKH) pour prouver que vous pouvez recevoir desandaluzcoins à ces dernières. Ne signer rien de vague ou au hasard, car des attaques d’hameçonnage pourraient essayer de vous faire signer avec votre identité afin de l’usurper. Ne signez que des déclarations entièrement détaillées et que vous acceptez.</translation>
     </message>
     <message>
-        <source>The AndaluzCoin address to sign the message with</source>
-        <translation type="unfinished">L’adresse AndaluzCoin avec laquelle signer le message</translation>
+        <source>The Andaluzcoin address to sign the message with</source>
+        <translation type="unfinished">L’adresse Andaluzcoin avec laquelle signer le message</translation>
     </message>
     <message>
         <source>Choose previously used address</source>
@@ -3391,8 +3391,8 @@ Note : Les frais étant calculés par octet, un taux de frais de « 100 satoshi
         <translation type="unfinished">Copier la signature actuelle dans le presse-papiers</translation>
     </message>
     <message>
-        <source>Sign the message to prove you own this AndaluzCoin address</source>
-        <translation type="unfinished">Signer le message afin de prouver que vous détenez cette adresse AndaluzCoin</translation>
+        <source>Sign the message to prove you own this Andaluzcoin address</source>
+        <translation type="unfinished">Signer le message afin de prouver que vous détenez cette adresse Andaluzcoin</translation>
     </message>
     <message>
         <source>Sign &amp;Message</source>
@@ -3415,8 +3415,8 @@ Note : Les frais étant calculés par octet, un taux de frais de « 100 satoshi
         <translation type="unfinished">Saisissez ci-dessous l’adresse du destinataire, le message (assurez-vous de copier fidèlement les retours à la ligne, les espaces, les tabulations, etc.) et la signature pour vérifier le message. Faites attention à ne pas déduire davantage de la signature que ce qui est contenu dans le message signé même, pour éviter d’être trompé par une attaque de l’intercepteur. Notez que cela ne fait que prouver que le signataire reçoit avec l’adresse et ne peut pas prouver la provenance d’une transaction.</translation>
     </message>
     <message>
-        <source>The AndaluzCoin address the message was signed with</source>
-        <translation type="unfinished">L’adresse AndaluzCoin avec laquelle le message a été signé</translation>
+        <source>The Andaluzcoin address the message was signed with</source>
+        <translation type="unfinished">L’adresse Andaluzcoin avec laquelle le message a été signé</translation>
     </message>
     <message>
         <source>The signed message to verify</source>
@@ -3427,8 +3427,8 @@ Note : Les frais étant calculés par octet, un taux de frais de « 100 satoshi
         <translation type="unfinished">La signature donnée quand le message a été signé</translation>
     </message>
     <message>
-        <source>Verify the message to ensure it was signed with the specified AndaluzCoin address</source>
-        <translation type="unfinished">Vérifier le message pour s’assurer qu’il a été signé avec l’adresse AndaluzCoin indiquée</translation>
+        <source>Verify the message to ensure it was signed with the specified Andaluzcoin address</source>
+        <translation type="unfinished">Vérifier le message pour s’assurer qu’il a été signé avec l’adresse Andaluzcoin indiquée</translation>
     </message>
     <message>
         <source>Verify &amp;Message</source>

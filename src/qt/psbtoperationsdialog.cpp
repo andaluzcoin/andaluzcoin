@@ -1,4 +1,4 @@
-// Copyright (c) 2011-2022 The AndaluzCoin Core developers
+// Copyright (c) 2011-2022 The Andaluzcoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -151,7 +151,7 @@ void PSBTOperationsDialog::saveTransaction() {
         }
         CTxDestination address;
         ExtractDestination(out.scriptPubKey, address);
-        QString amount = AndaluzCoinUnits::format(m_client_model->getOptionsModel()->getDisplayUnit(), out.nValue);
+        QString amount = AndaluzcoinUnits::format(m_client_model->getOptionsModel()->getDisplayUnit(), out.nValue);
         QString address_str = QString::fromStdString(EncodeDestination(address));
         filename_suggestion.append(address_str + "-" + amount);
         first = false;
@@ -185,7 +185,7 @@ QString PSBTOperationsDialog::renderTransaction(const PartiallySignedTransaction
         ExtractDestination(out.scriptPubKey, address);
         totalAmount += out.nValue;
         tx_description.append(bullet_point).append(tr("Sends %1 to %2")
-            .arg(AndaluzCoinUnits::formatWithUnit(AndaluzCoinUnit::LUZ, out.nValue))
+            .arg(AndaluzcoinUnits::formatWithUnit(AndaluzcoinUnit::LUZ, out.nValue))
             .arg(QString::fromStdString(EncodeDestination(address))));
         // Check if the address is one of ours
         if (m_wallet_model != nullptr && m_wallet_model->wallet().txoutIsMine(out)) tx_description.append(" (" + tr("own address") + ")");
@@ -199,19 +199,19 @@ QString PSBTOperationsDialog::renderTransaction(const PartiallySignedTransaction
         tx_description.append(tr("Unable to calculate transaction fee or total transaction amount."));
     } else {
         tx_description.append(tr("Pays transaction fee: "));
-        tx_description.append(AndaluzCoinUnits::formatWithUnit(AndaluzCoinUnit::LUZ, *analysis.fee));
+        tx_description.append(AndaluzcoinUnits::formatWithUnit(AndaluzcoinUnit::LUZ, *analysis.fee));
 
         // add total amount in all subdivision units
         tx_description.append("<hr />");
         QStringList alternativeUnits;
-        for (const AndaluzCoinUnits::Unit u : AndaluzCoinUnits::availableUnits())
+        for (const AndaluzcoinUnits::Unit u : AndaluzcoinUnits::availableUnits())
         {
             if(u != m_client_model->getOptionsModel()->getDisplayUnit()) {
-                alternativeUnits.append(AndaluzCoinUnits::formatHtmlWithUnit(u, totalAmount));
+                alternativeUnits.append(AndaluzcoinUnits::formatHtmlWithUnit(u, totalAmount));
             }
         }
         tx_description.append(QString("<b>%1</b>: <b>%2</b>").arg(tr("Total Amount"))
-            .arg(AndaluzCoinUnits::formatHtmlWithUnit(m_client_model->getOptionsModel()->getDisplayUnit(), totalAmount)));
+            .arg(AndaluzcoinUnits::formatHtmlWithUnit(m_client_model->getOptionsModel()->getDisplayUnit(), totalAmount)));
         tx_description.append(QString("<br /><span style='font-size:10pt; font-weight:normal;'>(=%1)</span>")
             .arg(alternativeUnits.join(" " + tr("or") + " ")));
     }

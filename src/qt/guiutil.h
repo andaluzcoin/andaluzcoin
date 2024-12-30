@@ -1,4 +1,4 @@
-// Copyright (c) 2011-2022 The AndaluzCoin Core developers
+// Copyright (c) 2011-2022 The Andaluzcoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -52,7 +52,7 @@ class QUrl;
 class QWidget;
 QT_END_NAMESPACE
 
-/** Utility functions used by the AndaluzCoin Qt UI.
+/** Utility functions used by the Andaluzcoin Qt UI.
  */
 namespace GUIUtil
 {
@@ -78,9 +78,9 @@ namespace GUIUtil
     void AddButtonShortcut(QAbstractButton* button, const QKeySequence& shortcut);
 
     // Parse "bitcoin:" URI into recipient object, return true on successful parsing
-    bool parseAndaluzCoinURI(const QUrl &uri, SendCoinsRecipient *out);
-    bool parseAndaluzCoinURI(QString uri, SendCoinsRecipient *out);
-    QString formatAndaluzCoinURI(const SendCoinsRecipient &info);
+    bool parseAndaluzcoinURI(const QUrl &uri, SendCoinsRecipient *out);
+    bool parseAndaluzcoinURI(QString uri, SendCoinsRecipient *out);
+    QString formatAndaluzcoinURI(const SendCoinsRecipient &info);
 
     // Returns true if given address+amount meets "dust" definition
     bool isDust(interfaces::Node& node, const QString& address, const CAmount& amount);
@@ -178,7 +178,7 @@ namespace GUIUtil
     void openDebugLogfile();
 
     // Open the config file
-    bool openAndaluzCoinConf();
+    bool openAndaluzcoinConf();
 
     /** Qt event filter that intercepts ToolTipChange events, and replaces the tooltip with a rich text
       representation if needed. This assures that Qt can word-wrap long tooltip messages.

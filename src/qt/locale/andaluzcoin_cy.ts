@@ -58,8 +58,8 @@
         <translation type="unfinished">D&amp;ewis</translation>
     </message>
     <message>
-        <source>These are your AndaluzCoin addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
-        <translation type="unfinished">Rhain ydi eich cyfeiriadau AndaluzCoin ar gyfer gyrru taliadau. Gwnewch yn sicr o'r swm a'r cyfeiriad derbyn cyn gyrru arian.</translation>
+        <source>These are your Andaluzcoin addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
+        <translation type="unfinished">Rhain ydi eich cyfeiriadau Andaluzcoin ar gyfer gyrru taliadau. Gwnewch yn sicr o'r swm a'r cyfeiriad derbyn cyn gyrru arian.</translation>
     </message>
     <message>
         <source>&amp;Copy Address</source>
@@ -272,7 +272,7 @@
     </message>
     </context>
 <context>
-    <name>AndaluzCoinGUI</name>
+    <name>AndaluzcoinGUI</name>
     <message>
         <source>&amp;Overview</source>
         <translation type="unfinished">&amp;Trosolwg</translation>
@@ -327,8 +327,8 @@
         <translation type="unfinished">Gweithgaredd rhwydwaith wedi anablu.</translation>
     </message>
     <message>
-        <source>Send coins to a AndaluzCoin address</source>
-        <translation type="unfinished">Anfon arian i gyfeiriad AndaluzCoin</translation>
+        <source>Send coins to a Andaluzcoin address</source>
+        <translation type="unfinished">Anfon arian i gyfeiriad Andaluzcoin</translation>
     </message>
     <message>
         <source>Backup wallet to another location</source>
@@ -351,12 +351,12 @@
         <translation type="unfinished">Amgryptio'r allweddi preifat sy'n perthyn i'ch waled</translation>
     </message>
     <message>
-        <source>Sign messages with your AndaluzCoin addresses to prove you own them</source>
-        <translation type="unfinished">Arwyddo negeseuon gyda eich cyfeiriadau AndaluzCoin i brofi mae chi sy'n berchen arnynt</translation>
+        <source>Sign messages with your Andaluzcoin addresses to prove you own them</source>
+        <translation type="unfinished">Arwyddo negeseuon gyda eich cyfeiriadau Andaluzcoin i brofi mae chi sy'n berchen arnynt</translation>
     </message>
     <message>
-        <source>Verify messages to ensure they were signed with specified AndaluzCoin addresses</source>
-        <translation type="unfinished">Gwirio negeseuon i sicrhau eu bod wedi eu harwyddo gyda cyfeiriadau AndaluzCoin penodol</translation>
+        <source>Verify messages to ensure they were signed with specified Andaluzcoin addresses</source>
+        <translation type="unfinished">Gwirio negeseuon i sicrhau eu bod wedi eu harwyddo gyda cyfeiriadau Andaluzcoin penodol</translation>
     </message>
     <message>
         <source>&amp;File</source>
@@ -445,7 +445,7 @@
         <translation type="unfinished">&amp;Ffenestr</translation>
     </message>
     <message numerus="yes">
-        <source>%n active connection(s) to AndaluzCoin network.</source>
+        <source>%n active connection(s) to Andaluzcoin network.</source>
         <extracomment>A substring of the tooltip.</extracomment>
         <translation type="unfinished">
             <numerusform />

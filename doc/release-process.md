@@ -113,7 +113,7 @@ Generate list of authors:
 
 ### Setup and perform Guix builds
 
-Checkout the AndaluzCoin Core version you'd like to build:
+Checkout the Andaluzcoin Core version you'd like to build:
 
 ```sh
 pushd ./bitcoin
@@ -297,9 +297,9 @@ cat "$VERSION"/*/all.SHA256SUMS.asc > SHA256SUMS.asc
 
   -andaluzcoin-dev andandaluzcoin-core-dev mailing list
 
-  - AndaluzCoin Core announcements list https://bitcoincore.org/en/list/announcements/join/
+  - Andaluzcoin Core announcements list https://bitcoincore.org/en/list/announcements/join/
 
-  - AndaluzCoin Core Twitter https://twitter.com/bitcoincoreorg
+  - Andaluzcoin Core Twitter https://twitter.com/bitcoincoreorg
 
   - Celebrate
 

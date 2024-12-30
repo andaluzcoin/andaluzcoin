@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# Copyright (c) 2020-2021 The AndaluzCoin Core developers
+# Copyright (c) 2020-2021 The Andaluzcoin Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 """Test asmap config argument for ASN-based IP bucketing.
@@ -26,7 +26,7 @@ The tests are order-independent.
 import os
 import shutil
 
-from test_framework.test_framework import AndaluzCoinTestFramework
+from test_framework.test_framework import AndaluzcoinTestFramework
 from test_framework.util import assert_equal
 
 DEFAULT_ASMAP_FILENAME = 'ip_asn.map' # defined in src/init.cpp
@@ -37,7 +37,7 @@ def expected_messages(filename):
     return [f'Opened asmap file "{filename}" (59 bytes) from disk',
             f'Using asmap version {VERSION} for IP bucketing']
 
-class AsmapTest(AndaluzCoinTestFramework):
+class AsmapTest(AndaluzcoinTestFramework):
     def set_test_params(self):
         self.num_nodes = 1
         # Do addrman checks on all operations and use deterministic addrman

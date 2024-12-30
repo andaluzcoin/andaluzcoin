@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# Copyright (c) 2024-present The AndaluzCoin Core developers
+# Copyright (c) 2024-present The Andaluzcoin Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 """
@@ -8,14 +8,14 @@ Test the -port option and its interactions with
 """
 
 from test_framework.test_framework import (
-    AndaluzCoinTestFramework,
+    AndaluzcoinTestFramework,
 )
 from test_framework.util import (
     p2p_port,
 )
 
 
-class PortTest(AndaluzCoinTestFramework):
+class PortTest(AndaluzcoinTestFramework):
     def set_test_params(self):
         self.setup_clean_chain = True
         # Avoid any -bind= on the command line.

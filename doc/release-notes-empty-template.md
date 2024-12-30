@@ -5,7 +5,7 @@ for the process.*
 *version* Release Notes Draft
 ===============================
 
-AndaluzCoin Core version *version* is now available from:
+Andaluzcoin Core version *version* is now available from:
 
   <https://bitcoincore.org/bin/bitcoin-core-*version*/>
 
@@ -25,14 +25,14 @@ How to Upgrade
 
 If you are running an older version, shut it down. Wait until it has completely
 shut down (which might take a few minutes in some cases), then run the
-installer (on Windows) or just copy over `/Applications/AndaluzCoin-Qt` (on macOS)
+installer (on Windows) or just copy over `/Applications/Andaluzcoin-Qt` (on macOS)
 or `bitcoind`/`bitcoin-qt` (on Linux).
 
-Upgrading directly from a version of AndaluzCoin Core that has reached its EOL is
+Upgrading directly from a version of Andaluzcoin Core that has reached its EOL is
 possible, but it might take some time if the data directory needs to be migrated. Old
-wallet versions of AndaluzCoin Core are generally supported.
+wallet versions of Andaluzcoin Core are generally supported.
 
-Running AndaluzCoin Core binaries on macOS requires self signing.
+Running Andaluzcoin Core binaries on macOS requires self signing.
 ```
 cd /path/to/bitcoin-core/bin
 xattr -d com.apple.quarantineandaluzcoin-cliandaluzcoin-qtandaluzcoin-txandaluzcoin-utilandaluzcoin-walletandaluzcoind test_bitcoin
@@ -42,10 +42,10 @@ codesign -s -andaluzcoin-cliandaluzcoin-qtandaluzcoin-txandaluzcoin-utilandaluzc
 Compatibility
 ==============
 
-AndaluzCoin Core is supported and tested on operating systems using the
-Linux Kernel 3.17+, macOS 13.0+, and Windows 10 and newer. AndaluzCoin
+Andaluzcoin Core is supported and tested on operating systems using the
+Linux Kernel 3.17+, macOS 13.0+, and Windows 10 and newer. Andaluzcoin
 Core should also work on most other Unix-like systems but is not as
-frequently tested on them. It is not recommended to use AndaluzCoin Core on
+frequently tested on them. It is not recommended to use Andaluzcoin Core on
 unsupported systems.
 
 Notable changes

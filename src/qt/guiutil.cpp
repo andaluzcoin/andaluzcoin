@@ -1,4 +1,4 @@
-// Copyright (c) 2011-2022 The AndaluzCoin Core developers
+// Copyright (c) 2011-2022 The Andaluzcoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -135,10 +135,10 @@ void setupAddressWidget(QValidatedLineEdit *widget, QWidget *parent)
     widget->setFont(fixedPitchFont());
     // We don't want translators to use own addresses in translations
     // and this is the only place, where this address is supplied.
-    widget->setPlaceholderText(QObject::tr("Enter a AndaluzCoin address (e.g. %1)").arg(
+    widget->setPlaceholderText(QObject::tr("Enter a Andaluzcoin address (e.g. %1)").arg(
         QString::fromStdString(DummyAddress(Params()))));
-    widget->setValidator(new AndaluzCoinAddressEntryValidator(parent));
-    widget->setCheckValidator(new AndaluzCoinAddressCheckValidator(parent));
+    widget->setValidator(new AndaluzcoinAddressEntryValidator(parent));
+    widget->setCheckValidator(new AndaluzcoinAddressCheckValidator(parent));
 }
 
 void AddButtonShortcut(QAbstractButton* button, const QKeySequence& shortcut)
@@ -146,7 +146,7 @@ void AddButtonShortcut(QAbstractButton* button, const QKeySequence& shortcut)
     QObject::connect(new QShortcut(shortcut, button), &QShortcut::activated, [button]() { button->animateClick(); });
 }
 
-bool parseAndaluzCoinURI(const QUrl &uri, SendCoinsRecipient *out)
+bool parseAndaluzcoinURI(const QUrl &uri, SendCoinsRecipient *out)
 {
     // return if URI is not valid or is noandaluzcoin: URI
     if(!uri.isValid() || uri.scheme() != QString("bitcoin"))
@@ -185,7 +185,7 @@ bool parseAndaluzCoinURI(const QUrl &uri, SendCoinsRecipient *out)
         {
             if(!i->second.isEmpty())
             {
-                if (!AndaluzCoinUnits::parse(AndaluzCoinUnit::LUZ, i->second, &rv.amount)) {
+                if (!AndaluzcoinUnits::parse(AndaluzcoinUnit::LUZ, i->second, &rv.amount)) {
                     return false;
                 }
             }
@@ -202,13 +202,13 @@ bool parseAndaluzCoinURI(const QUrl &uri, SendCoinsRecipient *out)
     return true;
 }
 
-bool parseAndaluzCoinURI(QString uri, SendCoinsRecipient *out)
+bool parseAndaluzcoinURI(QString uri, SendCoinsRecipient *out)
 {
     QUrl uriInstance(uri);
-    return parseAndaluzCoinURI(uriInstance, out);
+    return parseAndaluzcoinURI(uriInstance, out);
 }
 
-QString formatAndaluzCoinURI(const SendCoinsRecipient &info)
+QString formatAndaluzcoinURI(const SendCoinsRecipient &info)
 {
     bool bech_32 = info.address.startsWith(QString::fromStdString(Params().Bech32HRP() + "1"));
 
@@ -217,7 +217,7 @@ QString formatAndaluzCoinURI(const SendCoinsRecipient &info)
 
     if (info.amount)
     {
-        ret += QString("?amount=%1").arg(AndaluzCoinUnits::format(AndaluzCoinUnit::LUZ, info.amount, false, AndaluzCoinUnits::SeparatorStyle::NEVER));
+        ret += QString("?amount=%1").arg(AndaluzcoinUnits::format(AndaluzcoinUnit::LUZ, info.amount, false, AndaluzcoinUnits::SeparatorStyle::NEVER));
         paramCount++;
     }
 
@@ -442,7 +442,7 @@ void openDebugLogfile()
         QDesktopServices::openUrl(QUrl::fromLocalFile(PathToQString(pathDebug)));
 }
 
-bool openAndaluzCoinConf()
+bool openAndaluzcoinConf()
 {
     fs::path pathConfig = gArgs.GetConfigFilePath();
 
@@ -518,15 +518,15 @@ fs::path static StartupShortcutPath()
 {
     ChainType chain = gArgs.GetChainType();
     if (chain == ChainType::MAIN)
-        return GetSpecialFolderPath(CSIDL_STARTUP) / "AndaluzCoin.lnk";
+        return GetSpecialFolderPath(CSIDL_STARTUP) / "Andaluzcoin.lnk";
     if (chain == ChainType::TESTNET) // Remove this special case when testnet CBaseChainParams::DataDir() is incremented to "testnet4"
-        return GetSpecialFolderPath(CSIDL_STARTUP) / "AndaluzCoin (testnet).lnk";
-    return GetSpecialFolderPath(CSIDL_STARTUP) / fs::u8path(strprintf("AndaluzCoin (%s).lnk", ChainTypeToString(chain)));
+        return GetSpecialFolderPath(CSIDL_STARTUP) / "Andaluzcoin (testnet).lnk";
+    return GetSpecialFolderPath(CSIDL_STARTUP) / fs::u8path(strprintf("Andaluzcoin (%s).lnk", ChainTypeToString(chain)));
 }
 
 bool GetStartOnSystemStartup()
 {
-    // check for AndaluzCoin*.lnk
+    // check for Andaluzcoin*.lnk
     return fs::exists(StartupShortcutPath());
 }
 
@@ -647,9 +647,9 @@ bool SetStartOnSystemStartup(bool fAutoStart)
         optionFile << "[Desktop Entry]\n";
         optionFile << "Type=Application\n";
         if (chain == ChainType::MAIN)
-            optionFile << "Name=AndaluzCoin\n";
+            optionFile << "Name=Andaluzcoin\n";
         else
-            optionFile << strprintf("Name=AndaluzCoin (%s)\n", ChainTypeToString(chain));
+            optionFile << strprintf("Name=Andaluzcoin (%s)\n", ChainTypeToString(chain));
         optionFile << "Exec=" << pszExePath << strprintf(" -min -chain=%s\n", ChainTypeToString(chain));
         optionFile << "Terminal=false\n";
         optionFile << "Hidden=false\n";

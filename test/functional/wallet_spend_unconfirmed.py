@@ -1,18 +1,18 @@
 #!/usr/bin/env python3
-# Copyright (c) 2022 The AndaluzCoin Core developers
+# Copyright (c) 2022 The Andaluzcoin Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 from decimal import Decimal, getcontext
 
-from test_framework.test_framework import AndaluzCoinTestFramework
+from test_framework.test_framework import AndaluzcoinTestFramework
 from test_framework.util import (
     assert_greater_than_or_equal,
     assert_equal,
     find_vout_for_address,
 )
 
-class UnconfirmedInputTest(AndaluzCoinTestFramework):
+class UnconfirmedInputTest(AndaluzcoinTestFramework):
     def add_options(self, parser):
         self.add_wallet_options(parser)
 

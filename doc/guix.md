@@ -1,3 +1,3 @@
-# Bootstrappable AndaluzCoin Core Builds
+# Bootstrappable Andaluzcoin Core Builds
 
 See [contrib/guix/README.md](../contrib/guix/README.md)

@@ -1,4 +1,4 @@
-// Copyright (c) 2011-2022 The AndaluzCoin Core developers
+// Copyright (c) 2011-2022 The Andaluzcoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -93,7 +93,7 @@ public:
             foreground = option.palette.color(QPalette::Text);
         }
         painter->setPen(foreground);
-        QString amountText = AndaluzCoinUnits::formatWithUnit(unit, amount, true, AndaluzCoinUnits::SeparatorStyle::ALWAYS);
+        QString amountText = AndaluzcoinUnits::formatWithUnit(unit, amount, true, AndaluzcoinUnits::SeparatorStyle::ALWAYS);
         if(!confirmed)
         {
             amountText = QString("[") + amountText + QString("]");
@@ -124,7 +124,7 @@ public:
         return {DECORATION_SIZE + 8 + minimum_text_width, DECORATION_SIZE};
     }
 
-    AndaluzCoinUnit unit{AndaluzCoinUnit::LUZ};
+    AndaluzcoinUnit unit{AndaluzcoinUnit::LUZ};
 
 Q_SIGNALS:
     //! An intermediate signal for emitting from the `paint() const` member function.
@@ -194,28 +194,28 @@ OverviewPage::~OverviewPage()
 
 void OverviewPage::setBalance(const interfaces::WalletBalances& balances)
 {
-    AndaluzCoinUnit unit = walletModel->getOptionsModel()->getDisplayUnit();
+    AndaluzcoinUnit unit = walletModel->getOptionsModel()->getDisplayUnit();
     if (walletModel->wallet().isLegacy()) {
         if (walletModel->wallet().privateKeysDisabled()) {
-            ui->labelBalance->setText(AndaluzCoinUnits::formatWithPrivacy(unit, balances.watch_only_balance, AndaluzCoinUnits::SeparatorStyle::ALWAYS, m_privacy));
-            ui->labelUnconfirmed->setText(AndaluzCoinUnits::formatWithPrivacy(unit, balances.unconfirmed_watch_only_balance, AndaluzCoinUnits::SeparatorStyle::ALWAYS, m_privacy));
-            ui->labelImmature->setText(AndaluzCoinUnits::formatWithPrivacy(unit, balances.immature_watch_only_balance, AndaluzCoinUnits::SeparatorStyle::ALWAYS, m_privacy));
-            ui->labelTotal->setText(AndaluzCoinUnits::formatWithPrivacy(unit, balances.watch_only_balance + balances.unconfirmed_watch_only_balance + balances.immature_watch_only_balance, AndaluzCoinUnits::SeparatorStyle::ALWAYS, m_privacy));
+            ui->labelBalance->setText(AndaluzcoinUnits::formatWithPrivacy(unit, balances.watch_only_balance, AndaluzcoinUnits::SeparatorStyle::ALWAYS, m_privacy));
+            ui->labelUnconfirmed->setText(AndaluzcoinUnits::formatWithPrivacy(unit, balances.unconfirmed_watch_only_balance, AndaluzcoinUnits::SeparatorStyle::ALWAYS, m_privacy));
+            ui->labelImmature->setText(AndaluzcoinUnits::formatWithPrivacy(unit, balances.immature_watch_only_balance, AndaluzcoinUnits::SeparatorStyle::ALWAYS, m_privacy));
+            ui->labelTotal->setText(AndaluzcoinUnits::formatWithPrivacy(unit, balances.watch_only_balance + balances.unconfirmed_watch_only_balance + balances.immature_watch_only_balance, AndaluzcoinUnits::SeparatorStyle::ALWAYS, m_privacy));
         } else {
-            ui->labelBalance->setText(AndaluzCoinUnits::formatWithPrivacy(unit, balances.balance, AndaluzCoinUnits::SeparatorStyle::ALWAYS, m_privacy));
-            ui->labelUnconfirmed->setText(AndaluzCoinUnits::formatWithPrivacy(unit, balances.unconfirmed_balance, AndaluzCoinUnits::SeparatorStyle::ALWAYS, m_privacy));
-            ui->labelImmature->setText(AndaluzCoinUnits::formatWithPrivacy(unit, balances.immature_balance, AndaluzCoinUnits::SeparatorStyle::ALWAYS, m_privacy));
-            ui->labelTotal->setText(AndaluzCoinUnits::formatWithPrivacy(unit, balances.balance + balances.unconfirmed_balance + balances.immature_balance, AndaluzCoinUnits::SeparatorStyle::ALWAYS, m_privacy));
-            ui->labelWatchAvailable->setText(AndaluzCoinUnits::formatWithPrivacy(unit, balances.watch_only_balance, AndaluzCoinUnits::SeparatorStyle::ALWAYS, m_privacy));
-            ui->labelWatchPending->setText(AndaluzCoinUnits::formatWithPrivacy(unit, balances.unconfirmed_watch_only_balance, AndaluzCoinUnits::SeparatorStyle::ALWAYS, m_privacy));
-            ui->labelWatchImmature->setText(AndaluzCoinUnits::formatWithPrivacy(unit, balances.immature_watch_only_balance, AndaluzCoinUnits::SeparatorStyle::ALWAYS, m_privacy));
-            ui->labelWatchTotal->setText(AndaluzCoinUnits::formatWithPrivacy(unit, balances.watch_only_balance + balances.unconfirmed_watch_only_balance + balances.immature_watch_only_balance, AndaluzCoinUnits::SeparatorStyle::ALWAYS, m_privacy));
+            ui->labelBalance->setText(AndaluzcoinUnits::formatWithPrivacy(unit, balances.balance, AndaluzcoinUnits::SeparatorStyle::ALWAYS, m_privacy));
+            ui->labelUnconfirmed->setText(AndaluzcoinUnits::formatWithPrivacy(unit, balances.unconfirmed_balance, AndaluzcoinUnits::SeparatorStyle::ALWAYS, m_privacy));
+            ui->labelImmature->setText(AndaluzcoinUnits::formatWithPrivacy(unit, balances.immature_balance, AndaluzcoinUnits::SeparatorStyle::ALWAYS, m_privacy));
+            ui->labelTotal->setText(AndaluzcoinUnits::formatWithPrivacy(unit, balances.balance + balances.unconfirmed_balance + balances.immature_balance, AndaluzcoinUnits::SeparatorStyle::ALWAYS, m_privacy));
+            ui->labelWatchAvailable->setText(AndaluzcoinUnits::formatWithPrivacy(unit, balances.watch_only_balance, AndaluzcoinUnits::SeparatorStyle::ALWAYS, m_privacy));
+            ui->labelWatchPending->setText(AndaluzcoinUnits::formatWithPrivacy(unit, balances.unconfirmed_watch_only_balance, AndaluzcoinUnits::SeparatorStyle::ALWAYS, m_privacy));
+            ui->labelWatchImmature->setText(AndaluzcoinUnits::formatWithPrivacy(unit, balances.immature_watch_only_balance, AndaluzcoinUnits::SeparatorStyle::ALWAYS, m_privacy));
+            ui->labelWatchTotal->setText(AndaluzcoinUnits::formatWithPrivacy(unit, balances.watch_only_balance + balances.unconfirmed_watch_only_balance + balances.immature_watch_only_balance, AndaluzcoinUnits::SeparatorStyle::ALWAYS, m_privacy));
         }
     } else {
-        ui->labelBalance->setText(AndaluzCoinUnits::formatWithPrivacy(unit, balances.balance, AndaluzCoinUnits::SeparatorStyle::ALWAYS, m_privacy));
-        ui->labelUnconfirmed->setText(AndaluzCoinUnits::formatWithPrivacy(unit, balances.unconfirmed_balance, AndaluzCoinUnits::SeparatorStyle::ALWAYS, m_privacy));
-        ui->labelImmature->setText(AndaluzCoinUnits::formatWithPrivacy(unit, balances.immature_balance, AndaluzCoinUnits::SeparatorStyle::ALWAYS, m_privacy));
-        ui->labelTotal->setText(AndaluzCoinUnits::formatWithPrivacy(unit, balances.balance + balances.unconfirmed_balance + balances.immature_balance, AndaluzCoinUnits::SeparatorStyle::ALWAYS, m_privacy));
+        ui->labelBalance->setText(AndaluzcoinUnits::formatWithPrivacy(unit, balances.balance, AndaluzcoinUnits::SeparatorStyle::ALWAYS, m_privacy));
+        ui->labelUnconfirmed->setText(AndaluzcoinUnits::formatWithPrivacy(unit, balances.unconfirmed_balance, AndaluzcoinUnits::SeparatorStyle::ALWAYS, m_privacy));
+        ui->labelImmature->setText(AndaluzcoinUnits::formatWithPrivacy(unit, balances.immature_balance, AndaluzcoinUnits::SeparatorStyle::ALWAYS, m_privacy));
+        ui->labelTotal->setText(AndaluzcoinUnits::formatWithPrivacy(unit, balances.balance + balances.unconfirmed_balance + balances.immature_balance, AndaluzcoinUnits::SeparatorStyle::ALWAYS, m_privacy));
     }
     // only show immature (newly mined) balance if it's non-zero, so as not to complicate things
     // for the non-mining users

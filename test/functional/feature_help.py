@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
-# Copyright (c) 2018-2021 The AndaluzCoin Core developers
+# Copyright (c) 2018-2021 The Andaluzcoin Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 """Verify that startingandaluzcoin with -h works as expected."""
 
-from test_framework.test_framework import AndaluzCoinTestFramework
+from test_framework.test_framework import AndaluzcoinTestFramework
 from test_framework.util import assert_equal
 
-class HelpTest(AndaluzCoinTestFramework):
+class HelpTest(AndaluzcoinTestFramework):
     def set_test_params(self):
         self.setup_clean_chain = True
         self.num_nodes = 1
