@@ -1,10 +1,10 @@
 AndaluzCoin Core integration/staging tree
 =====================================
 
-https://bitcoincore.org
+https://andaluzcoincore.org
 
 For an immediately usable, binary version of the AndaluzCoin Core software, see
-https://bitcoincore.org/en/download/.
+https://andaluzcoincore.org/en/download/.
 
 What is AndaluzCoin Core?
 ---------------------
@@ -28,7 +28,7 @@ The `master` branch is regularly built (see `doc/build-*.md` for instructions) a
 completely stable. [Tags](https://github.com/bitcoin/bitcoin/tags) are created
 regularly from release branches to indicate new official, stable release versions of AndaluzCoin Core.
 
-The https://github.com/bitcoin-core/gui repository is used exclusively for the
+The https://github.com/andaluzcoin-core/gui repository is used exclusively for the
 development of the GUI. Its master branch is identical in all monotree
 repositories. Release branches and tags do not exist, so please do not fork
 that repository unless it is for development reasons.
