@@ -162,7 +162,7 @@ Signing is only possible with addresses of the type 'legacy'.</source>
     </message>
     </context>
 <context>
-    <name>bitcoin-core</name>
+    <name>andaluzcoin-core</name>
     <message>
         <source>The block database contains a block which appears to be from the future. This may be due to your computer's date and time being set incorrectly. Only rebuild the block database if you are sure that your computer's date and time are correct</source>
         <translation type="unfinished">ಬ್ಲಾಕ್ ಡೇಟಾಬೇಸ್ ಭವಿಷ್ಯದಿಂದ ಬಂದಿರುವ ಬ್ಲಾಕ್ ಹೊಂದಿದೆ ಎಂದು ತೋರುತ್ತದೆ. ಇದು ನಿಮ್ಮ ಕಂಪ್ಯೂಟರ್ನ ದಿನಾಂಕ ಮತ್ತು ಸಮಯವು ತಪ್ಪಾಗಿರಬಹುದು. ನಿಮ್ಮ ಕಂಪ್ಯೂಟರ್ನ ದಿನಾಂಕ ಮತ್ತು ಸಮಯ ಸರಿಯಾಗಿದ್ದರೆ, ಬ್ಲಾಕ್ ಡೇಟಾಬೇಸ್ ಮಾತ್ರವೇ ಪುನಃ ನಿರ್ಮಿಸಬೇಕು.</translation>

@@ -2,8 +2,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef BITCOIN_SCRIPT_MINISCRIPT_H
-#define BITCOIN_SCRIPT_MINISCRIPT_H
+#ifndef ANDALUZCOIN_SCRIPT_MINISCRIPT_H
+#define ANDALUZCOIN_SCRIPT_MINISCRIPT_H
 
 #include <algorithm>
 #include <compare>
@@ -2634,4 +2634,4 @@ inline NodeRef<typename Ctx::Key> FromScript(const CScript& script, const Ctx& c
 
 } // namespace miniscript
 
-#endif // BITCOIN_SCRIPT_MINISCRIPT_H
+#endif // ANDALUZCOIN_SCRIPT_MINISCRIPT_H

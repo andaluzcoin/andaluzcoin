@@ -1,13 +1,13 @@
 Andaluzcoin Core version 0.10.0 is now available from:
 
-  https://bitcoin.org/bin/0.10.0/
+  https://andaluzcoin.org/bin/0.10.0/
 
 This is a new major version release, bringing both new features and
 bug fixes.
 
 Please report bugs using the issue tracker at github:
 
-  https://github.com/bitcoin/bitcoin/issues
+  https://github.com/andaluzcoin/andaluzcoin/issues
 
 Upgrading and downgrading
 =========================
@@ -18,7 +18,7 @@ How to Upgrade
 If you are running an older version, shut it down. Wait until it has completely
 shut down (which might take a few minutes for older versions), then run the
 installer (on Windows) or just copy over /Applications/Andaluzcoin-Qt (on Mac) or
-bitcoind/bitcoin-qt (on Linux).
+andaluzcoind/andaluzcoin-qt (on Linux).
 
 Downgrading warning
 ---------------------
@@ -226,17 +226,17 @@ Starting from 0.10.0, the Andaluzcoin Core distribution includes a consensus lib
 
 The purpose of this library is to make the verification functionality that is
 critical to Andaluzcoin's consensus available to other applications, e.g. to language
-bindings such as [python-bitcoinlib](https://pypi.python.org/pypi/python-bitcoinlib) or
+bindings such as [python-andaluzcoinlib](https://pypi.python.org/pypi/python-andaluzcoinlib) or
 alternative node implementations.
 
-This library is called `libbitcoinconsensus.so` (or, `.dll` for Windows).
-Its interface is defined in the C header [bitcoinconsensus.h](https://github.com/bitcoin/bitcoin/blob/0.10/src/script/bitcoinconsensus.h).
+This library is called `libandaluzcoinconsensus.so` (or, `.dll` for Windows).
+Its interface is defined in the C header [andaluzcoinconsensus.h](https://github.com/andaluzcoin/andaluzcoin/blob/0.10/src/script/andaluzcoinconsensus.h).
 
 In its initial version the API includes two functions:
 
-- `bitcoinconsensus_verify_script` verifies a script. It returns whether the indicated input of the provided serialized transaction 
+- `andaluzcoinconsensus_verify_script` verifies a script. It returns whether the indicated input of the provided serialized transaction 
 correctly spends the passed scriptPubKey under additional constraints indicated by flags
-- `bitcoinconsensus_version` returns the API version, currently at an experimental `0`
+- `andaluzcoinconsensus_version` returns the API version, currently at an experimental `0`
 
 The functionality is planned to be extended to e.g. UTXO management in upcoming releases, but the interface
 for existing methods should remain stable.
@@ -252,7 +252,7 @@ actually using them on mainnet has been previously inconvenient as
 standard Andaluzcoin Core nodes wouldn't relay them to miners, nor would
 most miners include them in blocks they mined.
 
-bitcoin-tx
+andaluzcoin-tx
 ----------
 
 It has been observed that many of the RPC functions offered byandaluzcoind are
@@ -260,9 +260,9 @@ It has been observed that many of the RPC functions offered byandaluzcoind are
 included many of the RPC "raw transaction" API functions, such as
 createrawtransaction.
 
-bitcoin-tx is a newly introduced command line utility designed to enable easy
+andaluzcoin-tx is a newly introduced command line utility designed to enable easy
 manipulation ofandaluzcoin transactions. A summary of its operation may be
-obtained via "bitcoin-tx --help" Transactions may be created or signed in a
+obtained via "andaluzcoin-tx --help" Transactions may be created or signed in a
 manner similar to the RPC raw tx API. Transactions may be updated, deleting
 inputs or outputs, or appending new inputs and outputs. Custom scripts may be
 easily composed using a simple text notation, borrowed from theandaluzcoin test
@@ -273,7 +273,7 @@ multi-party transactions, and many other uses. Long term, the goal is to
 deprecate and remove "pure function" RPC API calls, as those do not require a
 server round-trip to execute.
 
-Other utilities "bitcoin-key" and "bitcoin-script" have been proposed, making
+Other utilities "andaluzcoin-key" and "andaluzcoin-script" have been proposed, making
 key and script operations easily accessible via command line.
 
 Mining and relay policy enhancements
@@ -391,7 +391,7 @@ Command-line options:
 - `4278b1d` Clarify error message when invalid -rpcallowip
 - `6b407e4` -datadir is now allowed in config files
 - `bdd5b58` Add option `-sysperms` to disable 077 umask (create new files with system default umask)
-- `cbe39a3` Add "bitcoin-tx" command line utility and supporting modules
+- `cbe39a3` Add "andaluzcoin-tx" command line utility and supporting modules
 - `dbca89b` Trigger -alertnotify if network is upgrading without you
 - `ad96e7c` Make -reindex cope with out-of-order blocks
 - `16d5194` Skip reindexed blocks individually
@@ -492,13 +492,13 @@ Build system:
 - `9ce0774` build: Fix windows configure when using --with-qt-libdir
 - `ea96475` build: Add mention of --disable-wallet to bdb48 error messages
 - `1dec09b` depends: add shared dependency builder
-- `c101c76` build: Add --with-utils (bitcoin-cli andandaluzcoin-tx, default=yes). Help string consistency tweaks. Target sanity check fix
+- `c101c76` build: Add --with-utils (andaluzcoin-cli andandaluzcoin-tx, default=yes). Help string consistency tweaks. Target sanity check fix
 - `e432a5f` build: add option for reducing exports (v2)
 - `6134b43` Fixing condition 'sabotaging' MSVC build
 - `af0bd5e` osx: fix signing to make Gatekeeper happy (again)
 - `a7d1f03` build: fix dynamic boost check when --with-boost= is used
 - `d5fd094` build: fix qt test build when libprotobuf is in a non-standard path
-- `2cf5f16` Add libbitcoinconsensus library
+- `2cf5f16` Add libandaluzcoinconsensus library
 - `914868a` build: add a deterministic dmg signer 
 - `2d375fe` depends: bump openssl to 1.0.1k
 - `b7a4ecc` Build: Only check for boost when building code that requires it
@@ -758,5 +758,5 @@ Thanks to everyone who contributed to this release:
 - Yoichi Hirai
 - Zak Wilcox
 
-As well as everyone that helped translating on [Transifex](https://www.transifex.com/projects/p/bitcoin/).
+As well as everyone that helped translating on [Transifex](https://www.transifex.com/projects/p/andaluzcoin/).
 

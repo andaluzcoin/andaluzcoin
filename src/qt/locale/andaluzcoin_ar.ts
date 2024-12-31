@@ -1285,8 +1285,8 @@
         <translation type="unfinished">التعامل مع العنوان</translation>
     </message>
     <message>
-        <source>'bitcoin://' is not a valid URI. Use 'bitcoin:' instead.</source>
-        <translation type="unfinished">'bitcoin://' هو ليس عنوان URL صالح. استعمل 'bitcoin:' بدلا من ذلك.</translation>
+        <source>'andaluzcoin://' is not a valid URI. Use 'andaluzcoin:' instead.</source>
+        <translation type="unfinished">'andaluzcoin://' هو ليس عنوان URL صالح. استعمل 'andaluzcoin:' بدلا من ذلك.</translation>
     </message>
     <message>
         <source>Cannot process payment request because BIP70 is not supported.
@@ -1504,7 +1504,7 @@ If you are receiving this error you should request the merchant provide a BIP21 
     </message>
 </context>
 <context>
-    <name>bitcoin-core</name>
+    <name>andaluzcoin-core</name>
     <message>
         <source>More than one onion bind address is provided. Using %s for the automatically created Tor onion service.</source>
         <translation type="unfinished">أكثر من عنوان مربوط بالonion مقدم. استخدام %s من أجل خدمة تور (Tor) المنشأة تلقائيا.</translation>

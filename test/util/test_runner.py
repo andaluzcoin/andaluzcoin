@@ -39,7 +39,7 @@ def main():
     # Add the format/level to the logger
     logging.basicConfig(format=formatter, level=level)
 
-    bctester(os.path.join(env_conf["SRCDIR"], "test", "util", "data"), "bitcoin-util-test.json", env_conf)
+    bctester(os.path.join(env_conf["SRCDIR"], "test", "util", "data"), "andaluzcoin-util-test.json", env_conf)
 
 def bctester(testDir, input_basename, buildenv):
     """ Loads and parses the input file, runs all tests and reports results"""
@@ -74,10 +74,10 @@ def bctest(testDir, testObj, buildenv):
     """
     # Get the exec names and arguments
     execprog = os.path.join(buildenv["BUILDDIR"], "src", testObj["exec"] + buildenv["EXEEXT"])
-    if testObj["exec"] == "./bitcoin-util":
-        execprog = os.getenv("BITCOINUTIL", default=execprog)
-    elif testObj["exec"] == "./bitcoin-tx":
-        execprog = os.getenv("BITCOINTX", default=execprog)
+    if testObj["exec"] == "./andaluzcoin-util":
+        execprog = os.getenv("ANDALUZCOINUTIL", default=execprog)
+    elif testObj["exec"] == "./andaluzcoin-tx":
+        execprog = os.getenv("ANDALUZCOINTX", default=execprog)
 
     execargs = testObj['args']
     execrun = [execprog] + execargs

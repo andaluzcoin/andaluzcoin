@@ -160,8 +160,8 @@ Semnarea este posibilă numai cu adrese de tip "legacy".</translation>
         <translation type="unfinished">Confirmaţi criptarea portofelului</translation>
     </message>
     <message>
-        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR BITCOINS&lt;/b&gt;!</source>
-        <translation type="unfinished">Atenţie: Dacă va criptati portofelul si ulterior pierdeti parola, &lt;b&gt;VEŢI PIERDE TOTI BITCOINII&lt;/b&gt;!</translation>
+        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR ANDALUZCOINS&lt;/b&gt;!</source>
+        <translation type="unfinished">Atenţie: Dacă va criptati portofelul si ulterior pierdeti parola, &lt;b&gt;VEŢI PIERDE TOTI ANDALUZCOINII&lt;/b&gt;!</translation>
     </message>
     <message>
         <source>Are you sure you wish to encrypt your wallet?</source>
@@ -1809,8 +1809,8 @@ Semnarea este posibilă numai cu adrese de tip "legacy".</translation>
         <translation type="unfinished">Gestionare URI</translation>
     </message>
     <message>
-        <source>'bitcoin://' is not a valid URI. Use 'bitcoin:' instead.</source>
-        <translation type="unfinished">'bitcoin://' nu este un URI valid. Folositi 'bitcoin:' in loc.</translation>
+        <source>'andaluzcoin://' is not a valid URI. Use 'andaluzcoin:' instead.</source>
+        <translation type="unfinished">'andaluzcoin://' nu este un URI valid. Folositi 'andaluzcoin:' in loc.</translation>
     </message>
     <message>
         <source>URI cannot be parsed! This can be caused by an invalid Andaluzcoin address or malformed URI parameters.</source>
@@ -3254,7 +3254,7 @@ Mergi la Fisiere&gt;Deschide Portofel ca sa incarci un portofel.
     </message>
 </context>
 <context>
-    <name>bitcoin-core</name>
+    <name>andaluzcoin-core</name>
     <message>
         <source>The %s developers</source>
         <translation type="unfinished">Dezvoltatorii %s</translation>

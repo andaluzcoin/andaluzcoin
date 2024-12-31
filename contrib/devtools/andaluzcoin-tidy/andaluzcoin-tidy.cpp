@@ -12,11 +12,11 @@ class AndaluzcoinModule final : public clang::tidy::ClangTidyModule
 public:
     void addCheckFactories(clang::tidy::ClangTidyCheckFactories& CheckFactories) override
     {
-        CheckFactories.registerCheck<bitcoin::NonTrivialThreadLocal>("bitcoin-nontrivial-threadlocal");
+        CheckFactories.registerCheck<andaluzcoin::NonTrivialThreadLocal>("andaluzcoin-nontrivial-threadlocal");
     }
 };
 
 static clang::tidy::ClangTidyModuleRegistry::Add<AndaluzcoinModule>
-    X("bitcoin-module", "Addsandaluzcoin checks.");
+    X("andaluzcoin-module", "Addsandaluzcoin checks.");
 
 volatile int AndaluzcoinModuleAnchorSource = 0;

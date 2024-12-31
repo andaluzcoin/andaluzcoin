@@ -70,7 +70,7 @@ Translations
 ------------
 
 Changes to translations as well as new translations can be submitted to
-[Andaluzcoin Core's Transifex page](https://www.transifex.com/bitcoin/bitcoin/).
+[Andaluzcoin Core's Transifex page](https://www.transifex.com/andaluzcoin/andaluzcoin/).
 
 Translations are periodically pulled from Transifex and merged into the git repository. See the
 [translation process](doc/translation_process.md) for details on how this works.

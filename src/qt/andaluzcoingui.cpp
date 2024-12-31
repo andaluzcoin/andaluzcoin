@@ -2,11 +2,11 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#include <bitcoin-build-config.h> // IWYU pragma: keep
+#include <andaluzcoin-build-config.h> // IWYU pragma: keep
 
-#include <qt/bitcoingui.h>
+#include <qt/andaluzcoingui.h>
 
-#include <qt/bitcoinunits.h>
+#include <qt/andaluzcoinunits.h>
 #include <qt/clientmodel.h>
 #include <qt/createwalletdialog.h>
 #include <qt/guiconstants.h>

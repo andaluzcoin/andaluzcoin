@@ -175,7 +175,7 @@ Signing is only possible with addresses of the type &apos;legacy&apos;.</source>
         <context-group purpose="location"><context context-type="linenumber">105</context></context-group>
       </trans-unit>
       <trans-unit id="_msg39">
-        <source xml:space="preserve">Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR BITCOINS&lt;/b&gt;!</source>
+        <source xml:space="preserve">Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR ANDALUZCOINS&lt;/b&gt;!</source>
         <context-group purpose="location"><context context-type="linenumber">106</context></context-group>
       </trans-unit>
       <trans-unit id="_msg40">
@@ -286,7 +286,7 @@ Signing is only possible with addresses of the type &apos;legacy&apos;.</source>
       </trans-unit>
     </group>
   </body></file>
-  <file original="../bitcoin.cpp" datatype="cpp" source-language="en"><body>
+  <file original="../andaluzcoin.cpp" datatype="cpp" source-language="en"><body>
     <group restype="x-trolltech-linguist-context" resname="AndaluzcoinApplication">
       <trans-unit id="_msg63">
         <source xml:space="preserve">Settings file %1 might be corrupt or invalid.</source>
@@ -330,7 +330,7 @@ Signing is only possible with addresses of the type &apos;legacy&apos;.</source>
       </trans-unit>
     </group>
   </body></file>
-  <file original="../bitcoingui.cpp" datatype="cpp" source-language="en"><body>
+  <file original="../andaluzcoingui.cpp" datatype="cpp" source-language="en"><body>
     <group restype="x-trolltech-linguist-context" resname="AndaluzcoinGUI">
       <trans-unit id="_msg72">
         <source xml:space="preserve">&amp;Overview</source>
@@ -2156,7 +2156,7 @@ The migration process will create a backup of the wallet before migrating. This 
         <context-group purpose="location"><context context-type="linenumber">223</context></context-group>
       </trans-unit>
       <trans-unit id="_msg477">
-        <source xml:space="preserve">&apos;bitcoin://&apos; is not a valid URI. Use &apos;bitcoin:&apos; instead.</source>
+        <source xml:space="preserve">&apos;andaluzcoin://&apos; is not a valid URI. Use &apos;andaluzcoin:&apos; instead.</source>
         <context-group purpose="location"><context context-type="linenumber">194</context></context-group>
       </trans-unit>
       <trans-unit id="_msg478">
@@ -2244,7 +2244,7 @@ If you are receiving this error you should request the merchant provide a BIP21 
       </trans-unit>
     </group>
   </body></file>
-  <file original="../bitcoinunits.cpp" datatype="cpp" source-language="en"><body>
+  <file original="../andaluzcoinunits.cpp" datatype="cpp" source-language="en"><body>
     <group restype="x-trolltech-linguist-context" resname="QObject">
       <trans-unit id="_msg493">
         <source xml:space="preserve">Amount</source>
@@ -4558,8 +4558,8 @@ Go to File &gt; Open Wallet to load a wallet.
       </trans-unit>
     </group>
   </body></file>
-  <file original="../bitcoinstrings.cpp" datatype="cpp" source-language="en"><body>
-    <group restype="x-trolltech-linguist-context" resname="bitcoin-core">
+  <file original="../andaluzcoinstrings.cpp" datatype="cpp" source-language="en"><body>
+    <group restype="x-trolltech-linguist-context" resname="andaluzcoin-core">
       <trans-unit id="_msg993">
         <source xml:space="preserve">The %s developers</source>
         <context-group purpose="location"><context context-type="linenumber">12</context></context-group>

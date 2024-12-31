@@ -2,7 +2,7 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#include <bitcoin-build-config.h> // IWYU pragma: keep
+#include <andaluzcoin-build-config.h> // IWYU pragma: keep
 
 #include <chainparams.h>
 #include <chainparamsbase.h>
@@ -67,7 +67,7 @@ static std::optional<int> WalletAppInit(ArgsManager& args, int argc, char* argv[
             strUsage += FormatParagraph(LicenseInfo());
         } else {
             strUsage += "\n"
-                "bitcoin-wallet is an offline tool for creating and interacting with " CLIENT_NAME " wallet files.\n\n"
+                "andaluzcoin-wallet is an offline tool for creating and interacting with " CLIENT_NAME " wallet files.\n\n"
                 "By defaultandaluzcoin-wallet will act on wallets in the default mainnet wallet directory in the datadir.\n\n"
                 "To change the target wallet, use the -datadir, -wallet and (test)chain selection arguments.\n"
                 "\n"
@@ -124,7 +124,7 @@ MAIN_FUNCTION
 
     const auto command = args.GetCommand();
     if (!command) {
-        tfm::format(std::cerr, "No method provided. Run `bitcoin-wallet -help` for valid methods.\n");
+        tfm::format(std::cerr, "No method provided. Run `andaluzcoin-wallet -help` for valid methods.\n");
         return EXIT_FAILURE;
     }
     if (command->args.size() != 0) {

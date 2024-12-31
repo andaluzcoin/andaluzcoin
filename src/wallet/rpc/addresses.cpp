@@ -2,7 +2,7 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#include <bitcoin-build-config.h> // IWYU pragma: keep
+#include <andaluzcoin-build-config.h> // IWYU pragma: keep
 
 #include <core_io.h>
 #include <key_io.h>
@@ -228,7 +228,7 @@ RPCHelpMan addmultisigaddress()
                     {"nrequired", RPCArg::Type::NUM, RPCArg::Optional::NO, "The number of required signatures out of the n keys or addresses."},
                     {"keys", RPCArg::Type::ARR, RPCArg::Optional::NO, "Theandaluzcoin addresses or hex-encoded public keys",
                         {
-                            {"key", RPCArg::Type::STR, RPCArg::Optional::OMITTED, "bitcoin address or hex-encoded public key"},
+                            {"key", RPCArg::Type::STR, RPCArg::Optional::OMITTED, "andaluzcoin address or hex-encoded public key"},
                         },
                         },
                     {"label", RPCArg::Type::STR, RPCArg::Optional::OMITTED, "A label to assign the addresses to."},
@@ -785,7 +785,7 @@ RPCHelpMan walletdisplayaddress()
         "walletdisplayaddress",
         "Display address on an external signer for verification.",
         {
-            {"address", RPCArg::Type::STR, RPCArg::Optional::NO, "bitcoin address to display"},
+            {"address", RPCArg::Type::STR, RPCArg::Optional::NO, "andaluzcoin address to display"},
         },
         RPCResult{
             RPCResult::Type::OBJ,"","",

@@ -1,13 +1,13 @@
 Andaluzcoin Core version 0.9.0 is now available from:
 
-  https://bitcoin.org/bin/0.9.0/
+  https://andaluzcoin.org/bin/0.9.0/
 
 This is a new major version release, bringing both new features and
 bug fixes.
 
 Please report bugs using the issue tracker at github:
 
-  https://github.com/bitcoin/bitcoin/issues
+  https://github.com/andaluzcoin/andaluzcoin/issues
 
 How to Upgrade
 --------------
@@ -15,7 +15,7 @@ How to Upgrade
 If you are running an older version, shut it down. Wait until it has completely
 shut down (which might take a few minutes for older versions), uninstall all
 earlier versions of Andaluzcoin, then run the installer (on Windows) or just copy
-over /Applications/Andaluzcoin-Qt (on Mac) orandaluzcoind/bitcoin-qt (on Linux).
+over /Applications/Andaluzcoin-Qt (on Mac) orandaluzcoind/andaluzcoin-qt (on Linux).
 
 If you are upgrading from version 0.7.2 or earlier, the first time you run
 0.9.0 your blockchain files will be re-indexed, which will take anywhere from 
@@ -86,7 +86,7 @@ For 0.9.0 we switched to an autotools-based build system instead of individual
 (q)makefiles.
 
 Using the standard "./autogen.sh; ./configure; make" to build Andaluzcoin-Qt and
-bitcoind makes it easier for experienced open source developers to contribute 
+andaluzcoind makes it easier for experienced open source developers to contribute 
 to the project.
 
 Be sure to check doc/build-*.md for your platform before building from source.
@@ -97,8 +97,8 @@ Andaluzcoin-cli
 Another change in the 0.9 release is moving away from theandaluzcoind executable
 functioning both as a server and as a RPC client. The RPC client functionality
 ("tell the runningandaluzcoin daemon to do THIS") was split into a separate
-executable, 'bitcoin-cli'. The RPC client code will eventually be removed from
-bitcoind, but will be kept for backwards compatibility for a release or two.
+executable, 'andaluzcoin-cli'. The RPC client code will eventually be removed from
+andaluzcoind, but will be kept for backwards compatibility for a release or two.
 
 `walletpassphrase` RPC
 -----------------------
@@ -378,7 +378,7 @@ Thanks to everyone who contributed to this release:
 - paveljanik
 - Peter Todd
 - phantomcircuit
-- phelixbtc
+- phelixluz
 - Philip Kaufmann
 - Pieter Wuille
 - Rav3nPL

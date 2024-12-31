@@ -156,7 +156,7 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">వాలెట్ గుప్తీకరణను నిర్ధారించండి</translation>
     </message>
     <message>
-        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR BITCOINS&lt;/b&gt;!</source>
+        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR ANDALUZCOINS&lt;/b&gt;!</source>
         <translation type="unfinished">హెచ్చరిక: మీ జోలెని సంకేతపరిచి మీ సంకేతపదము కోల్పోతే, &lt;b&gt;మీ బిట్‌కాయిన్లు అన్నీ కోల్పోతారు&lt;/b&gt;</translation>
     </message>
     <message>
@@ -1917,8 +1917,8 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">URI నిర్వహణ</translation>
     </message>
     <message>
-        <source>'bitcoin://' is not a valid URI. Use 'bitcoin:' instead.</source>
-        <translation type="unfinished">'bitcoin://' చెల్లుబాటు అయ్యే URI కాదు. బదులుగా 'bitcoin:' ఉపయోగించండి.</translation>
+        <source>'andaluzcoin://' is not a valid URI. Use 'andaluzcoin:' instead.</source>
+        <translation type="unfinished">'andaluzcoin://' చెల్లుబాటు అయ్యే URI కాదు. బదులుగా 'andaluzcoin:' ఉపయోగించండి.</translation>
     </message>
     <message>
         <source>URI cannot be parsed! This can be caused by an invalid Andaluzcoin address or malformed URI parameters.</source>
@@ -2522,7 +2522,7 @@ Signing is only possible with addresses of the type 'legacy'.</source>
     </message>
 </context>
 <context>
-    <name>bitcoin-core</name>
+    <name>andaluzcoin-core</name>
     <message>
         <source>Cannot set -peerblockfilters without -blockfilterindex.</source>
         <translation type="unfinished">-blockfilterindex లేకుండా -peerblockfilters సెట్ చేయలేము.</translation>

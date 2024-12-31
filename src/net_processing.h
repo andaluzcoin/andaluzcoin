@@ -3,8 +3,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef BITCOIN_NET_PROCESSING_H
-#define BITCOIN_NET_PROCESSING_H
+#ifndef ANDALUZCOIN_NET_PROCESSING_H
+#define ANDALUZCOIN_NET_PROCESSING_H
 
 #include <net.h>
 #include <txorphanage.h>
@@ -154,4 +154,4 @@ public:
     virtual ServiceFlags GetDesirableServiceFlags(ServiceFlags services) const = 0;
 };
 
-#endif // BITCOIN_NET_PROCESSING_H
+#endif // ANDALUZCOIN_NET_PROCESSING_H

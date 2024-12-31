@@ -141,7 +141,7 @@ def main(pid):
         probe="inbound_message", fn_name="trace_inbound_message")
    andaluzcoind_with_usdts.enable_probe(
         probe="outbound_message", fn_name="trace_outbound_message")
-    bpf = BPF(text=program, usdt_contexts=[bitcoind_with_usdts])
+    bpf = BPF(text=program, usdt_contexts=[andaluzcoind_with_usdts])
 
     # BCC: perf buffer handle function for inbound_messages
     def handle_inbound(_, data, size):

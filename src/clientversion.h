@@ -2,12 +2,12 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef BITCOIN_CLIENTVERSION_H
-#define BITCOIN_CLIENTVERSION_H
+#ifndef ANDALUZCOIN_CLIENTVERSION_H
+#define ANDALUZCOIN_CLIENTVERSION_H
 
 #include <util/macros.h>
 
-#include <bitcoin-build-config.h> // IWYU pragma: keep
+#include <andaluzcoin-build-config.h> // IWYU pragma: keep
 
 // Check that required client information is defined
 #if !defined(CLIENT_VERSION_MAJOR) || !defined(CLIENT_VERSION_MINOR) || !defined(CLIENT_VERSION_BUILD) || !defined(CLIENT_VERSION_IS_RELEASE) || !defined(COPYRIGHT_YEAR)
@@ -46,4 +46,4 @@ std::string LicenseInfo();
 
 #endif // WINDRES_PREPROC
 
-#endif // BITCOIN_CLIENTVERSION_H
+#endif // ANDALUZCOIN_CLIENTVERSION_H

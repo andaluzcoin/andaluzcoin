@@ -2,8 +2,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef BITCOIN_TEST_UTIL_TXMEMPOOL_H
-#define BITCOIN_TEST_UTIL_TXMEMPOOL_H
+#ifndef ANDALUZCOIN_TEST_UTIL_TXMEMPOOL_H
+#define ANDALUZCOIN_TEST_UTIL_TXMEMPOOL_H
 
 #include <policy/packages.h>
 #include <txmempool.h>
@@ -67,4 +67,4 @@ void CheckMempoolTRUCInvariants(const CTxMemPool& tx_pool);
  *  and applying it. */
 void AddToMempool(CTxMemPool& tx_pool, const CTxMemPoolEntry& entry);
 
-#endif // BITCOIN_TEST_UTIL_TXMEMPOOL_H
+#endif // ANDALUZCOIN_TEST_UTIL_TXMEMPOOL_H

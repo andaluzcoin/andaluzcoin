@@ -3,8 +3,8 @@
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-# call $bitcoin-cli for RPC
-_bitcoin_rpc() {
+# call $andaluzcoin-cli for RPC
+_andaluzcoin_rpc() {
     # determine already specified args necessary for RPC
     local rpcargs=()
     for i in ${COMP_LINE}; do
@@ -14,10 +14,10 @@ _bitcoin_rpc() {
                 ;;
         esac
     done
-    $bitcoin_cli "${rpcargs[@]}" "$@"
+    $andaluzcoin_cli "${rpcargs[@]}" "$@"
 }
 
-_bitcoin_cli() {
+_andaluzcoin_cli() {
     local cur prev words=() cword
     localandaluzcoin_cli
 
@@ -112,12 +112,12 @@ _bitcoin_cli() {
 
             # only parse -help if senseful
             if [[ -z "$cur" || "$cur" =~ ^- ]]; then
-                helpopts=$($bitcoin_cli -help 2>&1 | awk '$1 ~ /^-/ { sub(/=.*/, "="); print $1 }' )
+                helpopts=$($andaluzcoin_cli -help 2>&1 | awk '$1 ~ /^-/ { sub(/=.*/, "="); print $1 }' )
             fi
 
             # only parse help if senseful
             if [[ -z "$cur" || "$cur" =~ ^[a-z] ]]; then
-                commands=$(_bitcoin_rpc help 2>/dev/null | awk '$1 ~ /^[a-z]/ { print $1; }')
+                commands=$(_andaluzcoin_rpc help 2>/dev/null | awk '$1 ~ /^[a-z]/ { print $1; }')
             fi
 
             COMPREPLY=( $( compgen -W "$helpopts $commands" -- "$cur" ) )
@@ -130,7 +130,7 @@ _bitcoin_cli() {
             ;;
     esac
 } &&
-complete -F _bitcoin_cliandaluzcoin-cli
+complete -F _andaluzcoin_cliandaluzcoin-cli
 
 # Local variables:
 # mode: shell-script

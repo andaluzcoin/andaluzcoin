@@ -2,8 +2,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef BITCOIN_CHECKQUEUE_H
-#define BITCOIN_CHECKQUEUE_H
+#ifndef ANDALUZCOIN_CHECKQUEUE_H
+#define ANDALUZCOIN_CHECKQUEUE_H
 
 #include <logging.h>
 #include <sync.h>
@@ -248,4 +248,4 @@ public:
     }
 };
 
-#endif // BITCOIN_CHECKQUEUE_H
+#endif // ANDALUZCOIN_CHECKQUEUE_H

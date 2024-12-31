@@ -3,18 +3,18 @@
 
 Andaluzcoin Core version 25.0 is now available from:
 
-  <https://bitcoincore.org/bin/bitcoin-core-25.0/>
+  <https://andaluzcoincore.org/bin/andaluzcoin-core-25.0/>
 
 This release includes new features, various bug fixes and performance
 improvements, as well as updated translations.
 
 Please report bugs using the issue tracker at GitHub:
 
-  <https://github.com/bitcoin/bitcoin/issues>
+  <https://github.com/andaluzcoin/andaluzcoin/issues>
 
 To receive security and update notifications, please subscribe to:
 
-  <https://bitcoincore.org/en/list/announcements/join/>
+  <https://andaluzcoincore.org/en/list/announcements/join/>
 
 How to Upgrade
 ==============
@@ -22,7 +22,7 @@ How to Upgrade
 If you are running an older version, shut it down. Wait until it has completely
 shut down (which might take a few minutes in some cases), then run the
 installer (on Windows) or just copy over `/Applications/Andaluzcoin-Qt` (on macOS)
-or `bitcoind`/`bitcoin-qt` (on Linux).
+or `andaluzcoind`/`andaluzcoin-qt` (on Linux).
 
 Upgrading directly from a version of Andaluzcoin Core that has reached its EOL is
 possible, but it might take some time if the data directory needs to be migrated. Old
@@ -60,20 +60,20 @@ Updated RPCs
 ------------
 
 - All JSON-RPC methods accept a new [named
-  parameter](https://github.com/bitcoin/bitcoin/blob/master/doc/JSON-RPC-interface.md#parameter-passing) called `args` that can
+  parameter](https://github.com/andaluzcoin/andaluzcoin/blob/master/doc/JSON-RPC-interface.md#parameter-passing) called `args` that can
   contain positional parameter values. This is a convenience to allow some
   parameter values to be passed by name without having to name every value. The
-  python test framework and `bitcoin-cli` tool both take advantage of this, so
+  python test framework and `andaluzcoin-cli` tool both take advantage of this, so
   for example:
 
 ```sh
-bitcoin-cli -named createwallet wallet_name=mywallet load_on_startup=1
+andaluzcoin-cli -named createwallet wallet_name=mywallet load_on_startup=1
 ```
 
 Can now be shortened to:
 
 ```sh
-bitcoin-cli -named createwallet mywallet load_on_startup=1
+andaluzcoin-cli -named createwallet mywallet load_on_startup=1
 ```
 
 - The `verifychain` RPC will now return `false` if the checks didn't fail,
@@ -208,7 +208,7 @@ Binary verification
   In this release and moving forward it will verify that the binaries are
   signed by a _threshold of trusted keys_. For more details and
   examples, see:
-  https://github.com/bitcoin/bitcoin/blob/master/contrib/verify-binaries/README.md
+  https://github.com/andaluzcoin/andaluzcoin/blob/master/contrib/verify-binaries/README.md
   (#27358)
 
 Low-level changes
@@ -306,7 +306,7 @@ Thanks to everyone who directly contributed to this release:
 - Murray Nesbitt
 - muxator
 - omahs
-- pablomartin4btc
+- pablomartin4luz
 - Pasta
 - Pieter Wuille
 - Pttn
@@ -337,4 +337,4 @@ Thanks to everyone who directly contributed to this release:
 - Yusuf Sahin HAMZA
 
 As well as to everyone that helped with translations on
-[Transifex](https://www.transifex.com/bitcoin/bitcoin/).
+[Transifex](https://www.transifex.com/andaluzcoin/andaluzcoin/).

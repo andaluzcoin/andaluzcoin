@@ -2,11 +2,11 @@
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or https://opensource.org/license/mit/.
 
-# TODO: libbitcoinkernel is a work in progress consensus engine
+# TODO: libandaluzcoinkernel is a work in progress consensus engine
 #       library, as more and more modules are decoupled from the
 #       consensus engine, this list will shrink to only those
 #       which are absolutely necessary.
-add_library(bitcoinkernel
+add_library(andaluzcoinkernel
  andaluzcoinkernel.cpp
   chain.cpp
   checks.cpp
@@ -78,7 +78,7 @@ add_library(bitcoinkernel
   ../validationinterface.cpp
   ../versionbits.cpp
 )
-target_link_libraries(bitcoinkernel
+target_link_libraries(andaluzcoinkernel
   PRIVATE
     core_interface
    andaluzcoin_clientversion
@@ -90,13 +90,13 @@ target_link_libraries(bitcoinkernel
     Boost::headers
 )
 
-# libbitcoinkernel requires default symbol visibility, explicitly
+# libandaluzcoinkernel requires default symbol visibility, explicitly
 # specify that here so that things still work even when user
 # configures with -DREDUCE_EXPORTS=ON
 #
 # Note this is a quick hack that will be removed as we
 # incrementally define what to export from the library.
-set_target_properties(bitcoinkernel PROPERTIES
+set_target_properties(andaluzcoinkernel PROPERTIES
   CXX_VISIBILITY_PRESET default
 )
 
@@ -119,7 +119,7 @@ if(NOT BUILD_SHARED_LIBS)
   endfunction()
 
   set(all_kernel_static_link_libs "")
-  get_target_static_link_libs(bitcoinkernel all_kernel_static_link_libs)
+  get_target_static_link_libs(andaluzcoinkernel all_kernel_static_link_libs)
 
   install(TARGETS ${all_kernel_static_link_libs} ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR} COMPONENT Kernel)
   list(TRANSFORM all_kernel_static_link_libs PREPEND "-l")
@@ -127,8 +127,8 @@ if(NOT BUILD_SHARED_LIBS)
   list(JOIN all_kernel_static_link_libs " " LIBS_PRIVATE)
 endif()
 
-configure_file(${PROJECT_SOURCE_DIR}/libbitcoinkernel.pc.in ${PROJECT_BINARY_DIR}/libbitcoinkernel.pc @ONLY)
-install(FILES ${PROJECT_BINARY_DIR}/libbitcoinkernel.pc DESTINATION "${CMAKE_INSTALL_LIBDIR}/pkgconfig" COMPONENT Kernel)
+configure_file(${PROJECT_SOURCE_DIR}/libandaluzcoinkernel.pc.in ${PROJECT_BINARY_DIR}/libandaluzcoinkernel.pc @ONLY)
+install(FILES ${PROJECT_BINARY_DIR}/libandaluzcoinkernel.pc DESTINATION "${CMAKE_INSTALL_LIBDIR}/pkgconfig" COMPONENT Kernel)
 
 include(GNUInstallDirs)
 install(TARGETSandaluzcoinkernel

@@ -1,17 +1,17 @@
 Andaluzcoin Core version 0.17.0 is now available from:
 
-  <https://bitcoincore.org/bin/bitcoin-core-0.17.0/>
+  <https://andaluzcoincore.org/bin/andaluzcoin-core-0.17.0/>
 
 This is a new major version release, including new features, various bugfixes
 and performance improvements, as well as updated translations.
 
 Please report bugs using the issue tracker at GitHub:
 
-  <https://github.com/bitcoin/bitcoin/issues>
+  <https://github.com/andaluzcoin/andaluzcoin/issues>
 
 To receive security and update notifications, please subscribe to:
 
-  <https://bitcoincore.org/en/list/announcements/join/>
+  <https://andaluzcoincore.org/en/list/announcements/join/>
 
 How to Upgrade
 ==============
@@ -19,7 +19,7 @@ How to Upgrade
 If you are running an older version, shut it down. Wait until it has completely
 shut down (which might take a few minutes for older versions), then run the
 installer (on Windows) or just copy over `/Applications/Andaluzcoin-Qt` (on Mac)
-or `bitcoind`/`bitcoin-qt` (on Linux).
+or `andaluzcoind`/`andaluzcoin-qt` (on Linux).
 
 If your node has a txindex, the txindex db will be migrated the first time you run 0.17.0 or newer, which may take up to a few hours. Your node will not be functional until this migration completes.
 
@@ -69,7 +69,7 @@ Changed configuration options
 -----------------------------
 
 - `-includeconf=<file>` can be used to include additional configuration files.
-  Only works inside the `bitcoin.conf` file, not inside included files or from
+  Only works inside the `andaluzcoin.conf` file, not inside included files or from
   command-line. Multiple files may be included. Can be disabled from command-
   line via `-noincludeconf`. Note that multi-argument commands like
   `-includeconf` will override preceding `-noincludeconf`, i.e.
@@ -131,8 +131,8 @@ It is now possible for a single configuration file to set different
 options for different networks. This is done by using sections or by
 prefixing the option with the network, such as:
 
-    main.uacomment=bitcoin
-    test.uacomment=bitcoin-testnet
+    main.uacomment=andaluzcoin
+    test.uacomment=andaluzcoin-testnet
     regtest.uacomment=regtest
     [main]
     mempoolsize=300
@@ -187,11 +187,11 @@ Here are the changes to RPC methods:
 BIP 174 Partially Signed Andaluzcoin Transactions support
 -----------------------------------------------------
 
-[BIP 174 PSBT](https://github.com/bitcoin/bips/blob/master/bip-0174.mediawiki) is an interchange format for Andaluzcoin transactions that are not fully signed
+[BIP 174 PSBT](https://github.com/andaluzcoin/bips/blob/master/bip-0174.mediawiki) is an interchange format for Andaluzcoin transactions that are not fully signed
 yet, together with relevant metadata to help entities work towards signing it.
 It is intended to simplify workflows where multiple parties need to cooperate to
 produce a transaction. Examples include hardware wallets, multisig setups, and
-[CoinJoin](https://bitcointalk.org/?topic=279249) transactions.
+[CoinJoin](https://andaluzcointalk.org/?topic=279249) transactions.
 
 ### Overall workflow
 
@@ -417,7 +417,7 @@ Support for Python 2 has been discontinued for all test files and tools.
 - #10387 `5c2aff8` Eventually connect to `NODE_NETWORK_LIMITED` peers (jonasschnelli)
 - #9037 `a36834f` Add test-before-evict discipline to addrman (EthanHeilman)
 - #12622 `e1d6e2a` Correct addrman logging (laanwj)
-- #11962 `0a01843` add seed.bitcoin.sprovoost.nl to DNS seeds (Sjors)
+- #11962 `0a01843` add seed.andaluzcoin.sprovoost.nl to DNS seeds (Sjors)
 - #12569 `23e7fe8` Increase signal-to-noise ratio in debug.log by adjusting log level when logging failed non-manual connect():s (practicalswift)
 - #12855 `c199869` Minor accumulated cleanups (tjps)
 - #13153 `ef46c99` Add missing newlines to debug logging (laanwj)
@@ -623,7 +623,7 @@ Support for Python 2 has been discontinued for all test files and tools.
 - #13465 `81069a7` Avoid concurrency issue when make multiple target (ken2812221)
 - #13454 `45c00f8` Make sure `LC_ALL=C` is set in all shell scripts (practicalswift)
 - #13480 `31145a3` Avoid copies in range-for loops and add a warning to detect them (theuni)
-- #13486 `66e1a08` Move rpc/util.cpp from libbitcoin-util to libbitcoin-server (ken2812221)
+- #13486 `66e1a08` Move rpc/util.cpp from libandaluzcoin-util to libandaluzcoin-server (ken2812221)
 - #13580 `40334c7` Detect if char equals `int8_t` (ken2812221)
 - #12788 `287e4ed` Tune wildcards for LIBSECP256K1 target (kallewoof)
 - #13611 `b55f0c3` bugfix: Use `__cpuid_count` for gnu C to avoid gitian build fail (ken2812221)
@@ -747,7 +747,7 @@ Support for Python 2 has been discontinued for all test files and tools.
 - #13219 `08516e0` bench: Add block assemble benchmark (MarcoFalke)
 - #13530 `b1dc39d` bench: Add missing pow.h header (laanwj)
 - #12686 `2643fa5` Add -ftrapv to CFLAGS and CXXFLAGS when --enable-debug is used. Enable -ftrapv in Travis (practicalswift)
-- #12882 `d96bdd7` Make `test_bitcoin` pass under ThreadSanitzer (clang). Fix lock-order-inversion (potential deadlock) (practicalswift)
+- #12882 `d96bdd7` Make `test_andaluzcoin` pass under ThreadSanitzer (clang). Fix lock-order-inversion (potential deadlock) (practicalswift)
 - #13535 `2328039` `wallet_basic`: Specify minimum required amount for listunspent (MarcoFalke)
 - #13551 `c93c360` Fix incorrect documentation for test case `cuckoocache_hit_rate_ok` (practicalswift)
 - #13563 `b330f3f` bench: Simplify coinselection (promag)
@@ -763,7 +763,7 @@ Support for Python 2 has been discontinued for all test files and tools.
 - #13663 `cbc9b50` Avoid read/write to default datadir (MarcoFalke)
 - #13682 `f8a32a3` bench: Remove unused variable (practicalswift)
 - #13638 `6fcdb5e` Use `MAX_SCRIPT_ELEMENT_SIZE` from script.py (domob1812)
-- #13687 `9d26b69` travis: Check that ~/.bitcoin is never created (MarcoFalke)
+- #13687 `9d26b69` travis: Check that ~/.andaluzcoin is never created (MarcoFalke)
 - #13715 `e1260a7` fixes mininode's P2PConnection sending messages on closing transport (marcoagner)
 - #13729 `aa9429a` travis: Avoid unnecessarily setting env variables on the lint build (Empact)
 - #13747 `ab28b5b` Skip P2PConnection's `is_closing()` check when not available (domob1812)
@@ -774,7 +774,7 @@ Support for Python 2 has been discontinued for all test files and tools.
 - #13779 `d25079a` travis: Improve readability of travis.yml and log outputs (scravy)
 - #13822 `0fb9c87` bench: Make coinselection output groups pass eligibility filter (achow101)
 - #13247 `e83d82a` Add tests to SingleThreadedSchedulerClient() and document the memory model (skeees)
-- #13811 `660abc1` travis: Run `bench_bitcoin` once (MarcoFalke)
+- #13811 `660abc1` travis: Run `bench_andaluzcoin` once (MarcoFalke)
 - #13837 `990e182` Extract `rpc_timewait` as test param (MarcoFalke)
 - #13851 `9c4324d` fix locale for lint-shell (scravy)
 - #13823 `489b51b` quote path in authproxy for external multiwallets (MarcoFalke)
@@ -1102,4 +1102,4 @@ And to those that reported security issues:
 
 - awemany (for CVE-2018-17144, previously credited as "anonymous reporter")
 
-As well as everyone that helped translating on [Transifex](https://www.transifex.com/projects/p/bitcoin/).
+As well as everyone that helped translating on [Transifex](https://www.transifex.com/projects/p/andaluzcoin/).

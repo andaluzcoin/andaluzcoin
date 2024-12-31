@@ -5,7 +5,7 @@ Upstart:andaluzcoind.conf
 OpenRC: andaluzcoind.openrc
         andaluzcoind.openrcconf
 CentOS: andaluzcoind.init
-macOS:   org.bitcoin.bitcoind.plist
+macOS:   org.andaluzcoin.andaluzcoind.plist
 ```
 have been made available to assist packagers in creating node packages here.
 

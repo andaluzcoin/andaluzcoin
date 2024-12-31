@@ -2,11 +2,11 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef BITCOIN_QT_OPTIONSMODEL_H
-#define BITCOIN_QT_OPTIONSMODEL_H
+#ifndef ANDALUZCOIN_QT_OPTIONSMODEL_H
+#define ANDALUZCOIN_QT_OPTIONSMODEL_H
 
 #include <cstdint>
-#include <qt/bitcoinunits.h>
+#include <qt/andaluzcoinunits.h>
 #include <qt/guiconstants.h>
 
 #include <QAbstractListModel>
@@ -100,7 +100,7 @@ public:
     bool getShowTrayIcon() const { return m_show_tray_icon; }
     bool getMinimizeToTray() const { return fMinimizeToTray; }
     bool getMinimizeOnClose() const { return fMinimizeOnClose; }
-    AndaluzcoinUnit getDisplayUnit() const { return m_display_bitcoin_unit; }
+    AndaluzcoinUnit getDisplayUnit() const { return m_display_andaluzcoin_unit; }
     QString getThirdPartyTxUrls() const { return strThirdPartyTxUrls; }
     QFont getFontForMoney() const;
     bool getCoinControlFeatures() const { return fCoinControlFeatures; }
@@ -127,7 +127,7 @@ private:
     bool fMinimizeToTray;
     bool fMinimizeOnClose;
     QString language;
-    AndaluzcoinUnit m_display_bitcoin_unit;
+    AndaluzcoinUnit m_display_andaluzcoin_unit;
     QString strThirdPartyTxUrls;
     FontChoice m_font_money{FontChoiceAbstract::EmbeddedFont};
     bool fCoinControlFeatures;
@@ -156,4 +156,4 @@ Q_SIGNALS:
 
 Q_DECLARE_METATYPE(OptionsModel::FontChoice)
 
-#endif // BITCOIN_QT_OPTIONSMODEL_H
+#endif // ANDALUZCOIN_QT_OPTIONSMODEL_H

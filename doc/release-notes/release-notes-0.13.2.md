@@ -1,17 +1,17 @@
 Andaluzcoin Core version 0.13.2 is now available from:
 
-  <https://bitcoin.org/bin/bitcoin-core-0.13.2/>
+  <https://andaluzcoin.org/bin/andaluzcoin-core-0.13.2/>
 
 This is a new minor version release, including various bugfixes and
 performance improvements, as well as updated translations.
 
 Please report bugs using the issue tracker at github:
 
-  <https://github.com/bitcoin/bitcoin/issues>
+  <https://github.com/andaluzcoin/andaluzcoin/issues>
 
 To receive security and update notifications, please subscribe to:
 
-  <https://bitcoincore.org/en/list/announcements/join/>
+  <https://andaluzcoincore.org/en/list/announcements/join/>
 
 Compatibility
 ==============
@@ -22,7 +22,7 @@ updates will be released anymore. Without security updates, using aandaluzcoin
 wallet on a XP machine is irresponsible at least.
 
 In addition to that, with 0.12.x there have been varied reports of Andaluzcoin Core
-randomly crashing on Windows XP. It is [not clear](https://github.com/bitcoin/bitcoin/issues/7681#issuecomment-217439891)
+randomly crashing on Windows XP. It is [not clear](https://github.com/andaluzcoin/andaluzcoin/issues/7681#issuecomment-217439891)
 what the source of these crashes is, but it is likely that upstream
 libraries such as Qt are no longer being tested on XP.
 
@@ -134,7 +134,7 @@ git merge commit are mentioned.
 - #8838 `094848b` Calculate size and weight of block correctly in CreateNewBlock() (jnewbery)
 - #8920 `40169dc` Set minimum required Boost to 1.47.0 (fanquake)
 - #9251 `a710a43` Improvement of documentation of command line parameter 'whitelist' (wodry)
-- #8932 `106da69` Allowandaluzcoin-tx to create v2 transactions (btcdrak)
+- #8932 `106da69` Allowandaluzcoin-tx to create v2 transactions (luzdrak)
 - #8929 `12428b4` add software-properties-common (sigwo)
 - #9120 `08d1c90` bug: Missed one "return false" in recent refactoring in #9067 (UdjinM6)
 - #9067 `f85ee01` Fix exit codes (UdjinM6)
@@ -175,4 +175,4 @@ Thanks to everyone who directly contributed to this release:
 - Wladimir J. van der Laan
 - wodry
 
-As well as everyone that helped translating on [Transifex](https://www.transifex.com/projects/p/bitcoin/).
+As well as everyone that helped translating on [Transifex](https://www.transifex.com/projects/p/andaluzcoin/).

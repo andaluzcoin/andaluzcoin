@@ -2,7 +2,7 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#include <bitcoin-build-config.h> // IWYU pragma: keep
+#include <andaluzcoin-build-config.h> // IWYU pragma: keep
 
 #include <chain.h>
 #include <clientversion.h>
@@ -722,7 +722,7 @@ RPCHelpMan dumpwallet()
 
     /* Prevent arbitrary files from being overwritten. There have been reports
      * that users have overwritten wallet files this way:
-     * https://github.com/bitcoin/bitcoin/issues/9934
+     * https://github.com/andaluzcoin/andaluzcoin/issues/9934
      * It may also avoid other security issues.
      */
     if (fs::exists(filepath)) {

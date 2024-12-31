@@ -2,7 +2,7 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#include <bitcoin-build-config.h> // IWYU pragma: keep
+#include <andaluzcoin-build-config.h> // IWYU pragma: keep
 
 #include <chainparamsbase.h>
 #include <clientversion.h>
@@ -114,7 +114,7 @@ static int AppInitRawTx(int argc, char* argv[])
         } else {
             strUsage += "\n"
                 "Theandaluzcoin-tx tool is used for creating and modifyingandaluzcoin transactions.\n\n"
-                "bitcoin-tx can be used with \"<hex-tx> [commands]\" to update a hex-encodedandaluzcoin transaction, or with \"-create [commands]\" to create a hex-encodedandaluzcoin transaction.\n"
+                "andaluzcoin-tx can be used with \"<hex-tx> [commands]\" to update a hex-encodedandaluzcoin transaction, or with \"-create [commands]\" to create a hex-encodedandaluzcoin transaction.\n"
                 "\n"
                 "Usage:andaluzcoin-tx [options] <hex-tx> [commands]\n"
                 "or:   andaluzcoin-tx [options] -create [commands]\n"

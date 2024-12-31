@@ -28,7 +28,7 @@ void ResetArgs(ArgsManager& local_args, const std::string& strArg)
     }
 
     // Insert dummy executable name:
-    vecArg.insert(vecArg.begin(), "testbitcoin");
+    vecArg.insert(vecArg.begin(), "testandaluzcoin");
 
     // Convert to char*:
     std::vector<const char*> vecChar;
@@ -312,54 +312,54 @@ BOOST_AUTO_TEST_CASE(patharg)
     BOOST_CHECK_EQUAL(local_args.GetPathArg("-dir"), win_root_path);
 #endif
 
-    const fs::path absolute_path{"/home/user/.bitcoin"};
-    ResetArgs(local_args, "-dir=/home/user/.bitcoin");
+    const fs::path absolute_path{"/home/user/.andaluzcoin"};
+    ResetArgs(local_args, "-dir=/home/user/.andaluzcoin");
     BOOST_CHECK_EQUAL(local_args.GetPathArg("-dir"), absolute_path);
 
-    ResetArgs(local_args, "-dir=/root/../home/user/.bitcoin");
+    ResetArgs(local_args, "-dir=/root/../home/user/.andaluzcoin");
     BOOST_CHECK_EQUAL(local_args.GetPathArg("-dir"), absolute_path);
 
-    ResetArgs(local_args, "-dir=/home/./user/.bitcoin");
+    ResetArgs(local_args, "-dir=/home/./user/.andaluzcoin");
     BOOST_CHECK_EQUAL(local_args.GetPathArg("-dir"), absolute_path);
 
-    ResetArgs(local_args, "-dir=/home/user/.bitcoin/");
+    ResetArgs(local_args, "-dir=/home/user/.andaluzcoin/");
     BOOST_CHECK_EQUAL(local_args.GetPathArg("-dir"), absolute_path);
 
-    ResetArgs(local_args, "-dir=/home/user/.bitcoin//");
+    ResetArgs(local_args, "-dir=/home/user/.andaluzcoin//");
     BOOST_CHECK_EQUAL(local_args.GetPathArg("-dir"), absolute_path);
 
-    ResetArgs(local_args, "-dir=/home/user/.bitcoin/.");
+    ResetArgs(local_args, "-dir=/home/user/.andaluzcoin/.");
     BOOST_CHECK_EQUAL(local_args.GetPathArg("-dir"), absolute_path);
 
-    ResetArgs(local_args, "-dir=/home/user/.bitcoin/./");
+    ResetArgs(local_args, "-dir=/home/user/.andaluzcoin/./");
     BOOST_CHECK_EQUAL(local_args.GetPathArg("-dir"), absolute_path);
 
-    ResetArgs(local_args, "-dir=/home/user/.bitcoin/.//");
+    ResetArgs(local_args, "-dir=/home/user/.andaluzcoin/.//");
     BOOST_CHECK_EQUAL(local_args.GetPathArg("-dir"), absolute_path);
 
-    const fs::path relative_path{"user/.bitcoin"};
-    ResetArgs(local_args, "-dir=user/.bitcoin");
+    const fs::path relative_path{"user/.andaluzcoin"};
+    ResetArgs(local_args, "-dir=user/.andaluzcoin");
     BOOST_CHECK_EQUAL(local_args.GetPathArg("-dir"), relative_path);
 
-    ResetArgs(local_args, "-dir=somewhere/../user/.bitcoin");
+    ResetArgs(local_args, "-dir=somewhere/../user/.andaluzcoin");
     BOOST_CHECK_EQUAL(local_args.GetPathArg("-dir"), relative_path);
 
-    ResetArgs(local_args, "-dir=user/./.bitcoin");
+    ResetArgs(local_args, "-dir=user/./.andaluzcoin");
     BOOST_CHECK_EQUAL(local_args.GetPathArg("-dir"), relative_path);
 
-    ResetArgs(local_args, "-dir=user/.bitcoin/");
+    ResetArgs(local_args, "-dir=user/.andaluzcoin/");
     BOOST_CHECK_EQUAL(local_args.GetPathArg("-dir"), relative_path);
 
-    ResetArgs(local_args, "-dir=user/.bitcoin//");
+    ResetArgs(local_args, "-dir=user/.andaluzcoin//");
     BOOST_CHECK_EQUAL(local_args.GetPathArg("-dir"), relative_path);
 
-    ResetArgs(local_args, "-dir=user/.bitcoin/.");
+    ResetArgs(local_args, "-dir=user/.andaluzcoin/.");
     BOOST_CHECK_EQUAL(local_args.GetPathArg("-dir"), relative_path);
 
-    ResetArgs(local_args, "-dir=user/.bitcoin/./");
+    ResetArgs(local_args, "-dir=user/.andaluzcoin/./");
     BOOST_CHECK_EQUAL(local_args.GetPathArg("-dir"), relative_path);
 
-    ResetArgs(local_args, "-dir=user/.bitcoin/.//");
+    ResetArgs(local_args, "-dir=user/.andaluzcoin/.//");
     BOOST_CHECK_EQUAL(local_args.GetPathArg("-dir"), relative_path);
 
     // Check negated and default argument handling. Specifying an empty argument

@@ -56,7 +56,7 @@ Perform these checks when reviewing the release PR (see below):
    ```
    RELEASE_COMMIT=<merge commit of step 1>
    git tag -s v$MAJOR.$MINOR.$PATCH -m "libsecp256k1 $MAJOR.$MINOR.$PATCH" $RELEASE_COMMIT
-   git push git@github.com:bitcoin-core/secp256k1.git v$MAJOR.$MINOR.$PATCH
+   git push git@github.com:andaluzcoin-core/secp256k1.git v$MAJOR.$MINOR.$PATCH
    ```
 4. Open a PR to the master branch with a commit (using message `"release cleanup: bump version after $MAJOR.$MINOR.$PATCH"`, for example) that
    * sets `_PKG_VERSION_IS_RELEASE` to `false` and increments `_PKG_VERSION_PATCH` and `_LIB_VERSION_REVISION` in `configure.ac`,
@@ -74,7 +74,7 @@ Note that bug fixes need to be backported only to releases for which no compatib
 1. If there's no maintenance branch `$MAJOR.$MINOR`, create one:
    ```
    git checkout -b $MAJOR.$MINOR v$MAJOR.$MINOR.$((PATCH - 1))
-   git push git@github.com:bitcoin-core/secp256k1.git $MAJOR.$MINOR
+   git push git@github.com:andaluzcoin-core/secp256k1.git $MAJOR.$MINOR
    ```
 2. Open a pull request to the `$MAJOR.$MINOR` branch that
    * includes the bug fixes,
@@ -87,7 +87,7 @@ Note that bug fixes need to be backported only to releases for which no compatib
    ```
    git checkout $MAJOR.$MINOR && git pull
    git tag -s v$MAJOR.$MINOR.$PATCH -m "libsecp256k1 $MAJOR.$MINOR.$PATCH"
-   git push git@github.com:bitcoin-core/secp256k1.git v$MAJOR.$MINOR.$PATCH
+   git push git@github.com:andaluzcoin-core/secp256k1.git v$MAJOR.$MINOR.$PATCH
    ```
 6. Create a new GitHub release with a link to the corresponding entry in [CHANGELOG.md](../CHANGELOG.md).
 7. Send an announcement email to theandaluzcoin-dev mailing list.

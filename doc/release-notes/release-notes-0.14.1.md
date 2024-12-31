@@ -1,17 +1,17 @@
 Andaluzcoin Core version 0.14.1 is now available from:
 
-  <https://bitcoin.org/bin/bitcoin-core-0.14.1/>
+  <https://andaluzcoin.org/bin/andaluzcoin-core-0.14.1/>
 
 This is a new minor version release, including various bugfixes and
 performance improvements, as well as updated translations.
 
 Please report bugs using the issue tracker at github:
 
-  <https://github.com/bitcoin/bitcoin/issues>
+  <https://github.com/andaluzcoin/andaluzcoin/issues>
 
 To receive security and update notifications, please subscribe to:
 
-  <https://bitcoincore.org/en/list/announcements/join/>
+  <https://andaluzcoincore.org/en/list/announcements/join/>
 
 Compatibility
 ==============
@@ -75,7 +75,7 @@ this parameter.
 
 Additional information relating to running on low-memory systems can be found
 here:
-[reducing-bitcoind-memory-usage.md](https://gist.github.com/laanwj/efe29c7661ce9b6620a7).
+[reducing-andaluzcoind-memory-usage.md](https://gist.github.com/laanwj/efe29c7661ce9b6620a7).
 
 0.14.1 Change log
 =================
@@ -139,5 +139,5 @@ Thanks to everyone who directly contributed to this release:
 - Suhas Daftuar
 - Wladimir J. van der Laan
 
-As well as everyone that helped translating on [Transifex](https://www.transifex.com/projects/p/bitcoin/).
+As well as everyone that helped translating on [Transifex](https://www.transifex.com/projects/p/andaluzcoin/).
 

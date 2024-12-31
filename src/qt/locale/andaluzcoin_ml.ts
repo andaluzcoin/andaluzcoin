@@ -159,7 +159,7 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">വാലറ്റ് എൻക്രിപ്ഷൻ സ്ഥിരീകരിക്കുക</translation>
     </message>
     <message>
-        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR BITCOINS&lt;/b&gt;!</source>
+        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR ANDALUZCOINS&lt;/b&gt;!</source>
         <translation type="unfinished">മുന്നറിയിപ്പ്: നിങ്ങളുടെ വാലറ്റ് എൻക്രിപ്റ്റ് ചെയ്ത, രഹസ്യ പദം നഷ്ടപ്പെടുകയാണെങ്കിൽ നിങ്ങളുടെ എല്ലാ ബിറ്റ് കോയിനുകളും  നഷ്ടപ്പെടും!</translation>
     </message>
     <message>
@@ -1151,8 +1151,8 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">യു‌ആർ‌ഐ കൈകാര്യം ചെയ്യൽ</translation>
     </message>
     <message>
-        <source>'bitcoin://' is not a valid URI. Use 'bitcoin:' instead.</source>
-        <translation type="unfinished">'bitcoin://' എന്നത് ശരിയായ ഒരു URI അല്ല .പകരം 'bitcoin:' ഉപയോഗിക്കൂ </translation>
+        <source>'andaluzcoin://' is not a valid URI. Use 'andaluzcoin:' instead.</source>
+        <translation type="unfinished">'andaluzcoin://' എന്നത് ശരിയായ ഒരു URI അല്ല .പകരം 'andaluzcoin:' ഉപയോഗിക്കൂ </translation>
     </message>
     <message>
         <source>URI cannot be parsed! This can be caused by an invalid Andaluzcoin address or malformed URI parameters.</source>
@@ -1492,7 +1492,7 @@ Signing is only possible with addresses of the type 'legacy'.</source>
     </message>
     </context>
 <context>
-    <name>bitcoin-core</name>
+    <name>andaluzcoin-core</name>
     <message>
         <source>This is the transaction fee you may pay when fee estimates are not available.</source>
         <translation type="unfinished">പ്രതിഫലം മൂല്യനിർണയം ലഭ്യമാകാത്ത പക്ഷം നിങ്ങൾ നല്കേണ്ടിവരുന്ന ഇടപാട് പ്രതിഫലം ഇതാണ്.</translation>

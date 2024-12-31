@@ -170,7 +170,7 @@
     </message>
     </context>
 <context>
-    <name>bitcoin-core</name>
+    <name>andaluzcoin-core</name>
     <message>
         <source>Error creating %s</source>
         <translation type="unfinished">Fazi en ur grouiñ %s</translation>

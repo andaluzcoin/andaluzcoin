@@ -1,17 +1,17 @@
 Andaluzcoin Core version 0.13.0 is now available from:
 
-  <https://bitcoin.org/bin/bitcoin-core-0.13.0/>
+  <https://andaluzcoin.org/bin/andaluzcoin-core-0.13.0/>
 
 This is a new major version release, including new features, various bugfixes
 and performance improvements, as well as updated translations.
 
 Please report bugs using the issue tracker at github:
 
-  <https://github.com/bitcoin/bitcoin/issues>
+  <https://github.com/andaluzcoin/andaluzcoin/issues>
 
 To receive security and update notifications, please subscribe to:
 
-  <https://bitcoincore.org/en/list/announcements/join/>
+  <https://andaluzcoincore.org/en/list/announcements/join/>
 
 Compatibility
 ==============
@@ -22,7 +22,7 @@ updates will be released anymore. Without security updates, using aandaluzcoin
 wallet on a XP machine is irresponsible at least.
 
 In addition to that, with 0.12.x there have been varied reports of Andaluzcoin Core
-randomly crashing on Windows XP. It is [not clear](https://github.com/bitcoin/bitcoin/issues/7681#issuecomment-217439891)
+randomly crashing on Windows XP. It is [not clear](https://github.com/andaluzcoin/andaluzcoin/issues/7681#issuecomment-217439891)
 what the source of these crashes is, but it is likely that upstream
 libraries such as Qt are no longer being tested on XP.
 
@@ -55,14 +55,14 @@ Note that the database cache setting has the most performance impact
 during initial sync of a node, and when catching up after downtime.
 
 
-bitcoin-cli: arguments privacy
+andaluzcoin-cli: arguments privacy
 ------------------------------
 
 The RPC command line client gained a new argument, `-stdin`
 to read extra arguments from standard input, one per line until EOF/Ctrl-D.
 For example:
 
-    $ src/bitcoin-cli -stdin walletpassphrase
+    $ src/andaluzcoin-cli -stdin walletpassphrase
     mysecretcode
     120
     ..... press Ctrl-D here to end input
@@ -95,9 +95,9 @@ executables.
 
 The following extra files can be found in the download directory or torrent:
 
-- `bitcoin-${VERSION}-arm-linux-gnueabihf.tar.gz`: Linux binaries targeting
+- `andaluzcoin-${VERSION}-arm-linux-gnueabihf.tar.gz`: Linux binaries targeting
   the 32-bit ARMv7-A architecture.
-- `bitcoin-${VERSION}-aarch64-linux-gnu.tar.gz`: Linux binaries targeting
+- `andaluzcoin-${VERSION}-aarch64-linux-gnu.tar.gz`: Linux binaries targeting
   the 64-bit ARMv8-A architecture.
 
 ARM builds are still experimental. If you have problems on a certain device or
@@ -122,7 +122,7 @@ in PR 8068.
 The primary goal is reducing the bandwidth spikes at relay time, though in many
 cases it also reduces propagation delay. It is automatically enabled between
 compatible peers.
-[BIP 152](https://github.com/bitcoin/bips/blob/master/bip-0152.mediawiki)
+[BIP 152](https://github.com/andaluzcoin/bips/blob/master/bip-0152.mediawiki)
 
 As a side-effect, ordinary non-mining nodes will download and upload blocks
 faster if those blocks were produced by miners using similar transaction
@@ -158,17 +158,17 @@ There is no distinction between internal (change) and external keys.
 
 HD wallets are incompatible with older versions of Andaluzcoin Core.
 
-[Pull request](https://github.com/bitcoin/bitcoin/pull/8035/files), [BIP 32](https://github.com/bitcoin/bips/blob/master/bip-0032.mediawiki)
+[Pull request](https://github.com/andaluzcoin/andaluzcoin/pull/8035/files), [BIP 32](https://github.com/andaluzcoin/bips/blob/master/bip-0032.mediawiki)
 
 
 Segregated Witness
 ------------------
 
 The code preparations for Segregated Witness ("segwit"), as described in [BIP
-141](https://github.com/bitcoin/bips/blob/master/bip-0141.mediawiki), [BIP
-143](https://github.com/bitcoin/bips/blob/master/bip-0143.mediawiki), [BIP
-144](https://github.com/bitcoin/bips/blob/master/bip-0144.mediawiki), and [BIP
-145](https://github.com/bitcoin/bips/blob/master/bip-0145.mediawiki) are
+141](https://github.com/andaluzcoin/bips/blob/master/bip-0141.mediawiki), [BIP
+143](https://github.com/andaluzcoin/bips/blob/master/bip-0143.mediawiki), [BIP
+144](https://github.com/andaluzcoin/bips/blob/master/bip-0144.mediawiki), and [BIP
+145](https://github.com/andaluzcoin/bips/blob/master/bip-0145.mediawiki) are
 finished and included in this release.  However, BIP 141 does not yet specify
 activation parameters on mainnet, and so this release does not support segwit
 use on mainnet.  Testnet use is supported, and after BIP 141 is updated with
@@ -199,7 +199,7 @@ The command line option `-blockmaxsize` remains an option to specify the
 maximum number of serialized bytes in a generated block.  In addition, the new
 command line option `-blockmaxweight` has been added, which specifies the
 maximum "block weight" of a generated block, as defined by [BIP 141 (Segregated
-Witness)] (https://github.com/bitcoin/bips/blob/master/bip-0141.mediawiki).
+Witness)] (https://github.com/andaluzcoin/bips/blob/master/bip-0141.mediawiki).
 
 In preparation for Segregated Witness, the mining algorithm has been modified
 to optimize transaction selection for a given block weight, rather than a given
@@ -216,7 +216,7 @@ support `-blockmaxsize` performs additional computation to ensure that
 constraint is met.  (Note that for mainnet, in this release, the equivalent
 parameter for `-blockmaxweight` would be four times the desired
 `-blockmaxsize`.  See [BIP 141]
-(https://github.com/bitcoin/bips/blob/master/bip-0141.mediawiki) for additional
+(https://github.com/andaluzcoin/bips/blob/master/bip-0141.mediawiki) for additional
 details.)
 
 In the future, the `-blockmaxsize` option may be removed, as block creation is
@@ -277,7 +277,7 @@ Low-level P2P changes
 - The optional new p2p message "feefilter" is implemented and the protocol
   version is bumped to 70013. Upon receiving a feefilter message from a peer,
   a node will not send invs for any transactions which do not meet the filter
-  feerate. [BIP 133](https://github.com/bitcoin/bips/blob/master/bip-0133.mediawiki)
+  feerate. [BIP 133](https://github.com/andaluzcoin/bips/blob/master/bip-0133.mediawiki)
 
 - The P2P alert system has been removed in PR #7692 and the `alert` P2P message
   is no longer supported.
@@ -326,10 +326,10 @@ Low-level RPC changes
 - Asm script outputs replacements for OP_NOP2 and OP_NOP3
 
   - OP_NOP2 has been renamed to OP_CHECKLOCKTIMEVERIFY by [BIP 
-65](https://github.com/bitcoin/bips/blob/master/bip-0065.mediawiki)
+65](https://github.com/andaluzcoin/bips/blob/master/bip-0065.mediawiki)
 
   - OP_NOP3 has been renamed to OP_CHECKSEQUENCEVERIFY by [BIP 
-112](https://github.com/bitcoin/bips/blob/master/bip-0112.mediawiki)
+112](https://github.com/andaluzcoin/bips/blob/master/bip-0112.mediawiki)
 
   - The following outputs are affected by this change:
 
@@ -338,7 +338,7 @@ Low-level RPC changes
     - RPC `decodescript`
     - REST `/rest/tx/` (JSON format)
     - REST `/rest/block/` (JSON format when including extended tx details)
-    - `bitcoin-tx -json`
+    - `andaluzcoin-tx -json`
 
 - The sorting of the output of the `getrawmempool` output has changed.
 
@@ -358,7 +358,7 @@ Low-level ZMQ changes
   listeners to detect lost notifications.
   The sequence number is always the last element in a multi-part ZMQ notification and
   therefore backward compatible. Each message type has its own counter.
-  PR [#7762](https://github.com/bitcoin/bitcoin/pull/7762).
+  PR [#7762](https://github.com/andaluzcoin/andaluzcoin/pull/7762).
 
 
 0.13.0 Change log
@@ -439,7 +439,7 @@ git merge commit are mentioned.
 - #7637 `3da5d1b` Fix memleak in TorController (laanwj, jonasschnelli)
 - #7553 `9f14e5a` Remove vfReachable and modify IsReachable to only use vfLimited (pstratem)
 - #7708 `9426632` De-neuter NODE_BLOOM (pstratem)
-- #7692 `29b2be6` Remove P2P alert system (btcdrak)
+- #7692 `29b2be6` Remove P2P alert system (luzdrak)
 - #7542 `c946a15` Implement "feefilter" P2P message (morcos)
 - #7573 `352fd57` Add `-maxtimeadjustment` command line option (mruddy)
 - #7570 `232592a` Add IPv6 Link-Local Address Support (mruddy)
@@ -471,7 +471,7 @@ git merge commit are mentioned.
 - #8068 `e9d76a1` Compact Blocks (TheBlueMatt)
 - #8204 `0833894` Update petertodd's testnet seed (petertodd)
 - #8247 `5cd35d3` Mark my dnsseed as supporting filtering (sipa)
-- #8275 `042c323` Remove bad chain alert partition check (btcdrak)
+- #8275 `042c323` Remove bad chain alert partition check (luzdrak)
 - #8271 `1bc9c80` Do not send witnesses in cmpctblock (sipa)
 - #8312 `ca40ef6` Fix mempool DoS vulnerability from malleated transactions (sdaftuar)
 - #7180 `16ccb74` Account for `sendheaders` `verack` messages (laanwj)
@@ -487,9 +487,9 @@ git merge commit are mentioned.
 - #7520 `621940e` LibreSSL doesn't define OPENSSL_VERSION, use LIBRESSL_VERSION_TEXT instead (paveljanik)
 - #7528 `9b9bfce` autogen.sh: warn about needing autoconf if autoreconf is not found (knocte)
 - #7504 `19324cf` Crystal clean make clean (paveljanik)
-- #7619 `18b3f1b` Add missing sudo entry in gitian VM setup (btcdrak)
+- #7619 `18b3f1b` Add missing sudo entry in gitian VM setup (luzdrak)
 - #7616 `639ec58`  [depends] Delete unused patches  (MarcoFalke)
-- #7658 `c15eb28` Add curl to Gitian setup instructions (btcdrak)
+- #7658 `c15eb28` Add curl to Gitian setup instructions (luzdrak)
 - #7710 `909b72b` [Depends] Bump miniupnpc and config.guess+sub (fanquake)
 - #7723 `5131005` build: python 3 compatibility (laanwj)
 - #7477 `28ad4d9` Fix quoting of copyright holders in configure.ac (domob1812)
@@ -609,7 +609,7 @@ git merge commit are mentioned.
 - #7236 `02676c5` Use createrawtx locktime parm in txn_clone (dgenr8)
 - #7212 `326ffed` Adds unittests for CAddrMan and CAddrinfo, removes source of non-determinism (EthanHeilman)
 - #7490 `d007511` tests: Remove May15 test (laanwj)
-- #7531 `18cb2d5` Add bip68-sequence.py to extended rpc tests (btcdrak)
+- #7531 `18cb2d5` Add bip68-sequence.py to extended rpc tests (luzdrak)
 - #7536 `ce5fc02` test: test leading spaces for ParseHex (laanwj)
 - #7620 `1b68de3` [travis] Only run check-doc.py once (MarcoFalke)
 - #7455 `7f96671` [travis] Exit early when check-doc.py fails (MarcoFalke)
@@ -622,7 +622,7 @@ git merge commit are mentioned.
 - #7720 `3b4324b` rpc-test: Normalize assert() (MarcoFalke)
 - #7757 `26794d4` wallet: Wait for reindex to catch up (MarcoFalke)
 - #7764 `a65b36c` Don't run pruning.py twice (MarcoFalke)
-- #7773 `7c80e72` Fix comments in tests (btcdrak)
+- #7773 `7c80e72` Fix comments in tests (luzdrak)
 - #7489 `e9723cb` tests: Make proxy_test work on travis servers without IPv6 (laanwj)
 - #7801 `70ac71b` Remove misleading "errorString syntax" (MarcoFalke)
 - #7803 `401c65c` maxblocksinflight: Actually enable test (MarcoFalke)
@@ -739,7 +739,7 @@ git merge commit are mentioned.
 - #8177 `67db011` developer notes: updates for C++11 (kazcw)
 - #8229 `8ccdac1` [Doc] Update OS X build notes for 10.11 SDK (fanquake)
 - #8233 `9f1807a` Mention Linux ARM executables in release process and notes (laanwj)
-- #7540 `ff46dd4` Rename OP_NOP3 to OP_CHECKSEQUENCEVERIFY (btcdrak)
+- #7540 `ff46dd4` Rename OP_NOP3 to OP_CHECKSEQUENCEVERIFY (luzdrak)
 - #8289 `26316ff` bash-completion: Adapt for 0.12 and 0.13 (roques)
 - #7453 `3dc3149` Missing patches from 0.12 (MarcoFalke)
 - #7113 `54a550b` Switch to a more efficient rolling Bloom filter (sipa)
@@ -865,4 +865,4 @@ Thanks to everyone who directly contributed to this release:
 - Wladimir J. van der Laan
 - Yuri Zhykin
 
-As well as everyone that helped translating on [Transifex](https://www.transifex.com/projects/p/bitcoin/).
+As well as everyone that helped translating on [Transifex](https://www.transifex.com/projects/p/andaluzcoin/).

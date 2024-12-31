@@ -1,15 +1,15 @@
 Andaluzcoin version 0.5.0 is now available for download at:
-http://sourceforge.net/projects/bitcoin/files/Andaluzcoin/bitcoin-0.5.0/
+http://sourceforge.net/projects/andaluzcoin/files/Andaluzcoin/andaluzcoin-0.5.0/
 
 The major change for this release is a completely new graphical interface that uses the Qt user interface toolkit.
 
 This release include German, Spanish, Spanish-Castilian, Norwegian and Dutch translations. More translations are welcome; join the project at Transifex if you can help:
-https://www.transifex.net/projects/p/bitcoin/
+https://www.transifex.net/projects/p/andaluzcoin/
 
 Please report bugs using the issue tracker at github:
-https://github.com/bitcoin/bitcoin/issues
+https://github.com/andaluzcoin/andaluzcoin/issues
 
-For Ubuntu users, there is a new ppa maintained by Matt Corallo which you can add to your system so that it will automatically keepandaluzcoin up-to-date.  Just type "sudo apt-add-repository ppa:bitcoin/bitcoin" in your terminal, then install theandaluzcoin-qt package.
+For Ubuntu users, there is a new ppa maintained by Matt Corallo which you can add to your system so that it will automatically keepandaluzcoin up-to-date.  Just type "sudo apt-add-repository ppa:andaluzcoin/andaluzcoin" in your terminal, then install theandaluzcoin-qt package.
 
 MAJOR BUG FIX  (CVE-2011-4447)
 
@@ -32,7 +32,7 @@ new private keys are properly backed up you should:
 
 2. Run it again, then ask it for a newandaluzcoin address.
 Andaluzcoin-Qt: Address Book, then New Address...
-bitcoind: run the 'walletpassphrase' RPC command to unlock the wallet,  then run the 'getnewaddress' RPC command.
+andaluzcoind: run the 'walletpassphrase' RPC command to unlock the wallet,  then run the 'getnewaddress' RPC command.
 
 3. If your encrypted wallet.dat may have been copied or stolen, send  all of yourandaluzcoins to the newandaluzcoin address.
 

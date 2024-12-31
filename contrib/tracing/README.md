@@ -30,12 +30,12 @@ information. For development there exist a [bpftrace Reference Guide], a
 
 ## Examples
 
-The bpftrace examples contain a relative path to the `bitcoind` binary. By
+The bpftrace examples contain a relative path to the `andaluzcoind` binary. By
 default, the scripts should be run from the repository-root and assume a
-self-compiled `bitcoind` binary. The paths in the examples can be changed, for
+self-compiled `andaluzcoind` binary. The paths in the examples can be changed, for
 example, to point to release builds if needed. See the
 [Andaluzcoin Core USDT documentation] on how to list available tracepoints in your
-`bitcoind` binary.
+`andaluzcoind` binary.
 
 [Andaluzcoin Core USDT documentation]: ../../doc/tracing.md#listing-available-tracepoints
 
@@ -188,7 +188,7 @@ In a different terminal, starting Andaluzcoin Core in SigNet mode and with
 re-indexing enabled.
 
 ```
-$ ./build/src/bitcoind -signet -reindex
+$ ./build/src/andaluzcoind -signet -reindex
 ```
 
 This produces the following output.

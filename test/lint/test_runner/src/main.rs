@@ -329,7 +329,7 @@ fn get_pathspecs_exclude_whitespace() -> Vec<String> {
             "doc/README_windows.txt",
             // Temporary excludes, or existing violations
             "doc/release-notes/release-notes-0.*",
-            "contrib/init/bitcoind.openrc",
+            "contrib/init/andaluzcoind.openrc",
             "contrib/macdeploy/macdeployqtplus",
             "src/crypto/sha256_sse4.cpp",
             "src/qt/res/src/*.svg",
@@ -397,7 +397,7 @@ Please add any false positives, such as subtrees, or externally sourced files to
 }
 
 fn lint_includes_build_config() -> LintResult {
-    let config_path = "./cmake/bitcoin-build-config.h.in";
+    let config_path = "./cmake/andaluzcoin-build-config.h.in";
     let defines_regex = format!(
         r"^\s*(?!//).*({})",
         check_output(Command::new("grep").args(["define", "--", config_path]))
@@ -449,9 +449,9 @@ fn lint_includes_build_config() -> LintResult {
                     "--files-with-matches"
                 },
                 if mode {
-                    "^#include <bitcoin-build-config.h> // IWYU pragma: keep$"
+                    "^#include <andaluzcoin-build-config.h> // IWYU pragma: keep$"
                 } else {
-                    "#include <bitcoin-build-config.h>" // Catch redundant includes with and without the IWYU pragma
+                    "#include <andaluzcoin-build-config.h>" // Catch redundant includes with and without the IWYU pragma
                 },
                 "--",
             ])
@@ -477,7 +477,7 @@ git grep --perl-regexp '{}' -- file_name
 Make sure to include it with the IWYU pragma. Otherwise, IWYU may falsely instruct to remove the
 include again.
 
-#include <bitcoin-build-config.h> // IWYU pragma: keep
+#include <andaluzcoin-build-config.h> // IWYU pragma: keep
             "#,
             defines_regex
         ));

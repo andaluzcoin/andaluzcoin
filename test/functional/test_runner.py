@@ -188,8 +188,8 @@ BASE_SCRIPTS = [
     'interface_zmq.py',
     'rpc_invalid_address_message.py',
     'rpc_validateaddress.py',
-    'interface_bitcoin_cli.py --legacy-wallet',
-    'interface_bitcoin_cli.py --descriptors',
+    'interface_andaluzcoin_cli.py --legacy-wallet',
+    'interface_andaluzcoin_cli.py --descriptors',
     'feature_bind_extra.py',
     'mempool_resurrect.py',
     'wallet_txn_doublespend.py --mineblock',
@@ -488,9 +488,9 @@ def main():
         assert results_filepath.parent.exists(), "Results file parent directory does not exist"
         logging.debug("Test results will be written to " + str(results_filepath))
 
-    enable_bitcoind = config["components"].getboolean("ENABLE_BITCOIND")
+    enable_andaluzcoind = config["components"].getboolean("ENABLE_ANDALUZCOIND")
 
-    if not enable_bitcoind:
+    if not enable_andaluzcoind:
         print("No functional tests to run.")
         print("Re-compile with the -DBUILD_DAEMON=ON build option")
         sys.exit(1)
@@ -595,7 +595,7 @@ def run_tests(*, test_list, build_dir, tmpdir, jobs=1, enable_coverage=False, ar
     # Warn ifandaluzcoind is already running
     try:
         # pgrep exits with code zero when one or more matching processes found
-        if subprocess.run(["pgrep", "-x", "bitcoind"], stdout=subprocess.DEVNULL).returncode == 0:
+        if subprocess.run(["pgrep", "-x", "andaluzcoind"], stdout=subprocess.DEVNULL).returncode == 0:
             print("%sWARNING!%s There is already aandaluzcoind process running on this system. Tests may fail unexpectedly due to resource contention!" % (BOLD[1], BOLD[0]))
     except OSError:
         # pgrep not supported
@@ -614,7 +614,7 @@ def run_tests(*, test_list, build_dir, tmpdir, jobs=1, enable_coverage=False, ar
 
     tests_dir = f"{build_dir}/test/functional/"
     # This allows `test_runner.py` to work from an out-of-source build directory using a symlink,
-    # a hard link or a copy on any platform. See https://github.com/bitcoin/bitcoin/pull/27561.
+    # a hard link or a copy on any platform. See https://github.com/andaluzcoin/andaluzcoin/pull/27561.
     sys.path.append(tests_dir)
 
     flags = ['--cachedir={}'.format(cache_dir)] + args
@@ -889,7 +889,7 @@ class RPCCoverage():
     Coverage calculation works by having each test script subprocess write
     coverage files into a particular directory. These files contain the RPC
     commands invoked during testing, as well as a complete listing of RPC
-    commands per `bitcoin-cli help` (`rpc_interface.txt`).
+    commands per `andaluzcoin-cli help` (`rpc_interface.txt`).
 
     After all tests complete, the commands run are combined and diff'd against
     the complete list to calculate uncovered RPC commands.

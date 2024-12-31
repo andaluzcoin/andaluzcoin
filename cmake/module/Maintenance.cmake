@@ -42,7 +42,7 @@ function(add_maintenance_targets)
     VERBATIM
   )
 
-  foreach(target IN ITEMSandaluzcoindandaluzcoin-qtandaluzcoin-cliandaluzcoin-txandaluzcoin-utilandaluzcoin-wallet test_andaluzcoin bench_andaluzcoin)
+  foreach(target IN ITEMS andaluzcoind andaluzcoin-qt andaluzcoin-cli andaluzcoin-tx andaluzcoin-util andaluzcoin-wallet test_andaluzcoin bench_andaluzcoin)
     if(TARGET ${target})
       list(APPEND executables $<TARGET_FILE:${target}>)
     endif()
@@ -66,7 +66,7 @@ function(add_maintenance_targets)
 endfunction()
 
 function(add_windows_deploy_target)
-  if(MINGW AND TARGETandaluzcoin-qt AND TARGETandaluzcoind AND TARGETandaluzcoin-cli AND TARGETandaluzcoin-tx AND TARGETandaluzcoin-wallet AND TARGETandaluzcoin-util AND TARGET test_andaluzcoin)
+  if(MINGW AND TARGET andaluzcoin-qt AND TARGET andaluzcoind AND TARGET andaluzcoin-cli AND TARGET andaluzcoin-tx AND TARGET andaluzcoin-wallet AND TARGET andaluzcoin-util AND TARGET test_andaluzcoin)
     # TODO: Consider replacing this code with the CPack NSIS Generator.
     #       See https://cmake.org/cmake/help/latest/cpack_gen/nsis.html
     include(GenerateSetupNsi)
@@ -89,7 +89,7 @@ function(add_windows_deploy_target)
 endfunction()
 
 function(add_macos_deploy_target)
-  if(CMAKE_SYSTEM_NAME STREQUAL "Darwin" AND TARGETandaluzcoin-qt)
+  if(CMAKE_SYSTEM_NAME STREQUAL "Darwin" AND TARGET andaluzcoin-qt)
     set(macos_app "Andaluzcoin-Qt.app")
     # Populate Contents subdirectory.
     configure_file(${PROJECT_SOURCE_DIR}/share/qt/Info.plist.in ${macos_app}/Contents/Info.plist NO_SOURCE_PERMISSIONS)
@@ -145,7 +145,7 @@ function(add_macos_deploy_target)
         DEPENDS ${PROJECT_BINARY_DIR}/dist/${osx_volname}.zip
       )
     endif()
-    add_dependencies(deploydirandaluzcoin-qt)
+    add_dependencies(deploydir andaluzcoin-qt)
     add_dependencies(deploy deploydir)
   endif()
 endfunction()

@@ -3,8 +3,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef BITCOIN_CHAINPARAMS_H
-#define BITCOIN_CHAINPARAMS_H
+#ifndef ANDALUZCOIN_CHAINPARAMS_H
+#define ANDALUZCOIN_CHAINPARAMS_H
 
 #include <kernel/chainparams.h> // IWYU pragma: export
 
@@ -28,4 +28,4 @@ const CChainParams &Params();
  */
 void SelectParams(const ChainType chain);
 
-#endif // BITCOIN_CHAINPARAMS_H
+#endif // ANDALUZCOIN_CHAINPARAMS_H

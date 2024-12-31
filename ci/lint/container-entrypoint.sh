@@ -8,7 +8,7 @@ export LC_ALL=C
 
 # Fixes permission issues when there is a container UID/GID mismatch with the owner
 # of the mountedandaluzcoin src dir.
-git config --global --add safe.directory /bitcoin
+git config --global --add safe.directory /andaluzcoin
 
 export PATH="/python_build/bin:${PATH}"
 export LINT_RUNNER_PATH="/lint_test_runner"

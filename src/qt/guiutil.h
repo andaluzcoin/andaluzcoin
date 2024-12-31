@@ -2,8 +2,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef BITCOIN_QT_GUIUTIL_H
-#define BITCOIN_QT_GUIUTIL_H
+#ifndef ANDALUZCOIN_QT_GUIUTIL_H
+#define ANDALUZCOIN_QT_GUIUTIL_H
 
 #include <consensus/amount.h>
 #include <net.h>
@@ -77,7 +77,7 @@ namespace GUIUtil
      */
     void AddButtonShortcut(QAbstractButton* button, const QKeySequence& shortcut);
 
-    // Parse "bitcoin:" URI into recipient object, return true on successful parsing
+    // Parse "andaluzcoin:" URI into recipient object, return true on successful parsing
     bool parseAndaluzcoinURI(const QUrl &uri, SendCoinsRecipient *out);
     bool parseAndaluzcoinURI(QString uri, SendCoinsRecipient *out);
     QString formatAndaluzcoinURI(const SendCoinsRecipient &info);
@@ -441,4 +441,4 @@ namespace GUIUtil
 
 } // namespace GUIUtil
 
-#endif // BITCOIN_QT_GUIUTIL_H
+#endif // ANDALUZCOIN_QT_GUIUTIL_H

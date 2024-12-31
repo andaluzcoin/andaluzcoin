@@ -11,7 +11,7 @@ When following your systems build instructions, make sure to install the `Qt` de
 To run:
 
 ```sh
-./build/src/qt/bitcoin-qt
+./build/src/qt/andaluzcoin-qt
 ```
 
 ## Files and Directories
@@ -39,7 +39,7 @@ To run:
 #### \*model.(h/cpp)
 
 - The model. When it has a corresponding controller, it generally inherits from  [QAbstractTableModel](https://doc.qt.io/qt-5/qabstracttablemodel.html). Models that are used by controllers as helpers inherit from other Qt classes like [QValidator](https://doc.qt.io/qt-5/qvalidator.html).
-- ClientModel is used by the main application `bitcoingui` and several models like `peertablemodel`.
+- ClientModel is used by the main application `andaluzcoingui` and several models like `peertablemodel`.
 
 #### \*page.(h/cpp)
 
@@ -60,8 +60,8 @@ To run:
 #### Other .h/cpp files
 
 * UI elements like AndaluzcoinAmountField, which inherit from QWidget.
-* `bitcoinstrings.cpp`: automatically generated
-* `bitcoinunits.(h/cpp)`: LUZ / mLUZ / etc. handling
+* `andaluzcoinstrings.cpp`: automatically generated
+* `andaluzcoinunits.(h/cpp)`: LUZ / mLUZ / etc. handling
 * `callback.h`
 * `guiconstants.h`: UI colors, app name, etc.
 * `guiutil.h`: several helper functions
@@ -72,7 +72,7 @@ To run:
 
 See [CONTRIBUTING.md](/CONTRIBUTING.md) for general guidelines.
 
-**Note:** Do not change `local/bitcoin_en.ts`. It is updated [automatically](/doc/translation_process.md#writing-code-with-translations).
+**Note:** Do not change `local/andaluzcoin_en.ts`. It is updated [automatically](/doc/translation_process.md#writing-code-with-translations).
 
 ## Using Qt Creator as an IDE
 
@@ -101,7 +101,7 @@ sudo apt-get install qtcreator
 1. Make sure you've installed all dependencies specified in your systems build instructions
 2. Follow the compile instructions for your system, adding the `-DCMAKE_BUILD_TYPE=Debug` build flag
 3. Start Qt Creator. At the start page, do: `New` -> `Import Project` -> `Import Existing Project`
-4. Enter `bitcoin-qt` as the Project Name and enter the absolute path to `src/qt` as Location
+4. Enter `andaluzcoin-qt` as the Project Name and enter the absolute path to `src/qt` as Location
 5. Check over the file selection, you may need to select the `forms` directory (necessary if you intend to edit *.ui files)
 6. Confirm the `Summary` page
 7. In the `Projects` tab, select `Manage Kits...`
@@ -119,6 +119,6 @@ sudo apt-get install qtcreator
  - Under `Compilers`: select `"GCC (x86 64bit in /usr/bin)"`
  - Under `Debuggers`: select `"GDB"` as debugger
 
-8. While in the `Projects` tab, ensure that you have the `bitcoin-qt` executable specified under `Run`
- - If the executable is not specified: click `"Choose..."`, navigate to `src/qt`, and select `bitcoin-qt`
+8. While in the `Projects` tab, ensure that you have the `andaluzcoin-qt` executable specified under `Run`
+ - If the executable is not specified: click `"Choose..."`, navigate to `src/qt`, and select `andaluzcoin-qt`
 9. You're all set! Start developing, building, and debugging the Andaluzcoin Core GUI

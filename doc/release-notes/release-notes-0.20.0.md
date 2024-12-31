@@ -3,18 +3,18 @@
 
 Andaluzcoin Core version 0.20.0 is now available from:
 
-  <https://bitcoincore.org/bin/bitcoin-core-0.20.0/>
+  <https://andaluzcoincore.org/bin/andaluzcoin-core-0.20.0/>
 
 This release includes new features, various bug fixes and performance
 improvements, as well as updated translations.
 
 Please report bugs using the issue tracker at GitHub:
 
-  <https://github.com/bitcoin/bitcoin/issues>
+  <https://github.com/andaluzcoin/andaluzcoin/issues>
 
 To receive security and update notifications, please subscribe to:
 
-  <https://bitcoincore.org/en/list/announcements/join/>
+  <https://andaluzcoincore.org/en/list/announcements/join/>
 
 How to Upgrade
 ==============
@@ -22,7 +22,7 @@ How to Upgrade
 If you are running an older version, shut it down. Wait until it has completely
 shut down (which might take a few minutes in some cases), then run the
 installer (on Windows) or just copy over `/Applications/Andaluzcoin-Qt` (on Mac)
-or `bitcoind`/`bitcoin-qt` (on Linux).
+or `andaluzcoind`/`andaluzcoin-qt` (on Linux).
 
 Upgrading directly from a version of Andaluzcoin Core that has reached its EOL is
 possible, but it might take some time if the data directory needs to be migrated. Old
@@ -53,7 +53,7 @@ this release:
   `./configure`. This is the same as when checking out from git.
 
 - Instead of running `make` simply, you should instead run
-  `BITCOIN_GENBUILD_NO_GIT=1 make`.
+  `ANDALUZCOIN_GENBUILD_NO_GIT=1 make`.
 
 Notable changes
 ===============
@@ -163,9 +163,9 @@ New settings
 - A new `-asmap` configuration option has been added to diversify the
   node's network connections by mapping IP addresses Autonomous System
   Numbers (ASNs) and then limiting the number of connections made to any
-  single ASN.  See [issue #16599](https://github.com/bitcoin/bitcoin/issues/16599),
-  [PR #16702](https://github.com/bitcoin/bitcoin/pull/16702), and the
-  `bitcoind help` for more information.  This option is experimental and
+  single ASN.  See [issue #16599](https://github.com/andaluzcoin/andaluzcoin/issues/16599),
+  [PR #16702](https://github.com/andaluzcoin/andaluzcoin/pull/16702), and the
+  `andaluzcoind help` for more information.  This option is experimental and
   subject to removal or breaking changes in future releases, so the
   legacy /16 prefix mapping of IP addresses remains the default.  (#16702)
 
@@ -206,7 +206,7 @@ GUI changes
   peer selection. See the `-asmap` configuration option in _New
   Settings_, above.  (#18402)
 
-- A "known bug" [announced](https://bitcoincore.org/en/releases/0.18.0/#wallet-gui)
+- A "known bug" [announced](https://andaluzcoincore.org/en/releases/0.18.0/#wallet-gui)
   in the release notes of version 0.18 has been fixed.  The issue
   affected anyone who simultaneously used multiple Andaluzcoin Core wallets
   and the GUI coin control feature. (#18894)
@@ -215,7 +215,7 @@ GUI changes
   or fee bumping an existing transaction in the Transactions screen will
   automatically copy a Partially-Signed Andaluzcoin Transaction (PSBT) to
   the system clipboard.  This can then be pasted into an external
-  program such as [HWI](https://github.com/bitcoin-core/HWI) for
+  program such as [HWI](https://github.com/andaluzcoin-core/HWI) for
   signing.  Future versions of Andaluzcoin Core should support a GUI option
   for finalizing and broadcasting PSBTs, but for now the debug console
   may be used with the `finalizepsbt` and `sendrawtransaction` RPCs.
@@ -247,7 +247,7 @@ Documentation changes
 ---------------------
 
 - Andaluzcoin Core's automatically-generated source code documentation is
-  now available at https://doxygen.bitcoincore.org.  (#17596)
+  now available at https://doxygen.andaluzcoincore.org.  (#17596)
 
 Low-level changes
 =================
@@ -255,7 +255,7 @@ Low-level changes
 Utilities
 ---------
 
-- The `bitcoin-cli` utility used with the `-getinfo` parameter now
+- The `andaluzcoin-cli` utility used with the `-getinfo` parameter now
   returns a `headers` field with the number of downloaded block headers
   on the best headers chain (similar to the `blocks` field that is also
   returned) and a `verificationprogress` field that estimates how much
@@ -263,7 +263,7 @@ Utilities
   information returned no longer includes the `protocolversion`,
   `walletversion`, and `keypoololdest` fields.  (#17302, #17650)
 
-- The `bitcoin-cli` utility now accepts a `-stdinwalletpassphrase`
+- The `andaluzcoin-cli` utility now accepts a `-stdinwalletpassphrase`
   parameter that can be used when calling the `walletpassphrase` and
   `walletpassphrasechange` RPCs to read the passphrase from standard
   input without echoing it to the terminal, improving security against
@@ -450,7 +450,7 @@ Build system
 - #15756 Add shortcuts for tab tools (promag)
 - #16944 create PSBT with watch-only wallet (Sjors)
 - #16964 Change sendcoins dialogue Yes to Send (instagibbs)
-- #17068 Always generate `bitcoinstrings.cpp` on `make translate` (D4nte)
+- #17068 Always generate `andaluzcoinstrings.cpp` on `make translate` (D4nte)
 - #17096 Rename debug window (Zero-1729)
 - #17105 Make RPCConsole::TabTypes an enum class (promag)
 - #17125 Add toolTip and placeholderText to sign message fields (dannmat)
@@ -524,11 +524,11 @@ Build system
 - #17730 Remove Qt networking features (fanquake)
 - #17738 Remove linking librt for backwards compatibility (fanquake)
 - #17740 Remove configure checks for win libraries we don't link against (fanquake)
-- #17741 Included `test_bitcoin-qt` in msvc build (sipsorcery)
+- #17741 Included `test_andaluzcoin-qt` in msvc build (sipsorcery)
 - #17756 Remove `WINDOWS_BITS` from build system (fanquake)
 - #17769 Set `AC_PREREQ` to 2.69 (fanquake)
 - #17880 Add -Wdate-time to Werror flags (fanquake)
-- #17910 Remove double `LIBBITCOIN_SERVER` linking (fanquake)
+- #17910 Remove double `LIBANDALUZCOIN_SERVER` linking (fanquake)
 - #17928 Consistent use of package variable (Bushstar)
 - #17933 guix: Pin Guix using `guix time-machine` (dongcarl)
 - #17948 pass -fno-ident in Windows gitian descriptor (fanquake)
@@ -544,9 +544,9 @@ Build system
 - #18290 Set minimum Automake version to 1.13 (hebasto)
 - #18320 guix: Remove now-unnecessary gcc make flag (dongcarl)
 - #18331 Use git archive as source tarball (hebasto)
-- #18397 Fix libevent linking for `bench_bitcoin` binary (hebasto)
+- #18397 Fix libevent linking for `bench_andaluzcoin` binary (hebasto)
 - #18426 scripts: `Previous_release`: improve behaviour on failed download (theStack)
-- #18429 Remove double `LIBBITCOIN_SERVER` from bench-Makefile (brakmic)
+- #18429 Remove double `LIBANDALUZCOIN_SERVER` from bench-Makefile (brakmic)
 - #18528 Create `test_fuzz` library from src/test/fuzz/fuzz.cpp (brakmic)
 - #18558 Fix boost detection for arch armv7l (hebasto)
 - #18598 gitian: Add missing automake package to gitian-win-signer.yml (achow101)
@@ -679,7 +679,7 @@ Build system
 - #18008 fix fuzzing using libFuzzer on macOS (fanquake)
 - #18013 bench: Fix benchmarks filters (elichai)
 - #18018 reset fIsBareMultisigStd after bare-multisig tests (fanquake)
-- #18022 Fix appveyor `test_bitcoin` build of `*.raw` (MarcoFalke)
+- #18022 Fix appveyor `test_andaluzcoin` build of `*.raw` (MarcoFalke)
 - #18037 util: Allow scheduler to be mocked (amitiuttarwar)
 - #18056 ci: Check for submodules (emilengler)
 - #18069 Replace 'regtest' leftovers by self.chain (theStack)
@@ -687,7 +687,7 @@ Build system
 - #18109 Avoid hitting some known minor tinyformat issues when fuzzing strprintf(…) (practicalswift)
 - #18155 Add harness which fuzzes EvalScript and VerifyScript using a fuzzed signature checker (practicalswift)
 - #18159 Add --valgrind option to `test/fuzz/test_runner.py` for running fuzzing test cases under valgrind (practicalswift)
-- #18166 ci: Run fuzz testing test cases (bitcoin-core/qa-assets) under valgrind to catch memory errors (practicalswift)
+- #18166 ci: Run fuzz testing test cases (andaluzcoin-core/qa-assets) under valgrind to catch memory errors (practicalswift)
 - #18172 Transaction expiry from mempool (0xB10C)
 - #18181 Remove incorrect assumptions in `validation_flush_tests` (MarcoFalke)
 - #18183 Set `catch_system_errors=no` on boost unit tests (MarcoFalke)
@@ -775,7 +775,7 @@ Build system
 - #17503 Remove bitness fromandaluzcoin-qt help message and manpage (laanwj)
 - #17539 Update and improve Developer Notes (hebasto)
 - #17561 Changed MiniUPnPc link to https in dependencies.md (sandakersmann)
-- #17596 Change doxygen URL to doxygen.bitcoincore.org (laanwj)
+- #17596 Change doxygen URL to doxygen.andaluzcoincore.org (laanwj)
 - #17598 Update release process with latest changes (MarcoFalke)
 - #17617 Unify unix epoch time descriptions (jonatack)
 - #17637 script: Add keyserver to verify-commits readme (emilengler)
@@ -984,4 +984,4 @@ Thanks to everyone who directly contributed to this release:
 - Zero
 
 As well as to everyone that helped with translations on
-[Transifex](https://www.transifex.com/bitcoin/bitcoin/).
+[Transifex](https://www.transifex.com/andaluzcoin/andaluzcoin/).

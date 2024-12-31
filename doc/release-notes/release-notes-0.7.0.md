@@ -1,21 +1,21 @@
 Andaluzcoin version 0.7.0 is now available for download at:
-  http://sourceforge.net/projects/bitcoin/files/Andaluzcoin/bitcoin-0.7.0/
+  http://sourceforge.net/projects/andaluzcoin/files/Andaluzcoin/andaluzcoin-0.7.0/
 
 We recommend that everybody running prior versions ofandaluzcoind/Andaluzcoin-Qt
 upgrade to this release, except for users running Mac OSX 10.5.
 
 Please report bugs using the issue tracker at github:
-  https://github.com/bitcoin/bitcoin/issues
+  https://github.com/andaluzcoin/andaluzcoin/issues
 
 Project source code is hosted at github; you can get
 source-only tarballs/zipballs directly from there:
-  https://github.com/bitcoin/bitcoin/tarball/v0.7.0  # .tar.gz
-  https://github.com/bitcoin/bitcoin/zipball/v0.7.0  # .zip
+  https://github.com/andaluzcoin/andaluzcoin/tarball/v0.7.0  # .tar.gz
+  https://github.com/andaluzcoin/andaluzcoin/zipball/v0.7.0  # .zip
 
 Ubuntu Linux users can use the "Personal Package Archive" (PPA)
 maintained by Matt Corallo to automatically keep 
-bitcoin up-to-date.  Just type
-  sudo apt-add-repository ppa:bitcoin/bitcoin
+andaluzcoin up-to-date.  Just type
+  sudo apt-add-repository ppa:andaluzcoin/andaluzcoin
   sudo apt-get update
 in your terminal, then install theandaluzcoin-qt package:
   sudo apt-get installandaluzcoin-qt
@@ -30,7 +30,7 @@ Code:
 /Applications/Andaluzcoin-Qt
 (on Mac) or
 Code:
-bitcoind/bitcoin-qt
+andaluzcoind/andaluzcoin-qt
 (on Linux).
 
 If you were running on Linux with a version that might have been compiled

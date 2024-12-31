@@ -100,10 +100,10 @@ options, as all its configuration is set at the top of the file. It runs many ti
 pypy3 contrib/devtools/headerssync-params.py
 ```
 
-gen-bitcoin-conf.sh
+gen-andaluzcoin-conf.sh
 ===================
 
-Generates aandaluzcoin.conf file in `share/examples/` by parsing the output from `bitcoind --help`. This script is run during the
+Generates aandaluzcoin.conf file in `share/examples/` by parsing the output from `andaluzcoind --help`. This script is run during the
 release process to include aandaluzcoin.conf with the release binaries and can also be run by users to generate a file locally.
 When generating a file as part of the release process, make sure to commit the changes after running the script.
 
@@ -112,7 +112,7 @@ repository. To use this tool with out-of-tree builds set `BUILDDIR`. For
 example:
 
 ```bash
-BUILDDIR=$PWD/build contrib/devtools/gen-bitcoin-conf.sh
+BUILDDIR=$PWD/build contrib/devtools/gen-andaluzcoin-conf.sh
 ```
 
 security-check.py and test-security-check.py
@@ -139,10 +139,10 @@ If no errors occur the return value will be 0 and the output will be empty.
 
 If there are any errors the return value will be 1 and output like this will be printed:
 
-    .../64/test_bitcoin: symbol memcpy from unsupported version GLIBC_2.14
-    .../64/test_bitcoin: symbol __fdelt_chk from unsupported version GLIBC_2.15
-    .../64/test_bitcoin: symbol std::out_of_range::~out_of_range() from unsupported version GLIBCXX_3.4.15
-    .../64/test_bitcoin: symbol _ZNSt8__detail15_List_nod from unsupported version GLIBCXX_3.4.15
+    .../64/test_andaluzcoin: symbol memcpy from unsupported version GLIBC_2.14
+    .../64/test_andaluzcoin: symbol __fdelt_chk from unsupported version GLIBC_2.15
+    .../64/test_andaluzcoin: symbol std::out_of_range::~out_of_range() from unsupported version GLIBCXX_3.4.15
+    .../64/test_andaluzcoin: symbol _ZNSt8__detail15_List_nod from unsupported version GLIBCXX_3.4.15
 
 circular-dependencies.py
 ========================

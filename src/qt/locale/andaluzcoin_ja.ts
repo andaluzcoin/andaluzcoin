@@ -164,7 +164,7 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">ウォレットの暗号化の確認</translation>
     </message>
     <message>
-        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR BITCOINS&lt;/b&gt;!</source>
+        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR ANDALUZCOINS&lt;/b&gt;!</source>
         <translation type="unfinished">警告: ウォレットの暗号化後にパスフレーズを忘れてしまった場合、&lt;b&gt;あなたの Andaluzcoin はすべて失われます&lt;/b&gt;！</translation>
     </message>
     <message>
@@ -705,7 +705,7 @@ Signing is only possible with addresses of the type 'legacy'.</source>
     </message>
     <message>
         <source>Open aandaluzcoin: URI</source>
-        <translation type="unfinished">bitcoin: URIを開く</translation>
+        <translation type="unfinished">andaluzcoin: URIを開く</translation>
     </message>
     <message>
         <source>Open Wallet</source>
@@ -1555,7 +1555,7 @@ The migration process will create a backup of the wallet before migrating. This 
     <name>OpenURIDialog</name>
     <message>
         <source>Openandaluzcoin URI</source>
-        <translation type="unfinished">bitcoin URIを開く</translation>
+        <translation type="unfinished">andaluzcoin URIを開く</translation>
     </message>
     <message>
         <source>Paste address from clipboard</source>
@@ -2138,8 +2138,8 @@ The migration process will create a backup of the wallet before migrating. This 
         <translation type="unfinished">URIの処理</translation>
     </message>
     <message>
-        <source>'bitcoin://' is not a valid URI. Use 'bitcoin:' instead.</source>
-        <translation type="unfinished">'bitcoin://' は正しいURIではありません｡ 'bitcoin:'を使用してください｡</translation>
+        <source>'andaluzcoin://' is not a valid URI. Use 'andaluzcoin:' instead.</source>
+        <translation type="unfinished">'andaluzcoin://' は正しいURIではありません｡ 'andaluzcoin:'を使用してください｡</translation>
     </message>
     <message>
         <source>Cannot process payment request because BIP70 is not supported.
@@ -3355,7 +3355,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee rate of "100 satos
     </message>
     <message>
         <source>A message that was attached to theandaluzcoin: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the Andaluzcoin network.</source>
-        <translation type="unfinished">bitcoin URIに添付されていたメッセージです。これは参照用として取引とともに保存されます。注意: メッセージは Andaluzcoin ネットワーク上へ送信されません。</translation>
+        <translation type="unfinished">andaluzcoin URIに添付されていたメッセージです。これは参照用として取引とともに保存されます。注意: メッセージは Andaluzcoin ネットワーク上へ送信されません。</translation>
     </message>
 </context>
 <context>
@@ -4104,14 +4104,14 @@ Go to File &gt; Open Wallet to load a wallet.
     </message>
 </context>
 <context>
-    <name>bitcoin-core</name>
+    <name>andaluzcoin-core</name>
     <message>
         <source>The %s developers</source>
         <translation type="unfinished">%s の開発者</translation>
     </message>
     <message>
         <source>%s corrupt. Try using the wallet toolandaluzcoin-wallet to salvage or restoring a backup.</source>
-        <translation type="unfinished">%sが破損しています。ウォレットのツールbitcoin-walletを使って復旧するか、バックアップから復元してみてください。</translation>
+        <translation type="unfinished">%sが破損しています。ウォレットのツールandaluzcoin-walletを使って復旧するか、バックアップから復元してみてください。</translation>
     </message>
     <message>
         <source>%s failed to validate the -assumeutxo snapshot state. This indicates a hardware problem, or a bug in the software, or a bad software modification that allowed an invalid snapshot to be loaded. As a result of this, the node will shut down and stop using any state that was built on the snapshot, resetting the chain height from %d to %d. On the next restart, the node will resume syncing from %d without using any snapshot data. Please report this incident to %s, including how you obtained the snapshot. The invalid snapshot chainstate will be left on disk in case it is helpful in diagnosing the issue that caused this error.</source>

@@ -41,7 +41,7 @@ class ConfArgsTest(AndaluzcoinTestFramework):
 
     def test_dir_config(self):
         self.log.info('Error should be emitted if config file is a directory')
-        conf_path = self.nodes[0].datadir_path / 'bitcoin.conf'
+        conf_path = self.nodes[0].datadir_path / 'andaluzcoin.conf'
         os.rename(conf_path, conf_path.with_suffix('.confbkp'))
         conf_path.mkdir()
         self.stop_node(0)
@@ -65,7 +65,7 @@ class ConfArgsTest(AndaluzcoinTestFramework):
     def test_negated_config(self):
         self.log.info('Disabling configuration via -noconf')
 
-        conf_path = self.nodes[0].datadir_path / 'bitcoin.conf'
+        conf_path = self.nodes[0].datadir_path / 'andaluzcoin.conf'
         with open(conf_path, encoding='utf-8') as conf:
             settings = [f'-{line.rstrip()}' for line in conf if len(line) > 1 and line[0] != '[']
         os.rename(conf_path, conf_path.with_suffix('.confbkp'))
@@ -80,7 +80,7 @@ class ConfArgsTest(AndaluzcoinTestFramework):
 
         self.log.debug('Verifying that disabling of the config file means garbage inside of it does ' \
             'not prevent the node from starting, and message about existing config file is logged')
-        ignored_file_message = [f'[InitConfig] Data directory "{self.nodes[0].datadir_path}" contains a "bitcoin.conf" file which is explicitly ignored using -noconf.']
+        ignored_file_message = [f'[InitConfig] Data directory "{self.nodes[0].datadir_path}" contains a "andaluzcoin.conf" file which is explicitly ignored using -noconf.']
         with self.nodes[0].assert_debug_log(timeout=60, expected_msgs=ignored_file_message):
             self.start_node(0, extra_args=settings + ['-noconf'])
         self.stop_node(0)
@@ -97,7 +97,7 @@ class ConfArgsTest(AndaluzcoinTestFramework):
         self.log.info('Test config file parser')
 
         # Check that startup fails if conf= is set inandaluzcoin.conf or in an included conf file
-        bad_conf_file_path = self.nodes[0].datadir_path / "bitcoin_bad.conf"
+        bad_conf_file_path = self.nodes[0].datadir_path / "andaluzcoin_bad.conf"
         util.write_config(bad_conf_file_path, n=0, chain='', extra_config='conf=some.conf\n')
         conf_in_config_file_err = 'Error: Error reading configuration file: conf cannot be set in the configuration file; use includeconf= if you want to include additional config files'
         self.nodes[0].assert_start_raises_init_error(
@@ -105,7 +105,7 @@ class ConfArgsTest(AndaluzcoinTestFramework):
             expected_msg=conf_in_config_file_err,
         )
         inc_conf_file_path = self.nodes[0].datadir_path / 'include.conf'
-        with open(self.nodes[0].datadir_path / 'bitcoin.conf', 'a', encoding='utf-8') as conf:
+        with open(self.nodes[0].datadir_path / 'andaluzcoin.conf', 'a', encoding='utf-8') as conf:
             conf.write(f'includeconf={inc_conf_file_path}\n')
         with open(inc_conf_file_path, 'w', encoding='utf-8') as conf:
             conf.write('conf=some.conf\n')
@@ -140,7 +140,7 @@ class ConfArgsTest(AndaluzcoinTestFramework):
                 conf.write("wallet=foo\n")
             self.nodes[0].assert_start_raises_init_error(expected_msg=f'Error: Config setting for -wallet only applied on {self.chain} network when in [{self.chain}] section.')
 
-        main_conf_file_path = self.nodes[0].datadir_path / "bitcoin_main.conf"
+        main_conf_file_path = self.nodes[0].datadir_path / "andaluzcoin_main.conf"
         util.write_config(main_conf_file_path, n=0, chain='', extra_config=f'includeconf={inc_conf_file_path}\n')
         with open(inc_conf_file_path, 'w', encoding='utf-8') as conf:
             conf.write('acceptnonstdtxn=1\n')
@@ -163,7 +163,7 @@ class ConfArgsTest(AndaluzcoinTestFramework):
         self.nodes[0].assert_start_raises_init_error(expected_msg='Error: Error reading configuration file: parse error on line 4, using # in rpcpassword can be ambiguous and should be avoided')
 
         inc_conf_file2_path = self.nodes[0].datadir_path / 'include2.conf'
-        with open(self.nodes[0].datadir_path / 'bitcoin.conf', 'a', encoding='utf-8') as conf:
+        with open(self.nodes[0].datadir_path / 'andaluzcoin.conf', 'a', encoding='utf-8') as conf:
             conf.write(f'includeconf={inc_conf_file2_path}\n')
 
         with open(inc_conf_file_path, 'w', encoding='utf-8') as conf:
@@ -194,8 +194,8 @@ class ConfArgsTest(AndaluzcoinTestFramework):
         # Write aandaluzcoin.conf file in the default data directory containing a
         # datadir= line pointing at the node datadir.
         node = self.nodes[0]
-        conf_text = node.bitcoinconf.read_text()
-        conf_path = default_datadir / "bitcoin.conf"
+        conf_text = node.andaluzcoinconf.read_text()
+        conf_path = default_datadir / "andaluzcoin.conf"
         conf_path.write_text(f"datadir={node.datadir_path}\n{conf_text}")
 
         # Drop the node -datadir= argument during this test, because if it is
@@ -205,7 +205,7 @@ class ConfArgsTest(AndaluzcoinTestFramework):
         node.args = [arg for arg in node.args if not arg.startswith("-datadir=")]
 
         # Check that correct configuration file path is actually logged
-        # (conf_path, not node.bitcoinconf)
+        # (conf_path, not node.andaluzcoinconf)
         with self.nodes[0].assert_debug_log(expected_msgs=[f"Config file: {conf_path}"]):
             self.start_node(0, ["-allowignoredconf"], env=env)
             self.stop_node(0)
@@ -400,14 +400,14 @@ class ConfArgsTest(AndaluzcoinTestFramework):
         with tempfile.NamedTemporaryFile(dir=self.options.tmpdir, mode="wt", delete=False) as temp_conf:
             temp_conf.write(f"datadir={node.datadir_path}\n")
         node.assert_start_raises_init_error([f"-conf={temp_conf.name}"], re.escape(
-            f'Error: Data directory "{node.datadir_path}" contains a "bitcoin.conf" file which is ignored, because a '
+            f'Error: Data directory "{node.datadir_path}" contains a "andaluzcoin.conf" file which is ignored, because a '
             f'different configuration file "{temp_conf.name}" from command line argument "-conf={temp_conf.name}" '
             f'is being used instead.') + r"[\s\S]*", match=ErrorMatch.FULL_REGEX)
 
         # Test that passing a redundant -conf command line argument pointing to
         # the sameandaluzcoin.conf that would be loaded anyway does not trigger an
         # error.
-        self.start_node(0, [f'-conf={node.datadir_path}/bitcoin.conf'])
+        self.start_node(0, [f'-conf={node.datadir_path}/andaluzcoin.conf'])
         self.stop_node(0)
 
     def test_ignored_default_conf(self):
@@ -429,7 +429,7 @@ class ConfArgsTest(AndaluzcoinTestFramework):
         # startup error because the node datadir contains a different
         #andaluzcoin.conf that would be ignored.
         node = self.nodes[0]
-        (default_datadir / "bitcoin.conf").write_text(f"datadir={node.datadir_path}\n")
+        (default_datadir / "andaluzcoin.conf").write_text(f"datadir={node.datadir_path}\n")
 
         # Drop the node -datadir= argument during this test, because if it is
         # specified it would take precedence over the datadir setting in the
@@ -437,14 +437,14 @@ class ConfArgsTest(AndaluzcoinTestFramework):
         node_args = node.args
         node.args = [arg for arg in node.args if not arg.startswith("-datadir=")]
         node.assert_start_raises_init_error([], re.escape(
-            f'Error: Data directory "{node.datadir_path}" contains a "bitcoin.conf" file which is ignored, because a '
-            f'different configuration file "{default_datadir}/bitcoin.conf" from data directory "{default_datadir}" '
+            f'Error: Data directory "{node.datadir_path}" contains a "andaluzcoin.conf" file which is ignored, because a '
+            f'different configuration file "{default_datadir}/andaluzcoin.conf" from data directory "{default_datadir}" '
             f'is being used instead.') + r"[\s\S]*", env=env, match=ErrorMatch.FULL_REGEX)
         node.args = node_args
 
     def test_acceptstalefeeestimates_arg_support(self):
         self.log.info("Test -acceptstalefeeestimates option support")
-        conf_file = self.nodes[0].datadir_path / "bitcoin.conf"
+        conf_file = self.nodes[0].datadir_path / "andaluzcoin.conf"
         for chain, chain_name in {("main", ""), ("test", "testnet3"), ("signet", "signet"), ("testnet4", "testnet4")}:
             util.write_config(conf_file, n=0, chain=chain_name, extra_config='acceptstalefeeestimates=1\n')
             self.nodes[0].assert_start_raises_init_error(expected_msg=f'Error: acceptstalefeeestimates is not supported on {chain} chain.')
@@ -512,7 +512,7 @@ class ConfArgsTest(AndaluzcoinTestFramework):
         self.nodes[0].assert_start_raises_init_error([f'-datadir={new_data_dir}'], f'Error: Specified data directory "{new_data_dir}" does not exist.')
 
         # Check that using non-existent datadir in conf file fails
-        conf_file = default_data_dir / "bitcoin.conf"
+        conf_file = default_data_dir / "andaluzcoin.conf"
 
         # datadir needs to be set before [chain] section
         with open(conf_file, encoding='utf8') as f:
@@ -524,7 +524,7 @@ class ConfArgsTest(AndaluzcoinTestFramework):
         self.nodes[0].assert_start_raises_init_error([f'-conf={conf_file}'], f'Error: Error reading configuration file: specified data directory "{new_data_dir}" does not exist.')
 
         # Check that an explicitly specified config file that cannot be opened fails
-        none_existent_conf_file = default_data_dir / "none_existent_bitcoin.conf"
+        none_existent_conf_file = default_data_dir / "none_existent_andaluzcoin.conf"
         self.nodes[0].assert_start_raises_init_error(['-conf=' + f'{none_existent_conf_file}'], 'Error: Error reading configuration file: specified config file "' + f'{none_existent_conf_file}' + '" could not be opened.')
 
         # Create the directory and ensure the config file now works

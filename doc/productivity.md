@@ -71,7 +71,7 @@ Obviously, it is important to build and run the tests at appropriate times -- bu
 ```sh
 cmake --build build --targetandaluzcoindandaluzcoin-cli
 cmake --build build --targetandaluzcoin-qt
-cmake --build build --target bench_bitcoin
+cmake --build build --target bench_andaluzcoin
 ```
 
 (You can and should combine this with `-j`, as above, for a parallel build.)
@@ -173,7 +173,7 @@ When looking at other's pull requests, it may make sense to add the following se
 ```
 [remote "upstream-pull"]
         fetch = +refs/pull/*/head:refs/remotes/upstream-pull/*
-        url = git@github.com:bitcoin/bitcoin.git
+        url = git@github.com:andaluzcoin/andaluzcoin.git
 ```
 
 This will add an `upstream-pull` remote to your git repository, which can be fetched using `git fetch --all` or `git fetch upstream-pull`. It will download and store on disk quite a lot of data (all PRs, including merged and closed ones). Afterwards, you can use `upstream-pull/NUMBER/head` in arguments to `git show`, `git checkout` and anywhere a commit id would be acceptable to see the changes from pull request NUMBER.

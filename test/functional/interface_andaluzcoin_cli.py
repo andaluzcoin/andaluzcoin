@@ -33,7 +33,7 @@ WALLET_NOT_LOADED = 'Requested wallet does not exist or is not loaded'
 WALLET_NOT_SPECIFIED = (
     "Multiple wallets are loaded. Please select which wallet to use by requesting the RPC "
     "through the /wallet/<walletname> URI path. Or for the CLI, specify the \"-rpcwallet=<walletname>\" "
-    "option before the command (run \"bitcoin-cli -h\" for help or \"bitcoin-cli listwallets\" to see "
+    "option before the command (run \"andaluzcoin-cli -h\" for help or \"andaluzcoin-cli listwallets\" to see "
     "which wallets are currently loaded)."
 )
 
@@ -87,7 +87,7 @@ class TestAndaluzcoinCli(AndaluzcoinTestFramework):
         """Main test logic"""
         self.generate(self.nodes[0], BLOCKS)
 
-        self.log.info("Compare responses from getblockchaininfo RPC and `bitcoin-cli getblockchaininfo`")
+        self.log.info("Compare responses from getblockchaininfo RPC and `andaluzcoin-cli getblockchaininfo`")
         cli_response = self.nodes[0].cli.getblockchaininfo()
         rpc_response = self.nodes[0].getblockchaininfo()
         assert_equal(cli_response, rpc_response)

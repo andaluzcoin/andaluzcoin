@@ -1,14 +1,14 @@
 Andaluzcoin version 0.5.3 is now available for download at:
-http://sourceforge.net/projects/bitcoin/files/Andaluzcoin/bitcoin-0.5.3/
+http://sourceforge.net/projects/andaluzcoin/files/Andaluzcoin/andaluzcoin-0.5.3/
 
 This is a bugfix-only release based on 0.5.1.
 It also includes a few protocol updates.
 
 Please report bugs using the issue tracker at github:
-https://github.com/bitcoin/bitcoin/issues
+https://github.com/andaluzcoin/andaluzcoin/issues
 
 Stable source code is hosted at Gitorious:
-http://gitorious.org/bitcoin/bitcoind-stable/archive-tarball/v0.5.3#.tar.gz
+http://gitorious.org/andaluzcoin/andaluzcoind-stable/archive-tarball/v0.5.3#.tar.gz
 
 PROTOCOL UPDATES
 
@@ -27,7 +27,7 @@ Skip splash screen when -min is used, and fix Minimize to Tray function.
 Do not blank "label" in Andaluzcoin-Qt "Send" tab, if the user has already entered something.
 Correct various labels and messages.
 Various memory leaks and potential null pointer deferences have been fixed.
-Handle invalid Andaluzcoin URIs using "bitcoin://" instead of "bitcoin:".
+Handle invalid Andaluzcoin URIs using "andaluzcoin://" instead of "andaluzcoin:".
 Several shutdown issues have been fixed.
 Revert to "global progress indication", as starting from zero every time was considered too confusing for many users.
 Check that keys stored in the wallet are valid at startup, and if not, report corruption.

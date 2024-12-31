@@ -3,18 +3,18 @@
 
 Andaluzcoin Core version 26.0 is now available from:
 
-  <https://bitcoincore.org/bin/bitcoin-core-26.0/>
+  <https://andaluzcoincore.org/bin/andaluzcoin-core-26.0/>
 
 This release includes new features, various bug fixes and performance
 improvements, as well as updated translations.
 
 Please report bugs using the issue tracker at GitHub:
 
-  <https://github.com/bitcoin/bitcoin/issues>
+  <https://github.com/andaluzcoin/andaluzcoin/issues>
 
 To receive security and update notifications, please subscribe to:
 
-  <https://bitcoincore.org/en/list/announcements/join/>
+  <https://andaluzcoincore.org/en/list/announcements/join/>
 
 How to Upgrade
 ==============
@@ -22,7 +22,7 @@ How to Upgrade
 If you are running an older version, shut it down. Wait until it has completely
 shut down (which might take a few minutes in some cases), then run the
 installer (on Windows) or just copy over `/Applications/Andaluzcoin-Qt` (on macOS)
-or `bitcoind`/`bitcoin-qt` (on Linux).
+or `andaluzcoind`/`andaluzcoin-qt` (on Linux).
 
 Upgrading directly from a version of Andaluzcoin Core that has reached its EOL is
 possible, but it might take some time if the data directory needs to be migrated. Old
@@ -44,7 +44,7 @@ P2P and network changes
 -----------------------
 
 - Experimental support for the v2 transport protocol defined in
-  [BIP324](https://github.com/bitcoin/bips/blob/master/bip-0324.mediawiki) was added.
+  [BIP324](https://github.com/andaluzcoin/bips/blob/master/bip-0324.mediawiki) was added.
   It is off by default, but when enabled using `-v2transport` it will be negotiated
   on a per-connection basis with other peers that support it too. The existing
   v1 transport protocol remains fully supported.
@@ -80,9 +80,9 @@ Updated RPCs
 - A new argument `v2transport` was added to the `addnode` RPC to indicate whether a v2 transaction connection
   is to be attempted with the peer.
 
-- [Miniscript](https://bitcoin.sipa.be/miniscript/) expressions can now be used in Taproot descriptors for all RPCs working with descriptors. (#27255)
+- [Miniscript](https://andaluzcoin.sipa.be/miniscript/) expressions can now be used in Taproot descriptors for all RPCs working with descriptors. (#27255)
 
-- `finalizepsbt` is now able to finalize a PSBT with inputs spending [Miniscript](https://bitcoin.sipa.be/miniscript/)-compatible Taproot leaves. (#27255)
+- `finalizepsbt` is now able to finalize a PSBT with inputs spending [Miniscript](https://andaluzcoin.sipa.be/miniscript/)-compatible Taproot leaves. (#27255)
 
 Changes to wallet related RPCs can be found in the Wallet section below.
 
@@ -103,7 +103,7 @@ New RPCs
   are always checked by hash.
 
   You can find more information on this process in the `assumeutxo` design
-  document (<https://github.com/bitcoin/bitcoin/blob/master/doc/design/assumeutxo.md>).
+  document (<https://github.com/andaluzcoin/andaluzcoin/blob/master/doc/design/assumeutxo.md>).
 
   `getchainstates` has been added to aid in monitoring the assumeutxo sync process.
 
@@ -141,7 +141,7 @@ mempool minimum feerate (but not minimum relay feerate). (#27609)
 Updated settings
 ----------------
 
-- `bitcoind` and `bitcoin-qt` will now raise an error on startup
+- `andaluzcoind` and `andaluzcoin-qt` will now raise an error on startup
  if a datadir that is being used contains aandaluzcoin.conf file that
  will be ignored, which can happen when a datadir= line is used in
  aandaluzcoin.conf file. The error message is just a diagnostic intended
@@ -160,8 +160,8 @@ New settings
 Tools and Utilities
 -------------------
 
-- A new `bitcoinconsensus_verify_script_with_spent_outputs` function is available in libconsensus which optionally accepts the spent outputs of the transaction being verified.
-- A new `bitcoinconsensus_SCRIPT_FLAGS_VERIFY_TAPROOT` flag is available in libconsensus that will verify scripts with the Taproot spending rules.
+- A new `andaluzcoinconsensus_verify_script_with_spent_outputs` function is available in libconsensus which optionally accepts the spent outputs of the transaction being verified.
+- A new `andaluzcoinconsensus_SCRIPT_FLAGS_VERIFY_TAPROOT` flag is available in libconsensus that will verify scripts with the Taproot spending rules.
 
 Wallet
 ------
@@ -212,13 +212,13 @@ Wallet
 This means it is possible make calls like:
 
 ```sh
-src/bitcoin-cli -named bumpfee txid fee_rate=100
+src/andaluzcoin-cli -named bumpfee txid fee_rate=100
 ```
 
 instead of
 
 ```sh
-src/bitcoin-cli -named bumpfee txid options='{"fee_rate": 100}'
+src/andaluzcoin-cli -named bumpfee txid options='{"fee_rate": 100}'
 ```
 
 - The `deprecatedrpc=walletwarningfield` configuration option has been removed.
@@ -237,7 +237,7 @@ src/bitcoin-cli -named bumpfee txid options='{"fee_rate": 100}'
   is complete) containing the serialized transaction
   suitable for RPC `sendrawtransaction`. (#28414)
 
-- It's now possible to use [Miniscript](https://bitcoin.sipa.be/miniscript/) inside Taproot leaves for descriptor wallets. (#27255)
+- It's now possible to use [Miniscript](https://andaluzcoin.sipa.be/miniscript/) inside Taproot leaves for descriptor wallets. (#27255)
 
 Descriptors
 -----------
@@ -261,8 +261,8 @@ GUI changes
 Contrib
 -------
 
-- Bash completion files have been renamed from `bitcoin*.bash-completion` to
-  `bitcoin*.bash`. This means completions can be automatically loaded on demand
+- Bash completion files have been renamed from `andaluzcoin*.bash-completion` to
+  `andaluzcoin*.bash`. This means completions can be automatically loaded on demand
   based on invoked commands' names when they are put into the completion
   directory (found with `pkg-config --variable=completionsdir
   bash-completion`) without requiring renaming. (#28507)
@@ -334,7 +334,7 @@ Thanks to everyone who directly contributed to this release:
 - mruddy
 - Murch
 - ns-xvrn
-- pablomartin4btc
+- pablomartin4luz
 - Pieter Wuille
 - Reese Russell
 - Rhythm Garg
@@ -354,4 +354,4 @@ Thanks to everyone who directly contributed to this release:
 - Yusuf Sahin HAMZA
 
 As well as to everyone that helped with translations on
-[Transifex](https://www.transifex.com/bitcoin/bitcoin/).
+[Transifex](https://www.transifex.com/andaluzcoin/andaluzcoin/).

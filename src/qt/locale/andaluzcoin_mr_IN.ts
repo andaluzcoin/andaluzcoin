@@ -414,7 +414,7 @@
     </message>
     </context>
 <context>
-    <name>bitcoin-core</name>
+    <name>andaluzcoin-core</name>
     <message>
         <source>Settings file could not be read</source>
         <translation type="unfinished">सेटिंग्ज फाइल वाचता आली नाही</translation>

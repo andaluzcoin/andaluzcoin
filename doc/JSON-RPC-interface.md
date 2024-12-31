@@ -1,7 +1,7 @@
 # JSON-RPC Interface
 
-The headless daemon `bitcoind` has the JSON-RPC API enabled by default, the GUI
-`bitcoin-qt` has it disabled by default. This can be changed with the `-server`
+The headless daemon `andaluzcoind` has the JSON-RPC API enabled by default, the GUI
+`andaluzcoin-qt` has it disabled by default. This can be changed with the `-server`
 option. In the GUI it is possible to execute RPC methods in the Debug Console
 Dialog.
 
@@ -53,13 +53,13 @@ Examples:
 
 ```sh
 # "params": ["mywallet", false, false, "", false, false, true]
-bitcoin-cli createwallet mywallet false false "" false false true
+andaluzcoin-cli createwallet mywallet false false "" false false true
 
 # "params": {"wallet_name": "mywallet", "load_on_startup": true}
-bitcoin-cli -named createwallet wallet_name=mywallet load_on_startup=true
+andaluzcoin-cli -named createwallet wallet_name=mywallet load_on_startup=true
 
 # "params": {"args": ["mywallet"], "load_on_startup": true}
-bitcoin-cli -named createwallet mywallet load_on_startup=true
+andaluzcoin-cli -named createwallet mywallet load_on_startup=true
 ```
 
 ## Versioning
@@ -135,7 +135,7 @@ RPC interface will be abused.
   withstand arbitrary Internet traffic, so changing the above settings
   to expose it to the Internet (even using something like a Tor onion
   service) could expose you to unconsidered vulnerabilities.  See
-  `bitcoind -help` for more information about these settings and other
+  `andaluzcoind -help` for more information about these settings and other
   settings described in this document.
 
     Related, if you use Andaluzcoin Core inside a Docker container, you may

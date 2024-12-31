@@ -1,17 +1,17 @@
 Andaluzcoin Core version 0.19.0.1 is now available from:
 
-  <https://bitcoincore.org/bin/bitcoin-core-0.19.0.1/>
+  <https://andaluzcoincore.org/bin/andaluzcoin-core-0.19.0.1/>
 
 This release includes new features, various bug fixes and performance
 improvements, as well as updated translations.
 
 Please report bugs using the issue tracker at GitHub:
 
-  <https://github.com/bitcoin/bitcoin/issues>
+  <https://github.com/andaluzcoin/andaluzcoin/issues>
 
 To receive security and update notifications, please subscribe to:
 
-  <https://bitcoincore.org/en/list/announcements/join/>
+  <https://andaluzcoincore.org/en/list/announcements/join/>
 
 How to Upgrade
 ==============
@@ -19,7 +19,7 @@ How to Upgrade
 If you are running an older version, shut it down. Wait until it has completely
 shut down (which might take a few minutes for older versions), then run the
 installer (on Windows) or just copy over `/Applications/Andaluzcoin-Qt` (on Mac)
-or `bitcoind`/`bitcoin-qt` (on Linux).
+or `andaluzcoind`/`andaluzcoin-qt` (on Linux).
 
 Upgrading directly from a version of Andaluzcoin Core that has reached its EOL is
 possible, but might take some time if the datadir needs to be migrated.  Old
@@ -50,7 +50,7 @@ Notable changes
 New user documentation
 ----------------------
 
-- [Reduce memory](https://github.com/bitcoin/bitcoin/blob/master/doc/reduce-memory.md)
+- [Reduce memory](https://github.com/andaluzcoin/andaluzcoin/blob/master/doc/reduce-memory.md)
   suggests configuration tweaks for running Andaluzcoin Core on systems with
   limited memory. (#16339)
 
@@ -90,7 +90,7 @@ Updated settings
   provide peers connecting using the indicated interfaces or IP
   addresses.  If no permissions are specified with an address or CIDR
   network, the implicit default permissions are the same as previous
-  releases.  See the `bitcoind -help` output for these two options for
+  releases.  See the `andaluzcoind -help` output for these two options for
   details about the available permissions. (#16248)
 
 - Users setting custom `dbcache` values can increase their setting slightly
@@ -250,7 +250,7 @@ P2P changes
 Miscellaneous CLI Changes
 -------------------------
 
-- The `testnet` field in `bitcoin-cli -getinfo` has been renamed to
+- The `testnet` field in `andaluzcoin-cli -getinfo` has been renamed to
   `chain` and now returns the current network name as defined in BIP70
   (main, test, regtest). (#15566)
 
@@ -443,7 +443,7 @@ Build system changes
 - #15508 Refactor analyzepsbt for use outside RPC code (gwillen)
 - #15747 Remove plethora of Get*Balance (MarcoFalke)
 - #15728 Refactor relay transactions (jnewbery)
-- #15639andaluzcoin-wallet tool: Drop libbitcoin_server.a dependency (ryanofsky)
+- #15639andaluzcoin-wallet tool: Drop libandaluzcoin_server.a dependency (ryanofsky)
 - #15853 Remove unused import checkpoints.h (MarcoFalke)
 - #15780 add cachable amounts for caching credit/debit values (kallewoof)
 - #15778 Move maxtxfee from node to wallet (jnewbery)
@@ -618,7 +618,7 @@ Build system changes
 - #15919 Remove unused OpenSSL includes to make it more clear where OpenSSL is used (practicalswift)
 - #15978 .gitignore: Don't ignore depends patches (dongcarl)
 - #15939 gitian: Remove windows 32 bit build (MarcoFalke)
-- #15239 scripts and tools: Move non-linux build source tarballs to "bitcoin-binaries/version" directory (hebasto)
+- #15239 scripts and tools: Move non-linux build source tarballs to "andaluzcoin-binaries/version" directory (hebasto)
 - #14047 Add HKDF_HMAC256_L32 and method to negate a private key (jonasschnelli)
 - #16051 add patch to common dependencies (fanquake)
 - #16049 switch to secure download of all dependencies (Kemu)
@@ -654,7 +654,7 @@ Build system changes
 - #16654 build: update RapidCheck Makefile (jonatack)
 - #16370 cleanup package configure flags (fanquake)
 - #16746 msbuild: Ignore linker warning (sipsorcery)
-- #16750 msbuild: adds bench_bitcoin to auto generated project files (sipsorcery)
+- #16750 msbuild: adds bench_andaluzcoin to auto generated project files (sipsorcery)
 - #16810 guix: Remove ssp spec file hack (dongcarl)
 - #16477 skip deploying plugins we dont use in macdeployqtplus (fanquake)
 - #16413 Bump QT to LTS release 5.9.8 (THETCR)
@@ -691,13 +691,13 @@ Build system changes
 - #15773 Add AndaluzcoinTestFramework::sync_* methods (MarcoFalke)
 - #15797 travis: Bump second timeout to 33 minutes, add rationale (MarcoFalke)
 - #15788 Unify testing setups for fuzz, bench, and unit tests (MarcoFalke)
-- #15352 Reduce noise level in test_bitcoin output (practicalswift)
+- #15352 Reduce noise level in test_andaluzcoin output (practicalswift)
 - #15779 Add wallet_balance benchmark (MarcoFalke)
 - #15843 fix outdated include in blockfilter_index_tests (jamesob)
 - #15866 Add missing syncwithvalidationinterfacequeue to wallet_import_rescan (MarcoFalke)
 - #15697 Make swap_magic_bytes in p2p_invalid_messages atomic (MarcoFalke)
 - #15895 Avoid re-reading config.ini unnecessarily (luke-jr)
-- #15896 feature_filelock, interface_bitcoin_cli: Use PACKAGE_NAME in messages rather than hardcoding Andaluzcoin Core (luke-jr)
+- #15896 feature_filelock, interface_andaluzcoin_cli: Use PACKAGE_NAME in messages rather than hardcoding Andaluzcoin Core (luke-jr)
 - #15897 QA/mininode: Send all headers upfront in send_blocks_and_test to avoid sending an unconnected one (luke-jr)
 - #15696 test_runner: Move feature_pruning to base tests (MarcoFalke)
 - #15869 Add settings merge test to prevent regresssions (ryanofsky)
@@ -751,7 +751,7 @@ Build system changes
 - #16505 Changes verbosity of msbuild from quiet to normal in the appveyor script (sipsorcery)
 - #16293 Make test cases separate functions (MarcoFalke)
 - #16470 Fail early on disconnect in mininode.wait_for_* (MarcoFalke)
-- #16277 Suppress output in test_bitcoin for expected errors (gertjaap)
+- #16277 Suppress output in test_andaluzcoin for expected errors (gertjaap)
 - #16493 Fix test failures (MarcoFalke)
 - #16538 Add missing sync_blocks to feature_pruning (MarcoFalke)
 - #16509 Adapt test framework for chains other than "regtest" (MarcoFalke)
@@ -859,7 +859,7 @@ Build system changes
 - #17095 util: Filter control characters out of log messages (laanwj)
 - #17085 init: Change fallback locale to C.UTF-8 (laanwj)
 - #16957 9% less memory: make SaltedOutpointHasher noexcept (martinus)
-- #17449 fix uninitialized variable nMinerConfirmationWindow (bitcoinVBR)
+- #17449 fix uninitialized variable nMinerConfirmationWindow (andaluzcoinVBR)
 
 ### Documentation
 - #15514 Update Transifex links (fanquake)
@@ -873,7 +873,7 @@ Build system changes
 - #15611 Add Gitian key for droark (droark)
 - #15626 Update ACK description in CONTRIBUTING.md (jonatack)
 - #15603 Add more tips to productivity.md (gwillen)
-- #15683 Comment for seemingly duplicate LIBBITCOIN_SERVER (Bushstar)
+- #15683 Comment for seemingly duplicate LIBANDALUZCOIN_SERVER (Bushstar)
 - #15685 rpc-mining: Clarify error messages (MarcoFalke)
 - #15760 Clarify sendrawtransaction::maxfeerate==0 help (MarcoFalke)
 - #15659 fix findFork comment (r8921039)
@@ -945,7 +945,7 @@ Build system changes
 - #16885 Update tx-size-small comment with relevant CVE disclosure (instagibbs)
 - #16900 Fix doxygen comment for SignTransaction in rpc/rawtransaction_util (MarcoFalke)
 - #16914 Update homebrew instruction for doxygen (Sjors)
-- #16912 Remove Doxygen intro from src/bitcoind.cpp (ch4ot1c)
+- #16912 Remove Doxygen intro from src/andaluzcoind.cpp (ch4ot1c)
 - #16960 replace outdated OpenSSL comment in test README (fanquake)
 - #16968 Remove MSVC update step from translation process (laanwj)
 - #16953 Improve test READMEs (fjahr)
@@ -1086,4 +1086,4 @@ Thanks to everyone who directly contributed to this release:
 - Wladimir J. van der Laan
 - zenosage
 
-As well as everyone that helped translating on [Transifex](https://www.transifex.com/bitcoin/bitcoin/).
+As well as everyone that helped translating on [Transifex](https://www.transifex.com/andaluzcoin/andaluzcoin/).

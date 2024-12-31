@@ -15,7 +15,7 @@ here, but by default is based upon local GPG trust settings.
 
 The builder keys are available in the guix.sigs repo:
 
-    https://github.com/bitcoin-core/guix.sigs/tree/main/builder-keys
+    https://github.com/andaluzcoin-core/guix.sigs/tree/main/builder-keys
 
 If a minimum good, trusted signature threshold is met on the sum file, we then
 download the files specified in SHA256SUMS, and check if the hashes of these
@@ -46,9 +46,9 @@ from hashlib import sha256
 from pathlib import PurePath, Path
 
 # The primary host; this will fail if we can't retrieve files from here.
-HOST1 = "https://bitcoincore.org"
-HOST2 = "https://bitcoin.org"
-VERSIONPREFIX = "bitcoin-core-"
+HOST1 = "https://andaluzcoincore.org"
+HOST2 = "https://andaluzcoin.org"
+VERSIONPREFIX = "andaluzcoin-core-"
 SUMS_FILENAME = 'SHA256SUMS'
 SIGNATUREFILENAME = f"{SUMS_FILENAME}.asc"
 
@@ -453,7 +453,7 @@ def verify_binary_hashes(hashes_to_verify: list[list[str]]) -> tuple[ReturnCode,
 
 
 def verify_published_handler(args: argparse.Namespace) -> ReturnCode:
-    WORKINGDIR = Path(tempfile.gettempdir()) / f"bitcoin_verify_binaries.{args.version}"
+    WORKINGDIR = Path(tempfile.gettempdir()) / f"andaluzcoin_verify_binaries.{args.version}"
 
     def cleanup():
         log.info("cleaning up files")

@@ -1,24 +1,24 @@
 Andaluzcoin version 0.6.0 is now available for download at:
-http://sourceforge.net/projects/bitcoin/files/Andaluzcoin/bitcoin-0.6.0/test/
+http://sourceforge.net/projects/andaluzcoin/files/Andaluzcoin/andaluzcoin-0.6.0/test/
 
 This release includes more than 20 language localizations.
 More translations are welcome; join the
 project at Transifex to help:
-https://www.transifex.net/projects/p/bitcoin/
+https://www.transifex.net/projects/p/andaluzcoin/
 
 Please report bugs using the issue tracker at github:
-https://github.com/bitcoin/bitcoin/issues
+https://github.com/andaluzcoin/andaluzcoin/issues
 
 Project source code is hosted at github; we are no longer
 distributing .tar.gz files here, you can get them
 directly from github:
-https://github.com/bitcoin/bitcoin/tarball/v0.6.0  # .tar.gz
-https://github.com/bitcoin/bitcoin/zipball/v0.6.0  # .zip
+https://github.com/andaluzcoin/andaluzcoin/tarball/v0.6.0  # .tar.gz
+https://github.com/andaluzcoin/andaluzcoin/zipball/v0.6.0  # .zip
 
 For Ubuntu users, there is a ppa maintained by Matt Corallo which
 you can add to your system so that it will automatically keep
-bitcoin up-to-date.  Just type
-sudo apt-add-repository ppa:bitcoin/bitcoin
+andaluzcoin up-to-date.  Just type
+sudo apt-add-repository ppa:andaluzcoin/andaluzcoin
 in your terminal, then install theandaluzcoin-qt package.
 
 
@@ -30,7 +30,7 @@ because database writes are queued to speed up download
 time.
 
 
-NEW FEATURES SINCE BITCOIN VERSION 0.5
+NEW FEATURES SINCE ANDALUZCOIN VERSION 0.5
 
 Initial network synchronization should be much faster
 (one or two hours on a typical machine instead of ten or more
@@ -54,7 +54,7 @@ transactions and less traffic on theandaluzcoin
 network. The shorter keys are already supported
 by the network but wallet.dat files containing
 short keys are not compatible with earlier
-versions of Andaluzcoin-Qt/bitcoind.
+versions of Andaluzcoin-Qt/andaluzcoind.
 
 New command-line argument -blocknotify=<command>
 that will spawn a shell process to run <command> 
@@ -108,7 +108,7 @@ Support for clicking onandaluzcoin: URIs and
 opening/launching Andaluzcoin-Qt is available only on Linux,
 and only if you configure your desktop to launch
 Andaluzcoin-Qt. All platforms support dragging and dropping
-bitcoin: URIs onto the Andaluzcoin-Qt window to start
+andaluzcoin: URIs onto the Andaluzcoin-Qt window to start
 payment.
 
 

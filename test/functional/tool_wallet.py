@@ -44,10 +44,10 @@ class ToolWalletTest(AndaluzcoinTestFramework):
         if "dump" in args and self.options.bdbro:
             default_args.append("-withinternalbdb")
 
-        return subprocess.Popen([self.options.bitcoinwallet] + default_args + list(args), stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+        return subprocess.Popen([self.options.andaluzcoinwallet] + default_args + list(args), stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
 
     def assert_raises_tool_error(self, error, *args):
-        p = self.bitcoin_wallet_process(*args)
+        p = self.andaluzcoin_wallet_process(*args)
         stdout, stderr = p.communicate()
         assert_equal(stdout, '')
         if isinstance(error, tuple):
@@ -58,7 +58,7 @@ class ToolWalletTest(AndaluzcoinTestFramework):
             assert error in stderr.strip()
 
     def assert_tool_output(self, output, *args):
-        p = self.bitcoin_wallet_process(*args)
+        p = self.andaluzcoin_wallet_process(*args)
         stdout, stderr = p.communicate()
         assert_equal(stderr, '')
         assert_equal(stdout, output)
@@ -130,7 +130,7 @@ class ToolWalletTest(AndaluzcoinTestFramework):
 
     def write_dump(self, dump, filename, magic=None, skip_checksum=False):
         if magic is None:
-            magic = "BITCOIN_CORE_WALLET_DUMP"
+            magic = "ANDALUZCOIN_CORE_WALLET_DUMP"
         with open(filename, "w", encoding="utf8") as f:
             row = ",".join([magic, dump[magic]]) + "\n"
             f.write(row)
@@ -194,11 +194,11 @@ class ToolWalletTest(AndaluzcoinTestFramework):
     def test_invalid_tool_commands_and_args(self):
         self.log.info('Testing that various invalid commands raise with specific error messages')
         self.assert_raises_tool_error("Error parsing command line arguments: Invalid command 'foo'", 'foo')
-        # `bitcoin-wallet help` raises an error. Use `bitcoin-wallet -help`.
+        # `andaluzcoin-wallet help` raises an error. Use `andaluzcoin-wallet -help`.
         self.assert_raises_tool_error("Error parsing command line arguments: Invalid command 'help'", 'help')
         self.assert_raises_tool_error('Error: Additional arguments provided (create). Methods do not take arguments. Please refer to `-help`.', 'info', 'create')
         self.assert_raises_tool_error('Error parsing command line arguments: Invalid parameter -foo', '-foo')
-        self.assert_raises_tool_error('No method provided. Run `bitcoin-wallet -help` for valid methods.')
+        self.assert_raises_tool_error('No method provided. Run `andaluzcoin-wallet -help` for valid methods.')
         self.assert_raises_tool_error('Wallet name must be provided when creating a new wallet.', 'create')
         locked_dir = self.nodes[0].wallets_path
         error = 'Error initializing wallet database environment "{}"!'.format(locked_dir)
@@ -317,7 +317,7 @@ class ToolWalletTest(AndaluzcoinTestFramework):
         self.log.debug('Wallet file shasum unchanged\n')
 
     def test_salvage(self):
-        # TODO: Check salvage actually salvages and doesn't break things. https://github.com/bitcoin/bitcoin/issues/7463
+        # TODO: Check salvage actually salvages and doesn't break things. https://github.com/andaluzcoin/andaluzcoin/issues/7463
         self.log.info('Check salvage')
         self.start_node(0)
         self.nodes[0].createwallet("salvage")
@@ -342,7 +342,7 @@ class ToolWalletTest(AndaluzcoinTestFramework):
         dump_data = self.read_dump(wallet_dump)
         orig_dump = dump_data.copy()
         # Check the dump magic
-        assert_equal(dump_data['BITCOIN_CORE_WALLET_DUMP'], '1')
+        assert_equal(dump_data['ANDALUZCOIN_CORE_WALLET_DUMP'], '1')
         # Check the file format
         assert_equal(dump_data["format"], file_format)
 
@@ -367,20 +367,20 @@ class ToolWalletTest(AndaluzcoinTestFramework):
 
         self.log.info('Checking createfromdump handling of magic and versions')
         bad_ver_wallet_dump = self.nodes[0].datadir_path / "wallet-bad_ver1.dump"
-        dump_data["BITCOIN_CORE_WALLET_DUMP"] = "0"
+        dump_data["ANDALUZCOIN_CORE_WALLET_DUMP"] = "0"
         self.write_dump(dump_data, bad_ver_wallet_dump)
         self.assert_raises_tool_error('Error: Dumpfile version is not supported. This version ofandaluzcoin-wallet only supports version 1 dumpfiles. Got dumpfile with version 0', '-wallet=badload', '-dumpfile={}'.format(bad_ver_wallet_dump), 'createfromdump')
         assert not (self.nodes[0].wallets_path / "badload").is_dir()
         bad_ver_wallet_dump = self.nodes[0].datadir_path / "wallet-bad_ver2.dump"
-        dump_data["BITCOIN_CORE_WALLET_DUMP"] = "2"
+        dump_data["ANDALUZCOIN_CORE_WALLET_DUMP"] = "2"
         self.write_dump(dump_data, bad_ver_wallet_dump)
         self.assert_raises_tool_error('Error: Dumpfile version is not supported. This version ofandaluzcoin-wallet only supports version 1 dumpfiles. Got dumpfile with version 2', '-wallet=badload', '-dumpfile={}'.format(bad_ver_wallet_dump), 'createfromdump')
         assert not (self.nodes[0].wallets_path / "badload").is_dir()
         bad_magic_wallet_dump = self.nodes[0].datadir_path / "wallet-bad_magic.dump"
-        del dump_data["BITCOIN_CORE_WALLET_DUMP"]
+        del dump_data["ANDALUZCOIN_CORE_WALLET_DUMP"]
         dump_data["not_the_right_magic"] = "1"
         self.write_dump(dump_data, bad_magic_wallet_dump, "not_the_right_magic")
-        self.assert_raises_tool_error('Error: Dumpfile identifier record is incorrect. Got "not_the_right_magic", expected "BITCOIN_CORE_WALLET_DUMP".', '-wallet=badload', '-dumpfile={}'.format(bad_magic_wallet_dump), 'createfromdump')
+        self.assert_raises_tool_error('Error: Dumpfile identifier record is incorrect. Got "not_the_right_magic", expected "ANDALUZCOIN_CORE_WALLET_DUMP".', '-wallet=badload', '-dumpfile={}'.format(bad_magic_wallet_dump), 'createfromdump')
         assert not (self.nodes[0].wallets_path / "badload").is_dir()
 
         self.log.info('Checking createfromdump handling of checksums')

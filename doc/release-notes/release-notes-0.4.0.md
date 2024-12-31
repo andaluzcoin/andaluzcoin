@@ -1,5 +1,5 @@
 Andaluzcoin version 0.4.0 is now available for download at:
-http://sourceforge.net/projects/bitcoin/files/Andaluzcoin/bitcoin-0.4.0/
+http://sourceforge.net/projects/andaluzcoin/files/Andaluzcoin/andaluzcoin-0.4.0/
 
 The main feature in this release is wallet private key encryption;
 you can set a passphrase that must be entered before sending coins.
@@ -47,7 +47,7 @@ your coins.
 
 It is recommended that you backup your wallet file before you
 encrypt your wallet.  To do this, close the Andaluzcoin client and
-copy the wallet.dat file from ~/.bitcoin/ on Linux, /Users/(user
+copy the wallet.dat file from ~/.andaluzcoin/ on Linux, /Users/(user
 name)/Application Support/Andaluzcoin/ on Mac OSX, and %APPDATA%/Andaluzcoin/
 on Windows (that is /Users/(user name)/AppData/Roaming/Andaluzcoin on
 Windows Vista and 7 and /Documents and Settings/(user name)/Application

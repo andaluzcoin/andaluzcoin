@@ -1,4 +1,4 @@
-# TOR SUPPORT IN BITCOIN
+# TOR SUPPORT IN ANDALUZCOIN
 
 It is possible to run Andaluzcoin Core as a Tor onion service, and connect to such services.
 
@@ -25,7 +25,7 @@ CLI `-addrinfo` returns the number of addresses known to your node per
 network. This can be useful to see how many onion peers your node knows,
 e.g. for `-onlynet=onion`.
 
-You can use the `getnodeaddresses` RPC to fetch a number of onion peers known to your node; run `bitcoin-cli help getnodeaddresses` for details.
+You can use the `getnodeaddresses` RPC to fetch a number of onion peers known to your node; run `andaluzcoin-cli help getnodeaddresses` for details.
 
 ## 1. Run Andaluzcoin Core behind a Tor proxy
 
@@ -62,7 +62,7 @@ outgoing connections, but more is possible.
 
 In a typical situation, this suffices to run behind a Tor proxy:
 
-    ./bitcoind -proxy=127.0.0.1:9050
+    ./andaluzcoind -proxy=127.0.0.1:9050
 
 ## 2. Automatically create a Andaluzcoin Core onion service
 
@@ -112,7 +112,7 @@ use the `-debug=tor`andaluzcoind configuration option to enable Tor debug loggin
 If a permissions problem is seen in the debug log, e.g. `tor: Authentication
 cookie /run/tor/control.authcookie could not be opened (check permissions)`, it
 can be resolved by adding both the user running Tor and the user running
-bitcoind to the same Tor group and setting permissions appropriately.
+andaluzcoind to the same Tor group and setting permissions appropriately.
 
 On Debian-derived systems, the Tor group will likely be `debian-tor` and one way
 to verify could be to list the groups and grep for a "tor" group name:
@@ -136,7 +136,7 @@ usermod -a -G ${TORGROUP} ${USER}
 ```
 
 Then restart the computer (or log out) and log in as the `${USER}` that will run
-bitcoind.
+andaluzcoind.
 
 #### `torpassword` authentication
 
@@ -155,7 +155,7 @@ details).
 You can also manually configure your node to be reachable from the Tor network.
 Add these lines to your `/etc/tor/torrc` (or equivalent config file):
 
-    HiddenServiceDir /var/lib/tor/bitcoin-service/
+    HiddenServiceDir /var/lib/tor/andaluzcoin-service/
     HiddenServicePort 8333 127.0.0.1:8334
 
 The directory can be different of course, but virtual port numbers should be equal to
@@ -165,7 +165,7 @@ should be equal to binding address and port for inbound Tor connections (127.0.0
     -externalip=X   You can tellandaluzcoin about its publicly reachable addresses using
                     this option, and this can be an onion address. Given the above
                     configuration, you can find your onion address in
-                    /var/lib/tor/bitcoin-service/hostname. For connections
+                    /var/lib/tor/andaluzcoin-service/hostname. For connections
                     coming from unroutable addresses (such as 127.0.0.1, where the
                     Tor proxy typically runs), onion addresses are given
                     preference for your node to advertise itself with.
@@ -187,25 +187,25 @@ should be equal to binding address and port for inbound Tor connections (127.0.0
 
 In a typical situation, where you're only reachable via Tor, this should suffice:
 
-    ./bitcoind -proxy=127.0.0.1:9050 -externalip=7zvj7a2imdgkdbg4f2dryd5rgtrn7upivr5eeij4cicjh65pooxeshid.onion -listen
+    ./andaluzcoind -proxy=127.0.0.1:9050 -externalip=7zvj7a2imdgkdbg4f2dryd5rgtrn7upivr5eeij4cicjh65pooxeshid.onion -listen
 
 (obviously, replace the .onion address with your own). It should be noted that you still
 listen on all devices and another node could establish a clearnet connection, when knowing
 your address. To mitigate this, additionally bind the address of your Tor proxy:
 
-    ./bitcoind ... -bind=127.0.0.1:8334=onion
+    ./andaluzcoind ... -bind=127.0.0.1:8334=onion
 
 If you don't care too much about hiding your node, and want to be reachable on IPv4
 as well, use `discover` instead:
 
-    ./bitcoind ... -discover
+    ./andaluzcoind ... -discover
 
 and open port 8333 on your firewall (or use port mapping, i.e., `-natpmp`).
 
 If you only want to use Tor to reach .onion addresses, but not use it as a proxy
 for normal IPv4/IPv6 communication, use:
 
-    ./bitcoind -onion=127.0.0.1:9050 -externalip=7zvj7a2imdgkdbg4f2dryd5rgtrn7upivr5eeij4cicjh65pooxeshid.onion -discover
+    ./andaluzcoind -onion=127.0.0.1:9050 -externalip=7zvj7a2imdgkdbg4f2dryd5rgtrn7upivr5eeij4cicjh65pooxeshid.onion -discover
 
 ## 4. Privacy recommendations
 

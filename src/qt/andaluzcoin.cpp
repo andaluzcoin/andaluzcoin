@@ -2,9 +2,9 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#include <bitcoin-build-config.h> // IWYU pragma: keep
+#include <andaluzcoin-build-config.h> // IWYU pragma: keep
 
-#include <qt/bitcoin.h>
+#include <qt/andaluzcoin.h>
 
 #include <chainparams.h>
 #include <common/args.h>
@@ -18,7 +18,7 @@
 #include <node/context.h>
 #include <node/interface_ui.h>
 #include <noui.h>
-#include <qt/bitcoingui.h>
+#include <qt/andaluzcoingui.h>
 #include <qt/clientmodel.h>
 #include <qt/guiconstants.h>
 #include <qt/guiutil.h>
@@ -204,7 +204,7 @@ void DebugMessageHandler(QtMsgType type, const QMessageLogContext& context, cons
 }
 
 static int qt_argc = 1;
-static const char* qt_argv = "bitcoin-qt";
+static const char* qt_argv = "andaluzcoin-qt";
 
 AndaluzcoinApplication::AndaluzcoinApplication()
     : QApplication(qt_argc, const_cast<char**>(&qt_argv))
@@ -505,8 +505,8 @@ int GuiMain(int argc, char* argv[])
     // Do not refer to data directory yet, this can be overridden by Intro::pickDataDirectory
 
     /// 1. Basic Qt initialization (not dependent on parameters or configuration)
-    Q_INIT_RESOURCE(bitcoin);
-    Q_INIT_RESOURCE(bitcoin_locale);
+    Q_INIT_RESOURCE(andaluzcoin);
+    Q_INIT_RESOURCE(andaluzcoin_locale);
 
 #if (QT_VERSION < QT_VERSION_CHECK(6, 0, 0))
     // Generate high-dpi pixmaps
@@ -544,7 +544,7 @@ int GuiMain(int argc, char* argv[])
         QString arg(argv[i]);
         bool invalid_token = !arg.startsWith("-");
 #ifdef ENABLE_WALLET
-        if (arg.startsWith(BITCOIN_IPC_PREFIX, Qt::CaseInsensitive)) {
+        if (arg.startsWith(ANDALUZCOIN_IPC_PREFIX, Qt::CaseInsensitive)) {
             invalid_token &= false;
             payment_server_token_seen = true;
         }

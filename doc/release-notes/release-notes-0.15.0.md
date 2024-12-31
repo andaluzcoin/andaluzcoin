@@ -1,17 +1,17 @@
 Andaluzcoin Core version *0.15.0* is now available from:
 
-  <https://bitcoin.org/bin/bitcoin-core-0.15.0/>
+  <https://andaluzcoin.org/bin/andaluzcoin-core-0.15.0/>
 
 This is a new major version release, including new features, various bugfixes
 and performance improvements, as well as updated translations.
 
 Please report bugs using the issue tracker at GitHub:
 
-  <https://github.com/bitcoin/bitcoin/issues>
+  <https://github.com/andaluzcoin/andaluzcoin/issues>
 
 To receive security and update notifications, please subscribe to:
 
-  <https://bitcoincore.org/en/list/announcements/join/>
+  <https://andaluzcoincore.org/en/list/announcements/join/>
 
 How to Upgrade
 ==============
@@ -19,7 +19,7 @@ How to Upgrade
 If you are running an older version, shut it down. Wait until it has completely
 shut down (which might take a few minutes for older versions), then run the 
 installer (on Windows) or just copy over `/Applications/Andaluzcoin-Qt` (on Mac)
-or `bitcoind`/`bitcoin-qt` (on Linux).
+or `andaluzcoind`/`andaluzcoin-qt` (on Linux).
 
 The first time you run version 0.15.0, your chainstate database will be converted to a
 new format, which will take anywhere from a few minutes to half an hour,
@@ -85,7 +85,7 @@ Version 0.15 contains a number of significant performance improvements, which ma
 Initial Block Download, startup, transaction and block validation much faster:
 
 - The chainstate database (which is used for tracking UTXOs) has been changed
-  from a per-transaction model to a per-output model (See [PR 10195](https://github.com/bitcoin/bitcoin/pull/10195)). Advantages of this model
+  from a per-transaction model to a per-output model (See [PR 10195](https://github.com/andaluzcoin/andaluzcoin/pull/10195)). Advantages of this model
   are that it:
     - avoids the CPU overhead of deserializing and serializing the unused outputs;
     - has more predictable memory usage;
@@ -98,32 +98,32 @@ Initial Block Download, startup, transaction and block validation much faster:
   a few extra gigabytes may be used.
 - Earlier versions experienced a spike in memory usage while flushing UTXO updates to disk.
   As a result, only half of the available memory was actually used as cache, and the other half was
-  reserved to accommodate flushing. This is no longer the case (See [PR 10148](https://github.com/bitcoin/bitcoin/pull/10148)), and the entirety of
+  reserved to accommodate flushing. This is no longer the case (See [PR 10148](https://github.com/andaluzcoin/andaluzcoin/pull/10148)), and the entirety of
   the available cache (see `-dbcache`) is now actually used as cache. This reduces the flushing
   frequency by a factor 2 or more.
 - In previous versions, signature validation for transactions has been cached when the
   transaction is accepted to the mempool. Version 0.15 extends this to cache the entire script
-  validity (See [PR 10192](https://github.com/bitcoin/bitcoin/pull/10192)). This means that if a transaction in a block has already been accepted to the
+  validity (See [PR 10192](https://github.com/andaluzcoin/andaluzcoin/pull/10192)). This means that if a transaction in a block has already been accepted to the
   mempool, the scriptSig does not need to be re-evaluated. Empirical tests show that
   this results in new block validation being 40-50% faster.
-- LevelDB has been upgraded to version 1.20 (See [PR 10544](https://github.com/bitcoin/bitcoin/pull/10544)). This version contains hardware acceleration for CRC
+- LevelDB has been upgraded to version 1.20 (See [PR 10544](https://github.com/andaluzcoin/andaluzcoin/pull/10544)). This version contains hardware acceleration for CRC
   on architectures supporting SSE 4.2. As a result, synchronization and block validation are now faster.
-- SHA256 hashing has been optimized for architectures supporting SSE 4 (See [PR 10821](https://github.com/bitcoin/bitcoin/pull/10821)). SHA256 is around
+- SHA256 hashing has been optimized for architectures supporting SSE 4 (See [PR 10821](https://github.com/andaluzcoin/andaluzcoin/pull/10821)). SHA256 is around
   50% faster on supported hardware, which results in around 5% faster IBD and block
   validation. In version 0.15, SHA256 hardware optimization is disabled in release builds by
   default, but can be enabled by using `--enable-experimental-asm` when building.
-- Refill of the keypool no longer flushes the wallet between each key which resulted in a ~20x speedup in creating a new wallet. Part of this speedup was used to increase the default keypool to 1000 keys to make recovery more robust. (See [PR 10831](https://github.com/bitcoin/bitcoin/pull/10831)).
+- Refill of the keypool no longer flushes the wallet between each key which resulted in a ~20x speedup in creating a new wallet. Part of this speedup was used to increase the default keypool to 1000 keys to make recovery more robust. (See [PR 10831](https://github.com/andaluzcoin/andaluzcoin/pull/10831)).
 
 Fee Estimation Improvements
 ---------------------------
 
-Fee estimation has been significantly improved in version 0.15, with more accurate fee estimates used by the wallet and a wider range of options for advanced users of the `estimatesmartfee` and `estimaterawfee` RPCs (See [PR 10199](https://github.com/bitcoin/bitcoin/pull/10199)).
+Fee estimation has been significantly improved in version 0.15, with more accurate fee estimates used by the wallet and a wider range of options for advanced users of the `estimatesmartfee` and `estimaterawfee` RPCs (See [PR 10199](https://github.com/andaluzcoin/andaluzcoin/pull/10199)).
 
 ### Changes to internal logic and wallet behavior
 
 - Internally, estimates are now tracked on 3 different time horizons. This allows for longer targets and means estimates adjust more quickly to changes in conditions.
 - Estimates can now be *conservative* or *economical*. *Conservative* estimates use longer time horizons to produce an estimate which is less susceptible to rapid changes in fee conditions. *Economical* estimates use shorter time horizons and will be more affected by short-term changes in fee conditions. Economical estimates may be considerably lower during periods of low transaction activity (for example over weekends), but may result in transactions being unconfirmed if prevailing fees increase rapidly.
-- By default, the wallet will use conservative fee estimates to increase the reliability of transactions being confirmed within the desired target. For transactions that are marked as replaceable, the wallet will use an economical estimate by default, since the fee can be 'bumped' if the fee conditions change rapidly (See [PR 10589](https://github.com/bitcoin/bitcoin/pull/10589)).
+- By default, the wallet will use conservative fee estimates to increase the reliability of transactions being confirmed within the desired target. For transactions that are marked as replaceable, the wallet will use an economical estimate by default, since the fee can be 'bumped' if the fee conditions change rapidly (See [PR 10589](https://github.com/andaluzcoin/andaluzcoin/pull/10589)).
 - Estimates can now be made for confirmation targets up to 1008 blocks (one week).
 - More data on historical fee rates is stored, leading to more precise fee estimates.
 - Transactions which leave the mempool due to eviction or other non-confirmed reasons are now taken into account by the fee estimation logic, leading to more accurate fee estimates.
@@ -132,7 +132,7 @@ Fee estimation has been significantly improved in version 0.15, with more accura
 ### Changes to fee estimate RPCs
 
 - The `estimatefee` RPC is now deprecated in favor of using only `estimatesmartfee` (which is the implementation used by the GUI)
-- The `estimatesmartfee` RPC interface has been changed (See [PR 10707](https://github.com/bitcoin/bitcoin/pull/10707)):
+- The `estimatesmartfee` RPC interface has been changed (See [PR 10707](https://github.com/andaluzcoin/andaluzcoin/pull/10707)):
     - The `nblocks` argument has been renamed to `conf_target` (to be consistent with other RPC methods).
     - An `estimate_mode` argument has been added. This argument takes one of the following strings: `CONSERVATIVE`, `ECONOMICAL` or `UNSET` (which defaults to `CONSERVATIVE`).
     - The RPC return object now contains an `errors` member, which returns errors encountered during processing.
@@ -142,17 +142,17 @@ Fee estimation has been significantly improved in version 0.15, with more accura
 Multi-wallet support
 --------------------
 
-Andaluzcoin Core now supports loading multiple, separate wallets (See [PR 8694](https://github.com/bitcoin/bitcoin/pull/8694), [PR 10849](https://github.com/bitcoin/bitcoin/pull/10849)). The wallets are completely separated, with individual balances, keys and received transactions.
+Andaluzcoin Core now supports loading multiple, separate wallets (See [PR 8694](https://github.com/andaluzcoin/andaluzcoin/pull/8694), [PR 10849](https://github.com/andaluzcoin/andaluzcoin/pull/10849)). The wallets are completely separated, with individual balances, keys and received transactions.
 
 Multi-wallet is enabled by using more than one `-wallet` argument when starting Andaluzcoin, either on the command line or in the Andaluzcoin config file.
 
 **In Andaluzcoin-Qt, only the first wallet will be displayed and accessible for creating and signing transactions.** GUI selectable multiple wallets will be supported in a future version. However, even in 0.15 other loaded wallets will remain synchronized to the node's current tip in the background. This can be useful if running a pruned node, since loading a wallet where the most recent sync is beyond the pruned height results in having to download and revalidate the whole blockchain. Continuing to synchronize all wallets in the background avoids this problem.
 
-Andaluzcoin Core 0.15.0 contains the following changes to the RPC interface and `bitcoin-cli` for multi-wallet:
+Andaluzcoin Core 0.15.0 contains the following changes to the RPC interface and `andaluzcoin-cli` for multi-wallet:
 
-* When running Andaluzcoin Core with a single wallet, there are **no** changes to the RPC interface or `bitcoin-cli`. All RPC calls and `bitcoin-cli` commands continue to work as before.
-* When running Andaluzcoin Core with multi-wallet, all *node-level* RPC methods continue to work as before. HTTP RPC requests should be send to the normal `<RPC IP address>:<RPC port>` endpoint, and `bitcoin-cli` commands should be run as before. A *node-level* RPC method is any method which does not require access to the wallet.
-* When running Andaluzcoin Core with multi-wallet, *wallet-level* RPC methods must specify the wallet for which they're intended in every request. HTTP RPC requests should be send to the `<RPC IP address>:<RPC port>/wallet/<wallet name>` endpoint, for example `127.0.0.1:8332/wallet/wallet1.dat`. `bitcoin-cli` commands should be run with a `-rpcwallet` option, for example `bitcoin-cli -rpcwallet=wallet1.dat getbalance`.
+* When running Andaluzcoin Core with a single wallet, there are **no** changes to the RPC interface or `andaluzcoin-cli`. All RPC calls and `andaluzcoin-cli` commands continue to work as before.
+* When running Andaluzcoin Core with multi-wallet, all *node-level* RPC methods continue to work as before. HTTP RPC requests should be send to the normal `<RPC IP address>:<RPC port>` endpoint, and `andaluzcoin-cli` commands should be run as before. A *node-level* RPC method is any method which does not require access to the wallet.
+* When running Andaluzcoin Core with multi-wallet, *wallet-level* RPC methods must specify the wallet for which they're intended in every request. HTTP RPC requests should be send to the `<RPC IP address>:<RPC port>/wallet/<wallet name>` endpoint, for example `127.0.0.1:8332/wallet/wallet1.dat`. `andaluzcoin-cli` commands should be run with a `-rpcwallet` option, for example `andaluzcoin-cli -rpcwallet=wallet1.dat getbalance`.
 * A new *node-level* `listwallets` RPC method is added to display which wallets are currently loaded. The names returned by this method are the same as those used in the HTTP endpoint and for the `rpcwallet` argument.
 
 Note that while multi-wallet is now fully supported, the RPC multi-wallet interface should be considered unstable for version 0.15.0, and there may backwards-incompatible changes in future versions.
@@ -166,12 +166,12 @@ replace unconfirmed opt-in RBF transactions with a new transaction that pays
 a higher fee.
 
 In version 0.15, creating an opt-in RBF transaction and replacing the unconfirmed
-transaction with a higher-fee transaction are both supported in the GUI (See [PR 9592](https://github.com/bitcoin/bitcoin/pull/9592)).
+transaction with a higher-fee transaction are both supported in the GUI (See [PR 9592](https://github.com/andaluzcoin/andaluzcoin/pull/9592)).
 
 Removal of Coin Age Priority
 ----------------------------
 
-In previous versions of Andaluzcoin Core, a portion of each block could be reserved for transactions based on the age and value of UTXOs they spent. This concept (Coin Age Priority) is a policy choice by miners, and there are no consensus rules around the inclusion of Coin Age Priority transactions in blocks. In practice, only a few miners continue to use Coin Age Priority for transaction selection in blocks. Andaluzcoin Core 0.15 removes all remaining support for Coin Age Priority (See [PR 9602](https://github.com/bitcoin/bitcoin/pull/9602)). This has the following implications:
+In previous versions of Andaluzcoin Core, a portion of each block could be reserved for transactions based on the age and value of UTXOs they spent. This concept (Coin Age Priority) is a policy choice by miners, and there are no consensus rules around the inclusion of Coin Age Priority transactions in blocks. In practice, only a few miners continue to use Coin Age Priority for transaction selection in blocks. Andaluzcoin Core 0.15 removes all remaining support for Coin Age Priority (See [PR 9602](https://github.com/andaluzcoin/andaluzcoin/pull/9602)). This has the following implications:
 
 - The concept of *free transactions* has been removed. High Coin Age Priority transactions would previously be allowed to be relayed even if they didn't attach a miner fee. This is no longer possible since there is no concept of Coin Age Priority. The `-limitfreerelay` and `-relaypriority` options which controlled relay of free transactions have therefore been removed.
 - The `-sendfreetransactions` option has been removed, since almost all miners do not include transactions which do not attach a transaction fee.
@@ -185,21 +185,21 @@ In previous versions of Andaluzcoin Core, a portion of each block could be reser
 Mempool Persistence Across Restarts
 -----------------------------------
 
-Version 0.14 introduced mempool persistence across restarts (the mempool is saved to a `mempool.dat` file in the data directory prior to shutdown and restores the mempool when the node is restarted). Version 0.15 allows this feature to be switched on or off using the `-persistmempool` command-line option (See [PR 9966](https://github.com/bitcoin/bitcoin/pull/9966)). By default, the option is set to true, and the mempool is saved on shutdown and reloaded on startup. If set to false, the `mempool.dat` file will not be loaded on startup or saved on shutdown.
+Version 0.14 introduced mempool persistence across restarts (the mempool is saved to a `mempool.dat` file in the data directory prior to shutdown and restores the mempool when the node is restarted). Version 0.15 allows this feature to be switched on or off using the `-persistmempool` command-line option (See [PR 9966](https://github.com/andaluzcoin/andaluzcoin/pull/9966)). By default, the option is set to true, and the mempool is saved on shutdown and reloaded on startup. If set to false, the `mempool.dat` file will not be loaded on startup or saved on shutdown.
 
 New RPC methods
 ---------------
 
 Version 0.15 introduces several new RPC methods:
 
-- `abortrescan` stops current wallet rescan, e.g. when triggered by an `importprivkey` call (See [PR 10208](https://github.com/bitcoin/bitcoin/pull/10208)).
-- `combinerawtransaction` accepts a JSON array of raw transactions and combines them into a single raw transaction (See [PR 10571](https://github.com/bitcoin/bitcoin/pull/10571)).
+- `abortrescan` stops current wallet rescan, e.g. when triggered by an `importprivkey` call (See [PR 10208](https://github.com/andaluzcoin/andaluzcoin/pull/10208)).
+- `combinerawtransaction` accepts a JSON array of raw transactions and combines them into a single raw transaction (See [PR 10571](https://github.com/andaluzcoin/andaluzcoin/pull/10571)).
 - `estimaterawfee` returns raw fee data so that customized logic can be implemented to analyze the data and calculate estimates. See [Fee Estimation Improvements](#fee-estimation-improvements) for full details on changes to the fee estimation logic and interface.
 - `getchaintxstats` returns statistics about the total number and rate of transactions
-  in the chain (See [PR 9733](https://github.com/bitcoin/bitcoin/pull/9733)).
+  in the chain (See [PR 9733](https://github.com/andaluzcoin/andaluzcoin/pull/9733)).
 - `listwallets` lists wallets which are currently loaded. See the *Multi-wallet* section
   of these release notes for full details (See [Multi-wallet support](#multi-wallet-support)).
-- `uptime` returns the total runtime of the `bitcoind` server since its last start (See [PR 10400](https://github.com/bitcoin/bitcoin/pull/10400)).
+- `uptime` returns the total runtime of the `andaluzcoind` server since its last start (See [PR 10400](https://github.com/andaluzcoin/andaluzcoin/pull/10400)).
 
 Low-level RPC changes
 ---------------------
@@ -222,15 +222,15 @@ Low-level RPC changes
   `bytes_serialized`. The first is a more accurate estimate of actual disk usage, but
   is not deterministic. The second is unrelated to disk usage, but is a
   database-independent metric of UTXO set size: it counts every UTXO entry as 50 + the
-  length of its scriptPubKey (See [PR 10426](https://github.com/bitcoin/bitcoin/pull/10426)).
+  length of its scriptPubKey (See [PR 10426](https://github.com/andaluzcoin/andaluzcoin/pull/10426)).
 
-- `signrawtransaction` can no longer be used to combine multiple transactions into a single transaction. Instead, use the new `combinerawtransaction` RPC (See [PR 10571](https://github.com/bitcoin/bitcoin/pull/10571)).
+- `signrawtransaction` can no longer be used to combine multiple transactions into a single transaction. Instead, use the new `combinerawtransaction` RPC (See [PR 10571](https://github.com/andaluzcoin/andaluzcoin/pull/10571)).
 
-- `fundrawtransaction` no longer accepts a `reserveChangeKey` option. This option used to allow RPC users to fund a raw transaction using an key from the keypool for the change address without removing it from the available keys in the keypool. The key could then be re-used for a `getnewaddress` call, which could potentially result in confusing or dangerous behaviour (See [PR 10784](https://github.com/bitcoin/bitcoin/pull/10784)).
+- `fundrawtransaction` no longer accepts a `reserveChangeKey` option. This option used to allow RPC users to fund a raw transaction using an key from the keypool for the change address without removing it from the available keys in the keypool. The key could then be re-used for a `getnewaddress` call, which could potentially result in confusing or dangerous behaviour (See [PR 10784](https://github.com/andaluzcoin/andaluzcoin/pull/10784)).
 
 - `estimatepriority` and `estimatesmartpriority` have been removed. See [Removal of Coin Age Priority](#removal-of-coin-age-priority).
 
-- The `listunspent` RPC now takes a `query_options` argument (see [PR 8952](https://github.com/bitcoin/bitcoin/pull/8952)), which is a JSON object
+- The `listunspent` RPC now takes a `query_options` argument (see [PR 8952](https://github.com/andaluzcoin/andaluzcoin/pull/8952)), which is a JSON object
   containing one or more of the following members:
   - `minimumAmount` - a number specifying the minimum value of each UTXO
   - `maximumAmount` - a number specifying the maximum value of each UTXO
@@ -240,22 +240,22 @@ Low-level RPC changes
 - The `getmempoolancestors`, `getmempooldescendants`, `getmempoolentry` and `getrawmempool` RPCs no longer return `startingpriority` and `currentpriority`. See [Removal of Coin Age Priority](#removal-of-coin-age-priority).
 
 - The `dumpwallet` RPC now returns the full absolute path to the dumped wallet. It
-  used to return no value, even if successful (See [PR 9740](https://github.com/bitcoin/bitcoin/pull/9740)).
+  used to return no value, even if successful (See [PR 9740](https://github.com/andaluzcoin/andaluzcoin/pull/9740)).
 
-- In the `getpeerinfo` RPC, the return object for each peer now returns an `addrbind` member, which contains the ip address and port of the connection to the peer. This is in addition to the `addrlocal` member which contains the ip address and port of the local node as reported by the peer (See [PR 10478](https://github.com/bitcoin/bitcoin/pull/10478)).
+- In the `getpeerinfo` RPC, the return object for each peer now returns an `addrbind` member, which contains the ip address and port of the connection to the peer. This is in addition to the `addrlocal` member which contains the ip address and port of the local node as reported by the peer (See [PR 10478](https://github.com/andaluzcoin/andaluzcoin/pull/10478)).
 
-- The `disconnectnode` RPC can now disconnect a node specified by node ID (as well as by IP address/port). To disconnect a node based on node ID, call the RPC with the new `nodeid` argument (See [PR 10143](https://github.com/bitcoin/bitcoin/pull/10143)).
+- The `disconnectnode` RPC can now disconnect a node specified by node ID (as well as by IP address/port). To disconnect a node based on node ID, call the RPC with the new `nodeid` argument (See [PR 10143](https://github.com/andaluzcoin/andaluzcoin/pull/10143)).
 
 - The second argument in `prioritisetransaction` has been renamed from `priority_delta` to `dummy` since Andaluzcoin Core no longer has a concept of coin age priority. The `dummy` argument has no functional effect, but is retained for positional argument compatibility. See [Removal of Coin Age Priority](#removal-of-coin-age-priority).
 
-- The `resendwallettransactions` RPC throws an error if the `-walletbroadcast` option is set to false (See [PR 10995](https://github.com/bitcoin/bitcoin/pull/10995)).
+- The `resendwallettransactions` RPC throws an error if the `-walletbroadcast` option is set to false (See [PR 10995](https://github.com/andaluzcoin/andaluzcoin/pull/10995)).
 
-- The second argument in the `submitblock` RPC argument has been renamed from `parameters` to `dummy`. This argument never had any effect, and the renaming is simply to communicate this fact to the user (See [PR 10191](https://github.com/bitcoin/bitcoin/pull/10191))
+- The second argument in the `submitblock` RPC argument has been renamed from `parameters` to `dummy`. This argument never had any effect, and the renaming is simply to communicate this fact to the user (See [PR 10191](https://github.com/andaluzcoin/andaluzcoin/pull/10191))
   (Clients should, however, use positional arguments for `submitblock` in order to be compatible with BIP 22.)
 
 - The `verbose` argument of `getblock` has been renamed to `verbosity` and now takes an integer from 0 to 2. Verbose level 0 is equivalent to `verbose=false`. Verbose level 1 is equivalent to `verbose=true`. Verbose level 2 will give the full transaction details of each transaction in the output as given by `getrawtransaction`. The old behavior of using the `verbose` named argument and a boolean value is still maintained for compatibility.
 
-- Error codes have been updated to be more accurate for the following error cases (See [PR 9853](https://github.com/bitcoin/bitcoin/pull/9853)):
+- Error codes have been updated to be more accurate for the following error cases (See [PR 9853](https://github.com/andaluzcoin/andaluzcoin/pull/9853)):
   - `getblock` now returns RPC_MISC_ERROR if the block can't be found on disk (for
   example if the block has been pruned). Previously returned RPC_INTERNAL_ERROR.
   - `pruneblockchain` now returns RPC_MISC_ERROR if the blocks cannot be pruned
@@ -268,13 +268,13 @@ Low-level RPC changes
   or subnet is invalid. Previously returned RPC_CLIENT_NODE_ALREADY_ADDED.
   - `setban` now returns RPC_CLIENT_INVALID_IP_OR_SUBNET if the user tries to unban
   a node that has not previously been banned. Previously returned RPC_MISC_ERROR.
-  - `removeprunedfunds` now returns RPC_WALLET_ERROR if `bitcoind` is unable to remove
+  - `removeprunedfunds` now returns RPC_WALLET_ERROR if `andaluzcoind` is unable to remove
   the transaction. Previously returned RPC_INTERNAL_ERROR.
   - `removeprunedfunds` now returns RPC_INVALID_PARAMETER if the transaction does not
   exist in the wallet. Previously returned RPC_INTERNAL_ERROR.
   - `fundrawtransaction` now returns RPC_INVALID_ADDRESS_OR_KEY if an invalid change
   address is provided. Previously returned RPC_INVALID_PARAMETER.
-  - `fundrawtransaction` now returns RPC_WALLET_ERROR if `bitcoind` is unable to create
+  - `fundrawtransaction` now returns RPC_WALLET_ERROR if `andaluzcoind` is unable to create
   the transaction. The error message provides further details. Previously returned
   RPC_INTERNAL_ERROR.
   - `bumpfee` now returns RPC_INVALID_PARAMETER if the provided transaction has
@@ -390,7 +390,7 @@ Low-level RPC changes
 
 ### P2P protocol and network code
 - #9726 `7639d38` netbase: Do not print an error on connection timeouts through proxy (laanwj)
-- #9805 `5b583ef` Add seed.btc.petertodd.org to mainnet DNS seeds (petertodd)
+- #9805 `5b583ef` Add seed.luz.petertodd.org to mainnet DNS seeds (petertodd)
 - #9861 `22f609f` Trivial: Debug log ambiguity fix for peer addrs (keystrike)
 - #9774 `90cb2a2` Enable host lookups for -proxy and -onion parameters (jmcorgan)
 - #9558 `7b585cf` Clarify assumptions made about when BlockCheck is called (TheBlueMatt)
@@ -721,7 +721,7 @@ Low-level RPC changes
 - #10447 `f259263` Makeandaluzcoind invalid argument error message specific (laanwj)
 - #10495 `6a38b79` contrib: Update location of seeds.txt (laanwj)
 - #10469 `b6b150b` Fixing typo in rpcdump.cpp help message (keystrike)
-- #10451 `27b9931` contrib/init/bitcoind.openrcconf: Don't disable wallet by default (luke-jr)
+- #10451 `27b9931` contrib/init/andaluzcoind.openrcconf: Don't disable wallet by default (luke-jr)
 - #10323 `00d3692` Update to latest libsecp256k1 master (sipa)
 - #10422 `cec9e1e` Fix timestamp in fee estimate debug message (morcos)
 - #10566 `5d034ee` [docs] Use the "domain name setup" image (previously unused) in the gitian docs (practicalswift)
@@ -875,4 +875,4 @@ Thanks to everyone who directly contributed to this release:
 - Warren Togami
 - Wladimir J. van der Laan
 
-As well as everyone that helped translating on [Transifex](https://www.transifex.com/projects/p/bitcoin/).
+As well as everyone that helped translating on [Transifex](https://www.transifex.com/projects/p/andaluzcoin/).

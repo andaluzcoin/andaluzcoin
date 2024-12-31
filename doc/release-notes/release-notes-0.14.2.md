@@ -1,17 +1,17 @@
 Andaluzcoin Core version 0.14.2 is now available from:
 
-  <https://bitcoin.org/bin/bitcoin-core-0.14.2/>
+  <https://andaluzcoin.org/bin/andaluzcoin-core-0.14.2/>
 
 This is a new minor version release, including various bugfixes and
 performance improvements, as well as updated translations.
 
 Please report bugs using the issue tracker at github:
 
-  <https://github.com/bitcoin/bitcoin/issues>
+  <https://github.com/andaluzcoin/andaluzcoin/issues>
 
 To receive security and update notifications, please subscribe to:
 
-  <https://bitcoincore.org/en/list/announcements/join/>
+  <https://andaluzcoincore.org/en/list/announcements/join/>
 
 Compatibility
 ==============
@@ -98,5 +98,5 @@ Thanks to everyone who directly contributed to this release:
 - Shigeya Suzuki
 - Wladimir J. van der Laan
 
-As well as everyone that helped translating on [Transifex](https://www.transifex.com/projects/p/bitcoin/).
+As well as everyone that helped translating on [Transifex](https://www.transifex.com/projects/p/andaluzcoin/).
 

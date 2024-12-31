@@ -2,7 +2,7 @@
 complete --commandandaluzcoin-qt --no-files
 
 # Extract options
-function __fish_bitcoinqt_get_options
+function __fish_andaluzcoinqt_get_options
     argparse 'nofiles' -- $argv
     set --local cmd (commandline -opc)[1]
     set --local options
@@ -22,7 +22,7 @@ end
 # Add options with file completion
 complete \
     --commandandaluzcoin-qt \
-    --arguments "(__fish_bitcoinqt_get_options)"
+    --arguments "(__fish_andaluzcoinqt_get_options)"
 # Enable file completions only if the commandline now contains a `*.=` style option
 complete -candaluzcoin-qt \
     --condition 'string match --regex -- ".*=" (commandline -pt)' \
@@ -31,5 +31,5 @@ complete -candaluzcoin-qt \
 # Add options without file completion
 complete \
     --commandandaluzcoin-qt \
-    --arguments "(__fish_bitcoinqt_get_options --nofiles)"
+    --arguments "(__fish_andaluzcoinqt_get_options --nofiles)"
 

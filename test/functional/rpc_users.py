@@ -64,11 +64,11 @@ class HTTPBasicsTest(AndaluzcoinTestFramework):
         rpcauth3 = lines[1]
         self.password = lines[3]
 
-        with open(self.nodes[0].datadir_path / "bitcoin.conf", "a", encoding="utf8") as f:
+        with open(self.nodes[0].datadir_path / "andaluzcoin.conf", "a", encoding="utf8") as f:
             f.write(rpcauth + "\n")
             f.write(rpcauth2 + "\n")
             f.write(rpcauth3 + "\n")
-        with open(self.nodes[1].datadir_path / "bitcoin.conf", "a", encoding="utf8") as f:
+        with open(self.nodes[1].datadir_path / "andaluzcoin.conf", "a", encoding="utf8") as f:
             f.write("rpcuser={}\n".format(self.rpcuser))
             f.write("rpcpassword={}\n".format(self.rpcpassword))
         self.restart_node(0)
@@ -180,7 +180,7 @@ class HTTPBasicsTest(AndaluzcoinTestFramework):
 
         self.log.info('Check -norpcauth disables previous -rpcauth params')
         self.restart_node(0, extra_args=[rpcauth_user1, rpcauth_user2, '-norpcauth'])
-        assert_equal(401, call_with_auth(self.nodes[0], 'user1', 'bitcoin').status)
+        assert_equal(401, call_with_auth(self.nodes[0], 'user1', 'andaluzcoin').status)
         assert_equal(401, call_with_auth(self.nodes[0], 'rt', self.rtpassword).status)
         self.stop_node(0)
 

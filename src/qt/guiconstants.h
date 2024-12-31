@@ -2,8 +2,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef BITCOIN_QT_GUICONSTANTS_H
-#define BITCOIN_QT_GUICONSTANTS_H
+#ifndef ANDALUZCOIN_QT_GUICONSTANTS_H
+#define ANDALUZCOIN_QT_GUICONSTANTS_H
 
 #include <chrono>
 #include <cstdint>
@@ -47,7 +47,7 @@ static const int TOOLTIP_WRAP_THRESHOLD = 80;
 #define SPINNER_FRAMES 36
 
 #define QAPP_ORG_NAME "Andaluzcoin"
-#define QAPP_ORG_DOMAIN "bitcoin.org"
+#define QAPP_ORG_DOMAIN "andaluzcoin.org"
 #define QAPP_APP_NAME_DEFAULT "Andaluzcoin-Qt"
 #define QAPP_APP_NAME_TESTNET "Andaluzcoin-Qt-testnet"
 #define QAPP_APP_NAME_TESTNET4 "Andaluzcoin-Qt-testnet4"
@@ -60,4 +60,4 @@ static constexpr uint64_t GB_BYTES{1000000000};
 // Default prune target displayed in GUI.
 static constexpr int DEFAULT_PRUNE_TARGET_GB{2};
 
-#endif // BITCOIN_QT_GUICONSTANTS_H
+#endif // ANDALUZCOIN_QT_GUICONSTANTS_H

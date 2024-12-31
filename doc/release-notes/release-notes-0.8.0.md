@@ -1,11 +1,11 @@
 Andaluzcoin-Qt version 0.8.0 is now available from:
-  http://sourceforge.net/projects/bitcoin/files/Andaluzcoin/bitcoin-0.8.0/
+  http://sourceforge.net/projects/andaluzcoin/files/Andaluzcoin/andaluzcoin-0.8.0/
 
 This is a major release designed to improve performance and handle the
 increasing volume of transactions on the network.
 
 Please report bugs using the issue tracker at github:
-  https://github.com/bitcoin/bitcoin/issues
+  https://github.com/andaluzcoin/andaluzcoin/issues
 
 How to Upgrade
 --------------
@@ -13,7 +13,7 @@ How to Upgrade
 If you are running an older version, shut it down. Wait
 until it has completely shut down (which might take a few minutes for older
 versions), then run the installer (on Windows) or just copy over
-/Applications/Andaluzcoin-Qt (on Mac) orandaluzcoind/bitcoin-qt (on Linux).
+/Applications/Andaluzcoin-Qt (on Mac) orandaluzcoind/andaluzcoin-qt (on Linux).
 
 The first time you run after the upgrade a re-indexing process will be
 started that will take anywhere from 30 minutes to several hours,

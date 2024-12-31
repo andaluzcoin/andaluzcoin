@@ -3,8 +3,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef BITCOIN_VALIDATION_H
-#define BITCOIN_VALIDATION_H
+#ifndef ANDALUZCOIN_VALIDATION_H
+#define ANDALUZCOIN_VALIDATION_H
 
 #include <arith_uint256.h>
 #include <attributes.h>
@@ -1352,4 +1352,4 @@ bool IsBIP30Repeat(const CBlockIndex& block_index);
 /** Identifies blocks which coinbase output was subsequently overwritten in the UTXO set (see BIP30) */
 bool IsBIP30Unspendable(const CBlockIndex& block_index);
 
-#endif // BITCOIN_VALIDATION_H
+#endif // ANDALUZCOIN_VALIDATION_H

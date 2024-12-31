@@ -41,7 +41,7 @@ MAX_VERSIONS = {
     lief.ELF.ARCH.RISCV:  (2,31),
 },
 'LIBATOMIC': (1,0),
-'V':         (0,5,0),  # xkb (bitcoin-qt only)
+'V':         (0,5,0),  # xkb (andaluzcoin-qt only)
 }
 
 # Ignore symbols that are exported as part of every executable

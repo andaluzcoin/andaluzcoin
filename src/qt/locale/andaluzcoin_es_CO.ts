@@ -164,8 +164,8 @@ Solo es posible firmar con direcciones de tipo "legacy".</translation>
         <translation type="unfinished">Confirmar el encriptado de la billetera</translation>
     </message>
     <message>
-        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR BITCOINS&lt;/b&gt;!</source>
-        <translation type="unfinished">Advertencia: Si encriptas la billetera y pierdes tu frase de contraseña, ¡&lt;b&gt;PERDERÁS TODOS TUS BITCOINS&lt;/b&gt;!</translation>
+        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR ANDALUZCOINS&lt;/b&gt;!</source>
+        <translation type="unfinished">Advertencia: Si encriptas la billetera y pierdes tu frase de contraseña, ¡&lt;b&gt;PERDERÁS TODOS TUS ANDALUZCOINS&lt;/b&gt;!</translation>
     </message>
     <message>
         <source>Are you sure you wish to encrypt your wallet?</source>
@@ -595,7 +595,7 @@ Solo es posible firmar con direcciones de tipo "legacy".</translation>
     </message>
     <message>
         <source>Request payments (generates QR codes andandaluzcoin: URIs)</source>
-        <translation type="unfinished">Solicitar pagos (genera códigos QR y URI de tipo "bitcoin:")</translation>
+        <translation type="unfinished">Solicitar pagos (genera códigos QR y URI de tipo "andaluzcoin:")</translation>
     </message>
     <message>
         <source>Show the list of used sending addresses and labels</source>
@@ -674,7 +674,7 @@ Solo es posible firmar con direcciones de tipo "legacy".</translation>
     </message>
     <message>
         <source>Open aandaluzcoin: URI</source>
-        <translation type="unfinished">Abrir un URI de tipo "bitcoin:"</translation>
+        <translation type="unfinished">Abrir un URI de tipo "andaluzcoin:"</translation>
     </message>
     <message>
         <source>Open Wallet</source>
@@ -2085,15 +2085,15 @@ El proceso de migración creará una copia de seguridad de la billetera antes de
     </message>
     <message>
         <source>Cannot startandaluzcoin: click-to-pay handler</source>
-        <translation type="unfinished">No se puede iniciar el controlador "bitcoin: click-to-pay"</translation>
+        <translation type="unfinished">No se puede iniciar el controlador "andaluzcoin: click-to-pay"</translation>
     </message>
     <message>
         <source>URI handling</source>
         <translation type="unfinished">Gestión de URI</translation>
     </message>
     <message>
-        <source>'bitcoin://' is not a valid URI. Use 'bitcoin:' instead.</source>
-        <translation type="unfinished">"bitcoin://" no es un URI válido. Usa "bitcoin:" en su lugar.</translation>
+        <source>'andaluzcoin://' is not a valid URI. Use 'andaluzcoin:' instead.</source>
+        <translation type="unfinished">"andaluzcoin://" no es un URI válido. Usa "andaluzcoin:" en su lugar.</translation>
     </message>
     <message>
         <source>Cannot process payment request because BIP70 is not supported.
@@ -3304,7 +3304,7 @@ Nota: Dado que la comisión se calcula por byte, una tasa de "100 satoshis por k
     </message>
     <message>
         <source>A message that was attached to theandaluzcoin: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the Andaluzcoin network.</source>
-        <translation type="unfinished">Un mensaje adjunto al URI de tipo "bitcoin:" que se almacenará con la transacción a modo de referencia. Nota: Este mensaje no se enviará por la red de Andaluzcoin.</translation>
+        <translation type="unfinished">Un mensaje adjunto al URI de tipo "andaluzcoin:" que se almacenará con la transacción a modo de referencia. Nota: Este mensaje no se enviará por la red de Andaluzcoin.</translation>
     </message>
 </context>
 <context>
@@ -4051,7 +4051,7 @@ Ir a "Archivo &gt; Abrir billetera" para cargar una.
     </message>
 </context>
 <context>
-    <name>bitcoin-core</name>
+    <name>andaluzcoin-core</name>
     <message>
         <source>The %s developers</source>
         <translation type="unfinished">Los desarrolladores de %s</translation>

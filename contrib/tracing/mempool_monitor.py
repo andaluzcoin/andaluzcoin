@@ -124,7 +124,7 @@ def main(pid):
    andaluzcoind_with_usdts.enable_probe(probe="mempool:removed", fn_name="trace_removed")
    andaluzcoind_with_usdts.enable_probe(probe="mempool:replaced", fn_name="trace_replaced")
    andaluzcoind_with_usdts.enable_probe(probe="mempool:rejected", fn_name="trace_rejected")
-    bpf = BPF(text=PROGRAM, usdt_contexts=[bitcoind_with_usdts])
+    bpf = BPF(text=PROGRAM, usdt_contexts=[andaluzcoind_with_usdts])
 
     events = []
 

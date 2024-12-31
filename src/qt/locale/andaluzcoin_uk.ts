@@ -164,7 +164,7 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">Підтвердить шифрування гаманця</translation>
     </message>
     <message>
-        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR BITCOINS&lt;/b&gt;!</source>
+        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR ANDALUZCOINS&lt;/b&gt;!</source>
         <translation type="unfinished">Увага: Якщо ви зашифруєте гаманець і забудете пароль, ви &lt;b&gt;ВТРАТИТЕ ВСІ СВОЇ БІТКОЇНИ&lt;/b&gt;!</translation>
     </message>
     <message>
@@ -735,7 +735,7 @@ Signing is only possible with addresses of the type 'legacy'.</source>
     </message>
     <message>
         <source>Open aandaluzcoin: URI</source>
-        <translation type="unfinished">Відкрити URI-адресу "bitcoin:"</translation>
+        <translation type="unfinished">Відкрити URI-адресу "andaluzcoin:"</translation>
     </message>
     <message>
         <source>Open Wallet</source>
@@ -2189,8 +2189,8 @@ The migration process will create a backup of the wallet before migrating. This 
         <translation type="unfinished">Обробка URI</translation>
     </message>
     <message>
-        <source>'bitcoin://' is not a valid URI. Use 'bitcoin:' instead.</source>
-        <translation type="unfinished">"bitcoin://" не є припустимим URI. Використовуйте натомість "bitcoin:".</translation>
+        <source>'andaluzcoin://' is not a valid URI. Use 'andaluzcoin:' instead.</source>
+        <translation type="unfinished">"andaluzcoin://" не є припустимим URI. Використовуйте натомість "andaluzcoin:".</translation>
     </message>
     <message>
         <source>Cannot process payment request because BIP70 is not supported.
@@ -4172,7 +4172,7 @@ Go to File &gt; Open Wallet to load a wallet.
     </message>
 </context>
 <context>
-    <name>bitcoin-core</name>
+    <name>andaluzcoin-core</name>
     <message>
         <source>The %s developers</source>
         <translation type="unfinished">Розробники %s</translation>

@@ -2,11 +2,11 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#include <bitcoin-build-config.h> // IWYU pragma: keep
+#include <andaluzcoin-build-config.h> // IWYU pragma: keep
 
 #include <qt/optionsmodel.h>
 
-#include <qt/bitcoinunits.h>
+#include <qt/andaluzcoinunits.h>
 #include <qt/guiconstants.h>
 #include <qt/guiutil.h>
 
@@ -69,7 +69,7 @@ static void UpdateRwSetting(interfaces::Node& node, OptionsModel::OptionID optio
         // because Andaluzcoin 22.x releases try to read these specific settings as
         // strings in addOverriddenOption() calls at startup, triggering
         // uncaught exceptions in UniValue::get_str(). These errors were fixed
-        // in later releases by https://github.com/bitcoin/bitcoin/pull/24498.
+        // in later releases by https://github.com/andaluzcoin/andaluzcoin/pull/24498.
         // If new numeric settings are added, they can be written as numbers
         // instead of strings, becauseandaluzcoin 22.x will not try to read these.
         node.updateRwSetting(SettingName(option) + suffix, value.getValStr());
@@ -193,10 +193,10 @@ bool OptionsModel::Init(bilingual_str& error)
     }
     QVariant unit = settings.value("DisplayAndaluzcoinUnit");
     if (unit.canConvert<AndaluzcoinUnit>()) {
-        m_display_bitcoin_unit = unit.value<AndaluzcoinUnit>();
+        m_display_andaluzcoin_unit = unit.value<AndaluzcoinUnit>();
     } else {
-        m_display_bitcoin_unit = AndaluzcoinUnit::LUZ;
-        settings.setValue("DisplayAndaluzcoinUnit", QVariant::fromValue(m_display_bitcoin_unit));
+        m_display_andaluzcoin_unit = AndaluzcoinUnit::LUZ;
+        settings.setValue("DisplayAndaluzcoinUnit", QVariant::fromValue(m_display_andaluzcoin_unit));
     }
 
     if (!settings.contains("strThirdPartyTxUrls"))
@@ -452,7 +452,7 @@ QVariant OptionsModel::getOption(OptionID option, const std::string& suffix) con
         return m_sub_fee_from_amount;
 #endif
     case DisplayUnit:
-        return QVariant::fromValue(m_display_bitcoin_unit);
+        return QVariant::fromValue(m_display_andaluzcoin_unit);
     case ThirdPartyTxUrls:
         return strThirdPartyTxUrls;
     case Language:
@@ -696,11 +696,11 @@ bool OptionsModel::setOption(OptionID option, const QVariant& value, const std::
 
 void OptionsModel::setDisplayUnit(const QVariant& new_unit)
 {
-    if (new_unit.isNull() || new_unit.value<AndaluzcoinUnit>() == m_display_bitcoin_unit) return;
-    m_display_bitcoin_unit = new_unit.value<AndaluzcoinUnit>();
+    if (new_unit.isNull() || new_unit.value<AndaluzcoinUnit>() == m_display_andaluzcoin_unit) return;
+    m_display_andaluzcoin_unit = new_unit.value<AndaluzcoinUnit>();
     QSettings settings;
-    settings.setValue("DisplayAndaluzcoinUnit", QVariant::fromValue(m_display_bitcoin_unit));
-    Q_EMIT displayUnitChanged(m_display_bitcoin_unit);
+    settings.setValue("DisplayAndaluzcoinUnit", QVariant::fromValue(m_display_andaluzcoin_unit));
+    Q_EMIT displayUnitChanged(m_display_andaluzcoin_unit);
 }
 
 void OptionsModel::setRestartRequired(bool fRequired)
@@ -730,7 +730,7 @@ void OptionsModel::checkAndMigrate()
     if (settingsVersion < CLIENT_VERSION)
     {
         // -dbcache was bumped from 100 to 300 in 0.13
-        // see https://github.com/bitcoin/bitcoin/pull/8273
+        // see https://github.com/andaluzcoin/andaluzcoin/pull/8273
         // force people to upgrade to the new value if they are using 100MB
         if (settingsVersion < 130000 && settings.contains("nDatabaseCache") && settings.value("nDatabaseCache").toLongLong() == 100)
             settings.setValue("nDatabaseCache", (qint64)nDefaultDbCache);
@@ -791,6 +791,6 @@ void OptionsModel::checkAndMigrate()
     // parameter interaction code to update other settings. This is particularly
     // important for the -listen setting, which should cause -listenonion
     // and other settings to default to false if it was set to false.
-    // (https://github.com/bitcoin-core/gui/issues/567).
+    // (https://github.com/andaluzcoin-core/gui/issues/567).
     node().initParameterInteraction();
 }

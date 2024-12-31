@@ -59,13 +59,13 @@ class AbandonConflictTest(AndaluzcoinTestFramework):
         # Disconnect nodes so node0's transactions don't get into node1's mempool
         self.disconnect_nodes(0, 1)
 
-        # Identify the 10btc outputs
+        # Identify the 10luz outputs
         nA = next(tx_out["vout"] for tx_out in alice.gettransaction(txA)["details"] if tx_out["amount"] == Decimal("10"))
         nB = next(tx_out["vout"] for tx_out in alice.gettransaction(txB)["details"] if tx_out["amount"] == Decimal("10"))
         nC = next(tx_out["vout"] for tx_out in alice.gettransaction(txC)["details"] if tx_out["amount"] == Decimal("10"))
 
         inputs = []
-        # spend 10btc outputs from txA and txB
+        # spend 10luz outputs from txA and txB
         inputs.append({"txid": txA, "vout": nA})
         inputs.append({"txid": txB, "vout": nB})
         outputs = {}
@@ -75,7 +75,7 @@ class AbandonConflictTest(AndaluzcoinTestFramework):
         signed = alice.signrawtransactionwithwallet(alice.createrawtransaction(inputs, outputs))
         txAB1 = self.nodes[0].sendrawtransaction(signed["hex"])
 
-        # Identify the 14.99998btc output
+        # Identify the 14.99998luz output
         nAB = next(tx_out["vout"] for tx_out in alice.gettransaction(txAB1)["details"] if tx_out["amount"] == Decimal("14.99998"))
 
         #Create a child tx spending AB1 and C

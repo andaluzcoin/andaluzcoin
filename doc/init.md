@@ -4,16 +4,16 @@ Sample init scripts and service configuration forandaluzcoind
 Sample scripts and configuration files for systemd, Upstart and OpenRC
 can be found in the contrib/init folder.
 
-    contrib/init/bitcoind.service:    systemd service unit configuration
-    contrib/init/bitcoind.openrc:     OpenRC compatible SysV style init script
-    contrib/init/bitcoind.openrcconf: OpenRC conf.d file
-    contrib/init/bitcoind.conf:       Upstart service configuration file
-    contrib/init/bitcoind.init:       CentOS compatible SysV style init script
+    contrib/init/andaluzcoind.service:    systemd service unit configuration
+    contrib/init/andaluzcoind.openrc:     OpenRC compatible SysV style init script
+    contrib/init/andaluzcoind.openrcconf: OpenRC conf.d file
+    contrib/init/andaluzcoind.conf:       Upstart service configuration file
+    contrib/init/andaluzcoind.init:       CentOS compatible SysV style init script
 
 Service User
 ---------------------------------
 
-All three Linux startup configurations assume the existence of a "bitcoin" user
+All three Linux startup configurations assume the existence of a "andaluzcoin" user
 and group.  They must be created before attempting to use these scripts.
 The macOS configuration assumesandaluzcoind will be set up for the current user.
 
@@ -21,7 +21,7 @@ Configuration
 ---------------------------------
 
 Runningandaluzcoind as a daemon does not require any manual configuration. You may
-set the `rpcauth` setting in the `bitcoin.conf` configuration file to override
+set the `rpcauth` setting in the `andaluzcoin.conf` configuration file to override
 the default behaviour of using a special cookie for authentication.
 
 This password does not have to be remembered or typed as it is mostly used
@@ -46,7 +46,7 @@ This allows for runningandaluzcoind without having to do any manual configuratio
 relative to the data directory. `wallet` *only* supports relative paths.
 
 To generate an example configuration file that describes the configuration settings,
-see [contrib/devtools/README.md](../contrib/devtools/README.md#gen-bitcoin-confsh).
+see [contrib/devtools/README.md](../contrib/devtools/README.md#gen-andaluzcoin-confsh).
 
 Paths
 ---------------------------------
@@ -55,15 +55,15 @@ Paths
 
 All three configurations assume several paths that might need to be adjusted.
 
-    Binary:              /usr/bin/bitcoind
-    Configuration file:  /etc/bitcoin/bitcoin.conf
-    Data directory:      /var/lib/bitcoind
-    PID file:            /var/run/bitcoind/bitcoind.pid (OpenRC and Upstart) or
-                         /run/bitcoind/bitcoind.pid (systemd)
-    Lock file:           /var/lock/subsys/bitcoind (CentOS)
+    Binary:              /usr/bin/andaluzcoind
+    Configuration file:  /etc/andaluzcoin/andaluzcoin.conf
+    Data directory:      /var/lib/andaluzcoind
+    PID file:            /var/run/andaluzcoind/andaluzcoind.pid (OpenRC and Upstart) or
+                         /run/andaluzcoind/andaluzcoind.pid (systemd)
+    Lock file:           /var/lock/subsys/andaluzcoind (CentOS)
 
 The PID directory (if applicable) and data directory should both be owned by the
-bitcoin user and group. It is advised for security reasons to make the
+andaluzcoin user and group. It is advised for security reasons to make the
 configuration file and data directory only readable by theandaluzcoin user and
 group. Access toandaluzcoin-cli and otherandaluzcoind rpc clients can then be
 controlled by group membership.
@@ -72,22 +72,22 @@ NOTE: When using the systemd .service file, the creation of the aforementioned
 directories and the setting of their permissions is automatically handled by
 systemd. Directories are given a permission of 710, giving theandaluzcoin group
 access to files under it _if_ the files themselves give permission to the
-bitcoin group to do so. This does not allow
+andaluzcoin group to do so. This does not allow
 for the listing of files under the directory.
 
 NOTE: It is not currently possible to override `datadir` in
-`/etc/bitcoin/bitcoin.conf` with the current systemd, OpenRC, and Upstart init
+`/etc/andaluzcoin/andaluzcoin.conf` with the current systemd, OpenRC, and Upstart init
 files out-of-the-box. This is because the command line options specified in the
 init files take precedence over the configurations in
-`/etc/bitcoin/bitcoin.conf`. However, some init systems have their own
+`/etc/andaluzcoin/andaluzcoin.conf`. However, some init systems have their own
 configuration mechanisms that would allow for overriding the command line
-options specified in the init files (e.g. setting `BITCOIND_DATADIR` for
+options specified in the init files (e.g. setting `ANDALUZCOIND_DATADIR` for
 OpenRC).
 
 ### macOS
 
-    Binary:              /usr/local/bin/bitcoind
-    Configuration file:  ~/Library/Application Support/Andaluzcoin/bitcoin.conf
+    Binary:              /usr/local/bin/andaluzcoind
+    Configuration file:  ~/Library/Application Support/Andaluzcoin/andaluzcoin.conf
     Data directory:      ~/Library/Application Support/Andaluzcoin
     Lock file:           ~/Library/Application Support/Andaluzcoin/.lock
 
@@ -109,7 +109,7 @@ NOTE: When installing for systemd in Debian/Ubuntu the .service file needs to be
 
 Renameandaluzcoind.openrc toandaluzcoind and drop it in /etc/init.d.  Double
 check ownership and permissions and make it executable.  Test it with
-`/etc/init.d/bitcoind start` and configure it to run on startup with
+`/etc/init.d/andaluzcoind start` and configure it to run on startup with
 `rc-update addandaluzcoind`
 
 ### Upstart (for Debian/Ubuntu based distributions)
@@ -124,21 +124,21 @@ use old versions of Upstart and do not supply the start-stop-daemon utility.
 
 ### CentOS
 
-Copyandaluzcoind.init to /etc/init.d/bitcoind. Test by running `serviceandaluzcoind start`.
+Copyandaluzcoind.init to /etc/init.d/andaluzcoind. Test by running `serviceandaluzcoind start`.
 
 Using this script, you can adjust the path and flags to theandaluzcoind program by
-setting the BITCOIND and FLAGS environment variables in the file
-/etc/sysconfig/bitcoind. You can also use the DAEMONOPTS environment variable here.
+setting the ANDALUZCOIND and FLAGS environment variables in the file
+/etc/sysconfig/andaluzcoind. You can also use the DAEMONOPTS environment variable here.
 
 ### macOS
 
-Copy org.bitcoin.bitcoind.plist into ~/Library/LaunchAgents. Load the launch agent by
-running `launchctl load ~/Library/LaunchAgents/org.bitcoin.bitcoind.plist`.
+Copy org.andaluzcoin.andaluzcoind.plist into ~/Library/LaunchAgents. Load the launch agent by
+running `launchctl load ~/Library/LaunchAgents/org.andaluzcoin.andaluzcoind.plist`.
 
 This Launch Agent will causeandaluzcoind to start whenever the user logs in.
 
 NOTE: This approach is intended for those wanting to runandaluzcoind as the current user.
-You will need to modify org.bitcoin.bitcoind.plist if you intend to use it as a
+You will need to modify org.andaluzcoin.andaluzcoind.plist if you intend to use it as a
 Launch Daemon with a dedicatedandaluzcoin user.
 
 Auto-respawn

@@ -30,7 +30,7 @@ BOOST_AUTO_TEST_CASE(xor_file)
     }
     {
 #ifdef __MINGW64__
-        // Temporary workaround for https://github.com/bitcoin/bitcoin/issues/30210
+        // Temporary workaround for https://github.com/andaluzcoin/andaluzcoin/issues/30210
         const char* mode = "wb";
 #else
         const char* mode = "wbx";
@@ -557,7 +557,7 @@ BOOST_AUTO_TEST_CASE(streams_hashed)
 {
     DataStream stream{};
     HashedSourceWriter hash_writer{stream};
-    const std::string data{"bitcoin"};
+    const std::string data{"andaluzcoin"};
     hash_writer << data;
 
     HashVerifier hash_verifier{stream};

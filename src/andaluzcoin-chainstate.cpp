@@ -9,7 +9,7 @@
 // DEVELOPER NOTE: Since this is a "demo-only", experimental, etc. executable,
 //                 it may diverge from Andaluzcoin Core's coding style.
 //
-// It is part of the libbitcoinkernel project.
+// It is part of the libandaluzcoinkernel project.
 
 #include <kernel/chainparams.h>
 #include <kernel/chainstatemanager_opts.h>

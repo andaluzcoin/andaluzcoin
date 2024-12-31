@@ -8,9 +8,9 @@ This directory contains the following sets of tests:
 - [fuzz](/test/fuzz) A runner to execute all fuzz targets from
   [/src/test/fuzz](/src/test/fuzz).
 - [functional](/test/functional) which test the functionality of
-bitcoind andandaluzcoin-qt by interacting with them through the RPC and P2P
+andaluzcoind andandaluzcoin-qt by interacting with them through the RPC and P2P
 interfaces.
-- [util](/test/util) which tests the utilities (bitcoin-util,andaluzcoin-tx, ...).
+- [util](/test/util) which tests the utilities (andaluzcoin-util,andaluzcoin-tx, ...).
 - [lint](/test/lint/) which perform various static analysis checks.
 
 The util tests are run as part of `ctest` invocation. The fuzz tests, functional
@@ -174,12 +174,12 @@ cause the test to fail. It is recommended that you run the tests on a system
 where no otherandaluzcoind processes are running.
 
 On linux, the test framework will warn if there is another
-bitcoind process running when the tests are started.
+andaluzcoind process running when the tests are started.
 
 If there are zombieandaluzcoind processes after test failure, you can kill them
 by running the following commands. **Note that these commands will kill all
-bitcoind processes running on the system, so should not be used if any non-test
-bitcoind processes are being run.**
+andaluzcoind processes running on the system, so should not be used if any non-test
+andaluzcoind processes are being run.**
 
 ```bash
 killallandaluzcoind
@@ -285,13 +285,13 @@ test run:
 Use the path to find the pid file in the temp folder:
 
 ```bash
-cat /tmp/user/1000/testo9vsdjo3/node1/regtest/bitcoind.pid
+cat /tmp/user/1000/testo9vsdjo3/node1/regtest/andaluzcoind.pid
 ```
 
 Then you can use the pid to start `gdb`:
 
 ```bash
-gdb /home/example/bitcoind <pid>
+gdb /home/example/andaluzcoind <pid>
 ```
 
 Note: gdb attach step may require ptrace_scope to be modified, or `sudo` preceding the `gdb`.

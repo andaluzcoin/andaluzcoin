@@ -3,7 +3,7 @@
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-_bitcoin_tx() {
+_andaluzcoin_tx() {
     local cur prev words=() cword
     localandaluzcoin_tx
 
@@ -29,13 +29,13 @@ _bitcoin_tx() {
         # only options (or an uncompletable hex-string) allowed
         # parseandaluzcoin-tx -help for options
         local helpopts
-        helpopts=$($bitcoin_tx -help | sed -e '/^  -/ p' -e d )
+        helpopts=$($andaluzcoin_tx -help | sed -e '/^  -/ p' -e d )
         COMPREPLY=( $( compgen -W "$helpopts" -- "$cur" ) )
     else
         # only commands are allowed
         # parse -help for commands
         local helpcmds
-        helpcmds=$($bitcoin_tx -help | sed -e '1,/Commands:/d' -e 's/=.*/=/' -e '/^  [a-z]/ p' -e d )
+        helpcmds=$($andaluzcoin_tx -help | sed -e '1,/Commands:/d' -e 's/=.*/=/' -e '/^  [a-z]/ p' -e d )
         COMPREPLY=( $( compgen -W "$helpcmds" -- "$cur" ) )
     fi
 
@@ -46,7 +46,7 @@ _bitcoin_tx() {
 
     return 0
 } &&
-complete -F _bitcoin_txandaluzcoin-tx
+complete -F _andaluzcoin_txandaluzcoin-tx
 
 # Local variables:
 # mode: shell-script

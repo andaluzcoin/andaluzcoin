@@ -218,7 +218,7 @@
     </message>
     </context>
 <context>
-    <name>bitcoin-core</name>
+    <name>andaluzcoin-core</name>
     <message>
         <source>Error: Missing checksum</source>
         <translation type="unfinished">Iphutha: iChecksum engekho</translation>

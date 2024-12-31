@@ -6,19 +6,19 @@
 
 Verify node behaviour and debug log when launchingandaluzcoind in these cases:
 
-1. `bitcoind` with no -asmap arg, using /16 prefix for IP bucketing
+1. `andaluzcoind` with no -asmap arg, using /16 prefix for IP bucketing
 
-2. `bitcoind -asmap=<absolute path>`, using the unit test skeleton asmap
+2. `andaluzcoind -asmap=<absolute path>`, using the unit test skeleton asmap
 
-3. `bitcoind -asmap=<relative path>`, using the unit test skeleton asmap
+3. `andaluzcoind -asmap=<relative path>`, using the unit test skeleton asmap
 
-4. `bitcoind -asmap/-asmap=` with no file specified, using the default asmap
+4. `andaluzcoind -asmap/-asmap=` with no file specified, using the default asmap
 
-5. `bitcoind -asmap` restart with an addrman containing new and tried entries
+5. `andaluzcoind -asmap` restart with an addrman containing new and tried entries
 
-6. `bitcoind -asmap` with no file specified and a missing default asmap file
+6. `andaluzcoind -asmap` with no file specified and a missing default asmap file
 
-7. `bitcoind -asmap` with an empty (unparsable) default asmap file
+7. `andaluzcoind -asmap` with an empty (unparsable) default asmap file
 
 The tests are order-independent.
 

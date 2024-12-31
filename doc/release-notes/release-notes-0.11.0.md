@@ -1,13 +1,13 @@
 Andaluzcoin Core version 0.11.0 is now available from:
 
-  <https://bitcoin.org/bin/bitcoin-core-0.11.0/>
+  <https://andaluzcoin.org/bin/andaluzcoin-core-0.11.0/>
 
 This is a new major version release, bringing both new features and
 bug fixes.
 
 Please report bugs using the issue tracker at github:
 
-  <https://github.com/bitcoin/bitcoin/issues>
+  <https://github.com/andaluzcoin/andaluzcoin/issues>
 
 Upgrading and downgrading
 =========================
@@ -18,7 +18,7 @@ How to Upgrade
 If you are running an older version, shut it down. Wait until it has completely
 shut down (which might take a few minutes for older versions), then run the
 installer (on Windows) or just copy over /Applications/Andaluzcoin-Qt (on Mac) or
-bitcoind/bitcoin-qt (on Linux).
+andaluzcoind/andaluzcoin-qt (on Linux).
 
 Downgrade warning
 ------------------
@@ -67,7 +67,7 @@ free transactions (with enough priority) will be accepted. It defaults to 15.
 Reducing this number reduces the speed at which the mempool can grow due
 to free transactions.
 
-For example, add the following to `bitcoin.conf`:
+For example, add the following to `andaluzcoin.conf`:
 
     minrelaytxfee=0.00005 
     limitfreerelay=5
@@ -192,7 +192,7 @@ transaction (re)broadcast:
 One such application is selective Tor usage, where the node runs on the normal
 internet but transactions are broadcasted over Tor.
 
-For an example script see [bitcoin-submittx](https://github.com/laanwj/bitcoin-submittx).
+For an example script see [andaluzcoin-submittx](https://github.com/laanwj/andaluzcoin-submittx).
 
 Privacy: Stream isolation for Tor
 ----------------------------------
@@ -297,7 +297,7 @@ git merge commit are mentioned.
 
 ### Build system
 - #5501 `c76c9d2` Add mips, mipsel and aarch64 to depends platforms
-- #5334 `cf87536` libbitcoinconsensus: Add pkg-config support
+- #5334 `cf87536` libandaluzcoinconsensus: Add pkg-config support
 - #5514 `ed11d53` Fix 'make distcheck'
 - #5505 `a99ef7d` Build winshutdownmonitor.cpp on Windows only
 - #5582 `e8a6639` Osx toolchain update
@@ -396,7 +396,7 @@ git merge commit are mentioned.
 - #5839 `86eb461` keys: remove libsecp256k1 verification until it's actually supported
 - #5749 `d734d87` Help messages correctly formatted (79 chars)
 - #5884 `7077fe6` BUGFIX: Stack around the variable 'rv' was corrupted
-- #5849 `41259ca` contrib/init/bitcoind.openrc: Compatibility with previous OpenRC init script variables
+- #5849 `41259ca` contrib/init/andaluzcoind.openrc: Compatibility with previous OpenRC init script variables
 - #5950 `41113e3` Fix locale fallback and guard tests against invalid locale settings
 - #5965 `7c6bfb1` Add git-subtree-check.sh script
 - #6033 `1623f6e` FreeBSD, OpenBSD thread renaming
@@ -501,5 +501,5 @@ And all those who contributed additional code review and/or security research:
 
 - Sergio Demian Lerner
 
-As well as everyone that helped translating on [Transifex](https://www.transifex.com/projects/p/bitcoin/).
+As well as everyone that helped translating on [Transifex](https://www.transifex.com/projects/p/andaluzcoin/).
 

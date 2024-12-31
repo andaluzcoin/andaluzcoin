@@ -5,8 +5,8 @@
 include(GenerateHeaders)
 generate_header_from_raw(data/block413567.raw benchmark::data)
 
-add_executable(bench_bitcoin
-  bench_bitcoin.cpp
+add_executable(bench_andaluzcoin
+  bench_andaluzcoin.cpp
   bench.cpp
   nanobench.cpp
   ${CMAKE_CURRENT_BINARY_DIR}/data/block413567.raw.h
@@ -56,7 +56,7 @@ add_executable(bench_bitcoin
   xor.cpp
 )
 
-target_link_libraries(bench_bitcoin
+target_link_libraries(bench_andaluzcoin
   core_interface
   test_util
  andaluzcoin_node
@@ -64,7 +64,7 @@ target_link_libraries(bench_bitcoin
 )
 
 if(ENABLE_WALLET)
-  target_sources(bench_bitcoin
+  target_sources(bench_andaluzcoin
     PRIVATE
       coin_selection.cpp
       wallet_balance.cpp
@@ -74,13 +74,13 @@ if(ENABLE_WALLET)
       wallet_ismine.cpp
       wallet_migration.cpp
   )
-  target_link_libraries(bench_bitcoinandaluzcoin_wallet)
+  target_link_libraries(bench_andaluzcoinandaluzcoin_wallet)
 endif()
 
 add_test(NAME bench_sanity_check_high_priority
-  COMMAND bench_bitcoin -sanity-check -priority-level=high
+  COMMAND bench_andaluzcoin -sanity-check -priority-level=high
 )
 
-install(TARGETS bench_bitcoin
+install(TARGETS bench_andaluzcoin
   RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
 )

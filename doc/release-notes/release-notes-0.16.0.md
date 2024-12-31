@@ -1,17 +1,17 @@
 Andaluzcoin Core version 0.16.0 is now available from:
 
-  <https://bitcoincore.org/bin/bitcoin-core-0.16.0/>
+  <https://andaluzcoincore.org/bin/andaluzcoin-core-0.16.0/>
 
 This is a new major version release, including new features, various bugfixes
 and performance improvements, as well as updated translations.
 
 Please report bugs using the issue tracker at GitHub:
 
-  <https://github.com/bitcoin/bitcoin/issues>
+  <https://github.com/andaluzcoin/andaluzcoin/issues>
 
 To receive security and update notifications, please subscribe to:
 
-  <https://bitcoincore.org/en/list/announcements/join/>
+  <https://andaluzcoincore.org/en/list/announcements/join/>
 
 How to Upgrade
 ==============
@@ -19,7 +19,7 @@ How to Upgrade
 If you are running an older version, shut it down. Wait until it has completely
 shut down (which might take a few minutes for older versions), then run the
 installer (on Windows) or just copy over `/Applications/Andaluzcoin-Qt` (on Mac)
-or `bitcoind`/`bitcoin-qt` (on Linux).
+or `andaluzcoind`/`andaluzcoin-qt` (on Linux).
 
 The first time you run version 0.15.0 or newer, your chainstate database will be converted to a
 new format, which will take anywhere from a few minutes to half an hour,
@@ -94,7 +94,7 @@ use the `replaceable` argument for individual transactions.
 
 Andaluzcoin Core now has more flexibility in where the wallets directory can be
 located. Previously wallet database files were stored at the top level of the
-bitcoin data directory. The behavior is now:
+andaluzcoin data directory. The behavior is now:
 
 - For new installations (where the data directory doesn't already exist),
   wallets will now be stored in a new `wallets/` subdirectory inside the data
@@ -235,7 +235,7 @@ Testing changes
 - #11740 `59d3dc8` Implement BIP159 NODE_NETWORK_LIMITED (pruned peers) *signaling only* (jonasschnelli)
 - #11583 `37ffa16` Do not make it trivial for inbound peers to generate log entries (TheBlueMatt)
 - #11363 `ba2f195` Split socket create/connect (theuni)
-- #11917 `bc66765` Add testnet DNS seed:  seed.testnet.bitcoin.sprovoost.nl (Sjors)
+- #11917 `bc66765` Add testnet DNS seed:  seed.testnet.andaluzcoin.sprovoost.nl (Sjors)
 - #11512 `6e89de5` Use GetDesireableServiceFlags in seeds, dnsseeds, fixing static seed adding (TheBlueMatt)
 - #12262 `16bac24` Hardcoded seed update (laanwj)
 - #12270 `9cf6393` Update chainTxData for 0.16 (laanwj)
@@ -366,7 +366,7 @@ Testing changes
 - #11541 `bb9ab0f` Build: Fix Automake warnings when running autogen.sh (fanquake)
 - #11611 `0e70791` [build] Don't fail when passed --disable-lcov and lcov isn't available (fanquake)
 - #11651 `3c098a8` refactor: Make all #includes relative to project root (laanwj, MeshCollider, ryanofsky)
-- #11621 `1f7695b` [build] Add temp_bitcoin_locale_qrc to CLEAN_QT to fix make distcheck (fanquake)
+- #11621 `1f7695b` [build] Add temp_andaluzcoin_locale_qrc to CLEAN_QT to fix make distcheck (fanquake)
 - #11755 `84fa645` [Docs] Bump minimum required version of GCC to 4.8 (fanquake)
 - #9254 `6d3dc52` [depends] ZeroMQ 4.2.2 (fanquake)
 - #11842 `3c8f0a3` [build] Add missing stuff to clean-local (kallewoof)
@@ -389,7 +389,7 @@ Testing changes
 - #11260 `52f8877` travis: Assert default datadir isn't created, Run scripted diff only once (MarcoFalke)
 - #11271 `638e6c5` travis: filter out pyenv (theuni)
 - #11285 `3255d63` Add -usehd to excluded args in check-doc.py (MeshCollider)
-- #11297 `16e4184` Make sure ~/.bitcoin doesn't exist before build (MeshCollider)
+- #11297 `16e4184` Make sure ~/.andaluzcoin doesn't exist before build (MeshCollider)
 - #11311 `cce94c5` travis: Revert default datadir check (MarcoFalke)
 - #11300 `f4ed44a` Add a lint check for trailing whitespace (MeshCollider)
 - #11323 `4ce2f3d` mininode: add an optimistic write and disable nagle (theuni)
@@ -717,4 +717,4 @@ Thanks to everyone who directly contributed to this release:
 - Willy Ko
 - Wladimir J. van der Laan
 
-As well as everyone that helped translating on [Transifex](https://www.transifex.com/projects/p/bitcoin/).
+As well as everyone that helped translating on [Transifex](https://www.transifex.com/projects/p/andaluzcoin/).

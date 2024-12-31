@@ -44,11 +44,11 @@ related to the DNS seed operation.
 If these expectations cannot be satisfied the operator should
 discontinue providing services and contact the active Andaluzcoin
 Core development team as well as posting on
-[bitcoin-dev](https://groups.google.com/g/bitcoindev).
+[andaluzcoin-dev](https://groups.google.com/g/andaluzcoindev).
 
 Behavior outside of these expectations may be reasonable in some
 situations but should be discussed in public in advance.
 
 See also
 ----------
-- [bitcoin-seeder](https://github.com/sipa/bitcoin-seeder) is a reference implementation of a DNS seed.
+- [andaluzcoin-seeder](https://github.com/sipa/andaluzcoin-seeder) is a reference implementation of a DNS seed.

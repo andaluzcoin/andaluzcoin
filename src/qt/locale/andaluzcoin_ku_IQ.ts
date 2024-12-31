@@ -818,7 +818,7 @@ Signing is only possible with addresses of the type 'legacy'.</source>
     </message>
     </context>
 <context>
-    <name>bitcoin-core</name>
+    <name>andaluzcoin-core</name>
     <message>
         <source>Please contribute if you find %s useful. Visit %s for further information about the software.</source>
         <translation type="unfinished">تکایە بەشداری بکە ئەگەر %s بەسوودت دۆزیەوە. سەردانی %s بکە بۆ زانیاری زیاتر دەربارەی نەرمواڵەکە.</translation>

@@ -46,7 +46,7 @@ TEST_EXIT_PASSED = 0
 TEST_EXIT_FAILED = 1
 TEST_EXIT_SKIPPED = 77
 
-TMPDIR_PREFIX = "bitcoin_func_test_"
+TMPDIR_PREFIX = "andaluzcoin_func_test_"
 
 
 class SkipTest(Exception):
@@ -249,10 +249,10 @@ class AndaluzcoinTestFramework(metaclass=AndaluzcoinTestMetaClass):
         """Update self.options with the paths of all binaries from environment variables or their default values"""
 
         binaries = {
-            "bitcoind": ("bitcoind", "BITCOIND"),
-            "bitcoin-cli": ("bitcoincli", "BITCOINCLI"),
-            "bitcoin-util": ("bitcoinutil", "BITCOINUTIL"),
-            "bitcoin-wallet": ("bitcoinwallet", "BITCOINWALLET"),
+            "andaluzcoind": ("andaluzcoind", "ANDALUZCOIND"),
+            "andaluzcoin-cli": ("andaluzcoincli", "ANDALUZCOINCLI"),
+            "andaluzcoin-util": ("andaluzcoinutil", "ANDALUZCOINUTIL"),
+            "andaluzcoin-wallet": ("andaluzcoinwallet", "ANDALUZCOINWALLET"),
         }
         for binary, [attribute_name, env_variable_name] in binaries.items():
             default_filename = os.path.join(
@@ -523,9 +523,9 @@ class AndaluzcoinTestFramework(metaclass=AndaluzcoinTestMetaClass):
         if versions is None:
             versions = [None] * num_nodes
         if binary is None:
-            binary = [get_bin_from_version(v, 'bitcoind', self.options.bitcoind) for v in versions]
+            binary = [get_bin_from_version(v, 'andaluzcoind', self.options.andaluzcoind) for v in versions]
         if binary_cli is None:
-            binary_cli = [get_bin_from_version(v, 'bitcoin-cli', self.options.bitcoincli) for v in versions]
+            binary_cli = [get_bin_from_version(v, 'andaluzcoin-cli', self.options.andaluzcoincli) for v in versions]
         assert_equal(len(extra_confs), num_nodes)
         assert_equal(len(extra_args), num_nodes)
         assert_equal(len(versions), num_nodes)
@@ -857,8 +857,8 @@ class AndaluzcoinTestFramework(metaclass=AndaluzcoinTestMetaClass):
                     rpchost=None,
                     timewait=self.rpc_timeout,
                     timeout_factor=self.options.timeout_factor,
-                   andaluzcoind=self.options.bitcoind,
-                   andaluzcoin_cli=self.options.bitcoincli,
+                   andaluzcoind=self.options.andaluzcoind,
+                   andaluzcoin_cli=self.options.andaluzcoincli,
                     coverage_dir=None,
                     cwd=self.options.tmpdir,
                     descriptors=self.options.descriptors,
@@ -936,10 +936,10 @@ class AndaluzcoinTestFramework(metaclass=AndaluzcoinTestMetaClass):
         except ImportError:
             raise SkipTest("bcc python module not available")
 
-    def skip_if_no_bitcoind_tracepoints(self):
+    def skip_if_no_andaluzcoind_tracepoints(self):
         """Skip the running test ifandaluzcoind has not been compiled with USDT tracepoint support."""
         if not self.is_usdt_compiled():
-            raise SkipTest("bitcoind has not been built with USDT tracepoints enabled.")
+            raise SkipTest("andaluzcoind has not been built with USDT tracepoints enabled.")
 
     def skip_if_no_bpf_permissions(self):
         """Skip the running test if we don't have permissions to do BPF syscalls and load BPF maps."""
@@ -957,10 +957,10 @@ class AndaluzcoinTestFramework(metaclass=AndaluzcoinTestMetaClass):
         if os.name != 'posix':
             raise SkipTest("not on a POSIX system")
 
-    def skip_if_no_bitcoind_zmq(self):
+    def skip_if_no_andaluzcoind_zmq(self):
         """Skip the running test ifandaluzcoind has not been compiled with zmq support."""
         if not self.is_zmq_compiled():
-            raise SkipTest("bitcoind has not been built with zmq enabled.")
+            raise SkipTest("andaluzcoind has not been built with zmq enabled.")
 
     def skip_if_no_wallet(self):
         """Skip the running test if wallet has not been compiled."""
@@ -985,17 +985,17 @@ class AndaluzcoinTestFramework(metaclass=AndaluzcoinTestMetaClass):
     def skip_if_no_wallet_tool(self):
         """Skip the running test ifandaluzcoin-wallet has not been compiled."""
         if not self.is_wallet_tool_compiled():
-            raise SkipTest("bitcoin-wallet has not been compiled")
+            raise SkipTest("andaluzcoin-wallet has not been compiled")
 
-    def skip_if_no_bitcoin_util(self):
+    def skip_if_no_andaluzcoin_util(self):
         """Skip the running test ifandaluzcoin-util has not been compiled."""
-        if not self.is_bitcoin_util_compiled():
-            raise SkipTest("bitcoin-util has not been compiled")
+        if not self.is_andaluzcoin_util_compiled():
+            raise SkipTest("andaluzcoin-util has not been compiled")
 
     def skip_if_no_cli(self):
         """Skip the running test ifandaluzcoin-cli has not been compiled."""
         if not self.is_cli_compiled():
-            raise SkipTest("bitcoin-cli has not been compiled.")
+            raise SkipTest("andaluzcoin-cli has not been compiled.")
 
     def skip_if_no_previous_releases(self):
         """Skip the running test if previous releases are not available."""
@@ -1039,9 +1039,9 @@ class AndaluzcoinTestFramework(metaclass=AndaluzcoinTestMetaClass):
         """Checks whetherandaluzcoin-wallet was compiled."""
         return self.config["components"].getboolean("ENABLE_WALLET_TOOL")
 
-    def is_bitcoin_util_compiled(self):
+    def is_andaluzcoin_util_compiled(self):
         """Checks whetherandaluzcoin-util was compiled."""
-        return self.config["components"].getboolean("ENABLE_BITCOIN_UTIL")
+        return self.config["components"].getboolean("ENABLE_ANDALUZCOIN_UTIL")
 
     def is_zmq_compiled(self):
         """Checks whether the zmq module was compiled."""

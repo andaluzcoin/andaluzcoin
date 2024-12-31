@@ -164,7 +164,7 @@ Signing is only possible with addresses of the type 'legacy'.</source>
         <translation type="unfinished">એન્ક્રિપ્શન ખાતરી કરો </translation>
     </message>
     <message>
-        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR BITCOINS&lt;/b&gt;!</source>
+        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR ANDALUZCOINS&lt;/b&gt;!</source>
         <translation type="unfinished">ચેતવણી: જો તમે તમારા વૉલેટને એન્ક્રિપ્ટ કરો છો અને તમારો પાસફ્રેઝ ખોવાઈ જાય છે, &lt;b&gt; તો તમે તમારા બધા બિટકોઇન્સ ગુમાવશો&lt;/b&gt;!</translation>
     </message>
     <message>
@@ -2144,8 +2144,8 @@ The migration process will create a backup of the wallet before migrating. This 
         <translation type="unfinished">URI હેન્ડલિંગ</translation>
     </message>
     <message>
-        <source>'bitcoin://' is not a valid URI. Use 'bitcoin:' instead.</source>
-        <translation type="unfinished">'bitcoin://' એ માન્ય URI નથી. તેના બદલે 'bitcoin:' નો ઉપયોગ કરો.</translation>
+        <source>'andaluzcoin://' is not a valid URI. Use 'andaluzcoin:' instead.</source>
+        <translation type="unfinished">'andaluzcoin://' એ માન્ય URI નથી. તેના બદલે 'andaluzcoin:' નો ઉપયોગ કરો.</translation>
     </message>
     <message>
         <source>Cannot process payment request because BIP70 is not supported.

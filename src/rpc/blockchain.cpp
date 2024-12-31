@@ -261,7 +261,7 @@ static RPCHelpMan waitfornewblock()
     return RPCHelpMan{"waitfornewblock",
                 "\nWaits for any new block and returns useful info about it.\n"
                 "\nReturns the current block on timeout or exit.\n"
-                "\nMake sure to use no RPC timeout (bitcoin-cli -rpcclienttimeout=0)",
+                "\nMake sure to use no RPC timeout (andaluzcoin-cli -rpcclienttimeout=0)",
                 {
                     {"timeout", RPCArg::Type::NUM, RPCArg::Default{0}, "Time in milliseconds to wait for a response. 0 indicates no timeout."},
                 },
@@ -303,7 +303,7 @@ static RPCHelpMan waitforblock()
     return RPCHelpMan{"waitforblock",
                 "\nWaits for a specific new block and returns useful info about it.\n"
                 "\nReturns the current block on timeout or exit.\n"
-                "\nMake sure to use no RPC timeout (bitcoin-cli -rpcclienttimeout=0)",
+                "\nMake sure to use no RPC timeout (andaluzcoin-cli -rpcclienttimeout=0)",
                 {
                     {"blockhash", RPCArg::Type::STR_HEX, RPCArg::Optional::NO, "Block hash to wait for."},
                     {"timeout", RPCArg::Type::NUM, RPCArg::Default{0}, "Time in milliseconds to wait for a response. 0 indicates no timeout."},
@@ -358,7 +358,7 @@ static RPCHelpMan waitforblockheight()
                 "\nWaits for (at least) block height and returns the height and hash\n"
                 "of the current tip.\n"
                 "\nReturns the current block on timeout or exit.\n"
-                "\nMake sure to use no RPC timeout (bitcoin-cli -rpcclienttimeout=0)",
+                "\nMake sure to use no RPC timeout (andaluzcoin-cli -rpcclienttimeout=0)",
                 {
                     {"height", RPCArg::Type::NUM, RPCArg::Optional::NO, "Block height to wait for."},
                     {"timeout", RPCArg::Type::NUM, RPCArg::Default{0}, "Time in milliseconds to wait for a response. 0 indicates no timeout."},
@@ -2404,7 +2404,7 @@ static RPCHelpMan scanblocks()
 {
     return RPCHelpMan{"scanblocks",
         "\nReturn relevant blockhashes for given descriptors (requires blockfilterindex).\n"
-        "This call may take several minutes. Make sure to use no RPC timeout (bitcoin-cli -rpcclienttimeout=0)",
+        "This call may take several minutes. Make sure to use no RPC timeout (andaluzcoin-cli -rpcclienttimeout=0)",
         {
             scan_action_arg_desc,
             scan_objects_arg_desc,
@@ -2593,7 +2593,7 @@ static RPCHelpMan getdescriptoractivity()
     return RPCHelpMan{"getdescriptoractivity",
         "\nGet spend and receive activity associated with a set of descriptors for a set of blocks. "
         "This command pairs well with the `relevant_blocks` output of `scanblocks()`.\n"
-        "This call may take several minutes. If you encounter timeouts, try specifying no RPC timeout (bitcoin-cli -rpcclienttimeout=0)",
+        "This call may take several minutes. If you encounter timeouts, try specifying no RPC timeout (andaluzcoin-cli -rpcclienttimeout=0)",
         {
             RPCArg{"blockhashes", RPCArg::Type::ARR, RPCArg::Optional::OMITTED, "The list of blockhashes to examine for activity. Order doesn't matter. Must be along main chain or an error is thrown.\n", {
                 {"blockhash", RPCArg::Type::STR_HEX, RPCArg::Optional::OMITTED, "A valid blockhash"},
@@ -2944,7 +2944,7 @@ static RPCHelpMan dumptxoutset()
         "Write the serialized UTXO set to a file. This can be used in loadtxoutset afterwards if this snapshot height is supported in the chainparams as well.\n\n"
         "Unless the \"latest\" type is requested, the node will roll back to the requested height and network activity will be suspended during this process. "
         "Because of this it is discouraged to interact with the node in any other way during the execution of this call to avoid inconsistent results and race conditions, particularly RPCs that interact with blockstorage.\n\n"
-        "This call may take several minutes. Make sure to use no RPC timeout (bitcoin-cli -rpcclienttimeout=0)",
+        "This call may take several minutes. Make sure to use no RPC timeout (andaluzcoin-cli -rpcclienttimeout=0)",
         {
             {"path", RPCArg::Type::STR, RPCArg::Optional::NO, "Path to the output file. If relative, will be prefixed by datadir."},
             {"type", RPCArg::Type::STR, RPCArg::Default(""), "The type of snapshot to create. Can be \"latest\" to create a snapshot of the current UTXO set or \"rollback\" to temporarily roll back the state of the node to a historical block before creating the snapshot of a historical UTXO set. This parameter can be omitted if a separate \"rollback\" named parameter is specified indicating the height or hash of a specific historical block. If \"rollback\" is specified and separate \"rollback\" named parameter is not specified, this will roll back to the latest valid snapshot block that can currently be loaded with loadtxoutset."},
@@ -3106,7 +3106,7 @@ PrepareUTXOSnapshot(
         // use below this block.
         //
         // See discussion here:
-        //   https://github.com/bitcoin/bitcoin/pull/15606#discussion_r274479369
+        //   https://github.com/andaluzcoin/andaluzcoin/pull/15606#discussion_r274479369
         //
         AssertLockHeld(::cs_main);
 
@@ -3155,7 +3155,7 @@ UniValue WriteUTXOSnapshot(
     // In the coins vector we collect all coins that belong to a certain tx hash
     // (key.hash) and when we have them all (key.hash != last_hash) we write
     // them to file using the below lambda function.
-    // See also https://github.com/bitcoin/bitcoin/issues/25675
+    // See also https://github.com/andaluzcoin/andaluzcoin/issues/25675
     auto write_coins_to_file = [&](AutoFile& afile, const Txid& last_hash, const std::vector<std::pair<uint32_t, Coin>>& coins, size_t& written_coins_count) {
         afile << last_hash;
         WriteCompactSize(afile, coins.size());
@@ -3228,7 +3228,7 @@ static RPCHelpMan loadtxoutset()
         "contents are always checked by hash.\n\n"
 
         "You can find more information on this process in the `assumeutxo` design "
-        "document (<https://github.com/bitcoin/bitcoin/blob/master/doc/design/assumeutxo.md>).",
+        "document (<https://github.com/andaluzcoin/andaluzcoin/blob/master/doc/design/assumeutxo.md>).",
         {
             {"path",
                 RPCArg::Type::STR,
