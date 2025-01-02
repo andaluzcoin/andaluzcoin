@@ -164,6 +164,9 @@ public:
     static std::unique_ptr<const CChainParams> TestNet();
     static std::unique_ptr<const CChainParams> TestNet4();
 
+    std::string strNetworkID;  //Added for Andaluzcoin
+    CAmount nMaxMoney;   //Added for Andaluzcoin
+
 protected:
     CChainParams() = default;
 

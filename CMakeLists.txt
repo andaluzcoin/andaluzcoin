@@ -47,6 +47,165 @@ project(AndaluzcoinCore
   LANGUAGES NONE
 )
 
+# Enable C++ before including GNUInstallDirs
+enable_language(CXX)
+
+# Include GNUInstallDirs after languages are enabled
+include(GNUInstallDirs)
+
+set(CMAKE_VERBOSE_MAKEFILE ON)
+
+
+# BEGIN Andaluzcoin
+# Retrieve BDB_PREFIX from environment variables
+if(DEFINED ENV{BDB_PREFIX})
+    set(BDB_PREFIX $ENV{BDB_PREFIX})
+    message(STATUS "Using BDB_PREFIX: ${BDB_PREFIX}")
+else()
+    message(FATAL_ERROR "BDB_PREFIX environment variable is not set. Please set it to the Berkeley DB installation prefix.")
+endif()
+
+# Define BDB include and library directories
+#set(BDB_INCLUDE_DIR "${BDB_PREFIX}/include")
+#set(BDB_LIBRARY_DIR "${BDB_PREFIX}/lib")
+
+# Define BDB include and library directories based on BDB_PREFIX
+set(BerkeleyDB_INCLUDE_DIR "${BDB_PREFIX}/include")
+# Specify both libdb_cxx and libdb
+set(BerkeleyDB_LIBRARIES
+    "${BDB_PREFIX}/lib/libdb_cxx-4.8.a"
+    "${BDB_PREFIX}/lib/libdb-4.8.a"
+)
+
+# Optionally, prefer static libraries
+# set(BerkeleyDB_USE_STATIC_LIBS TRUE)
+
+# ------------------------------
+# 2. Find and Configure Berkeley DB
+# ------------------------------
+# use for validation
+# find_package(BerkeleyDB 4.8 EXACT REQUIRED COMPONENTS CXX)
+
+#if(BDB_FOUND)
+#   message(STATUS "Found Berkeley DB version ${BerkeleyDB_VERSION}")
+#   message(STATUS "Berkeley DB include directory: ${BerkeleyDB_INCLUDE_DIRS}")
+#   message(STATUS "Berkeley DB libraries: ${BerkeleyDB_LIBRARIES}")
+#else()
+#   message(FATAL_ERROR "Could not find Berkeley DB. Please ensure it is installed and BDB_PREFIX is set correctly.")
+#endif()
+
+
+# Verify that the library files exist
+if(NOT EXISTS "${BDB_PREFIX}/lib/libdb_cxx-4.8.a")
+    message(FATAL_ERROR "BerkeleyDB library libdb_cxx-4.8.a not found in ${BDB_PREFIX}/lib/")
+endif()
+
+if(NOT EXISTS "${BDB_PREFIX}/lib/libdb-4.8.a")
+    message(FATAL_ERROR "BerkeleyDB library libdb-4.8.a not found in ${BDB_PREFIX}/lib/")
+endif()
+
+# Check if libraries exist
+foreach(lib ${BerkeleyDB_LIBRARIES})
+    if(NOT EXISTS "${lib}")
+        message(FATAL_ERROR "Berkeley DB library not found: ${lib}")
+    endif()
+endforeach()
+
+# If all libraries exist, print messages
+message(STATUS "Found Berkeley DB")
+message(STATUS "  Version: 4.8.x")
+message(STATUS "  Includes: ${BerkeleyDB_INCLUDE_DIR}")
+message(STATUS "  Libraries: ${BerkeleyDB_LIBRARIES}")
+
+
+# Include directories for BDB headers
+include_directories(${BerkeleyDB_INCLUDE_DIRS})
+
+# Link directories (optional)
+# link_directories(${BerkeleyDB_LIBRARY_DIRS})
+
+# Add your executable
+# add_executable(andaluzcoind src/main.cpp src/other_source.cpp)
+# Add all necessary source files
+
+# Link against Berkeley DB libraries
+# target_link_libraries(andaluzcoind PRIVATE ${BerkeleyDB_LIBRARIES})
+
+# ------------------------------
+# 3. Define the Core Library
+# ------------------------------
+
+# Add the src directory, which contains its own CMakeLists.txt defining andaluzcoin_core
+add_subdirectory(src)
+
+# Create a static library for core functionalities
+# add_library(andaluzcoin_core STATIC ${CORE_SOURCES})
+
+# Link the core library against Berkeley DB libraries
+# target_link_libraries(andaluzcoin_core PRIVATE ${BerkeleyDB_LIBRARIES})
+
+# ------------------------------
+# 4. Define Executables
+# ------------------------------
+
+# List of executables and their main source files
+set(EXECUTABLES
+    andaluzcoind src/andaluzcoind.cpp
+    andaluzcoin-cli src/andaluzcoin-cli.cpp
+    andaluzcoin-tx src/andaluzcoin-tx.cpp
+    andaluzcoin-util src/andaluzcoin-util.cpp
+    andaluzcoin-wallet src/andaluzcoin-wallet.cpp
+    # Add additional executables as needed
+)
+
+# Determine the length of the EXECUTABLES list
+list(LENGTH EXECUTABLES EXECUTABLES_LENGTH)
+
+# Calculate the remainder when EXECUTABLES_LENGTH is divided by 2
+math(EXPR EXECUTABLES_MOD "${EXECUTABLES_LENGTH} % 2")
+
+# If the remainder is not zero, the list has an odd number of elements
+if(EXECUTABLES_MOD)
+    message(FATAL_ERROR "EXECUTABLES list has an odd number of elements. Please ensure each executable has a corresponding source file.")
+endif()
+
+# Define each executable and link against the core library
+# Iterate over the list two elements at a time: exec_name and exec_source
+# Iterate over the list using indices to process pairs
+foreach(i RANGE 0 ${EXEC_COUNT}-1)
+    # Calculate the current index for executable name
+    math(EXPR exec_index "${i} * 2")
+
+    # Retrieve the executable name
+    list(GET EXECUTABLES ${exec_index} exec_name)
+
+    # Calculate the index for the source file
+    math(EXPR src_index "${exec_index} + 1")
+
+    # Retrieve the executable source file
+    list(GET EXECUTABLES ${src_index} exec_source)
+
+    # Debugging: Print the current executable name and source
+    message(STATUS "Configuring executable: ${exec_name} with source: ${exec_source}")
+
+    # Add the executable
+    add_executable(${exec_name} ${exec_source})
+
+    # Link against the core library
+    target_link_libraries(${exec_name} PRIVATE andaluzcoin_core)
+
+    # Set C++ standard properties
+    set_target_properties(${exec_name} PROPERTIES CXX_STANDARD 14 CXX_STANDARD_REQUIRED YES)
+endforeach()
+
+# (Optional) Set C++ standard
+# If all executables use the same C++ standard, you can set it globally
+# set(CMAKE_CXX_STANDARD 14)
+# set(CMAKE_CXX_STANDARD_REQUIRED YES)# END Andaluzcoin
+
+#END Andaluzcoin
+
+
 set(CLIENT_VERSION_STRING ${PROJECT_VERSION})
 if(CLIENT_VERSION_RC GREATER 0)
   string(APPEND CLIENT_VERSION_STRING "rc${CLIENT_VERSION_RC}")
@@ -101,7 +260,7 @@ endif()
 option(WITH_BDB "Enable Berkeley DB (BDB) wallet support." OFF)
 cmake_dependent_option(WARN_INCOMPATIBLE_BDB "Warn when using a Berkeley DB (BDB) version other than 4.8." ON "WITH_BDB" OFF)
 if(WITH_BDB)
-  find_package(BerkeleyDB 4.8 MODULE REQUIRED)
+  #find_package(BerkeleyDB 4.8 MODULE REQUIRED)
   set(USE_BDB ON)
   if(NOT BerkeleyDB_VERSION VERSION_EQUAL 4.8)
     message(WARNING "Found Berkeley DB (BDB) other than 4.8.\n"
@@ -588,7 +747,7 @@ add_subdirectory(doc)
 include(cmake/crc32c.cmake)
 include(cmake/leveldb.cmake)
 include(cmake/minisketch.cmake)
-add_subdirectory(src)
+#add_subdirectory(src)
 
 include(cmake/tests.cmake)
 

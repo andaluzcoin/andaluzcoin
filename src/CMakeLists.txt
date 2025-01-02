@@ -2,8 +2,20 @@
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or https://opensource.org/license/mit/.
 
+# Enable C++ if not already enabled
+enable_language(CXX)
+
 include(GNUInstallDirs)
-include(AddWindowsResources)
+
+# Conditionally include Windows-specific modules
+if(WIN32)
+    if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/AddWindowsResources.cmake")
+        include(AddWindowsResources)
+    else()
+        message(WARNING "AddWindowsResources.cmake not found. Windows-specific resources will not be included.")
+    endif()
+endif()
+#include(AddWindowsResources)
 
 configure_file(${PROJECT_SOURCE_DIR}/cmake/andaluzcoin-build-config.h.in andaluzcoin-build-config.h USE_SOURCE_PERMISSIONS @ONLY)
 include_directories(${CMAKE_CURRENT_BINARY_DIR} ${CMAKE_CURRENT_SOURCE_DIR})
@@ -48,13 +60,30 @@ if(NOT BUILD_TESTS)
   set(SECP256K1_BUILD_CTIME_TESTS ${BUILD_TESTS} CACHE BOOL "" FORCE)
 endif()
 set(SECP256K1_BUILD_EXAMPLES OFF CACHE BOOL "" FORCE)
-include(GetTargetInterface)
+
+# Conditionally include GetTargetInterface if necessary
+if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/GetTargetInterface.cmake")
+    include(GetTargetInterface)
+else()
+    message(WARNING "GetTargetInterface.cmake not found. Certain target interfaces may not be available.")
+endif()
+#include(GetTargetInterface)
+
 # -fsanitize and related flags apply to both C++ and C,
 # so we can pass them down to libsecp256k1 as CFLAGS and LDFLAGS.
-get_target_interface(core_sanitizer_cxx_flags "" sanitize_interface COMPILE_OPTIONS)
+# Conditionally include GetTargetInterface if necessary
+if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/GetTargetInterface.cmake")
+    get_target_interface(core_sanitizer_cxx_flags "" sanitize_interface COMPILE_OPTIONS)
+endif()
+
 set(SECP256K1_APPEND_CFLAGS ${core_sanitizer_cxx_flags} CACHE STRING "" FORCE)
 unset(core_sanitizer_cxx_flags)
-get_target_interface(core_sanitizer_linker_flags "" sanitize_interface LINK_OPTIONS)
+
+# Conditionally include GetTargetInterface if necessary
+if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/GetTargetInterface.cmake")
+    get_target_interface(core_sanitizer_linker_flags "" sanitize_interface LINK_OPTIONS)
+endif()
+
 set(SECP256K1_APPEND_LDFLAGS ${core_sanitizer_linker_flags} CACHE STRING "" FORCE)
 unset(core_sanitizer_linker_flags)
 # We want to build libsecp256k1 with the most tested RelWithDebInfo configuration.
@@ -174,22 +203,101 @@ if(ENABLE_WALLET)
   add_subdirectory(wallet)
 
   if(BUILD_WALLET_TOOL)
-    add_executable(andaluzcoin-wallet
-     andaluzcoin-wallet.cpp
-      init/andaluzcoin-wallet.cpp
-      wallet/wallettool.cpp
-    )
+   # add_executable(andaluzcoin-wallet
+   #  andaluzcoin-wallet.cpp
+   #   init/andaluzcoin-wallet.cpp
+   #   wallet/wallettool.cpp
+   # )
     add_windows_resources(andaluzcoin-wallet andaluzcoin-wallet-res.rc)
-    target_link_libraries(andaluzcoin-wallet
-      core_interface
-     andaluzcoin_wallet
-     andaluzcoin_common
-     andaluzcoin_util
-      Boost::headers
-    )
+   # target_link_libraries(andaluzcoin-wallet
+   #   core_interface
+   #  andaluzcoin_wallet
+   #  andaluzcoin_common
+   #  andaluzcoin_util
+   #   Boost::headers
+   # )
     list(APPEND installable_targets andaluzcoin-wallet)
   endif()
 endif()
+
+# andaluzcoin define the core library
+# List all core source files
+set(CORE_SOURCES
+    addrdb.cpp
+    addresstype.cpp
+    addrman.cpp
+    arith_uint256.cpp
+    banman.cpp
+    base58.cpp
+    bech32.cpp
+    bip324.cpp
+    blockencodings.cpp
+    blockfilter.cpp
+    chain.cpp
+    chainparams.cpp
+    chainparamsbase.cpp
+    clientversion.cpp
+    coins.cpp
+    compressor.cpp
+    core_read.cpp
+    core_write.cpp
+    dbwrapper.cpp
+    deploymentinfo.cpp
+    deploymentstatus.cpp
+    dummywallet.cpp
+    external_signer.cpp
+    flatfile.cpp
+    hash.cpp
+    headerssync.cpp
+    httprpc.cpp
+    httpserver.cpp
+    i2p.cpp
+    init.cpp
+    key.cpp
+    key_io.cpp
+    logging.cpp
+    mapport.cpp
+    merkleblock.cpp
+    net.cpp
+    net_permissions.cpp
+    net_processing.cpp
+    net_types.cpp
+    netaddress.cpp
+    netbase.cpp
+    netgroup.cpp
+    noui.cpp
+    outputtype.cpp
+    pow.cpp
+    protocol.cpp
+    psbt.cpp
+    pubkey.cpp
+    random.cpp
+    randomenv.cpp
+    rest.cpp
+    scheduler.cpp
+    signet.cpp
+    streams.cpp
+    sync.cpp
+    torcontrol.cpp
+    txdb.cpp
+    txmempool.cpp
+    txorphanage.cpp
+    txrequest.cpp
+    uint256.cpp
+    validation.cpp
+    validationinterface.cpp
+    versionbits.cpp
+    # Add any additional core source files here
+)
+
+# Create a static library for core functionalities
+add_library(andaluzcoin_core STATIC ${CORE_SOURCES})
+
+# Link the core library against Berkeley DB libraries
+target_link_libraries(andaluzcoin_core PRIVATE ${BerkeleyDB_LIBRARIES})
+
+# End andaluzcoin definition
+
 
 
 # P2P and RPC server functionality used by `andaluzcoind` and `andaluzcoin-qt` executables.
@@ -308,16 +416,16 @@ target_link_libraries(andaluzcoin_node
 
 # Andaluzcoin Coreandaluzcoind.
 if(BUILD_DAEMON)
-  add_executable(andaluzcoind
-   andaluzcoind.cpp
-    init/andaluzcoind.cpp
-  )
+ # add_executable(andaluzcoind
+ #  andaluzcoind.cpp
+ #   init/andaluzcoind.cpp
+ # )
   add_windows_resources(andaluzcoind andaluzcoind-res.rc)
-  target_link_libraries(andaluzcoind
-    core_interface
-   andaluzcoin_node
-    $<TARGET_NAME_IF_EXISTS:andaluzcoin_wallet>
-  )
+ # target_link_libraries(andaluzcoind
+ #   core_interface
+ #  andaluzcoin_node
+ #   $<TARGET_NAME_IF_EXISTS:andaluzcoin_wallet>
+ # )
   list(APPEND installable_targets andaluzcoind)
 endif()
 if(WITH_MULTIPROCESS)
@@ -364,41 +472,41 @@ target_link_libraries(andaluzcoin_cli
 
 # Andaluzcoin Core RPC client
 if(BUILD_CLI)
-  add_executable(andaluzcoin-cli andaluzcoin-cli.cpp)
+  #add_executable(andaluzcoin-cli andaluzcoin-cli.cpp)
   add_windows_resources(andaluzcoin-cli andaluzcoin-cli-res.rc)
-  target_link_libraries(andaluzcoin-cli
-    core_interface
-   andaluzcoin_cli
-   andaluzcoin_common
-   andaluzcoin_util
-    libevent::core
-    libevent::extra
-  )
+  #target_link_libraries(andaluzcoin-cli
+  #  core_interface
+  # andaluzcoin_cli
+  # andaluzcoin_common
+  # andaluzcoin_util
+  #  libevent::core
+  #  libevent::extra
+  #)
   list(APPEND installable_targets andaluzcoin-cli)
 endif()
 
 
 if(BUILD_TX)
-  add_executable(andaluzcoin-tx andaluzcoin-tx.cpp)
+ # add_executable(andaluzcoin-tx andaluzcoin-tx.cpp)
   add_windows_resources(andaluzcoin-tx andaluzcoin-tx-res.rc)
-  target_link_libraries(andaluzcoin-tx
-    core_interface
-   andaluzcoin_common
-   andaluzcoin_util
-    univalue
-  )
+ # target_link_libraries(andaluzcoin-tx
+ #   core_interface
+ #  andaluzcoin_common
+ #  andaluzcoin_util
+ #   univalue
+ # )
   list(APPEND installable_targets andaluzcoin-tx)
 endif()
 
 
 if(BUILD_UTIL)
-  add_executable(andaluzcoin-util andaluzcoin-util.cpp)
+  #add_executable(andaluzcoin-util andaluzcoin-util.cpp)
   add_windows_resources(andaluzcoin-util andaluzcoin-util-res.rc)
-  target_link_libraries(andaluzcoin-util
-    core_interface
-   andaluzcoin_common
-   andaluzcoin_util
-  )
+  #target_link_libraries(andaluzcoin-util
+  #  core_interface
+  # andaluzcoin_common
+  # andaluzcoin_util
+  #)
   list(APPEND installable_targets andaluzcoin-util)
 endif()
 
