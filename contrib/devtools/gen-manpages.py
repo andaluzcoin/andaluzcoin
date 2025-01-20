@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# Copyright (c) 2022 The Bitcoin Core developers
+# Copyright (c) 2022 The Andaluzcoin Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 import os
@@ -9,12 +9,12 @@ import tempfile
 import argparse
 
 BINARIES = [
-'src/bitcoind',
-'src/bitcoin-cli',
-'src/bitcoin-tx',
-'src/bitcoin-wallet',
-'src/bitcoin-util',
-'src/qt/bitcoin-qt',
+'src/andaluzcoind',
+'src/andaluzcoin-cli',
+'src/andaluzcoin-tx',
+'src/andaluzcoin-wallet',
+'src/andaluzcoin-util',
+'src/qt/andaluzcoin-qt',
 ]
 
 parser = argparse.ArgumentParser(

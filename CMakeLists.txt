@@ -1,4 +1,4 @@
-# Copyright (c) 2023-present The Bitcoin Core developers
+# Copyright (c) 2023-present The Andaluzcoin Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or https://opensource.org/license/mit/.
 
@@ -16,7 +16,7 @@ endif()
 #=============================
 # Project / Package metadata
 #=============================
-set(CLIENT_NAME "Bitcoin Core")
+set(CLIENT_NAME "Andaluzcoin Core")
 set(CLIENT_VERSION_MAJOR 28)
 set(CLIENT_VERSION_MINOR 99)
 set(CLIENT_VERSION_BUILD 0)
@@ -40,10 +40,10 @@ set(CMAKE_TRY_COMPILE_PLATFORM_VARIABLES
   CMAKE_CXX_LINK_EXECUTABLE
 )
 
-project(BitcoinCore
+project(AndaluzcoinCore
   VERSION ${CLIENT_VERSION_MAJOR}.${CLIENT_VERSION_MINOR}.${CLIENT_VERSION_BUILD}
-  DESCRIPTION "Bitcoin client software"
-  HOMEPAGE_URL "https://bitcoincore.org/"
+  DESCRIPTION "Andaluzcoin client software"
+  HOMEPAGE_URL "https://andaluzcoincore.org/"
   LANGUAGES NONE
 )
 
@@ -54,7 +54,7 @@ endif()
 
 set(COPYRIGHT_HOLDERS "The %s developers")
 set(COPYRIGHT_HOLDERS_FINAL "The ${CLIENT_NAME} developers")
-set(CLIENT_BUGREPORT "https://github.com/bitcoin/bitcoin/issues")
+set(CLIENT_BUGREPORT "https://github.com/andaluzcoin/andaluzcoin/issues")
 
 #=============================
 # Language setup
@@ -76,16 +76,16 @@ list(APPEND CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake/module)
 #=============================
 include(CMakeDependentOption)
 # When adding a new option, end the <help_text> with a full stop for consistency.
-option(BUILD_DAEMON "Build bitcoind executable." ON)
-option(BUILD_GUI "Build bitcoin-qt executable." OFF)
-option(BUILD_CLI "Build bitcoin-cli executable." ON)
+option(BUILD_DAEMON "Build andaluzcoind executable." ON)
+option(BUILD_GUI "Build andaluzcoin-qt executable." OFF)
+option(BUILD_CLI "Build andaluzcoin-cli executable." ON)
 
-option(BUILD_TESTS "Build test_bitcoin executable." ON)
-option(BUILD_TX "Build bitcoin-tx executable." ${BUILD_TESTS})
-option(BUILD_UTIL "Build bitcoin-util executable." ${BUILD_TESTS})
+option(BUILD_TESTS "Build test_andaluzcoin executable." ON)
+option(BUILD_TX "Build andaluzcoin-tx executable." ${BUILD_TESTS})
+option(BUILD_UTIL "Build andaluzcoin-util executable." ${BUILD_TESTS})
 
-option(BUILD_UTIL_CHAINSTATE "Build experimental bitcoin-chainstate executable." OFF)
-option(BUILD_KERNEL_LIB "Build experimental bitcoinkernel library." ${BUILD_UTIL_CHAINSTATE})
+option(BUILD_UTIL_CHAINSTATE "Build experimental andaluzcoin-chainstate executable." OFF)
+option(BUILD_KERNEL_LIB "Build experimental andaluzcoinkernel library." ${BUILD_UTIL_CHAINSTATE})
 
 option(ENABLE_WALLET "Enable wallet." ON)
 option(WITH_SQLITE "Enable SQLite wallet support." ${ENABLE_WALLET})
@@ -114,7 +114,7 @@ if(WITH_BDB)
     endif()
   endif()
 endif()
-cmake_dependent_option(BUILD_WALLET_TOOL "Build bitcoin-wallet tool." ${BUILD_TESTS} "ENABLE_WALLET" OFF)
+cmake_dependent_option(BUILD_WALLET_TOOL "Build andaluzcoin-wallet tool." ${BUILD_TESTS} "ENABLE_WALLET" OFF)
 
 option(ENABLE_HARDENING "Attempt to harden the resulting executables." ON)
 option(REDUCE_EXPORTS "Attempt to reduce exported symbols in the resulting executables." OFF)
@@ -141,7 +141,7 @@ endif()
 
 cmake_dependent_option(WITH_DBUS "Enable DBus support." ON "CMAKE_SYSTEM_NAME STREQUAL \"Linux\" AND BUILD_GUI" OFF)
 
-option(WITH_MULTIPROCESS "Build multiprocess bitcoin-node and bitcoin-gui executables in addition to monolithic bitcoind and bitcoin-qt executables. Requires libmultiprocess library. Experimental." OFF)
+option(WITH_MULTIPROCESS "Build multiprocess andaluzcoin-node and andaluzcoin-gui executables in addition to monolithic andaluzcoind and andaluzcoin-qt executables. Requires libmultiprocess library. Experimental." OFF)
 if(WITH_MULTIPROCESS)
   find_package(Libmultiprocess COMPONENTS Lib)
   find_package(LibmultiprocessNative COMPONENTS Bin
@@ -149,7 +149,7 @@ if(WITH_MULTIPROCESS)
   )
 endif()
 
-cmake_dependent_option(BUILD_GUI_TESTS "Build test_bitcoin-qt executable." ON "BUILD_GUI;BUILD_TESTS" OFF)
+cmake_dependent_option(BUILD_GUI_TESTS "Build test_andaluzcoin-qt executable." ON "BUILD_GUI;BUILD_TESTS" OFF)
 if(BUILD_GUI)
   set(qt_components Core Gui Widgets LinguistTools)
   if(ENABLE_WALLET)
@@ -168,7 +168,7 @@ if(BUILD_GUI)
   unset(qt_components)
 endif()
 
-option(BUILD_BENCH "Build bench_bitcoin executable." OFF)
+option(BUILD_BENCH "Build bench_andaluzcoin executable." OFF)
 option(BUILD_FUZZ_BINARY "Build fuzz binary." OFF)
 option(BUILD_FOR_FUZZING "Build for fuzzing. Enabling this will disable all other targets and override BUILD_FUZZ_BINARY." OFF)
 
@@ -301,7 +301,7 @@ if(WIN32)
 
   # Workaround producing large object files, which cannot be handled by the assembler.
   # More likely to happen with no, or lower levels of optimisation.
-  # See discussion in https://github.com/bitcoin/bitcoin/issues/28109.
+  # See discussion in https://github.com/andaluzcoin/andaluzcoin/issues/28109.
   if(CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
     try_append_cxx_flags("/bigobj" TARGET core_interface_debug SKIP_LINK)
   else()
@@ -578,8 +578,8 @@ endif()
 #       in the future after reordering Guix script commands to
 #       perform binary checks after the installation step.
 # Relevant discussions:
-# - https://github.com/hebasto/bitcoin/pull/236#issuecomment-2183120953
-# - https://github.com/bitcoin/bitcoin/pull/30312#issuecomment-2191235833
+# - https://github.com/hebasto/andaluzcoin/pull/236#issuecomment-2183120953
+# - https://github.com/andaluzcoin/andaluzcoin/pull/30312#issuecomment-2191235833
 # NetBSD always requires runtime paths to be set for executables.
 if(CMAKE_SYSTEM_NAME STREQUAL "NetBSD")
   set(CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
@@ -607,21 +607,21 @@ message("\n")
 message("Configure summary")
 message("=================")
 message("Executables:")
-message("  bitcoind ............................ ${BUILD_DAEMON}")
-message("  bitcoin-node (multiprocess) ......... ${WITH_MULTIPROCESS}")
-message("  bitcoin-qt (GUI) .................... ${BUILD_GUI}")
+message("  andaluzcoind ............................ ${BUILD_DAEMON}")
+message("  andaluzcoin-node (multiprocess) ......... ${WITH_MULTIPROCESS}")
+message("  andaluzcoin-qt (GUI) .................... ${BUILD_GUI}")
 if(BUILD_GUI AND WITH_MULTIPROCESS)
-  set(bitcoin_gui_status ON)
+  set(andaluzcoin_gui_status ON)
 else()
-  set(bitcoin_gui_status OFF)
+  set(andaluzcoin_gui_status OFF)
 endif()
-message("  bitcoin-gui (GUI, multiprocess) ..... ${bitcoin_gui_status}")
-message("  bitcoin-cli ......................... ${BUILD_CLI}")
-message("  bitcoin-tx .......................... ${BUILD_TX}")
-message("  bitcoin-util ........................ ${BUILD_UTIL}")
-message("  bitcoin-wallet ...................... ${BUILD_WALLET_TOOL}")
-message("  bitcoin-chainstate (experimental) ... ${BUILD_UTIL_CHAINSTATE}")
-message("  libbitcoinkernel (experimental) ..... ${BUILD_KERNEL_LIB}")
+message("  andaluzcoin-gui (GUI, multiprocess) ..... ${andaluzcoin_gui_status}")
+message("  andaluzcoin-cli ......................... ${BUILD_CLI}")
+message("  andaluzcoin-tx .......................... ${BUILD_TX}")
+message("  andaluzcoin-util ........................ ${BUILD_UTIL}")
+message("  andaluzcoin-wallet ...................... ${BUILD_WALLET_TOOL}")
+message("  andaluzcoin-chainstate (experimental) ... ${BUILD_UTIL_CHAINSTATE}")
+message("  libandaluzcoinkernel (experimental) ..... ${BUILD_KERNEL_LIB}")
 message("Optional features:")
 message("  wallet support ...................... ${ENABLE_WALLET}")
 if(ENABLE_WALLET)
@@ -634,9 +634,9 @@ message("  USDT tracing ........................ ${WITH_USDT}")
 message("  QR code (GUI) ....................... ${WITH_QRENCODE}")
 message("  DBus (GUI, Linux only) .............. ${WITH_DBUS}")
 message("Tests:")
-message("  test_bitcoin ........................ ${BUILD_TESTS}")
-message("  test_bitcoin-qt ..................... ${BUILD_GUI_TESTS}")
-message("  bench_bitcoin ....................... ${BUILD_BENCH}")
+message("  test_andaluzcoin ........................ ${BUILD_TESTS}")
+message("  test_andaluzcoin-qt ..................... ${BUILD_GUI_TESTS}")
+message("  bench_andaluzcoin ....................... ${BUILD_BENCH}")
 message("  fuzz binary ......................... ${BUILD_FUZZ_BINARY}")
 message("")
 if(CMAKE_CROSSCOMPILING)

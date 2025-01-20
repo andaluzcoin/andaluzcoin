@@ -1,4 +1,4 @@
-# Copyright (c) 2023-present The Bitcoin Core developers
+# Copyright (c) 2023-present The Andaluzcoin Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or https://opensource.org/license/mit/.
 
@@ -127,7 +127,7 @@ add_executable(fuzz
   txrequest.cpp
   # Visual Studio 2022 version 17.12 introduced a bug
   # that causes an internal compiler error.
-  # See: https://github.com/bitcoin/bitcoin/issues/31303
+  # See: https://github.com/andaluzcoin/andaluzcoin/issues/31303
   $<$<VERSION_LESS:${MSVC_VERSION},1942>:utxo_snapshot.cpp>
   utxo_total_supply.cpp
   validation_load_mempool.cpp
@@ -137,9 +137,9 @@ add_executable(fuzz
 target_link_libraries(fuzz
   core_interface
   test_fuzz
-  bitcoin_cli
-  bitcoin_common
-  bitcoin_util
+  andaluzcoin_cli
+  andaluzcoin_common
+  andaluzcoin_util
   minisketch
   leveldb
   univalue

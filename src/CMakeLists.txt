@@ -1,27 +1,27 @@
-# Copyright (c) 2023-present The Bitcoin Core developers
+# Copyright (c) 2023-present The Andaluzcoin Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or https://opensource.org/license/mit/.
 
 include(GNUInstallDirs)
 include(AddWindowsResources)
 
-configure_file(${PROJECT_SOURCE_DIR}/cmake/bitcoin-build-config.h.in bitcoin-build-config.h USE_SOURCE_PERMISSIONS @ONLY)
+configure_file(${PROJECT_SOURCE_DIR}/cmake/andaluzcoin-build-config.h.in andaluzcoin-build-config.h USE_SOURCE_PERMISSIONS @ONLY)
 include_directories(${CMAKE_CURRENT_BINARY_DIR} ${CMAKE_CURRENT_SOURCE_DIR})
 
 add_custom_target(generate_build_info
-  BYPRODUCTS ${PROJECT_BINARY_DIR}/src/bitcoin-build-info.h
-  COMMAND ${CMAKE_COMMAND} -DBUILD_INFO_HEADER_PATH=${PROJECT_BINARY_DIR}/src/bitcoin-build-info.h -DSOURCE_DIR=${PROJECT_SOURCE_DIR} -P ${PROJECT_SOURCE_DIR}/cmake/script/GenerateBuildInfo.cmake
-  COMMENT "Generating bitcoin-build-info.h"
+  BYPRODUCTS ${PROJECT_BINARY_DIR}/src/andaluzcoin-build-info.h
+  COMMAND ${CMAKE_COMMAND} -DBUILD_INFO_HEADER_PATH=${PROJECT_BINARY_DIR}/src/andaluzcoin-build-info.h -DSOURCE_DIR=${PROJECT_SOURCE_DIR} -P ${PROJECT_SOURCE_DIR}/cmake/script/GenerateBuildInfo.cmake
+  COMMENT "Generating andaluzcoin-build-info.h"
   VERBATIM
 )
-add_library(bitcoin_clientversion OBJECT EXCLUDE_FROM_ALL
+add_library(andaluzcoin_clientversion OBJECT EXCLUDE_FROM_ALL
   clientversion.cpp
 )
-target_link_libraries(bitcoin_clientversion
+target_link_libraries(andaluzcoin_clientversion
   PRIVATE
     core_interface
 )
-add_dependencies(bitcoin_clientversion generate_build_info)
+add_dependencies(andaluzcoin_clientversion generate_build_info)
 
 add_subdirectory(crypto)
 add_subdirectory(univalue)
@@ -79,7 +79,7 @@ set_target_properties(secp256k1 PROPERTIES
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 string(APPEND CMAKE_C_COMPILE_OBJECT " ${APPEND_CPPFLAGS} ${APPEND_CFLAGS}")
 
-add_library(bitcoin_consensus STATIC EXCLUDE_FROM_ALL
+add_library(andaluzcoin_consensus STATIC EXCLUDE_FROM_ALL
   arith_uint256.cpp
   consensus/merkle.cpp
   consensus/tx_check.cpp
@@ -92,10 +92,10 @@ add_library(bitcoin_consensus STATIC EXCLUDE_FROM_ALL
   script/script_error.cpp
   uint256.cpp
 )
-target_link_libraries(bitcoin_consensus
+target_link_libraries(andaluzcoin_consensus
   PRIVATE
     core_interface
-    bitcoin_crypto
+    andaluzcoin_crypto
     secp256k1
 )
 
@@ -104,8 +104,8 @@ if(WITH_ZMQ)
 endif()
 
 # Home for common functionality shared by different executables and libraries.
-# Similar to `bitcoin_util` library, but higher-level.
-add_library(bitcoin_common STATIC EXCLUDE_FROM_ALL
+# Similar to `andaluzcoin_util` library, but higher-level.
+add_library(andaluzcoin_common STATIC EXCLUDE_FROM_ALL
   addresstype.cpp
   base58.cpp
   bech32.cpp
@@ -156,11 +156,11 @@ add_library(bitcoin_common STATIC EXCLUDE_FROM_ALL
   script/signingprovider.cpp
   script/solver.cpp
 )
-target_link_libraries(bitcoin_common
+target_link_libraries(andaluzcoin_common
   PRIVATE
     core_interface
-    bitcoin_consensus
-    bitcoin_util
+    andaluzcoin_consensus
+    andaluzcoin_util
     univalue
     secp256k1
     Boost::headers
@@ -174,26 +174,26 @@ if(ENABLE_WALLET)
   add_subdirectory(wallet)
 
   if(BUILD_WALLET_TOOL)
-    add_executable(bitcoin-wallet
-      bitcoin-wallet.cpp
-      init/bitcoin-wallet.cpp
+    add_executable(andaluzcoin-wallet
+      andaluzcoin-wallet.cpp
+      init/andaluzcoin-wallet.cpp
       wallet/wallettool.cpp
     )
-    add_windows_resources(bitcoin-wallet bitcoin-wallet-res.rc)
-    target_link_libraries(bitcoin-wallet
+    add_windows_resources(andaluzcoin-wallet andaluzcoin-wallet-res.rc)
+    target_link_libraries(andaluzcoin-wallet
       core_interface
-      bitcoin_wallet
-      bitcoin_common
-      bitcoin_util
+      andaluzcoin_wallet
+      andaluzcoin_common
+      andaluzcoin_util
       Boost::headers
     )
-    list(APPEND installable_targets bitcoin-wallet)
+    list(APPEND installable_targets andaluzcoin-wallet)
   endif()
 endif()
 
 
-# P2P and RPC server functionality used by `bitcoind` and `bitcoin-qt` executables.
-add_library(bitcoin_node STATIC EXCLUDE_FROM_ALL
+# P2P and RPC server functionality used by `andaluzcoind` and `andaluzcoin-qt` executables.
+add_library(andaluzcoin_node STATIC EXCLUDE_FROM_ALL
   addrdb.cpp
   addrman.cpp
   banman.cpp
@@ -286,15 +286,15 @@ add_library(bitcoin_node STATIC EXCLUDE_FROM_ALL
   validation.cpp
   validationinterface.cpp
   versionbits.cpp
-  $<$<TARGET_EXISTS:bitcoin_wallet>:wallet/init.cpp>
-  $<$<NOT:$<TARGET_EXISTS:bitcoin_wallet>>:dummywallet.cpp>
+  $<$<TARGET_EXISTS:andaluzcoin_wallet>:wallet/init.cpp>
+  $<$<NOT:$<TARGET_EXISTS:andaluzcoin_wallet>>:dummywallet.cpp>
 )
-target_link_libraries(bitcoin_node
+target_link_libraries(andaluzcoin_node
   PRIVATE
     core_interface
-    bitcoin_common
-    bitcoin_util
-    $<TARGET_NAME_IF_EXISTS:bitcoin_zmq>
+    andaluzcoin_common
+    andaluzcoin_util
+    $<TARGET_NAME_IF_EXISTS:andaluzcoin_zmq>
     leveldb
     minisketch
     univalue
@@ -306,100 +306,100 @@ target_link_libraries(bitcoin_node
 )
 
 
-# Bitcoin Core bitcoind.
+# Andaluzcoin Core andaluzcoind.
 if(BUILD_DAEMON)
-  add_executable(bitcoind
-    bitcoind.cpp
-    init/bitcoind.cpp
+  add_executable(andaluzcoind
+    andaluzcoind.cpp
+    init/andaluzcoind.cpp
   )
-  add_windows_resources(bitcoind bitcoind-res.rc)
-  target_link_libraries(bitcoind
+  add_windows_resources(andaluzcoind andaluzcoind-res.rc)
+  target_link_libraries(andaluzcoind
     core_interface
-    bitcoin_node
-    $<TARGET_NAME_IF_EXISTS:bitcoin_wallet>
+    andaluzcoin_node
+    $<TARGET_NAME_IF_EXISTS:andaluzcoin_wallet>
   )
-  list(APPEND installable_targets bitcoind)
+  list(APPEND installable_targets andaluzcoind)
 endif()
 if(WITH_MULTIPROCESS)
-  add_executable(bitcoin-node
-    bitcoind.cpp
-    init/bitcoin-node.cpp
+  add_executable(andaluzcoin-node
+    andaluzcoind.cpp
+    init/andaluzcoin-node.cpp
   )
-  target_link_libraries(bitcoin-node
+  target_link_libraries(andaluzcoin-node
     core_interface
-    bitcoin_node
-    bitcoin_ipc
-    $<TARGET_NAME_IF_EXISTS:bitcoin_wallet>
+    andaluzcoin_node
+    andaluzcoin_ipc
+    $<TARGET_NAME_IF_EXISTS:andaluzcoin_wallet>
   )
-  list(APPEND installable_targets bitcoin-node)
+  list(APPEND installable_targets andaluzcoin-node)
 
   if(BUILD_TESTS)
-    # bitcoin_ipc_test library target is defined here in src/CMakeLists.txt
+    # andaluzcoin_ipc_test library target is defined here in src/CMakeLists.txt
     # instead of src/test/CMakeLists.txt so capnp files in src/test/ are able to
     # reference capnp files in src/ipc/capnp/ by relative path. The Cap'n Proto
     # compiler only allows importing by relative path when the importing and
     # imported files are underneath the same compilation source prefix, so the
     # source prefix must be src/, not src/test/
-    add_library(bitcoin_ipc_test STATIC EXCLUDE_FROM_ALL
+    add_library(andaluzcoin_ipc_test STATIC EXCLUDE_FROM_ALL
       test/ipc_test.cpp
     )
-    target_capnp_sources(bitcoin_ipc_test ${PROJECT_SOURCE_DIR}
+    target_capnp_sources(andaluzcoin_ipc_test ${PROJECT_SOURCE_DIR}
       test/ipc_test.capnp
     )
-    add_dependencies(bitcoin_ipc_test bitcoin_ipc_headers)
+    add_dependencies(andaluzcoin_ipc_test andaluzcoin_ipc_headers)
   endif()
 endif()
 
 
-add_library(bitcoin_cli STATIC EXCLUDE_FROM_ALL
+add_library(andaluzcoin_cli STATIC EXCLUDE_FROM_ALL
   compat/stdin.cpp
   rpc/client.cpp
 )
-target_link_libraries(bitcoin_cli
+target_link_libraries(andaluzcoin_cli
   PUBLIC
     core_interface
     univalue
 )
 
 
-# Bitcoin Core RPC client
+# Andaluzcoin Core RPC client
 if(BUILD_CLI)
-  add_executable(bitcoin-cli bitcoin-cli.cpp)
-  add_windows_resources(bitcoin-cli bitcoin-cli-res.rc)
-  target_link_libraries(bitcoin-cli
+  add_executable(andaluzcoin-cli andaluzcoin-cli.cpp)
+  add_windows_resources(andaluzcoin-cli andaluzcoin-cli-res.rc)
+  target_link_libraries(andaluzcoin-cli
     core_interface
-    bitcoin_cli
-    bitcoin_common
-    bitcoin_util
+    andaluzcoin_cli
+    andaluzcoin_common
+    andaluzcoin_util
     libevent::core
     libevent::extra
   )
-  list(APPEND installable_targets bitcoin-cli)
+  list(APPEND installable_targets andaluzcoin-cli)
 endif()
 
 
 if(BUILD_TX)
-  add_executable(bitcoin-tx bitcoin-tx.cpp)
-  add_windows_resources(bitcoin-tx bitcoin-tx-res.rc)
-  target_link_libraries(bitcoin-tx
+  add_executable(andaluzcoin-tx andaluzcoin-tx.cpp)
+  add_windows_resources(andaluzcoin-tx andaluzcoin-tx-res.rc)
+  target_link_libraries(andaluzcoin-tx
     core_interface
-    bitcoin_common
-    bitcoin_util
+    andaluzcoin_common
+    andaluzcoin_util
     univalue
   )
-  list(APPEND installable_targets bitcoin-tx)
+  list(APPEND installable_targets andaluzcoin-tx)
 endif()
 
 
 if(BUILD_UTIL)
-  add_executable(bitcoin-util bitcoin-util.cpp)
-  add_windows_resources(bitcoin-util bitcoin-util-res.rc)
-  target_link_libraries(bitcoin-util
+  add_executable(andaluzcoin-util andaluzcoin-util.cpp)
+  add_windows_resources(andaluzcoin-util andaluzcoin-util-res.rc)
+  target_link_libraries(andaluzcoin-util
     core_interface
-    bitcoin_common
-    bitcoin_util
+    andaluzcoin_common
+    andaluzcoin_util
   )
-  list(APPEND installable_targets bitcoin-util)
+  list(APPEND installable_targets andaluzcoin-util)
 endif()
 
 
@@ -413,22 +413,22 @@ if(BUILD_KERNEL_LIB)
 endif()
 
 if(BUILD_UTIL_CHAINSTATE)
-  add_executable(bitcoin-chainstate
-    bitcoin-chainstate.cpp
+  add_executable(andaluzcoin-chainstate
+    andaluzcoin-chainstate.cpp
   )
   # TODO: The `SKIP_BUILD_RPATH` property setting can be deleted
   #       in the future after reordering Guix script commands to
   #       perform binary checks after the installation step.
   # Relevant discussions:
-  # - https://github.com/hebasto/bitcoin/pull/236#issuecomment-2183120953
-  # - https://github.com/bitcoin/bitcoin/pull/30312#issuecomment-2191235833
-  set_target_properties(bitcoin-chainstate PROPERTIES
+  # - https://github.com/hebasto/andaluzcoin/pull/236#issuecomment-2183120953
+  # - https://github.com/andaluzcoin/andaluzcoin/pull/30312#issuecomment-2191235833
+  set_target_properties(andaluzcoin-chainstate PROPERTIES
     SKIP_BUILD_RPATH OFF
   )
-  target_link_libraries(bitcoin-chainstate
+  target_link_libraries(andaluzcoin-chainstate
     PRIVATE
       core_interface
-      bitcoinkernel
+      andaluzcoinkernel
   )
 endif()
 

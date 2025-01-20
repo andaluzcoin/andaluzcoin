@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #
-# Copyright (c) 2020-present The Bitcoin Core developers
+# Copyright (c) 2020-present The Andaluzcoin Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -20,4 +20,4 @@ export BITCOIN_CONFIG="\
  -DCMAKE_CXX_FLAGS='-Wno-error=documentation' \
  -DAPPEND_CPPFLAGS='-DBOOST_MULTI_INDEX_ENABLE_SAFE_MODE' \
 "
-export BITCOIND=bitcoin-node  # Used in functional tests
+export BITCOIND=andaluzcoin-node  # Used in functional tests

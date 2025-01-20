@@ -1,10 +1,10 @@
-# Multiprocess Bitcoin
+# Multiprocess Andaluzcoin
 
 _This document describes usage of the multiprocess feature. For design information, see the [design/multiprocess.md](design/multiprocess.md) file._
 
 ## Build Option
 
-On Unix systems, the `-DWITH_MULTIPROCESS=ON` build option can be passed to build the supplemental `bitcoin-node` and `bitcoin-gui` multiprocess executables.
+On Unix systems, the `-DWITH_MULTIPROCESS=ON` build option can be passed to build the supplemental `andaluzcoin-node` and `andaluzcoin-gui` multiprocess executables.
 
 ## Debugging
 
@@ -21,8 +21,8 @@ make -C depends NO_QT=1 MULTIPROCESS=1
 HOST_PLATFORM="x86_64-pc-linux-gnu"
 cmake -B build --toolchain=depends/$HOST_PLATFORM/toolchain.cmake
 cmake --build build
-build/src/bitcoin-node -regtest -printtoconsole -debug=ipc
-BITCOIND=$(pwd)/build/src/bitcoin-node build/test/functional/test_runner.py
+build/src/andaluzcoin-node -regtest -printtoconsole -debug=ipc
+BITCOIND=$(pwd)/build/src/andaluzcoin-node build/test/functional/test_runner.py
 ```
 
 The `cmake` build will pick up settings and library locations from the depends directory, so there is no need to pass `-DWITH_MULTIPROCESS=ON` as a separate flag when using the depends system (it's controlled by the `MULTIPROCESS=1` option).
@@ -31,6 +31,6 @@ Alternately, you can install [Cap'n Proto](https://capnproto.org/) and [libmulti
 
 ## Usage
 
-`bitcoin-node` is a drop-in replacement for `bitcoind`, and `bitcoin-gui` is a drop-in replacement for `bitcoin-qt`, and there are no differences in use or external behavior between the new and old executables. But internally after [#10102](https://github.com/bitcoin/bitcoin/pull/10102), `bitcoin-gui` will spawn a `bitcoin-node` process to run P2P and RPC code, communicating with it across a socket pair, and `bitcoin-node` will spawn `bitcoin-wallet` to run wallet code, also communicating over a socket pair. This will let node, wallet, and GUI code run in separate address spaces for better isolation, and allow future improvements like being able to start and stop components independently on different machines and environments.
-[#19460](https://github.com/bitcoin/bitcoin/pull/19460) also adds a new `bitcoin-node` `-ipcbind` option and an `bitcoind-wallet` `-ipcconnect` option to allow new wallet processes to connect to an existing node process.
-And [#19461](https://github.com/bitcoin/bitcoin/pull/19461) adds a new `bitcoin-gui` `-ipcconnect` option to allow new GUI processes to connect to an existing node process.
+`andaluzcoin-node` is a drop-in replacement for `andaluzcoind`, and `andaluzcoin-gui` is a drop-in replacement for `andaluzcoin-qt`, and there are no differences in use or external behavior between the new and old executables. But internally after [#10102](https://github.com/andaluzcoin/andaluzcoin/pull/10102), `andaluzcoin-gui` will spawn a `andaluzcoin-node` process to run P2P and RPC code, communicating with it across a socket pair, and `andaluzcoin-node` will spawn `andaluzcoin-wallet` to run wallet code, also communicating over a socket pair. This will let node, wallet, and GUI code run in separate address spaces for better isolation, and allow future improvements like being able to start and stop components independently on different machines and environments.
+[#19460](https://github.com/andaluzcoin/andaluzcoin/pull/19460) also adds a new `andaluzcoin-node` `-ipcbind` option and an `andaluzcoind-wallet` `-ipcconnect` option to allow new wallet processes to connect to an existing node process.
+And [#19461](https://github.com/andaluzcoin/andaluzcoin/pull/19461) adds a new `andaluzcoin-gui` `-ipcconnect` option to allow new GUI processes to connect to an existing node process.

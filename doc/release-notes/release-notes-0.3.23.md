@@ -1,7 +1,7 @@
-Win32, Linux, MacOSX and source releases for bitcoin v0.3.23 have been uploaded to
-https://sourceforge.net/projects/bitcoin/files/Bitcoin/bitcoin-0.3.23/
+Win32, Linux, MacOSX and source releases for andaluzcoin v0.3.23 have been uploaded to
+https://sourceforge.net/projects/andaluzcoin/files/Andaluzcoin/andaluzcoin-0.3.23/
 
-This is another quick bugfix release, trying to deal with the influx of new bitcoin users.
+This is another quick bugfix release, trying to deal with the influx of new andaluzcoin users.
 
 Main items of note:
 

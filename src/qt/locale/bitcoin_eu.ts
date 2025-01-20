@@ -58,13 +58,13 @@
         <translation type="unfinished">&amp;Aukeratu</translation>
     </message>
     <message>
-        <source>These are your Bitcoin addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
-        <translation type="unfinished">Hauek dira zuk dirua jaso dezaketen Bitcoin helbideak. Egiaztatu beti diru-kopurua eta dirua jasoko duen helbidea zuzen egon daitezen, txanponak bidali baino lehen.</translation>
+        <source>These are your Andaluzcoin addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
+        <translation type="unfinished">Hauek dira zuk dirua jaso dezaketen Andaluzcoin helbideak. Egiaztatu beti diru-kopurua eta dirua jasoko duen helbidea zuzen egon daitezen, txanponak bidali baino lehen.</translation>
     </message>
     <message>
-        <source>These are your Bitcoin addresses for receiving payments. Use the 'Create new receiving address' button in the receive tab to create new addresses.
+        <source>These are your Andaluzcoin addresses for receiving payments. Use the 'Create new receiving address' button in the receive tab to create new addresses.
 Signing is only possible with addresses of the type 'legacy'.</source>
-        <translation type="unfinished">Hauek dira ordainketak jasotzeko zure Bitcoin helbideak. Jaso taulako 'Jasotzeko helbide berri bat sortu' botoia erabili helbide berri bat sortzeko.
+        <translation type="unfinished">Hauek dira ordainketak jasotzeko zure Andaluzcoin helbideak. Jaso taulako 'Jasotzeko helbide berri bat sortu' botoia erabili helbide berri bat sortzeko.
 Sinatzea 'legacy' motako helbideekin soilik da posible</translation>
     </message>
     <message>
@@ -176,8 +176,8 @@ Sinatzea 'legacy' motako helbideekin soilik da posible</translation>
         <translation type="unfinished">Diruzorroaren pasahitz zahar zein berria sartu.</translation>
     </message>
     <message>
-        <source>Remember that encrypting your wallet cannot fully protect your bitcoins from being stolen by malware infecting your computer.</source>
-        <translation type="unfinished">Gogoan izan diruzorroaren enkripzioak ezin dituela zure bitcoinak zure ordenagailuan izan dezakezun malware batengandik lapurtuak izatetik guztiz babestu .</translation>
+        <source>Remember that encrypting your wallet cannot fully protect your andaluzcoins from being stolen by malware infecting your computer.</source>
+        <translation type="unfinished">Gogoan izan diruzorroaren enkripzioak ezin dituela zure andaluzcoinak zure ordenagailuan izan dezakezun malware batengandik lapurtuak izatetik guztiz babestu .</translation>
     </message>
     <message>
         <source>Wallet to be encrypted</source>
@@ -236,7 +236,7 @@ Sinatzea 'legacy' motako helbideekin soilik da posible</translation>
     </message>
 </context>
 <context>
-    <name>BitcoinApplication</name>
+    <name>AndaluzcoinApplication</name>
     <message>
         <source>Runaway exception</source>
         <translation type="unfinished">Ranaway exception</translation>
@@ -316,7 +316,7 @@ Sinatzea 'legacy' motako helbideekin soilik da posible</translation>
     </message>
 </context>
 <context>
-    <name>BitcoinGUI</name>
+    <name>AndaluzcoinGUI</name>
     <message>
         <source>&amp;Overview</source>
         <translation type="unfinished">&amp;Gainbegiratu</translation>
@@ -383,8 +383,8 @@ Sinatzea 'legacy' motako helbideekin soilik da posible</translation>
         <translation type="unfinished">Proxya &lt;b&gt;gaituta&lt;/b&gt; dago : %1</translation>
     </message>
     <message>
-        <source>Send coins to a Bitcoin address</source>
-        <translation type="unfinished">Bidali txanponak Bitcoin helbide batera</translation>
+        <source>Send coins to a Andaluzcoin address</source>
+        <translation type="unfinished">Bidali txanponak Andaluzcoin helbide batera</translation>
     </message>
     <message>
         <source>Backup wallet to another location</source>
@@ -427,16 +427,16 @@ Sinatzea 'legacy' motako helbideekin soilik da posible</translation>
         <translation type="unfinished">sinatu &amp;mezua</translation>
     </message>
     <message>
-        <source>Sign messages with your Bitcoin addresses to prove you own them</source>
-        <translation type="unfinished">Sinatu mezuak Bitcoinen helbideekin, jabetza frogatzeko.</translation>
+        <source>Sign messages with your Andaluzcoin addresses to prove you own them</source>
+        <translation type="unfinished">Sinatu mezuak Andaluzcoinen helbideekin, jabetza frogatzeko.</translation>
     </message>
     <message>
         <source>&amp;Verify message…</source>
         <translation type="unfinished">Mezua &amp;balioztatu</translation>
     </message>
     <message>
-        <source>Verify messages to ensure they were signed with specified Bitcoin addresses</source>
-        <translation type="unfinished">Egiaztatu mesua Bitcoin helbide espezifikoarekin erregistratu direla ziurtatzeko</translation>
+        <source>Verify messages to ensure they were signed with specified Andaluzcoin addresses</source>
+        <translation type="unfinished">Egiaztatu mesua Andaluzcoin helbide espezifikoarekin erregistratu direla ziurtatzeko</translation>
     </message>
     <message>
         <source>&amp;Load PSBT from file…</source>
@@ -542,16 +542,16 @@ Sinatzea 'legacy' motako helbideekin soilik da posible</translation>
         <translation type="unfinished">Eguneratua</translation>
     </message>
     <message>
-        <source>Load Partially Signed Bitcoin Transaction</source>
-        <translation type="unfinished">Partzialki sinatutako Bitcoin transakzioa kargatu</translation>
+        <source>Load Partially Signed Andaluzcoin Transaction</source>
+        <translation type="unfinished">Partzialki sinatutako Andaluzcoin transakzioa kargatu</translation>
     </message>
     <message>
         <source>Load PSBT from &amp;clipboard…</source>
         <translation type="unfinished">kargatu PSBT arbeletik...</translation>
     </message>
     <message>
-        <source>Load Partially Signed Bitcoin Transaction from clipboard</source>
-        <translation type="unfinished">Partzialki sinatutako Bitcoin transakzioa kargatu arbeletik</translation>
+        <source>Load Partially Signed Andaluzcoin Transaction from clipboard</source>
+        <translation type="unfinished">Partzialki sinatutako Andaluzcoin transakzioa kargatu arbeletik</translation>
     </message>
     <message>
         <source>Node window</source>
@@ -566,8 +566,8 @@ Sinatzea 'legacy' motako helbideekin soilik da posible</translation>
         <translation type="unfinished">&amp;Helbideak jasotzen</translation>
     </message>
     <message>
-        <source>Open a bitcoin: URI</source>
-        <translation type="unfinished">Ireki bitcoin bat: URI</translation>
+        <source>Open a andaluzcoin: URI</source>
+        <translation type="unfinished">Ireki andaluzcoin bat: URI</translation>
     </message>
     <message>
         <source>Open Wallet</source>
@@ -619,7 +619,7 @@ Sinatzea 'legacy' motako helbideekin soilik da posible</translation>
         <translation type="unfinished">E&amp;rakutsi</translation>
     </message>
     <message numerus="yes">
-        <source>%n active connection(s) to Bitcoin network.</source>
+        <source>%n active connection(s) to Andaluzcoin network.</source>
         <extracomment>A substring of the tooltip.</extracomment>
         <translation type="unfinished">
             <numerusform />
@@ -1094,8 +1094,8 @@ Sinatzea 'legacy' motako helbideekin soilik da posible</translation>
 <context>
     <name>OpenURIDialog</name>
     <message>
-        <source>Open bitcoin URI</source>
-        <translation type="unfinished">Ireki bitcoin URIa</translation>
+        <source>Open andaluzcoin URI</source>
+        <translation type="unfinished">Ireki andaluzcoin URIa</translation>
     </message>
     <message>
         <source>URI:</source>
@@ -2166,7 +2166,7 @@ Sinatzea 'legacy' motako helbideekin soilik da posible</translation>
     </message>
     </context>
 <context>
-    <name>bitcoin-core</name>
+    <name>andaluzcoin-core</name>
     <message>
         <source>Done loading</source>
         <translation type="unfinished">Zamaketa amaitua</translation>

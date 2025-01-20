@@ -1,7 +1,7 @@
 [main]
 host = https://www.transifex.com
 
-[o:bitcoin:p:bitcoin:r:qt-translation-028x]
-file_filter = src/qt/locale/bitcoin_<lang>.xlf
-source_file = src/qt/locale/bitcoin_en.xlf
+[o:andaluzcoin:p:andaluzcoin:r:qt-translation-028x]
+file_filter = src/qt/locale/andaluzcoin_<lang>.xlf
+source_file = src/qt/locale/andaluzcoin_en.xlf
 source_lang = en

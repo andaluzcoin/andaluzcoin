@@ -5,47 +5,47 @@ for the process.*
 *version* Release Notes Draft
 ===============================
 
-Bitcoin Core version *version* is now available from:
+Andaluzcoin Core version *version* is now available from:
 
-  <https://bitcoincore.org/bin/bitcoin-core-*version*/>
+  <https://andaluzcoincore.org/bin/andaluzcoin-core-*version*/>
 
 This release includes new features, various bug fixes and performance
 improvements, as well as updated translations.
 
 Please report bugs using the issue tracker at GitHub:
 
-  <https://github.com/bitcoin/bitcoin/issues>
+  <https://github.com/andaluzcoin/andaluzcoin/issues>
 
 To receive security and update notifications, please subscribe to:
 
-  <https://bitcoincore.org/en/list/announcements/join/>
+  <https://andaluzcoincore.org/en/list/announcements/join/>
 
 How to Upgrade
 ==============
 
 If you are running an older version, shut it down. Wait until it has completely
 shut down (which might take a few minutes in some cases), then run the
-installer (on Windows) or just copy over `/Applications/Bitcoin-Qt` (on macOS)
-or `bitcoind`/`bitcoin-qt` (on Linux).
+installer (on Windows) or just copy over `/Applications/Andaluzcoin-Qt` (on macOS)
+or `andaluzcoind`/`andaluzcoin-qt` (on Linux).
 
-Upgrading directly from a version of Bitcoin Core that has reached its EOL is
+Upgrading directly from a version of Andaluzcoin Core that has reached its EOL is
 possible, but it might take some time if the data directory needs to be migrated. Old
-wallet versions of Bitcoin Core are generally supported.
+wallet versions of Andaluzcoin Core are generally supported.
 
-Running Bitcoin Core binaries on macOS requires self signing.
+Running Andaluzcoin Core binaries on macOS requires self signing.
 ```
-cd /path/to/bitcoin-core/bin
-xattr -d com.apple.quarantine bitcoin-cli bitcoin-qt bitcoin-tx bitcoin-util bitcoin-wallet bitcoind test_bitcoin
-codesign -s - bitcoin-cli bitcoin-qt bitcoin-tx bitcoin-util bitcoin-wallet bitcoind test_bitcoin
+cd /path/to/andaluzcoin-core/bin
+xattr -d com.apple.quarantine andaluzcoin-cli andaluzcoin-qt andaluzcoin-tx andaluzcoin-util andaluzcoin-wallet andaluzcoind test_andaluzcoin
+codesign -s - andaluzcoin-cli andaluzcoin-qt andaluzcoin-tx andaluzcoin-util andaluzcoin-wallet andaluzcoind test_andaluzcoin
 ```
 
 Compatibility
 ==============
 
-Bitcoin Core is supported and tested on operating systems using the
-Linux Kernel 3.17+, macOS 13+, and Windows 10+. Bitcoin
+Andaluzcoin Core is supported and tested on operating systems using the
+Linux Kernel 3.17+, macOS 13+, and Windows 10+. Andaluzcoin
 Core should also work on most other Unix-like systems but is not as
-frequently tested on them. It is not recommended to use Bitcoin Core on
+frequently tested on them. It is not recommended to use Andaluzcoin Core on
 unsupported systems.
 
 Notable changes
@@ -103,4 +103,4 @@ Thanks to everyone who directly contributed to this release:
 
 
 As well as to everyone that helped with translations on
-[Transifex](https://www.transifex.com/bitcoin/bitcoin/).
+[Transifex](https://www.transifex.com/andaluzcoin/andaluzcoin/).

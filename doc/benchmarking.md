@@ -1,24 +1,24 @@
 Benchmarking
 ============
 
-Bitcoin Core has an internal benchmarking framework, with benchmarks
+Andaluzcoin Core has an internal benchmarking framework, with benchmarks
 for cryptographic algorithms (e.g. SHA1, SHA256, SHA512, RIPEMD160, Poly1305, ChaCha20), rolling bloom filter, coins selection,
 thread queue, wallet balance.
 
 Running
 ---------------------
 
-For benchmarking, you only need to compile `bench_bitcoin`.  The bench runner
+For benchmarking, you only need to compile `bench_andaluzcoin`.  The bench runner
 warns if you configure with `-DCMAKE_BUILD_TYPE=Debug`, but consider if building without
 it will impact the benchmark(s) you are interested in by unlatching log printers
 and lock analysis.
 
     cmake -B build -DBUILD_BENCH=ON
-    cmake --build build -t bench_bitcoin
+    cmake --build build -t bench_andaluzcoin
 
-After compiling bitcoin-core, the benchmarks can be run with:
+After compiling andaluzcoin-core, the benchmarks can be run with:
 
-    build/src/bench/bench_bitcoin
+    build/src/bench/bench_andaluzcoin
 
 The output will look similar to:
 ```
@@ -40,7 +40,7 @@ The output will look similar to:
 Help
 ---------------------
 
-    build/src/bench/bench_bitcoin -h
+    build/src/bench/bench_andaluzcoin -h
 
 To print the various options, like listing the benchmarks without running them
 or using a regex filter to only run certain benchmarks.
@@ -57,6 +57,6 @@ More benchmarks are needed for, in no particular order:
 Going Further
 --------------------
 
-To monitor Bitcoin Core performance more in depth (like reindex or IBD): https://github.com/chaincodelabs/bitcoinperf
+To monitor Andaluzcoin Core performance more in depth (like reindex or IBD): https://github.com/chaincodelabs/andaluzcoinperf
 
-To generate Flame Graphs for Bitcoin Core: https://github.com/eklitzke/bitcoin/blob/flamegraphs/doc/flamegraphs.md
+To generate Flame Graphs for Andaluzcoin Core: https://github.com/eklitzke/andaluzcoin/blob/flamegraphs/doc/flamegraphs.md
