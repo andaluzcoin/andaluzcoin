@@ -2,8 +2,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef BITCOIN_QT_OPTIONSMODEL_H
-#define BITCOIN_QT_OPTIONSMODEL_H
+#ifndef ANDALUZCOIN_QT_OPTIONSMODEL_H
+#define ANDALUZCOIN_QT_OPTIONSMODEL_H
 
 #include <cstdint>
 #include <qt/andaluzcoinunits.h>
@@ -156,4 +156,4 @@ Q_SIGNALS:
 
 Q_DECLARE_METATYPE(OptionsModel::FontChoice)
 
-#endif // BITCOIN_QT_OPTIONSMODEL_H
+#endif // ANDALUZCOIN_QT_OPTIONSMODEL_H

@@ -15,14 +15,14 @@ The `-debug=ipc` command line option can be used to see requests and responses b
 The multiprocess feature requires [Cap'n Proto](https://capnproto.org/) and [libmultiprocess](https://github.com/chaincodelabs/libmultiprocess) as dependencies. A simple way to get started using it without installing these dependencies manually is to use the [depends system](../depends) with the `MULTIPROCESS=1` [dependency option](../depends#dependency-options) passed to make:
 
 ```
-cd <BITCOIN_SOURCE_DIRECTORY>
+cd <ANDALUZCOIN_SOURCE_DIRECTORY>
 make -C depends NO_QT=1 MULTIPROCESS=1
 # Set host platform to output of gcc -dumpmachine or clang -dumpmachine or check the depends/ directory for the generated subdirectory name
 HOST_PLATFORM="x86_64-pc-linux-gnu"
 cmake -B build --toolchain=depends/$HOST_PLATFORM/toolchain.cmake
 cmake --build build
 build/src/andaluzcoin-node -regtest -printtoconsole -debug=ipc
-BITCOIND=$(pwd)/build/src/andaluzcoin-node build/test/functional/test_runner.py
+ANDALUZCOIND=$(pwd)/build/src/andaluzcoin-node build/test/functional/test_runner.py
 ```
 
 The `cmake` build will pick up settings and library locations from the depends directory, so there is no need to pass `-DWITH_MULTIPROCESS=ON` as a separate flag when using the depends system (it's controlled by the `MULTIPROCESS=1` option).

@@ -1,33 +1,33 @@
 # /etc/conf.d/andaluzcoind: config file for /etc/init.d/andaluzcoind
 
 # Config file location
-#BITCOIND_CONFIGFILE="/etc/andaluzcoin/andaluzcoin.conf"
+#ANDALUZCOIND_CONFIGFILE="/etc/andaluzcoin/andaluzcoin.conf"
 
-# What directory to write pidfile to?  (created and owned by $BITCOIND_USER)
-#BITCOIND_PIDDIR="/var/run/andaluzcoind"
+# What directory to write pidfile to?  (created and owned by $ANDALUZCOIND_USER)
+#ANDALUZCOIND_PIDDIR="/var/run/andaluzcoind"
 
 # What filename to give the pidfile
-#BITCOIND_PIDFILE="${BITCOIND_PIDDIR}/andaluzcoind.pid"
+#ANDALUZCOIND_PIDFILE="${ANDALUZCOIND_PIDDIR}/andaluzcoind.pid"
 
 # Where to write andaluzcoind data (be mindful that the blockchain is large)
-#BITCOIND_DATADIR="/var/lib/andaluzcoind"
+#ANDALUZCOIND_DATADIR="/var/lib/andaluzcoind"
 
 # User and group to own andaluzcoind process
-#BITCOIND_USER="andaluzcoin"
-#BITCOIND_GROUP="andaluzcoin"
+#ANDALUZCOIND_USER="andaluzcoin"
+#ANDALUZCOIND_GROUP="andaluzcoin"
 
 # Path to andaluzcoind executable
-#BITCOIND_BIN="/usr/bin/andaluzcoind"
+#ANDALUZCOIND_BIN="/usr/bin/andaluzcoind"
 
 # Nice value to run andaluzcoind under
-#BITCOIND_NICE=0
+#ANDALUZCOIND_NICE=0
 
 # Additional options (avoid -conf and -datadir, use flags above)
-#BITCOIND_OPTS=""
+#ANDALUZCOIND_OPTS=""
 
 # The timeout in seconds OpenRC will wait for andaluzcoind to terminate
 # after a SIGTERM has been raised.
 # Note that this will be mapped as argument to start-stop-daemon's
 # '--retry' option, which means you can specify a retry schedule
 # here. For more information see man 8 start-stop-daemon.
-BITCOIND_SIGTERM_TIMEOUT=600
+ANDALUZCOIND_SIGTERM_TIMEOUT=600

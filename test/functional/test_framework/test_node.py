@@ -42,13 +42,13 @@ from .util import (
     tor_port,
 )
 
-BITCOIND_PROC_WAIT_TIMEOUT = 60
+ANDALUZCOIND_PROC_WAIT_TIMEOUT = 60
 # The size of the blocks xor key
 # from InitBlocksdirXorKey::xor_key.size()
 NUM_XOR_BYTES = 8
 # The null blocks key (all 0s)
 NULL_BLK_XOR_KEY = bytes([0] * NUM_XOR_BYTES)
-BITCOIN_PID_FILENAME_DEFAULT = "andaluzcoind.pid"
+ANDALUZCOIN_PID_FILENAME_DEFAULT = "andaluzcoind.pid"
 
 
 class FailedToStartError(Exception):
@@ -438,7 +438,7 @@ class TestNode():
         self.log.debug("Node stopped")
         return True
 
-    def wait_until_stopped(self, *, timeout=BITCOIND_PROC_WAIT_TIMEOUT, expect_error=False, **kwargs):
+    def wait_until_stopped(self, *, timeout=ANDALUZCOIND_PROC_WAIT_TIMEOUT, expect_error=False, **kwargs):
         if "expected_ret_code" not in kwargs:
             kwargs["expected_ret_code"] = 1 if expect_error else 0  # Whether node shutdown return EXIT_FAILURE or EXIT_SUCCESS
         self.wait_until(lambda: self.is_node_stopped(**kwargs), timeout=timeout)

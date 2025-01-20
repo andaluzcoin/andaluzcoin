@@ -2,8 +2,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef BITCOIN_TXORPHANAGE_H
-#define BITCOIN_TXORPHANAGE_H
+#ifndef ANDALUZCOIN_TXORPHANAGE_H
+#define ANDALUZCOIN_TXORPHANAGE_H
 
 #include <net.h>
 #include <primitives/block.h>
@@ -121,4 +121,4 @@ protected:
     NodeSeconds m_next_sweep{0s};
 };
 
-#endif // BITCOIN_TXORPHANAGE_H
+#endif // ANDALUZCOIN_TXORPHANAGE_H

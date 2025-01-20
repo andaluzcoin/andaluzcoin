@@ -8,7 +8,7 @@ import string
 
 from test_framework.test_framework import AndaluzcoinTestFramework
 from test_framework.test_node import (
-    BITCOIN_PID_FILENAME_DEFAULT,
+    ANDALUZCOIN_PID_FILENAME_DEFAULT,
     ErrorMatch,
 )
 
@@ -36,7 +36,7 @@ class FilelockTest(AndaluzcoinTestFramework):
         self.log.info("Check that cookie and PID file are not deleted when attempting to start a second andaluzcoind using the same datadir")
         cookie_file = datadir / ".cookie"
         assert cookie_file.exists()  # should not be deleted during the second andaluzcoind instance shutdown
-        pid_file = datadir / BITCOIN_PID_FILENAME_DEFAULT
+        pid_file = datadir / ANDALUZCOIN_PID_FILENAME_DEFAULT
         assert pid_file.exists()
 
         if self.is_wallet_compiled():

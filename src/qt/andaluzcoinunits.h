@@ -2,8 +2,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef BITCOIN_QT_BITCOINUNITS_H
-#define BITCOIN_QT_BITCOINUNITS_H
+#ifndef ANDALUZCOIN_QT_ANDALUZCOINUNITS_H
+#define ANDALUZCOIN_QT_ANDALUZCOINUNITS_H
 
 #include <consensus/amount.h>
 
@@ -113,4 +113,4 @@ typedef AndaluzcoinUnits::Unit AndaluzcoinUnit;
 QDataStream& operator<<(QDataStream& out, const AndaluzcoinUnit& unit);
 QDataStream& operator>>(QDataStream& in, AndaluzcoinUnit& unit);
 
-#endif // BITCOIN_QT_BITCOINUNITS_H
+#endif // ANDALUZCOIN_QT_ANDALUZCOINUNITS_H

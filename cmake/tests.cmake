@@ -4,7 +4,7 @@
 
 if(TARGET andaluzcoin-util AND TARGET andaluzcoin-tx AND PYTHON_COMMAND)
   add_test(NAME util_test_runner
-    COMMAND ${CMAKE_COMMAND} -E env BITCOINUTIL=$<TARGET_FILE:andaluzcoin-util> BITCOINTX=$<TARGET_FILE:andaluzcoin-tx> ${PYTHON_COMMAND} ${PROJECT_BINARY_DIR}/test/util/test_runner.py
+    COMMAND ${CMAKE_COMMAND} -E env ANDALUZCOINUTIL=$<TARGET_FILE:andaluzcoin-util> ANDALUZCOINTX=$<TARGET_FILE:andaluzcoin-tx> ${PYTHON_COMMAND} ${PROJECT_BINARY_DIR}/test/util/test_runner.py
   )
 endif()
 

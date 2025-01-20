@@ -2,8 +2,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef BITCOIN_UTIL_HASHER_H
-#define BITCOIN_UTIL_HASHER_H
+#ifndef ANDALUZCOIN_UTIL_HASHER_H
+#define ANDALUZCOIN_UTIL_HASHER_H
 
 #include <crypto/common.h>
 #include <crypto/siphash.h>
@@ -97,4 +97,4 @@ public:
     size_t operator()(const Span<const unsigned char>& script) const;
 };
 
-#endif // BITCOIN_UTIL_HASHER_H
+#endif // ANDALUZCOIN_UTIL_HASHER_H

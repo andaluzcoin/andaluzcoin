@@ -2,8 +2,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef BITCOIN_TEST_IPC_TEST_H
-#define BITCOIN_TEST_IPC_TEST_H
+#ifndef ANDALUZCOIN_TEST_IPC_TEST_H
+#define ANDALUZCOIN_TEST_IPC_TEST_H
 
 #include <primitives/transaction.h>
 #include <univalue.h>
@@ -25,4 +25,4 @@ void IpcPipeTest();
 void IpcSocketPairTest();
 void IpcSocketTest(const fs::path& datadir);
 
-#endif // BITCOIN_TEST_IPC_TEST_H
+#endif // ANDALUZCOIN_TEST_IPC_TEST_H

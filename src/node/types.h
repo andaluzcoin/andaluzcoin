@@ -10,8 +10,8 @@
 //! dependencies. More complicated types should be defined in dedicated header
 //! files.
 
-#ifndef BITCOIN_NODE_TYPES_H
-#define BITCOIN_NODE_TYPES_H
+#ifndef ANDALUZCOIN_NODE_TYPES_H
+#define ANDALUZCOIN_NODE_TYPES_H
 
 #include <cstddef>
 #include <script/script.h>
@@ -63,4 +63,4 @@ struct BlockCreateOptions {
 };
 } // namespace node
 
-#endif // BITCOIN_NODE_TYPES_H
+#endif // ANDALUZCOIN_NODE_TYPES_H

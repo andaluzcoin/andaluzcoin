@@ -19,14 +19,14 @@ fi
 RETVAL=0
 
 prog=andaluzcoind
-# you can override the lockfile via BITCOIND_LOCKFILE in /etc/sysconfig/andaluzcoind
-lockfile=${BITCOIND_LOCKFILE-/var/lock/subsys/andaluzcoind}
+# you can override the lockfile via ANDALUZCOIND_LOCKFILE in /etc/sysconfig/andaluzcoind
+lockfile=${ANDALUZCOIND_LOCKFILE-/var/lock/subsys/andaluzcoind}
 
-# andaluzcoind defaults to /usr/bin/andaluzcoind, override with BITCOIND_BIN
-andaluzcoind=${BITCOIND_BIN-/usr/bin/andaluzcoind}
+# andaluzcoind defaults to /usr/bin/andaluzcoind, override with ANDALUZCOIND_BIN
+andaluzcoind=${ANDALUZCOIND_BIN-/usr/bin/andaluzcoind}
 
-# andaluzcoind opts default to -disablewallet, override with BITCOIND_OPTS
-andaluzcoind_opts=${BITCOIND_OPTS--disablewallet}
+# andaluzcoind opts default to -disablewallet, override with ANDALUZCOIND_OPTS
+andaluzcoind_opts=${ANDALUZCOIND_OPTS--disablewallet}
 
 start() {
     echo -n $"Starting $prog: "

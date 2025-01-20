@@ -3,40 +3,40 @@
 # backward compatibility for existing gentoo layout 
 #
 if [ -d "/var/lib/andaluzcoin/.andaluzcoin" ]; then
-	BITCOIND_DEFAULT_DATADIR="/var/lib/andaluzcoin/.andaluzcoin"
+	ANDALUZCOIND_DEFAULT_DATADIR="/var/lib/andaluzcoin/.andaluzcoin"
 else
-	BITCOIND_DEFAULT_DATADIR="/var/lib/andaluzcoind"
+	ANDALUZCOIND_DEFAULT_DATADIR="/var/lib/andaluzcoind"
 fi
 
-BITCOIND_CONFIGFILE=${BITCOIND_CONFIGFILE:-/etc/andaluzcoin/andaluzcoin.conf}
-BITCOIND_PIDDIR=${BITCOIND_PIDDIR:-/var/run/andaluzcoind}
-BITCOIND_PIDFILE=${BITCOIND_PIDFILE:-${BITCOIND_PIDDIR}/andaluzcoind.pid}
-BITCOIND_DATADIR=${BITCOIND_DATADIR:-${BITCOIND_DEFAULT_DATADIR}}
-BITCOIND_USER=${BITCOIND_USER:-${BITCOIN_USER:-andaluzcoin}}
-BITCOIND_GROUP=${BITCOIND_GROUP:-andaluzcoin}
-BITCOIND_BIN=${BITCOIND_BIN:-/usr/bin/andaluzcoind}
-BITCOIND_NICE=${BITCOIND_NICE:-${NICELEVEL:-0}}
-BITCOIND_OPTS="${BITCOIND_OPTS:-${BITCOIN_OPTS}}"
+ANDALUZCOIND_CONFIGFILE=${ANDALUZCOIND_CONFIGFILE:-/etc/andaluzcoin/andaluzcoin.conf}
+ANDALUZCOIND_PIDDIR=${ANDALUZCOIND_PIDDIR:-/var/run/andaluzcoind}
+ANDALUZCOIND_PIDFILE=${ANDALUZCOIND_PIDFILE:-${ANDALUZCOIND_PIDDIR}/andaluzcoind.pid}
+ANDALUZCOIND_DATADIR=${ANDALUZCOIND_DATADIR:-${ANDALUZCOIND_DEFAULT_DATADIR}}
+ANDALUZCOIND_USER=${ANDALUZCOIND_USER:-${ANDALUZCOIN_USER:-andaluzcoin}}
+ANDALUZCOIND_GROUP=${ANDALUZCOIND_GROUP:-andaluzcoin}
+ANDALUZCOIND_BIN=${ANDALUZCOIND_BIN:-/usr/bin/andaluzcoind}
+ANDALUZCOIND_NICE=${ANDALUZCOIND_NICE:-${NICELEVEL:-0}}
+ANDALUZCOIND_OPTS="${ANDALUZCOIND_OPTS:-${ANDALUZCOIN_OPTS}}"
 
 name="Andaluzcoin Core Daemon"
 description="Andaluzcoin cryptocurrency P2P network daemon"
 
 command="/usr/bin/andaluzcoind"
-command_args="-pid=\"${BITCOIND_PIDFILE}\" \
-		-conf=\"${BITCOIND_CONFIGFILE}\" \
-		-datadir=\"${BITCOIND_DATADIR}\" \
+command_args="-pid=\"${ANDALUZCOIND_PIDFILE}\" \
+		-conf=\"${ANDALUZCOIND_CONFIGFILE}\" \
+		-datadir=\"${ANDALUZCOIND_DATADIR}\" \
 		-daemon \
-		${BITCOIND_OPTS}"
+		${ANDALUZCOIND_OPTS}"
 
-required_files="${BITCOIND_CONFIGFILE}"
-start_stop_daemon_args="-u ${BITCOIND_USER} \
-			-N ${BITCOIND_NICE} -w 2000"
-pidfile="${BITCOIND_PIDFILE}"
+required_files="${ANDALUZCOIND_CONFIGFILE}"
+start_stop_daemon_args="-u ${ANDALUZCOIND_USER} \
+			-N ${ANDALUZCOIND_NICE} -w 2000"
+pidfile="${ANDALUZCOIND_PIDFILE}"
 
 # The retry schedule to use when stopping the daemon. Could be either
 # a timeout in seconds or multiple signal/timeout pairs (like
 # "SIGKILL/180 SIGTERM/300")
-retry="${BITCOIND_SIGTERM_TIMEOUT}"
+retry="${ANDALUZCOIND_SIGTERM_TIMEOUT}"
 
 depend() {
 	need localmount net
@@ -50,30 +50,30 @@ start_pre() {
 	checkpath \
 	-d \
 	--mode 0750 \
-	--owner "${BITCOIND_USER}:${BITCOIND_GROUP}" \
-	"${BITCOIND_DATADIR}"
+	--owner "${ANDALUZCOIND_USER}:${ANDALUZCOIND_GROUP}" \
+	"${ANDALUZCOIND_DATADIR}"
 
 	checkpath \
 	-d \
 	--mode 0755 \
-	--owner "${BITCOIND_USER}:${BITCOIND_GROUP}" \
-	"${BITCOIND_PIDDIR}"
+	--owner "${ANDALUZCOIND_USER}:${ANDALUZCOIND_GROUP}" \
+	"${ANDALUZCOIND_PIDDIR}"
 
 	checkpath -f \
-	-o "${BITCOIND_USER}:${BITCOIND_GROUP}" \
+	-o "${ANDALUZCOIND_USER}:${ANDALUZCOIND_GROUP}" \
 	-m 0660 \
-	"${BITCOIND_CONFIGFILE}"
+	"${ANDALUZCOIND_CONFIGFILE}"
 
 	checkconfig || return 1
 }
 
 checkconfig()
 {
-	if grep -qs '^rpcuser=' "${BITCOIND_CONFIGFILE}" && \
-		! grep -qs '^rpcpassword=' "${BITCOIND_CONFIGFILE}" ; then
+	if grep -qs '^rpcuser=' "${ANDALUZCOIND_CONFIGFILE}" && \
+		! grep -qs '^rpcpassword=' "${ANDALUZCOIND_CONFIGFILE}" ; then
 		eerror ""
 		eerror "ERROR: You must set a secure rpcpassword to run andaluzcoind."
-		eerror "The setting must appear in ${BITCOIND_CONFIGFILE}"
+		eerror "The setting must appear in ${ANDALUZCOIND_CONFIGFILE}"
 		eerror ""
 		eerror "This password is security critical to securing wallets "
 		eerror "and must not be the same as the rpcuser setting."

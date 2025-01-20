@@ -249,10 +249,10 @@ class AndaluzcoinTestFramework(metaclass=AndaluzcoinTestMetaClass):
         """Update self.options with the paths of all binaries from environment variables or their default values"""
 
         binaries = {
-            "andaluzcoind": ("andaluzcoind", "BITCOIND"),
-            "andaluzcoin-cli": ("andaluzcoincli", "BITCOINCLI"),
-            "andaluzcoin-util": ("andaluzcoinutil", "BITCOINUTIL"),
-            "andaluzcoin-wallet": ("andaluzcoinwallet", "BITCOINWALLET"),
+            "andaluzcoind": ("andaluzcoind", "ANDALUZCOIND"),
+            "andaluzcoin-cli": ("andaluzcoincli", "ANDALUZCOINCLI"),
+            "andaluzcoin-util": ("andaluzcoinutil", "ANDALUZCOINUTIL"),
+            "andaluzcoin-wallet": ("andaluzcoinwallet", "ANDALUZCOINWALLET"),
         }
         for binary, [attribute_name, env_variable_name] in binaries.items():
             default_filename = os.path.join(
@@ -1050,7 +1050,7 @@ class AndaluzcoinTestFramework(metaclass=AndaluzcoinTestMetaClass):
 
     def is_andaluzcoin_util_compiled(self):
         """Checks whether andaluzcoin-util was compiled."""
-        return self.config["components"].getboolean("ENABLE_BITCOIN_UTIL")
+        return self.config["components"].getboolean("ENABLE_ANDALUZCOIN_UTIL")
 
     def is_zmq_compiled(self):
         """Checks whether the zmq module was compiled."""

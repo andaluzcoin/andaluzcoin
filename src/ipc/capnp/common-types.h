@@ -2,8 +2,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef BITCOIN_IPC_CAPNP_COMMON_TYPES_H
-#define BITCOIN_IPC_CAPNP_COMMON_TYPES_H
+#ifndef ANDALUZCOIN_IPC_CAPNP_COMMON_TYPES_H
+#define ANDALUZCOIN_IPC_CAPNP_COMMON_TYPES_H
 
 #include <clientversion.h>
 #include <interfaces/types.h>
@@ -162,4 +162,4 @@ requires
 }
 } // namespace mp
 
-#endif // BITCOIN_IPC_CAPNP_COMMON_TYPES_H
+#endif // ANDALUZCOIN_IPC_CAPNP_COMMON_TYPES_H

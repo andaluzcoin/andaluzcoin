@@ -34,7 +34,7 @@ NON_DETERMINISTIC_TESTS=(
     "wallet_tests/wallet_disableprivkeys"                     # validation.cpp: if (signals.CallbacksPending() > 10)
 )
 
-TEST_BITCOIN_BINARY="src/test/test_andaluzcoin"
+TEST_ANDALUZCOIN_BINARY="src/test/test_andaluzcoin"
 
 print_usage() {
     echo "Usage: $0 [custom test filter (default: all but known non-deterministic tests)] [number of test runs (default: 2)]"
@@ -80,8 +80,8 @@ if ! command -v gcovr > /dev/null; then
     exit 1
 fi
 
-if [[ ! -e ${TEST_BITCOIN_BINARY} ]]; then
-    echo "Error: Executable ${TEST_BITCOIN_BINARY} not found. Run \"cmake -B build -DCMAKE_BUILD_TYPE=Coverage\" and compile."
+if [[ ! -e ${TEST_ANDALUZCOIN_BINARY} ]]; then
+    echo "Error: Executable ${TEST_ANDALUZCOIN_BINARY} not found. Run \"cmake -B build -DCMAKE_BUILD_TYPE=Coverage\" and compile."
     exit 1
 fi
 
@@ -108,7 +108,7 @@ while [[ ${TEST_RUN_ID} -lt ${N_TEST_RUNS} ]]; do
         exit 1
     fi
     TEST_OUTPUT_TEMPFILE=$(mktemp)
-    if ! BOOST_TEST_RUN_FILTERS="${BOOST_TEST_RUN_FILTERS}" ${TEST_BITCOIN_BINARY} > "${TEST_OUTPUT_TEMPFILE}" 2>&1; then
+    if ! BOOST_TEST_RUN_FILTERS="${BOOST_TEST_RUN_FILTERS}" ${TEST_ANDALUZCOIN_BINARY} > "${TEST_OUTPUT_TEMPFILE}" 2>&1; then
         cat "${TEST_OUTPUT_TEMPFILE}"
         rm "${TEST_OUTPUT_TEMPFILE}"
         exit 1

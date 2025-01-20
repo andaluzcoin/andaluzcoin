@@ -2,8 +2,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef BITCOIN_RPC_REGISTER_H
-#define BITCOIN_RPC_REGISTER_H
+#ifndef ANDALUZCOIN_RPC_REGISTER_H
+#define ANDALUZCOIN_RPC_REGISTER_H
 
 #include <andaluzcoin-build-config.h> // IWYU pragma: keep
 
@@ -40,4 +40,4 @@ static inline void RegisterAllCoreRPCCommands(CRPCTable &t)
     RegisterTxoutProofRPCCommands(t);
 }
 
-#endif // BITCOIN_RPC_REGISTER_H
+#endif // ANDALUZCOIN_RPC_REGISTER_H

@@ -1,4 +1,4 @@
-# TOR SUPPORT IN BITCOIN
+# TOR SUPPORT IN ANDALUZCOIN
 
 It is possible to run Andaluzcoin Core as a Tor onion service, and connect to such services.
 

@@ -2,8 +2,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef BITCOIN_QT_TRANSACTIONDESC_H
-#define BITCOIN_QT_TRANSACTIONDESC_H
+#ifndef ANDALUZCOIN_QT_TRANSACTIONDESC_H
+#define ANDALUZCOIN_QT_TRANSACTIONDESC_H
 
 #include <qt/andaluzcoinunits.h>
 
@@ -34,4 +34,4 @@ private:
     static QString FormatTxStatus(const interfaces::WalletTxStatus& status, bool inMempool);
 };
 
-#endif // BITCOIN_QT_TRANSACTIONDESC_H
+#endif // ANDALUZCOIN_QT_TRANSACTIONDESC_H

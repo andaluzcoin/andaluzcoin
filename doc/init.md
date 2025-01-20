@@ -81,7 +81,7 @@ files out-of-the-box. This is because the command line options specified in the
 init files take precedence over the configurations in
 `/etc/andaluzcoin/andaluzcoin.conf`. However, some init systems have their own
 configuration mechanisms that would allow for overriding the command line
-options specified in the init files (e.g. setting `BITCOIND_DATADIR` for
+options specified in the init files (e.g. setting `ANDALUZCOIND_DATADIR` for
 OpenRC).
 
 ### macOS
@@ -127,7 +127,7 @@ use old versions of Upstart and do not supply the start-stop-daemon utility.
 Copy andaluzcoind.init to /etc/init.d/andaluzcoind. Test by running `service andaluzcoind start`.
 
 Using this script, you can adjust the path and flags to the andaluzcoind program by
-setting the BITCOIND and FLAGS environment variables in the file
+setting the ANDALUZCOIND and FLAGS environment variables in the file
 /etc/sysconfig/andaluzcoind. You can also use the DAEMONOPTS environment variable here.
 
 ### macOS

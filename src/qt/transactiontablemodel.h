@@ -2,8 +2,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef BITCOIN_QT_TRANSACTIONTABLEMODEL_H
-#define BITCOIN_QT_TRANSACTIONTABLEMODEL_H
+#ifndef ANDALUZCOIN_QT_TRANSACTIONTABLEMODEL_H
+#define ANDALUZCOIN_QT_TRANSACTIONTABLEMODEL_H
 
 #include <qt/andaluzcoinunits.h>
 
@@ -120,4 +120,4 @@ public Q_SLOTS:
     friend class TransactionTablePriv;
 };
 
-#endif // BITCOIN_QT_TRANSACTIONTABLEMODEL_H
+#endif // ANDALUZCOIN_QT_TRANSACTIONTABLEMODEL_H

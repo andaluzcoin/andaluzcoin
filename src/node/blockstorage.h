@@ -2,8 +2,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef BITCOIN_NODE_BLOCKSTORAGE_H
-#define BITCOIN_NODE_BLOCKSTORAGE_H
+#ifndef ANDALUZCOIN_NODE_BLOCKSTORAGE_H
+#define ANDALUZCOIN_NODE_BLOCKSTORAGE_H
 
 #include <attributes.h>
 #include <chain.h>
@@ -434,4 +434,4 @@ public:
 void ImportBlocks(ChainstateManager& chainman, std::span<const fs::path> import_paths);
 } // namespace node
 
-#endif // BITCOIN_NODE_BLOCKSTORAGE_H
+#endif // ANDALUZCOIN_NODE_BLOCKSTORAGE_H

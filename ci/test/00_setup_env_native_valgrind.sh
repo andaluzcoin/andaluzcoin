@@ -14,7 +14,7 @@ export NO_DEPENDS=1
 export TEST_RUNNER_EXTRA="--exclude feature_init,rpc_bind,feature_bind_extra"  # feature_init excluded for now, see https://github.com/andaluzcoin/andaluzcoin/issues/30011 ; bind tests excluded for now, see https://github.com/andaluzcoin/andaluzcoin/issues/17765#issuecomment-602068547
 export GOAL="install"
 # TODO enable GUI
-export BITCOIN_CONFIG="\
+export ANDALUZCOIN_CONFIG="\
  -DWITH_ZMQ=ON -DWITH_BDB=ON -DWARN_INCOMPATIBLE_BDB=OFF -DBUILD_GUI=OFF \
  -DCMAKE_C_COMPILER=clang-16 \
  -DCMAKE_CXX_COMPILER=clang++-16 \

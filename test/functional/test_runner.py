@@ -488,7 +488,7 @@ def main():
         assert results_filepath.parent.exists(), "Results file parent directory does not exist"
         logging.debug("Test results will be written to " + str(results_filepath))
 
-    enable_andaluzcoind = config["components"].getboolean("ENABLE_BITCOIND")
+    enable_andaluzcoind = config["components"].getboolean("ENABLE_ANDALUZCOIND")
 
     if not enable_andaluzcoind:
         print("No functional tests to run.")

@@ -2,8 +2,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef BITCOIN_INTERFACES_CHAIN_H
-#define BITCOIN_INTERFACES_CHAIN_H
+#ifndef ANDALUZCOIN_INTERFACES_CHAIN_H
+#define ANDALUZCOIN_INTERFACES_CHAIN_H
 
 #include <blockfilter.h>
 #include <common/settings.h>
@@ -422,4 +422,4 @@ std::unique_ptr<Chain> MakeChain(node::NodeContext& node);
 
 } // namespace interfaces
 
-#endif // BITCOIN_INTERFACES_CHAIN_H
+#endif // ANDALUZCOIN_INTERFACES_CHAIN_H

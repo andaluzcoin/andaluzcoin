@@ -75,9 +75,9 @@ def bctest(testDir, testObj, buildenv):
     # Get the exec names and arguments
     execprog = os.path.join(buildenv["BUILDDIR"], "src", testObj["exec"] + buildenv["EXEEXT"])
     if testObj["exec"] == "./andaluzcoin-util":
-        execprog = os.getenv("BITCOINUTIL", default=execprog)
+        execprog = os.getenv("ANDALUZCOINUTIL", default=execprog)
     elif testObj["exec"] == "./andaluzcoin-tx":
-        execprog = os.getenv("BITCOINTX", default=execprog)
+        execprog = os.getenv("ANDALUZCOINTX", default=execprog)
 
     execargs = testObj['args']
     execrun = [execprog] + execargs

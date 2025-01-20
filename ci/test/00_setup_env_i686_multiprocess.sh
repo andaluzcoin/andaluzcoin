@@ -13,11 +13,11 @@ export PACKAGES="llvm clang g++-multilib"
 export DEP_OPTS="DEBUG=1 MULTIPROCESS=1"
 export GOAL="install"
 export TEST_RUNNER_EXTRA="--v2transport"
-export BITCOIN_CONFIG="\
+export ANDALUZCOIN_CONFIG="\
  -DCMAKE_BUILD_TYPE=Debug \
  -DCMAKE_C_COMPILER='clang;-m32' \
  -DCMAKE_CXX_COMPILER='clang++;-m32' \
  -DCMAKE_CXX_FLAGS='-Wno-error=documentation' \
  -DAPPEND_CPPFLAGS='-DBOOST_MULTI_INDEX_ENABLE_SAFE_MODE' \
 "
-export BITCOIND=andaluzcoin-node  # Used in functional tests
+export ANDALUZCOIND=andaluzcoin-node  # Used in functional tests

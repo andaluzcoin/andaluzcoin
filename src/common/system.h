@@ -3,8 +3,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef BITCOIN_COMMON_SYSTEM_H
-#define BITCOIN_COMMON_SYSTEM_H
+#ifndef ANDALUZCOIN_COMMON_SYSTEM_H
+#define ANDALUZCOIN_COMMON_SYSTEM_H
 
 #include <andaluzcoin-build-config.h> // IWYU pragma: keep
 
@@ -29,4 +29,4 @@ void runCommand(const std::string& strCommand);
  */
 int GetNumCores();
 
-#endif // BITCOIN_COMMON_SYSTEM_H
+#endif // ANDALUZCOIN_COMMON_SYSTEM_H

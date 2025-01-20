@@ -16,7 +16,7 @@ export RUN_UNIT_TESTS_SEQUENTIAL="true"
 export RUN_UNIT_TESTS="false"
 export GOAL="install"
 export DOWNLOAD_PREVIOUS_RELEASES="true"
-export BITCOIN_CONFIG="\
+export ANDALUZCOIN_CONFIG="\
  -DWITH_ZMQ=ON -DBUILD_GUI=ON -DREDUCE_EXPORTS=ON \
  -DCMAKE_BUILD_TYPE=Debug \
  -DCMAKE_C_FLAGS='-funsigned-char' \
