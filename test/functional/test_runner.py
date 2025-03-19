@@ -490,6 +490,8 @@ def main():
 
     enable_andaluzcoind = config["components"].getboolean("ENABLE_ANDALUZCOIND")
 
+    logging.debug("enable_andaluzcoind is set %s" % enable_andaluzcoind)
+
     if not enable_andaluzcoind:
         print("No functional tests to run.")
         print("Re-compile with the -DBUILD_DAEMON=ON build option")
