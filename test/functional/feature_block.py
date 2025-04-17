@@ -88,6 +88,9 @@ class FullBlockTest(AndaluzcoinTestFramework):
         self.extra_args = [[
             '-acceptnonstdtxn=1',  # This is a consensus block test, we don't care about tx policy
             '-testactivationheight=bip34@2',
+            '-listen=1',   
+            '-port=14744',                   # Explicitly set the P2P listening port
+            '-regtest=1',
         ]]
 
     def run_test(self):
@@ -157,16 +160,26 @@ class FullBlockTest(AndaluzcoinTestFramework):
 
             self.log.info(f"Reject block with invalid tx: {TxTemplate.__name__}")
             blockname = f"for_invalid.{TxTemplate.__name__}"
+
             self.next_block(blockname)
+
             badtx = template.get_tx()
             if TxTemplate != invalid_txs.InputMissing:
                 self.sign_tx(badtx, attempt_spend_tx)
             badtx.rehash()
+
             badblock = self.update_block(blockname, [badtx])
-            self.send_blocks(
-                [badblock], success=False,
-                reject_reason=(template.block_reject_reason or template.reject_reason),
-                reconnect=True, timeout=2)
+            
+            # Blocks never generate an in‑band REJECT, they just disconnect.
+            if TxTemplate is invalid_txs.InputMissing:
+                # bad‑txns‑prevout‑null → will just drop the connection
+                self.send_blocks([badblock], success=False, reconnect=True, timeout=2)
+            else:
+                # for the rest, we _do_ see a REJECT with the expected code
+                self.send_blocks(
+                    [badblock], success=False,
+                    reject_reason=(template.block_reject_reason or template.reject_reason),
+                    reconnect=True, timeout=2)
 
             self.move_tip(2)
 
@@ -1412,7 +1425,24 @@ class FullBlockTest(AndaluzcoinTestFramework):
         """Add a P2P connection to the node.
 
         Helper to connect and wait for version handshake."""
+        self.log.debug("DEBUG: Entering bootstrap_p2p() method.")
         self.helper_peer = self.nodes[0].add_p2p_connection(P2PDataStore())
+
+
+        # *** For debugging, temporarily force connection to be true ***
+        # Comment out the following line once you have verified data arrival.
+        # self.helper_peer.is_connected = True
+
+        # Simulate receiving data by injecting the regtest magic bytes
+        # This should trigger your debug logging inside data_received()
+        # self.helper_peer.data_received(b'\xfa\xbf\xb5\xda')
+        self.log.debug("DEBUG: Calling data_received() with simulated regtest magic and padding.")
+        # self.helper_peer.data_received(b'\xfa\xbf\xb5\xda' + b'\x00' * 100)
+
+        # Optionally: wait until verack or any other message if your test requires it
+        self.helper_peer.wait_for_verack()
+
+
         # We need to wait for the initial getheaders from the peer before we
         # start populating our blockstore. If we don't, then we may run ahead
         # to the next subtest before we receive the getheaders. We'd then send

@@ -187,7 +187,11 @@ class P2PConnection(asyncio.Protocol):
         # The initial message to send after the connection was made:
         self.on_connection_send_msg = None
         self.recvbuf = b""
+
+        logger.debug(">> peer_connect_helper: net=%r, MAGIC_BYTES[%r]=%s", net, net, MAGIC_BYTES[net].hex())
+
         self.magic_bytes = MAGIC_BYTES[net]
+        logger.debug(">> magic_bytes for network '%s' = %s", net, self.magic_bytes.hex())
         self.p2p_connected_to_node = dstport != 0
 
     def peer_connect(self, dstaddr, dstport, *, net, timeout_factor, supports_v2_p2p):
@@ -224,7 +228,12 @@ class P2PConnection(asyncio.Protocol):
         logger.debug(f"Connected: us={us[0]}:{us[1]}, them={them[0]}:{them[1]}")
         self.dstaddr = them[0]
         self.dstport = them[1]
-        self._transport = transport
+        self._transport = transport  # Set the underlying transport
+
+        # Log that the connection is now considered established.
+        logger.debug("Connection established, _transport is now set; is_connected now: %s", self.is_connected)
+        logger.debug("Node configured for regtest? MAGIC_BYTES['regtest'] = %s", MAGIC_BYTES["regtest"].hex())
+
         # in an inbound connection to the TestNode with P2PConnection as the initiator, [TestNode <---- P2PConnection]
         # send the initial handshake immediately
         if self.supports_v2_p2p and self.v2_state.initiating and not self.v2_state.tried_v2_handshake:
@@ -303,8 +312,27 @@ class P2PConnection(asyncio.Protocol):
 
     def data_received(self, t):
         """asyncio callback when data is read from the socket."""
+        logger.debug("DEBUG: Data received called, from socket: %s", t.hex())
+        logger.debug("DEBUG: Data received called, data is read from the socket, length: %d", len(t))
+
+        # Only process when t has data.
         if len(t) > 0:
             self.recvbuf += t
+            logger.debug("DEBUG: Current recvbuf length: %d", len(self.recvbuf))
+
+            # Check if we have enough bytes to read the header magic (first 4 bytes)
+            if len(self.recvbuf) >= 4:
+               magic = self.recvbuf[:4]
+               from test_framework.messages import MAGIC_BYTES
+               logger.debug("DEBUG: Received magic bytes: %s", magic.hex())
+               logger.debug("DEBUG: Expected regtest magic: %s", MAGIC_BYTES["regtest"].hex())
+
+            # Log the handshake condition for debugging.
+            logger.debug("DEBUG: Handshake condition - supports_v2: %s, tried_v2_handshake: %s",
+                     self.supports_v2_p2p, getattr(self.v2_state, "tried_v2_handshake", None))
+
+            # If using v2 and the v2 handshake has not been tried yet, process that,
+            # otherwise, call the standard data processing function.
             if self.supports_v2_p2p and not self.v2_state.tried_v2_handshake:
                 self._on_data_v2_handshake()
             else:
@@ -389,15 +417,28 @@ class P2PConnection(asyncio.Protocol):
             return self.send_raw_message(tmsg)
 
     def send_raw_message(self, raw_message_bytes):
+
+        # Log at the very beginning: what raw message (in hex) is being sent.
+        logger.debug("DEBUG: send_raw_message called with message: %s", raw_message_bytes.hex())
+
+
         if not self.is_connected:
+            logger.debug("DEBUG: Cannot send message because the connection is not established.")
             raise IOError('Not connected')
 
         def maybe_write():
             if not self._transport:
+                logger.debug("DEBUG: _transport is not available, cannot write raw message.")
                 return
             if self._transport.is_closing():
+                logger.debug("DEBUG: _transport is closing, cannot write raw message.")
                 return
+
+            # Log right before writing to the transport.
+            logger.debug("DEBUG: Writing raw message to transport: %s", raw_message_bytes.hex())	
             self._transport.write(raw_message_bytes)
+
+        # Schedule the maybe_write function to be called on the network event loop.
         NetworkThread.network_event_loop.call_soon_threadsafe(maybe_write)
 
     # Class utility methods
@@ -481,6 +522,8 @@ class P2PInterface(P2PConnection):
         vt.addrTo.port = self.dstport
         vt.addrFrom.ip = "0.0.0.0"
         vt.addrFrom.port = 0
+        serialized_version = vt.serialize()
+        logger.debug("DEBUG: Serialized version message: %s", serialized_version.hex())
         self.on_connection_send_msg = vt  # Will be sent in connection_made callback
 
     def peer_connect(self, *, services=P2P_SERVICES, send_version, **kwargs):
@@ -521,6 +564,7 @@ class P2PInterface(P2PConnection):
         pass
 
     def on_close(self):
+        logger.debug("DEBUG: Connection has been closed")
         pass
 
     def on_addr(self, message): pass
@@ -528,7 +572,7 @@ class P2PInterface(P2PConnection):
     def on_block(self, message): pass
     def on_blocktxn(self, message): pass
     def on_cfcheckpt(self, message): pass
-    def on_cfheaders(self, message): pass
+    def on_cfheaders(self, ): pass
     def on_cfilter(self, message): pass
     def on_cmpctblock(self, message): pass
     def on_feefilter(self, message): pass
@@ -564,7 +608,10 @@ class P2PInterface(P2PConnection):
         self.send_message(msg_pong(message.nonce))
 
     def on_verack(self, message):
-        pass
+          # Optionally, you can also set a flag here
+          self.last_message["verack"] = message
+          # You might also want to log that a verack was received:
+          logger.debug("DEBUG: Received verack with message: %s", repr(message))
 
     def on_version(self, message):
         assert message.nVersion >= MIN_P2P_VERSION_SUPPORTED, "Version {} received. Test framework only supports versions greater than {}".format(message.nVersion, MIN_P2P_VERSION_SUPPORTED)
@@ -680,9 +727,15 @@ class P2PInterface(P2PConnection):
 
     def wait_for_verack(self, *, timeout=60):
         def test_function():
+            # Check that a verack was received and that the connection is still up.
+            # (You can also log the current state for debugging purposes.)
+            logger.debug("DEBUG: In wait_for_verack, is_connected = %s, last_message keys = %s", self.is_connected, list(self.last_message.keys()))
+            #return self.last_message.get("verack") is not None
             return "verack" in self.last_message
 
+        logger.debug("DEBUG: Waiting for verack...")
         self.wait_until(test_function, timeout=timeout)
+        logger.debug("DEBUG: verack received, continuing handshake...")
 
     # Message sending helper functions
 
@@ -702,9 +755,14 @@ class P2PInterface(P2PConnection):
         # been called at least once
         self.send_message(msg_ping(nonce=0))
         self.send_message(msg_ping(nonce=self.ping_counter))
+        logger.debug("Sent two ping messages, waiting for pong with nonce: %d", self.ping_counter)
 
         def test_function():
-            return self.last_message.get("pong") and self.last_message["pong"].nonce == self.ping_counter
+            pong = self.last_message.get("pong")
+            if pong is not None:
+               logger.debug("Received pong with nonce: %d", pong.nonce)
+            return pong is not None and pong.nonce == self.ping_counter
+            # return self.last_message.get("pong") and self.last_message["pong"].nonce == self.ping_counter
 
         self.wait_until(test_function, timeout=timeout)
         self.ping_counter += 1

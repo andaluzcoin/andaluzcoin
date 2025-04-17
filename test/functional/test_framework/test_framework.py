@@ -979,6 +979,7 @@ class AndaluzcoinTestFramework(metaclass=AndaluzcoinTestMetaClass):
         if self.options.descriptors:
             self.skip_if_no_sqlite()
         else:
+            self.log.info("Calling skip_if_no_bdb")
             self.skip_if_no_bdb()
 
     def skip_if_no_sqlite(self):
@@ -1034,7 +1035,7 @@ class AndaluzcoinTestFramework(metaclass=AndaluzcoinTestMetaClass):
 
     def is_wallet_compiled(self):
         """Checks whether the wallet module was compiled."""
-        return self.config["components"].getboolean("ENABLE_WALLET")
+        return self.config["components"].getboolean("ENABLE_WALLET", fallback=False)
 
     def is_specified_wallet_compiled(self):
         """Checks whether wallet support for the specified type
@@ -1062,11 +1063,12 @@ class AndaluzcoinTestFramework(metaclass=AndaluzcoinTestMetaClass):
 
     def is_sqlite_compiled(self):
         """Checks whether the wallet module was compiled with Sqlite support."""
-        return self.config["components"].getboolean("USE_SQLITE")
+        return self.config["components"].getboolean("USE_SQLITE", fallback=False)
 
     def is_bdb_compiled(self):
         """Checks whether the wallet module was compiled with BDB support."""
-        return self.config["components"].getboolean("USE_BDB")
+        self.log.info("Returning flag is_bdb_compiled")
+        return self.config["components"].getboolean("USE_BDB", fallback=False)
 
     def has_blockfile(self, node, filenum: str):
         return (node.blocks_path/ f"blk{filenum}.dat").is_file()

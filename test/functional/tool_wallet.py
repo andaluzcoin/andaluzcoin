@@ -12,6 +12,7 @@ import textwrap
 
 from collections import OrderedDict
 
+
 from test_framework.test_framework import AndaluzcoinTestFramework
 from test_framework.util import (
     assert_equal,
