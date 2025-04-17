@@ -19,7 +19,13 @@ class TxConflicts(AndaluzcoinTestFramework):
         self.add_wallet_options(parser)
 
     def set_test_params(self):
+        self.setup_clean_chain = False    # <<< prevent cache‑copy, start with empty datadir
         self.num_nodes = 3
+        self.extra_args = [
+            ['-deprecatedrpc=createwallet'],
+            ['-deprecatedrpc=createwallet'],
+            ['-deprecatedrpc=createwallet'],
+        ]
 
     def skip_test_if_missing_module(self):
         self.skip_if_no_wallet()
