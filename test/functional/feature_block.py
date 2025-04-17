@@ -89,7 +89,6 @@ class FullBlockTest(AndaluzcoinTestFramework):
             '-acceptnonstdtxn=1',  # This is a consensus block test, we don't care about tx policy
             '-testactivationheight=bip34@2',
             '-listen=1',   
-            '-port=14744',                   # Explicitly set the P2P listening port
             '-regtest=1',
         ]]
 
