@@ -45,6 +45,7 @@ target_link_libraries(andaluzcoin_wallet
 if(NOT USE_SQLITE AND NOT USE_BDB)
   message(FATAL_ERROR "Wallet functionality requested but no BDB or SQLite support available.")
 endif()
+
 if(USE_SQLITE)
   target_sources(andaluzcoin_wallet PRIVATE sqlite.cpp)
   target_link_libraries(andaluzcoin_wallet
@@ -53,7 +54,29 @@ if(USE_SQLITE)
       $<TARGET_NAME_IF_EXISTS:SQLite::SQLite3>
   )
 endif()
+
+
 if(USE_BDB)
+  # Ensure that the Berkeley DB variables are defined.
+  if(NOT DEFINED DBerkeleyDB_INCLUDE_DIR OR NOT DEFINED DBerkeleyDB_LIBRARY_RELEASE)
+    message(FATAL_ERROR "USE_BDB is enabled but DBerkeleyDB_INCLUDE_DIR or DBerkeleyDB_LIBRARY_RELEASE are not defined.")
+  endif()
+
+  # Define an imported target for Berkeley DB if not already defined.
+  if(NOT TARGET BerkeleyDB::BerkeleyDB)
+    add_library(BerkeleyDB::BerkeleyDB STATIC IMPORTED)
+    set_target_properties(BerkeleyDB::BerkeleyDB PROPERTIES
+      IMPORTED_LOCATION "${DBerkeleyDB_LIBRARY_RELEASE}"
+      INTERFACE_INCLUDE_DIRECTORIES "${DBerkeleyDB_INCLUDE_DIR}"
+    )
+  endif()
+
   target_sources(andaluzcoin_wallet PRIVATE bdb.cpp salvage.cpp)
   target_link_libraries(andaluzcoin_wallet PUBLIC BerkeleyDB::BerkeleyDB)
 endif()
+
+
+# if(USE_BDB)
+#  target_sources(andaluzcoin_wallet PRIVATE bdb.cpp salvage.cpp)
+#  target_link_libraries(andaluzcoin_wallet PUBLIC BerkeleyDB::BerkeleyDB)
+# endif()
