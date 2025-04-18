@@ -572,7 +572,11 @@ class P2PInterface(P2PConnection):
     def on_block(self, message): pass
     def on_blocktxn(self, message): pass
     def on_cfcheckpt(self, message): pass
-    def on_cfheaders(self, ): pass
+    def on_cfheaders(self, message): 
+        """Called when a cfheaders(filter_type, stop_hash) arrives."""
+        # Save it so tests can inspect it:
+        self.last_cfheaders = message
+        pass
     def on_cfilter(self, message): pass
     def on_cmpctblock(self, message): pass
     def on_feefilter(self, message): pass
