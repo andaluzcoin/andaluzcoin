@@ -30,7 +30,7 @@ class SignMessagesWithPrivTest(AndaluzcoinTestFramework):
 
         self.log.info('test signing with priv_key')
         priv_key = 'cUeKHd5orzT3mz8P9pxyREHfsWtVfgsfDjiZZBcjUBAaGk1BTj7N'
-        expected_signature = 'INbVnW4e6PeRmsv2Qgu8NuopvrVjkcxob+sX8OcZG0SALhWybUjzMLPdAsXI46YZGb0KQTRii+wWIQzRpG/U+S0='
+        expected_signature = "H8FYN7jf0v39AMazC3xebFU83DTJ6l0X2sF+EOn5SvdZICx0fx4tA26Hav4sJKMUQSWdhihR4e659UOc++7cZCM="
         signature = self.nodes[0].signmessagewithprivkey(priv_key, message)
         assert_equal(expected_signature, signature)
 
