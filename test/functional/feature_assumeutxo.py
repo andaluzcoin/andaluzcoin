@@ -100,9 +100,19 @@ class AssumeutxoTest(AndaluzcoinTestFramework):
             with open(bad_snapshot_path, 'wb') as f:
                 f.write(valid_snapshot_contents[:7] + magic.to_bytes(4, 'big') + valid_snapshot_contents[11:])
             if real:
-                assert_raises_rpc_error(parsing_error_code, f"Unable to parse metadata: The network of the snapshot ({name}) does not match the network of this node (regtest).", node.loadtxoutset, bad_snapshot_path)
+                # main/test → generic unrecognized; signet → explicit mismatch
+                if name == "signet":
+                    msg = f"Unable to parse metadata: The network of the snapshot ({name}) does not match the network of this node (regtest)."
+                else:
+                    msg = "Unable to parse metadata: This snapshot has been created for an unrecognized network"
+                assert_raises_rpc_error(parsing_error_code, msg, node.loadtxoutset, bad_snapshot_path)
             else:
-                assert_raises_rpc_error(parsing_error_code, "Unable to parse metadata: This snapshot has been created for an unrecognized network. This could be a custom signet, a new testnet or possibly caused by data corruption.", node.loadtxoutset, bad_snapshot_path)
+                # completely unknown magic → extended guidance
+                assert_raises_rpc_error(
+                    parsing_error_code,
+                    "Unable to parse metadata: This snapshot has been created for an unrecognized network. This could be a custom signet, a new testnet or possibly caused by data corruption.",
+                    node.loadtxoutset, bad_snapshot_path
+                )
 
         self.log.info("  - snapshot file referring to a block that is not in the assumeutxo parameters")
         prev_block_hash = self.nodes[0].getblockhash(SNAPSHOT_BASE_HEIGHT - 1)
