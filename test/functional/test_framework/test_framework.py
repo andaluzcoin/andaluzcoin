@@ -545,7 +545,7 @@ class AndaluzcoinTestFramework(metaclass=AndaluzcoinTestMetaClass):
             test_node_i = TestNode(
                 i,
                 get_datadir_path(self.options.tmpdir, i),
-                chain=self.chain,
+                chain=str(self.chain),
                 rpchost=rpchost,
                 timewait=self.rpc_timeout,
                 timeout_factor=self.options.timeout_factor,
@@ -860,7 +860,7 @@ class AndaluzcoinTestFramework(metaclass=AndaluzcoinTestMetaClass):
                 TestNode(
                     CACHE_NODE_ID,
                     cache_node_dir,
-                    chain=self.chain,
+                    chain=str(self.chain),
                     extra_conf=["bind=127.0.0.1"],
                     extra_args=['-disablewallet'],
                     rpchost=None,

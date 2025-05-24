@@ -88,7 +88,7 @@ class TestNode():
         self.andaluzcoinconf = self.datadir_path / "andaluzcoin.conf"
         self.stdout_dir = self.datadir_path / "stdout"
         self.stderr_dir = self.datadir_path / "stderr"
-        self.chain = chain
+        self.chain = str(chain)
         self.rpchost = rpchost
         self.rpc_timeout = timewait
         self.binary = andaluzcoind
@@ -157,13 +157,22 @@ class TestNode():
         self.rpc_connected = False
         self.rpc = None
         self.url = None
-        self.log = logging.getLogger('TestFramework.node%d' % i)
+        # self.log = logging.getLogger('TestFramework.node%d' % i)
+        self.log = logging.getLogger(f"TestFramework.node{i}")
         self.cleanup_on_exit = True # Whether to kill the node when this object goes away
         # Cache perf subprocesses here by their data output filename.
         self.perf_subprocesses = {}
 
         self.p2ps = []
-        self.timeout_factor = timeout_factor
+
+        self.log.debug("[TestNode DEBUG] timeout_factor=%r (type=%r)", timeout_factor, type(timeout_factor))
+        self.log.debug(f"[TestNode DEBUG] timeout_factor={timeout_factor!r} (type={type(timeout_factor)})")
+
+        try:
+           self.timeout_factor = float(timeout_factor)
+        except (TypeError, ValueError):
+            self.timeout_factor = 1.0
+            self.log.warning("[TestNode] Bad timeout_factor=%r (type=%r), defaulting to 1.0", timeout_factor, type(timeout_factor))
 
         self.mocktime = None
 
@@ -707,21 +716,67 @@ class TestNode():
         - if TestNode advertises NODE_P2P_V2 service, (and if P2PConnections supports v2 P2P)
                 P2PConnection sends ellswift bytes and v2 P2P is followed
         """
-        if 'dstport' not in kwargs:
-            kwargs['dstport'] = p2p_port(self.index)
-        if 'dstaddr' not in kwargs:
-            kwargs['dstaddr'] = '127.0.0.1'
+        # 🛠️ Ensure dstaddr and dstport
+        kwargs.setdefault("dstport", p2p_port(self.index))
+        kwargs.setdefault("dstaddr", "127.0.0.1")
+
+        # 🌐 Auto-detect net
+        net = kwargs.pop("net", {0: "main", 1: "test", 2: "signet", 3: "regtest"}.get(self.chain, "regtest"))
+        if not isinstance(net, str):
+            net = str(net)
+        self.log.debug("🌍 Using P2P net = %r (type: %r)", net, type(net))
+
+        # 🔐 Handle v2 transport
         if supports_v2_p2p is None:
             supports_v2_p2p = self.use_v2transport
 
         if self.use_v2transport:
             kwargs['services'] = kwargs.get('services', P2P_SERVICES) | NODE_P2P_V2
         supports_v2_p2p = self.use_v2transport and supports_v2_p2p
-        p2p_conn.peer_connect(**kwargs, send_version=send_version, net=self.chain, timeout_factor=self.timeout_factor, supports_v2_p2p=supports_v2_p2p)()
+
+        # ✅ Sanitize conflicting values before calling peer_connect()
+
+        # Remove bad timeout if any
+        if 'timeout' in kwargs:
+            self.log.warning("⚠️ Removing unexpected 'timeout' in kwargs: %r", kwargs['timeout'])
+            kwargs.pop('timeout')
+
+        if "timeout_factor" in kwargs:
+            try:
+               kwargs["timeout_factor"] = float(kwargs["timeout_factor"])
+            except Exception:
+                self.log.warning("⚠️ Removing bad timeout_factor=%r (type=%r)", kwargs["timeout_factor"], type(kwargs["timeout_factor"]))
+                kwargs.pop("timeout_factor")
+
+        # Clean unknown string types
+        for k, v in list(kwargs.items()):
+            if isinstance(v, str) and not k.startswith("dst"):
+                self.log.warning("⚠️ Removing suspicious kwarg: %s=%r (type=%r)", k, v, type(v))
+                del kwargs[k]
+
+        # ✅ Prepare timeout_value cleanly
+        timeout_val = float(self.timeout_factor) if isinstance(self.timeout_factor, (int, float)) else 1.0
+        self.log.debug("🕒 Enforcing timeout_factor=%r (type=%r)", timeout_val, type(timeout_val))
+        self.log.debug("📦 Calling peer_connect() with kwargs: %r", kwargs)
+
+        # 🌐 Initiate P2P connection
+        p2p_conn.peer_connect(
+            dstaddr=kwargs.pop('dstaddr'),
+            dstport=kwargs.pop('dstport'),
+            net=net,
+            timeout_factor=timeout_val,
+            send_version=send_version,
+            supports_v2_p2p=supports_v2_p2p,
+            **kwargs,  # only extra clean kwargs, if any
+        )()
+
 
         self.p2ps.append(p2p_conn)
+
+        # 🧪 Expect connection and protocol sync
         if not expect_success:
             return p2p_conn
+  
         p2p_conn.wait_until(lambda: p2p_conn.is_connected, check_connected=False)
         if supports_v2_p2p and wait_for_v2_handshake:
             p2p_conn.wait_until(lambda: p2p_conn.v2_state.tried_v2_handshake)

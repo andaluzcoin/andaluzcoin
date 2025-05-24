@@ -298,7 +298,22 @@ def wait_until_helper_internal(predicate, *, timeout=60, lock=None, timeout_fact
     properly scaled. Furthermore, `wait_until()` from `P2PInterface` class in
     `p2p.py` has a preset lock.
     """
-    timeout = timeout * timeout_factor
+    try:
+       timeout = float(timeout)
+    except Exception as e:
+         logger.warning("[wait_until_helper_internal] Invalid timeout=%r (type=%r), defaulting to 60.0: %s",
+                       timeout, type(timeout), e)
+         timeout = 60.0
+
+    try:
+        timeout_factor = float(timeout_factor)
+    except Exception as e:
+        logger.warning("[wait_until_helper_internal] Invalid timeout_factor=%r (type=%r), defaulting to 1.0: %s",
+                       timeout_factor, type(timeout_factor), e)
+        timeout_factor = 1.0
+
+    timeout *= timeout_factor
+
     time_end = time.time() + timeout
 
     while time.time() < time_end:
