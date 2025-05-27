@@ -135,7 +135,8 @@ class RejectLowDifficultyHeadersTest(AndaluzcoinTestFramework):
 
     def run_test(self):
         self.log.info("Read headers data")
-        self.headers_file_path = os.path.join(os.path.dirname(os.path.realpath(__file__)), self.options.datafile)
+        self.headers_file_path = os.path.abspath(os.path.join(os.path.dirname(__file__), self.options.datafile))
+
         self.log.info("📂 Reading headers file: %s", self.headers_file_path)
 
         parsed_main, parsed_fork = load_tagged_headers(self.headers_file_path)

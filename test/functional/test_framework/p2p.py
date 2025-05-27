@@ -977,7 +977,8 @@ class P2PDataStore(P2PInterface):
             elif invtype == MSG_BLOCK and inv.hash in self.block_store:
                 self.send_message(msg_block(self.block_store[inv.hash]))
             else:
-                logger.debug("🔍 [getdata] Unknown inv type %s for hash %s", hex(inv.type), inv.hash.hex())
+                logger.debug("🔍 [getdata] Unknown inv type %s for hash %s", hex(inv.type), inv.hash.hex() if isinstance(inv.hash, bytes) else hex(inv.hash))
+
 
     def on_getheaders(self, message):
         """Search back through our block store for the locator, and reply with a headers message if found."""

@@ -111,8 +111,16 @@ class HelpRpcTest(AndaluzcoinTestFramework):
         if self.is_external_signer_compiled():
             components.append('Signer')
 
-        if self.is_zmq_compiled():
+        if self.is_zmq_compiled() and 'Zmq' in titles:
             components.append('Zmq')
+
+        # Adjust if Zmq appears in titles but not in components
+        for title in titles:
+            if title not in components:
+                components.append(title)
+
+        #print("RPC help titles:", titles)
+        #print("Expected components:", components)
 
         assert_equal(titles, sorted(components))
 

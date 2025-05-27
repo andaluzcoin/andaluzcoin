@@ -352,7 +352,10 @@ class FullBlockTest(AndaluzcoinTestFramework):
         assert_equal(b24.get_weight(), MAX_BLOCK_WEIGHT + 1 * 4)
         self.send_blocks([b24], success=False, reject_reason='bad-blk-length', reconnect=True)
 
+        self.log.debug("📌 About to build b25 using out[7]=%s", str(out[7]))
         b25 = self.next_block(25, spend=out[7])
+
+        # Now send b25 (expecting rejection or not)
         self.send_blocks([b25], False)
 
         # Create blocks with a coinbase input script size out of range
@@ -368,10 +371,12 @@ class FullBlockTest(AndaluzcoinTestFramework):
         # update_block causes the merkle root to get updated, even with no new
         # transactions, and updates the required state.
         b26 = self.update_block(26, [])
+        self.log.debug("📤 Sending b26")
         self.send_blocks([b26], success=False, reject_reason='bad-cb-length', reconnect=True)
 
         # Extend the b26 chain to make sure andaluzcoind isn't accepting b26
         b27 = self.next_block(27, spend=out[7])
+        self.log.debug("📤 Sending b27")
         self.send_blocks([b27], False)
 
         # Now try a too-large-coinbase script
@@ -380,10 +385,12 @@ class FullBlockTest(AndaluzcoinTestFramework):
         b28.vtx[0].vin[0].scriptSig = b'\x00' * 101
         b28.vtx[0].rehash()
         b28 = self.update_block(28, [])
+        self.log.debug("📤 Sending b28")
         self.send_blocks([b28], success=False, reject_reason='bad-cb-length', reconnect=True)
 
         # Extend the b28 chain to make sure andaluzcoind isn't accepting b28
         b29 = self.next_block(29, spend=out[7])
+        self.log.debug("📤 Sending b29")
         self.send_blocks([b29], False)
 
         # b30 has a max-sized coinbase scriptSig.
@@ -394,6 +401,7 @@ class FullBlockTest(AndaluzcoinTestFramework):
         assert_equal(len(b30.vtx[0].vin[0].scriptSig), 100)
         b30.vtx[0].rehash()
         b30 = self.update_block(30, [])
+        self.log.debug("📤 Sending b30")
         self.send_blocks([b30], True)
         self.save_spendable_output()
 
@@ -561,6 +569,7 @@ class FullBlockTest(AndaluzcoinTestFramework):
         tx.rehash()
         new_txs.append(tx)
         self.update_block(40, new_txs)
+        self.log.debug("📤 Sending b40")
         self.send_blocks([b40], success=False, reject_reason='bad-blk-sigops', reconnect=True)
 
         # same as b40, but one less sigop
@@ -672,6 +681,7 @@ class FullBlockTest(AndaluzcoinTestFramework):
         b50 = self.next_block(50)
         b50.nBits = b50.nBits - 1
         b50.solve()
+        self.log.debug("📤 Sending b50")
         self.send_blocks([b50], False, force_send=True, reject_reason='bad-diffbits', reconnect=True)
 
         self.log.info("Reject a block with two coinbase transactions")
@@ -827,6 +837,7 @@ class FullBlockTest(AndaluzcoinTestFramework):
         # reset to good chain
         self.move_tip(57)
         b60 = self.next_block(60)
+        self.log.debug("📤 Sending b60")
         self.send_blocks([b60], True)
         self.save_spendable_output()
 
@@ -1036,6 +1047,7 @@ class FullBlockTest(AndaluzcoinTestFramework):
         tx.vin.append(CTxIn(COutPoint(bogus_tx.sha256, 0), b"", SEQUENCE_FINAL))
         tx.vout.append(CTxOut(1, b""))
         b70 = self.update_block(70, [tx])
+        self.log.debug("📤 Sending b70")
         self.send_blocks([b70], success=False, reject_reason='bad-txns-inputs-missingorspent', reconnect=True)
 
         # Test accepting an invalid block which has the same hash as a valid one (via merkle tree tricks)
@@ -1190,6 +1202,7 @@ class FullBlockTest(AndaluzcoinTestFramework):
 
         self.move_tip(77)
         b80 = self.next_block(80, spend=out[25])
+        self.log.debug("📤 Sending b80")
         self.send_blocks([b80], False, force_send=True)
         self.save_spendable_output()
 
@@ -1272,6 +1285,7 @@ class FullBlockTest(AndaluzcoinTestFramework):
         self.next_block("89a", spend=out[32])
         tx = self.create_tx(tx1, 0, 0, CScript([OP_TRUE]))
         b89a = self.update_block("89a", [tx])
+        self.log.debug("📤 Sending b89a")
         self.send_blocks([b89a], success=False, reject_reason='bad-txns-inputs-missingorspent', reconnect=True)
 
         # Don't use v2transport for the large reorg, which is too slow with the unoptimized python ChaCha20 implementation
@@ -1297,6 +1311,7 @@ class FullBlockTest(AndaluzcoinTestFramework):
             self.save_spendable_output()
             spend = self.get_spendable_output()
 
+        self.log.debug("📤 Sending blocks")
         self.send_blocks(blocks, True, timeout=2440)
         chain1_tip = i
 
@@ -1320,6 +1335,7 @@ class FullBlockTest(AndaluzcoinTestFramework):
 
         self.log.info("Reject a block with an invalid block header version")
         b_v1 = self.next_block('b_v1', version=1)
+        self.log.debug("📤 Sending b_v1")
         self.send_blocks([b_v1], success=False, force_send=True, reject_reason='bad-version(0x00000001)', reconnect=True)
 
         self.move_tip(chain1_tip + 2)
@@ -1328,6 +1344,7 @@ class FullBlockTest(AndaluzcoinTestFramework):
         b_cb34.vtx[0].rehash()
         b_cb34.hashMerkleRoot = b_cb34.calc_merkle_root()
         b_cb34.solve()
+        self.log.debug("📤 Sending b_cb34")
         self.send_blocks([b_cb34], success=False, reject_reason='bad-cb-height', reconnect=True)
 
     # Helper methods
