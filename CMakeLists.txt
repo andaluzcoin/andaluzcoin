@@ -23,6 +23,9 @@ set(CLIENT_VERSION_BUILD 0)
 set(CLIENT_VERSION_RC 0)
 set(CLIENT_VERSION_IS_RELEASE "false")
 set(COPYRIGHT_YEAR "2025")
+set(DBerkeleyDB_INCLUDE_DIR "/usr/local/BerkeleyDB.4.8/include" CACHE PATH "Path to BDB include dir")
+set(DBerkeleyDB_LIBRARY_RELEASE "/usr/local/BerkeleyDB.4.8/lib/libdb_cxx-4.8.a" CACHE FILEPATH "Path to BDB library")
+
 
 # During the enabling of the CXX and CXXOBJ languages, we modify
 # CMake's compiler/linker invocation strings by appending the content
