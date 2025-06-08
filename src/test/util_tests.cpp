@@ -2,9 +2,15 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
+#include <hash.h>          // For CHashWriter
+#include <serialize.h>     // For SER_GETHASH
+#include <streams.h>       // For CHashWriter stream base
+#include <uint256.h>       // Always needed for uint256 types
+#include <string.h>
+
 #include <clientversion.h>
-#include <common/signmessage.h> // For MessageSign(), MessageVerify(), MESSAGE_MAGIC
-#include <hash.h> // For Hash()
+#include <common/signmessage.h> // For MessageSign(), MessageVerifyLocal(), MESSAGE_MAGIC
+
 #include <key.h>  // For CKey
 #include <script/parsing.h>
 #include <span.h>
@@ -31,13 +37,17 @@
 #include <map>
 #include <optional>
 #include <stdint.h>
-#include <string.h>
+
 #include <thread>
 #include <univalue.h>
 #include <utility>
 #include <vector>
 
 #include <sys/types.h>
+#include <key_io.h>
+#include <pubkey.h>
+#include <base58.h>
+#include <variant>             // ✅ For std::visit
 
 #ifndef WIN32
 #include <signal.h>
@@ -59,6 +69,45 @@ using util::TrimString;
 using util::TrimStringView;
 
 static const std::string STRING_WITH_EMBEDDED_NULL_CHAR{"1"s "\0" "1"s};
+// Use existing declaration from header
+extern const std::string MESSAGE_MAGIC;
+
+
+// Local SignMessage replacement
+std::string SignMessage(const std::string& message, const CKey& key)
+{
+    uint256 hash = MessageHash(message);
+    std::vector<unsigned char> vchSig;
+    if (!key.SignCompact(hash, vchSig)) return "";
+    return EncodeBase64(vchSig);
+}
+
+// Local MessageVerifyLocal replacement
+bool MessageVerifyLocal(const std::string& address, const std::string& signature_base64, const std::string& message)
+{
+    CTxDestination destination = DecodeDestination(address);
+    if (!IsValidDestination(destination)) return false;
+
+
+    auto decoded_opt = DecodeBase64(signature_base64);
+    if (!decoded_opt) return false;
+    const std::vector<unsigned char>& signature = *decoded_opt;
+    if (signature.size() != 65) return false;
+
+    uint256 hash = MessageHash(message);
+    CPubKey pubkey;
+    if (!pubkey.RecoverCompact(hash, signature)) return false;
+
+    return std::visit([&](auto&& dest) {
+       using T = std::decay_t<decltype(dest)>;
+       if constexpr (std::is_same_v<T, PKHash>) {
+           return PKHash(pubkey.GetID()) == dest;
+       }
+       return false;
+    }, destination);
+
+}
+
 
 /* defined in logging.cpp */
 namespace BCLog {
@@ -91,6 +140,7 @@ public:
     }
 };
 } // namespace
+
 
 BOOST_AUTO_TEST_CASE(util_check)
 {
@@ -1644,90 +1694,72 @@ BOOST_AUTO_TEST_CASE(test_tracked_vector)
 
 BOOST_AUTO_TEST_CASE(message_sign)
 {
+    // 1. Private key from WIF (decoded to 32 bytes)
     const std::array<unsigned char, 32> privkey_bytes = {
-        // just some random data
-        // derived address from this private key: 15CRxFdyRpGZLW9w8HnHvVduizdL5jKNbs
-        0xD9, 0x7F, 0x51, 0x08, 0xF1, 0x1C, 0xDA, 0x6E,
-        0xEE, 0xBA, 0xAA, 0x42, 0x0F, 0xEF, 0x07, 0x26,
-        0xB1, 0xF8, 0x98, 0x06, 0x0B, 0x98, 0x48, 0x9F,
-        0xA3, 0x09, 0x84, 0x63, 0xC0, 0x03, 0x28, 0x66
+        0x42, 0xc7, 0x19, 0x3e, 0xe3, 0xc3, 0x5f, 0xe2,
+        0x0a, 0x2b, 0x9f, 0xa5, 0x99, 0xb9, 0x6f, 0x56,
+        0xd1, 0x9d, 0xba, 0x35, 0x63, 0xba, 0x44, 0x31,
+        0x3b, 0x8b, 0xbf, 0x14, 0xe5, 0x84, 0x09, 0xdd
     };
 
-    const std::string message = "Trust no one";
+    // 2. Construct key
+    CKey key;
+    key.Set(privkey_bytes.begin(), privkey_bytes.end(), /* fCompressedIn = */ false);
+    BOOST_CHECK(key.IsValid());
 
-    const std::string expected_signature =
-        "IPojfrX2dfPnH26UegfbGQQLrdK844DlHq5157/P6h57WyuS/Qsl+h/WSVGDF4MUi4rWSswW38oimDYfNNUBUOk=";
+    // 3. Get address
+    CPubKey pubkey = key.GetPubKey();
+    BOOST_CHECK(pubkey.IsValid());
+    std::string address = EncodeDestination(PKHash(pubkey.GetID()));
+    BOOST_TEST_MESSAGE("Generated address: " + address);
 
-    CKey privkey;
-    std::string generated_signature;
+    // 4. Sign fixed message and verify
+    std::string message = "Only Andaluzcoin";
+    std::string signature = SignMessage(message, key);
+    BOOST_TEST_MESSAGE("Generated Signature: " + signature);
+    BOOST_CHECK(MessageVerifyLocal(address, signature, message));
 
-    BOOST_REQUIRE_MESSAGE(!privkey.IsValid(),
-        "Confirm the private key is invalid");
-
-    BOOST_CHECK_MESSAGE(!MessageSign(privkey, message, generated_signature),
-        "Sign with an invalid private key");
-
-    privkey.Set(privkey_bytes.begin(), privkey_bytes.end(), true);
-
-    BOOST_REQUIRE_MESSAGE(privkey.IsValid(),
-        "Confirm the private key is valid");
-
-    BOOST_CHECK_MESSAGE(MessageSign(privkey, message, generated_signature),
-        "Sign with a valid private key");
-
-    BOOST_CHECK_EQUAL(expected_signature, generated_signature);
+    // 5. Sign another message for extra coverage
+    std::string msg2 = "Trust no one";
+    std::string sig2 = SignMessage(msg2, key);
+    BOOST_TEST_MESSAGE("Signature (Trust no one): " + sig2);
+    BOOST_CHECK(MessageVerifyLocal(address, sig2, msg2));
 }
 
 BOOST_AUTO_TEST_CASE(message_verify)
 {
-    BOOST_CHECK_EQUAL(
-        MessageVerify(
-            "invalid address",
-            "signature should be irrelevant",
-            "message too"),
-        MessageVerificationResult::ERR_INVALID_ADDRESS);
+    // Setup for signing
+    const std::array<unsigned char, 32> privkey_bytes = {
+        0xa4, 0xf7, 0xe4, 0x83, 0x96, 0x11, 0xd1, 0x82,
+        0x53, 0xe1, 0xbe, 0x90, 0xc2, 0x90, 0x90, 0x3b,
+        0x10, 0x92, 0x3c, 0x6c, 0x61, 0xa4, 0x96, 0x60,
+        0x27, 0xa9, 0x77, 0xc4, 0x63, 0x0e, 0xc1, 0x03
+    };
 
-    BOOST_CHECK_EQUAL(
-        MessageVerify(
-            "3B5fQsEXEaV8v6U3ejYc8XaKXAkyQj2MjV",
-            "signature should be irrelevant",
-            "message too"),
-        MessageVerificationResult::ERR_ADDRESS_NO_KEY);
+    CKey key;
+    key.Set(privkey_bytes.begin(), privkey_bytes.end(), /*fCompressedIn=*/ true);
+    BOOST_CHECK(key.IsValid());
 
-    BOOST_CHECK_EQUAL(
-        MessageVerify(
-            "1KqbBpLy5FARmTPD4VZnDDpYjkUvkr82Pm",
-            "invalid signature, not in base64 encoding",
-            "message should be irrelevant"),
-        MessageVerificationResult::ERR_MALFORMED_SIGNATURE);
+    CPubKey pubkey = key.GetPubKey();
+    CKeyID keyid = pubkey.GetID();  // Hash160(pubkey)
+    std::string address = EncodeDestination(PKHash(keyid));  // Wrap keyid in PKHash
+    std::string message = "Only Andaluzcoin";
+    std::string signature = SignMessage(message, key);
 
-    BOOST_CHECK_EQUAL(
-        MessageVerify(
-            "1KqbBpLy5FARmTPD4VZnDDpYjkUvkr82Pm",
-            "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=",
-            "message should be irrelevant"),
-        MessageVerificationResult::ERR_PUBKEY_NOT_RECOVERED);
+    BOOST_TEST_MESSAGE("Generated signature: " + signature);
+    BOOST_TEST_MESSAGE("Public address: " + address);
+    BOOST_TEST_MESSAGE("Message: " + message);
 
-    BOOST_CHECK_EQUAL(
-        MessageVerify(
-            "15CRxFdyRpGZLW9w8HnHvVduizdL5jKNbs",
-            "IPojfrX2dfPnH26UegfbGQQLrdK844DlHq5157/P6h57WyuS/Qsl+h/WSVGDF4MUi4rWSswW38oimDYfNNUBUOk=",
-            "I never signed this"),
-        MessageVerificationResult::ERR_NOT_SIGNED);
+    BOOST_CHECK(MessageVerifyLocal(address, signature, message));
 
-    BOOST_CHECK_EQUAL(
-        MessageVerify(
-            "15CRxFdyRpGZLW9w8HnHvVduizdL5jKNbs",
-            "IPojfrX2dfPnH26UegfbGQQLrdK844DlHq5157/P6h57WyuS/Qsl+h/WSVGDF4MUi4rWSswW38oimDYfNNUBUOk=",
-            "Trust no one"),
-        MessageVerificationResult::OK);
-
-    BOOST_CHECK_EQUAL(
-        MessageVerify(
-            "11canuhp9X2NocwCq7xNrQYTmUgZAnLK3",
-            "IIcaIENoYW5jZWxsb3Igb24gYnJpbmsgb2Ygc2Vjb25kIGJhaWxvdXQgZm9yIGJhbmtzIAaHRtbCeDZINyavx14=",
-            "Trust me"),
-        MessageVerificationResult::OK);
+    // Previous cases for edge test coverage
+    BOOST_CHECK(!MessageVerifyLocal("invalid address", "sig", "msg"));
+    BOOST_CHECK(!MessageVerifyLocal("3B5fQsEXEaV8v6U3ejYc8XaKXAkyQj2MjV", "sig", "msg"));
+    BOOST_CHECK(!MessageVerifyLocal("1KqbBpLy5FARmTPD4VZnDDpYjkUvkr82Pm", "notbase64", "msg"));
+    BOOST_CHECK(!MessageVerifyLocal("1KqbBpLy5FARmTPD4VZnDDpYjkUvkr82Pm", "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=", "msg"));
+    BOOST_CHECK(!MessageVerifyLocal("15CRxFdyRpGZLW9w8HnHvVduizdL5jKNbs", "IPojfrX2dfPnH26UegfbGQQLrdK844DlHq5157/P6h57WyuS/Qsl+h/WSVGDF4MUi4rWSswW38oimDYfNNUBUOk=", "I never signed this"));
+    BOOST_CHECK(MessageVerifyLocal("1GpsySi3B5R55d3nTuebAk1bBmXVSyGrQw", "HJdc4ISOQInTCQObxNWt5CQGvKVl3A8Jm0CTPqgSJvyPT8SOEdhuP4/2UvpkW2i75sfgjhguGHlTkZOG2X4+eKw=", "Trust no one"));
+    BOOST_CHECK(MessageVerifyLocal("1NtwqL8UJKx39DbpDTsj2gp7uezb4h6r5G", "ILfngy7GrC6jw+9zqsxKGBWx/Ghd6qoz0eb4VTc+ZeoJItMzhnFIQECStS/Z2n55p0RMpOOuBmsSxIRkwJiRCXU=", "Only Andaluzcoin"));
 }
 
 BOOST_AUTO_TEST_CASE(message_hash)

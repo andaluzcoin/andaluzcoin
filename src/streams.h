@@ -6,6 +6,7 @@
 #ifndef ANDALUZCOIN_STREAMS_H
 #define ANDALUZCOIN_STREAMS_H
 
+#include <hash.h>
 #include <serialize.h>
 #include <span.h>
 #include <support/allocators/zeroafterfree.h>
@@ -44,6 +45,31 @@ inline void Xor(Span<std::byte> write, Span<const std::byte> key, size_t key_off
     }
 }
 } // namespace util
+
+/** A writer stream (for hashing only) */
+class CHashWriter {
+private:
+    HashWriter hasher;  // uses default constructor
+    int nType;
+    int nVersion;
+
+public:
+    CHashWriter(int nTypeIn, int nVersionIn)
+        : hasher(), nType(nTypeIn), nVersion(nVersionIn) {}
+
+    template<typename T>
+    CHashWriter& operator<<(const T& obj) {
+        ::Serialize(hasher, obj);
+        return *this;
+    }
+
+    uint256 GetHash() {
+        return hasher.GetHash();  // dropped const
+    }
+
+    int GetType() const { return nType; }
+    int GetVersion() const { return nVersion; }
+};
 
 /* Minimal stream for overwriting and/or appending to an existing byte vector
  *

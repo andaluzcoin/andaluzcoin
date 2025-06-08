@@ -6,6 +6,8 @@
 #ifndef ANDALUZCOIN_SERIALIZE_H
 #define ANDALUZCOIN_SERIALIZE_H
 
+#define SER_GETHASH 1
+
 #include <attributes.h>
 #include <compat/assumptions.h> // IWYU pragma: keep
 #include <compat/endian.h>

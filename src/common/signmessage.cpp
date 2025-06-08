@@ -3,8 +3,10 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#include <common/signmessage.h>
+#include <streams.h>
+#include <serialize.h>
 #include <hash.h>
+#include <common/signmessage.h>
 #include <key.h>
 #include <key_io.h>
 #include <pubkey.h>
@@ -72,10 +74,10 @@ bool MessageSign(
 
 uint256 MessageHash(const std::string& message)
 {
-    HashWriter hasher{};
-    hasher << MESSAGE_MAGIC << message;
-
-    return hasher.GetHash();
+    CHashWriter ss(SER_GETHASH, 0);
+    ss << MESSAGE_MAGIC;
+    ss << message;
+    return ss.GetHash();
 }
 
 std::string SigningResultString(const SigningResult res)
