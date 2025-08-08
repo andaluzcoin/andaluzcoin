@@ -120,6 +120,8 @@ public:
 };
 
 WalletDescriptor GenerateWalletDescriptor(const CExtPubKey& master_key, const OutputType& output_type, bool internal);
+
+
 } // namespace wallet
 
 #endif // ANDALUZCOIN_WALLET_WALLETUTIL_H

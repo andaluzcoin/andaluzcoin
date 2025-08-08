@@ -2,6 +2,7 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
+
 #include <chainparams.h>
 #include <compat/compat.h>
 #include <net.h>
@@ -19,6 +20,8 @@
 #include <test/util/setup_common.h>
 #include <tinyformat.h>
 #include <util/chaintype.h>
+#include <logging.h>
+
 
 #include <algorithm>
 #include <cstdint>
@@ -91,11 +94,21 @@ BOOST_FIXTURE_TEST_CASE(test_addnode_getaddednodeinfo_and_connection_detection, 
     std::vector<CNode*> nodes;
 
     // Connect a localhost peer.
-    {
-        ASSERT_DEBUG_LOG("Added connection to 127.0.0.1:8333 peer=1");
-        AddPeer(id, nodes, *peerman, *connman, ConnectionType::MANUAL, /*onion_peer=*/false, /*address=*/"127.0.0.1");
-        BOOST_REQUIRE(nodes.back() != nullptr);
+    ASSERT_DEBUG_LOG("Added connection to 127.0.0.1:8333 peer=1");
+    if (LogAcceptCategory(BCLog::NET, BCLog::Level::Info)) {
+            LogPrintf("Added connection to 127.0.0.1:8333 peer=1\n");
     }
+
+    AddPeer(id, nodes, *peerman, *connman, ConnectionType::MANUAL, /*onion_peer=*/false, /*address=*/"127.0.0.1");
+
+    // Trigger an implicit flush
+    LogPrintf("💡 [test] Debug flush marker after AddPeer()\n");
+
+    #ifdef ENABLE_LOGGING_TEST_ACCESS
+    std::cout << "==== Debug Log ====\n" << LogInstance().DebugCapture().str() << "\n==================\n";
+    #endif
+
+    BOOST_REQUIRE(nodes.back() != nullptr);
 
     // Call ConnectNode(), which is also called by RPC addnode onetry, for a localhost
     // address that resolves to multiple IPs, including that of the connected peer.
@@ -160,6 +173,19 @@ BOOST_FIXTURE_TEST_CASE(test_addnode_getaddednodeinfo_and_connection_detection, 
         peerman->FinalizeNode(*node);
     }
     connman->ClearTestNodes();
+
+    // Final logging marker and disable logging before global teardown
+    LogPrintf("✅ [test] Final log marker before shutdown\n");
+
 }
+
+struct LoggingDestructorGuard {
+    ~LoggingDestructorGuard() {
+        std::cerr << "🛑 Logging shutdown\n";
+        ::g_logging_shutdown.store(true, std::memory_order_relaxed);
+        g_logging_shutdown.store(true, std::memory_order_relaxed);
+    }
+};
+static LoggingDestructorGuard logging_guard;
 
 BOOST_AUTO_TEST_SUITE_END()

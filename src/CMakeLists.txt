@@ -26,6 +26,8 @@ add_dependencies(andaluzcoin_clientversion generate_build_info)
 add_subdirectory(crypto)
 add_subdirectory(univalue)
 add_subdirectory(util)
+add_subdirectory(support)
+
 if(WITH_MULTIPROCESS)
   add_subdirectory(ipc)
 endif()
@@ -459,3 +461,7 @@ if(INSTALL_MAN)
     FILES_MATCHING PATTERN *.1
   )
 endif()
+
+get_property(all_targets DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY BUILDSYSTEM_TARGETS)
+message(STATUS "Detected targets in src/: ${all_targets}")
+

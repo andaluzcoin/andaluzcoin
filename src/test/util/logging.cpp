@@ -13,12 +13,19 @@
 DebugLogHelper::DebugLogHelper(std::string message, MatchFn match)
     : m_message{std::move(message)}, m_match(std::move(match))
 {
+    if (!LogAcceptCategory(BCLog::NET, BCLog::Level::Info)) return;
+
     m_print_connection = LogInstance().PushBackCallback(
         [this](const std::string& s) {
             if (m_found) return;
             m_found = s.find(m_message) != std::string::npos && m_match(&s);
         });
     noui_test_redirect();
+}
+
+DebugLogHelper::~DebugLogHelper()
+{
+    check_found();
 }
 
 void DebugLogHelper::check_found()

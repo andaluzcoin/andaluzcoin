@@ -132,7 +132,7 @@ bool CCoinsViewDB::BatchWrite(CoinsViewCacheCursor& cursor, const uint256 &hashB
             m_db->WriteBatch(batch);
             batch.Clear();
             if (m_options.simulate_crash_ratio) {
-                static FastRandomContext rng;
+                static thread_local FastRandomContext rng;
                 if (rng.randrange(m_options.simulate_crash_ratio) == 0) {
                     LogPrintf("Simulating a crash. Goodbye.\n");
                     _Exit(0);

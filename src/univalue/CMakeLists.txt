@@ -14,6 +14,10 @@ target_include_directories(univalue
 )
 target_link_libraries(univalue PRIVATE core_interface)
 
+target_include_directories(univalue PUBLIC
+  ${CMAKE_CURRENT_SOURCE_DIR}/include
+)
+
 if(BUILD_TESTS)
   include(GenerateHeaders)
   generate_header_from_json(test/fail1.json)
@@ -147,4 +151,5 @@ if(BUILD_TESTS)
   add_test(NAME univalue_object_test
     COMMAND object
   )
+  
 endif()

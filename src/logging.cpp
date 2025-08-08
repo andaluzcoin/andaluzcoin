@@ -21,6 +21,9 @@ using util::RemovePrefixView;
 const char * const DEFAULT_DEBUGLOGFILE = "debug.log";
 constexpr auto MAX_USER_SETABLE_SEVERITY_LEVEL{BCLog::Level::Info};
 
+std::atomic<bool> g_logging_shutdown{false};
+
+
 BCLog::Logger& LogInstance()
 {
 /**
@@ -38,9 +41,15 @@ BCLog::Logger& LogInstance()
  * This method of initialization was originally introduced in
  * ee3374234c60aba2cc4c5cd5cac1c0aefc2d817c.
  */
-    static BCLog::Logger* g_logger{new BCLog::Logger()};
+    static auto* g_logger = new BCLog::Logger(); // intentional ASan-safe leak
+
+    if (g_logging_shutdown.load(std::memory_order_relaxed)) {
+        std::cerr << "⚠️ LogInstance() called after shutdown\n";
+        std::abort(); // Optional: crash immediately to catch offending destructor
+    }
     return *g_logger;
 }
+
 
 bool fLogIPs = DEFAULT_LOGIPS;
 
@@ -334,6 +343,9 @@ namespace BCLog {
         }
         return ret;
     }
+
+    Logger::Logger() = default;
+
 } // namespace BCLog
 
 std::string BCLog::Logger::GetLogPrefix(BCLog::LogFlags category, BCLog::Level level) const
@@ -391,7 +403,11 @@ void BCLog::Logger::LogPrintStr(std::string_view str, std::string_view logging_f
 }
 
 void BCLog::Logger::LogPrintStr_(std::string_view str, std::string_view logging_function, std::string_view source_file, int source_line, BCLog::LogFlags category, BCLog::Level level)
-{
+{    
+#ifdef ENABLE_LOGGING_TEST_ACCESS
+    m_msgs << str;
+#endif
+
     std::string str_prefixed = LogEscapeMessage(str);
 
     if (m_buffering) {

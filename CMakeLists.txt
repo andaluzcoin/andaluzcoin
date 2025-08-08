@@ -129,6 +129,11 @@ if(WITH_ZMQ)
   find_package(ZeroMQ 4.0.0 MODULE REQUIRED)
 endif()
 
+option(WITH_OPENSSL "Enable OpenSSL support." OFF)
+if(WITH_OPENSSL)
+  find_package(OpenSSL REQUIRED)
+endif()
+
 option(WITH_USDT "Enable tracepoints for Userspace, Statically Defined Tracing." OFF)
 if(WITH_USDT)
   find_package(USDT MODULE REQUIRED)

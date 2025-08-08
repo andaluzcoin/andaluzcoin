@@ -14,152 +14,176 @@ generate_header_from_json(data/tx_invalid.json)
 generate_header_from_json(data/tx_valid.json)
 generate_header_from_raw(data/asmap.raw test::data)
 
+find_package(Boost REQUIRED COMPONENTS unit_test_framework)
+
 # Do not use generator expressions in test sources because the
 # SOURCES property is processed to gather test suite macros.
-add_executable(test_andaluzcoin
-  main.cpp
-  ${CMAKE_CURRENT_BINARY_DIR}/data/asmap.raw.h
-  ${CMAKE_CURRENT_BINARY_DIR}/data/base58_encode_decode.json.h
-  ${CMAKE_CURRENT_BINARY_DIR}/data/bip341_wallet_vectors.json.h
-  ${CMAKE_CURRENT_BINARY_DIR}/data/blockfilters.json.h
-  ${CMAKE_CURRENT_BINARY_DIR}/data/key_io_invalid.json.h
-  ${CMAKE_CURRENT_BINARY_DIR}/data/key_io_valid.json.h
-  ${CMAKE_CURRENT_BINARY_DIR}/data/script_tests.json.h
-  ${CMAKE_CURRENT_BINARY_DIR}/data/sighash.json.h
-  ${CMAKE_CURRENT_BINARY_DIR}/data/tx_invalid.json.h
-  ${CMAKE_CURRENT_BINARY_DIR}/data/tx_valid.json.h
-  addrman_tests.cpp
-  allocator_tests.cpp
-  amount_tests.cpp
-  argsman_tests.cpp
-  arith_uint256_tests.cpp
-  banman_tests.cpp
-  base32_tests.cpp
-  base58_tests.cpp
-  base64_tests.cpp
-  bech32_tests.cpp
-  bip32_tests.cpp
-  bip324_tests.cpp
-  blockchain_tests.cpp
-  blockencodings_tests.cpp
-  blockfilter_index_tests.cpp
-  blockfilter_tests.cpp
-  blockmanager_tests.cpp
-  bloom_tests.cpp
-  bswap_tests.cpp
-  checkqueue_tests.cpp
-  cluster_linearize_tests.cpp
-  coins_tests.cpp
-  coinscachepair_tests.cpp
-  coinstatsindex_tests.cpp
-  common_url_tests.cpp
-  compilerbug_tests.cpp
-  compress_tests.cpp
-  crypto_tests.cpp
-  cuckoocache_tests.cpp
-  dbwrapper_tests.cpp
-  denialofservice_tests.cpp
-  descriptor_tests.cpp
-  disconnected_transactions.cpp
-  feefrac_tests.cpp
-  flatfile_tests.cpp
-  fs_tests.cpp
-  getarg_tests.cpp
-  hash_tests.cpp
-  headers_sync_chainwork_tests.cpp
-  httpserver_tests.cpp
-  i2p_tests.cpp
-  interfaces_tests.cpp
-  key_io_tests.cpp
-  key_tests.cpp
-  logging_tests.cpp
-  mempool_tests.cpp
-  merkle_tests.cpp
-  merkleblock_tests.cpp
-  miner_tests.cpp
-  miniminer_tests.cpp
-  miniscript_tests.cpp
-  minisketch_tests.cpp
-  multisig_tests.cpp
-  net_peer_connection_tests.cpp
-  net_peer_eviction_tests.cpp
-  net_tests.cpp
-  netbase_tests.cpp
-  node_warnings_tests.cpp
-  orphanage_tests.cpp
-  peerman_tests.cpp
-  pmt_tests.cpp
-  policy_fee_tests.cpp
-  policyestimator_tests.cpp
-  pool_tests.cpp
-  pow_tests.cpp
-  prevector_tests.cpp
-  raii_event_tests.cpp
-  random_tests.cpp
-  rbf_tests.cpp
-  rest_tests.cpp
-  result_tests.cpp
-  reverselock_tests.cpp
-  rpc_tests.cpp
-  sanity_tests.cpp
-  scheduler_tests.cpp
-  script_p2sh_tests.cpp
-  script_parse_tests.cpp
-  script_segwit_tests.cpp
-  script_standard_tests.cpp
-  script_tests.cpp
-  scriptnum_tests.cpp
-  serfloat_tests.cpp
-  serialize_tests.cpp
-  settings_tests.cpp
-  sighash_tests.cpp
-  sigopcount_tests.cpp
-  skiplist_tests.cpp
-  sock_tests.cpp
-  span_tests.cpp
-  streams_tests.cpp
-  sync_tests.cpp
-  system_tests.cpp
-  timeoffsets_tests.cpp
-  torcontrol_tests.cpp
-  transaction_tests.cpp
-  translation_tests.cpp
-  txdownload_tests.cpp
-  txindex_tests.cpp
-  txpackage_tests.cpp
-  txreconciliation_tests.cpp
-  txrequest_tests.cpp
-  txvalidation_tests.cpp
-  txvalidationcache_tests.cpp
-  uint256_tests.cpp
-  util_string_tests.cpp
-  util_tests.cpp
-  util_threadnames_tests.cpp
-  util_trace_tests.cpp
-  validation_block_tests.cpp
-  validation_chainstate_tests.cpp
-  validation_chainstatemanager_tests.cpp
-  validation_flush_tests.cpp
-  validation_tests.cpp
-  validationinterface_tests.cpp
-  versionbits_tests.cpp
+if(BUILD_STANDARD_TESTS)
+    add_executable(test_andaluzcoin
+      main.cpp
+      ${CMAKE_CURRENT_BINARY_DIR}/data/asmap.raw.h
+      ${CMAKE_CURRENT_BINARY_DIR}/data/base58_encode_decode.json.h
+      ${CMAKE_CURRENT_BINARY_DIR}/data/bip341_wallet_vectors.json.h
+	  ${CMAKE_CURRENT_BINARY_DIR}/data/blockfilters.json.h
+	  ${CMAKE_CURRENT_BINARY_DIR}/data/key_io_invalid.json.h
+	  ${CMAKE_CURRENT_BINARY_DIR}/data/key_io_valid.json.h
+	  ${CMAKE_CURRENT_BINARY_DIR}/data/script_tests.json.h
+	  ${CMAKE_CURRENT_BINARY_DIR}/data/sighash.json.h
+	  ${CMAKE_CURRENT_BINARY_DIR}/data/tx_invalid.json.h
+	  ${CMAKE_CURRENT_BINARY_DIR}/data/tx_valid.json.h
+	  addrman_tests.cpp
+	  allocator_tests.cpp
+	  amount_tests.cpp
+	  argsman_tests.cpp
+	  arith_uint256_tests.cpp
+	  banman_tests.cpp
+	  base32_tests.cpp
+	  base58_tests.cpp
+	  base64_tests.cpp
+	  bech32_tests.cpp
+	  bip32_tests.cpp
+	  bip324_tests.cpp
+	  blockchain_tests.cpp
+	  blockencodings_tests.cpp
+	  blockfilter_index_tests.cpp
+	  blockfilter_tests.cpp
+	  blockmanager_tests.cpp
+	  bloom_tests.cpp
+	  bswap_tests.cpp
+	  checkqueue_tests.cpp
+	  cluster_linearize_tests.cpp
+	  coins_tests.cpp
+	  coinscachepair_tests.cpp
+	  coinstatsindex_tests.cpp
+	  common_url_tests.cpp
+	  compilerbug_tests.cpp
+	  compress_tests.cpp
+	  crypto_tests.cpp
+	  cuckoocache_tests.cpp
+	  dbwrapper_tests.cpp
+	  denialofservice_tests.cpp
+	  descriptor_tests.cpp
+	  disconnected_transactions.cpp
+	  feefrac_tests.cpp
+	  flatfile_tests.cpp
+	  fs_tests.cpp
+	  getarg_tests.cpp
+	  hash_tests.cpp
+	  headers_sync_chainwork_tests.cpp
+	  httpserver_tests.cpp
+	  i2p_tests.cpp
+	  interfaces_tests.cpp
+	  key_io_tests.cpp
+	  key_tests.cpp
+	  logging_tests.cpp
+	  mempool_tests.cpp
+	  merkle_tests.cpp
+	  merkleblock_tests.cpp
+	  miner_tests.cpp
+	  miniminer_tests.cpp
+	  miniscript_tests.cpp
+	  minisketch_tests.cpp
+	  multisig_tests.cpp
+	  net_peer_connection_tests.cpp
+	  net_peer_eviction_tests.cpp
+	  net_tests.cpp
+	  netbase_tests.cpp
+	  node_warnings_tests.cpp
+	  orphanage_tests.cpp
+	  peerman_tests.cpp
+	  pmt_tests.cpp
+	  policy_fee_tests.cpp
+	  policyestimator_tests.cpp
+	  pool_tests.cpp
+	  pow_tests.cpp
+	  prevector_tests.cpp
+	  raii_event_tests.cpp
+	  random_tests.cpp
+	  rbf_tests.cpp
+	  rest_tests.cpp
+	  result_tests.cpp
+	  reverselock_tests.cpp
+	  rpc_tests.cpp
+	  sanity_tests.cpp
+	  scheduler_tests.cpp
+	  script_p2sh_tests.cpp
+	  script_parse_tests.cpp
+	  script_segwit_tests.cpp
+	  script_standard_tests.cpp
+	  script_tests.cpp
+	  scriptnum_tests.cpp
+	  serfloat_tests.cpp
+	  serialize_tests.cpp
+	  settings_tests.cpp
+	  sighash_tests.cpp
+	  sigopcount_tests.cpp
+	  skiplist_tests.cpp
+	  sock_tests.cpp
+	  span_tests.cpp
+	  streams_tests.cpp
+	  sync_tests.cpp
+	  system_tests.cpp
+	  timeoffsets_tests.cpp
+	  torcontrol_tests.cpp
+	  transaction_tests.cpp
+	  translation_tests.cpp
+	  txdownload_tests.cpp
+	  txindex_tests.cpp
+	  txpackage_tests.cpp
+	  txreconciliation_tests.cpp
+	  txrequest_tests.cpp
+	  txvalidation_tests.cpp
+	  txvalidationcache_tests.cpp
+	  uint256_tests.cpp
+	  util_string_tests.cpp
+	  util_tests.cpp
+	  util_threadnames_tests.cpp
+	  util_trace_tests.cpp
+	  validation_block_tests.cpp
+	  validation_chainstate_tests.cpp
+	  validation_chainstatemanager_tests.cpp
+	  validation_flush_tests.cpp
+	  validation_tests.cpp
+	  validationinterface_tests.cpp
+	  versionbits_tests.cpp
+	)
+
+    target_compile_definitions(test_andaluzcoin PRIVATE ENABLE_P2P_ENCRYPTION)
+
+	target_link_libraries(test_andaluzcoin
+	  PRIVATE
+	  core_interface
+	  andaluzcoin_test_util
+	  andaluzcoin_cli
+	  andaluzcoin_node
+	  andaluzcoin_consensus
+	  minisketch
+	  secp256k1
+	  Boost::headers
+	  libevent::extra
+	  OpenSSL::Crypto
+	)
+endif()
+
+set(TEST_LIBS
+    PRIVATE 
+    andaluzcoin_test_util   # 🧪 This contains BasicTestingSetup, etc.
+    andaluzcoin_node        # Full node logic
+    andaluzcoin_wallet
+    Boost::unit_test_framework
+    #andaluzcoin_util        # General utilities (logging, etc.)
+    #andaluzcoin_common      # Shared data types
+    #secp256k1
+    #Boost::headers
+    #andaluzcoin_consensus   # Block/tx validation rules
+   
 )
 
-target_link_libraries(test_andaluzcoin
-  core_interface
-  test_util
-  andaluzcoin_cli
-  andaluzcoin_node
-  andaluzcoin_consensus
-  minisketch
-  secp256k1
-  Boost::headers
-  libevent::extra
-)
 
 if(ENABLE_WALLET)
   add_subdirectory(${PROJECT_SOURCE_DIR}/src/wallet/test wallet)
 endif()
+
 
 if(WITH_MULTIPROCESS)
   target_link_libraries(andaluzcoin_ipc_test
@@ -199,20 +223,22 @@ function(add_boost_test source_file)
   endif()
 endfunction()
 
-function(add_all_test_targets)
-  get_target_property(test_source_dir test_andaluzcoin SOURCE_DIR)
-  get_target_property(test_sources test_andaluzcoin SOURCES)
-  foreach(test_source ${test_sources})
-    cmake_path(IS_RELATIVE test_source result)
-    if(result)
-      cmake_path(APPEND test_source_dir ${test_source} OUTPUT_VARIABLE test_source)
-    endif()
-    add_boost_test(${test_source})
-  endforeach()
-endfunction()
+if(BUILD_STANDARD_TESTS AND TARGET test_andaluzcoin)
+	function(add_all_test_targets)
+	  get_target_property(test_source_dir test_andaluzcoin SOURCE_DIR)
+	  get_target_property(test_sources test_andaluzcoin SOURCES)
+	  foreach(test_source ${test_sources})
+		cmake_path(IS_RELATIVE test_source result)
+		if(result)
+		  cmake_path(APPEND test_source_dir ${test_source} OUTPUT_VARIABLE test_source)
+		endif()
+		add_boost_test(${test_source})
+	  endforeach()
+	endfunction()
 
-add_all_test_targets()
+	add_all_test_targets()
 
-install(TARGETS test_andaluzcoin
-  RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
-)
+	install(TARGETS test_andaluzcoin
+	  RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
+	)
+endif()

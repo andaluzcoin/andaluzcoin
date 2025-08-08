@@ -11,6 +11,9 @@
 #include <list>
 #include <string>
 
+// Declare MatchFn at file scope
+using MatchFn = std::function<bool(const std::string* line)>;
+
 class DebugLogHelper
 {
     const std::string m_message;
@@ -26,14 +29,13 @@ class DebugLogHelper
     //! (1) ending search after first successful match, and
     //! (2) raising an error in check_found if no match was found
     //! Can return false to do the opposite in either case.
-    using MatchFn = std::function<bool(const std::string* line)>;
     MatchFn m_match;
 
     void check_found();
 
 public:
     explicit DebugLogHelper(std::string message, MatchFn match = [](const std::string*){ return true; });
-    ~DebugLogHelper() { check_found(); }
+    ~DebugLogHelper();
 };
 
 #define ASSERT_DEBUG_LOG(message) DebugLogHelper UNIQUE_NAME(debugloghelper)(message)

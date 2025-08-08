@@ -6,6 +6,7 @@
 #ifndef ANDALUZCOIN_LOGGING_H
 #define ANDALUZCOIN_LOGGING_H
 
+
 #include <threadsafety.h>
 #include <tinyformat.h>
 #include <util/fs.h>
@@ -86,6 +87,7 @@ namespace BCLog {
     class Logger
     {
     public:
+        Logger();
         struct BufferedLog {
             SystemClock::time_point now;
             std::chrono::seconds mocktime;
@@ -94,6 +96,10 @@ namespace BCLog {
             LogFlags category;
             Level level;
         };
+
+#ifdef ENABLE_LOGGING_TEST_ACCESS
+        const std::ostringstream& DebugCapture() const { return m_msgs; }
+#endif
 
     private:
         mutable StdMutex m_cs; // Can not use Mutex from sync.h because in debug mode it would cause a deadlock when a potential deadlock was detected
@@ -127,6 +133,11 @@ namespace BCLog {
             EXCLUSIVE_LOCKS_REQUIRED(m_cs);
 
         std::string GetLogPrefix(LogFlags category, Level level) const;
+
+#ifdef ENABLE_LOGGING_TEST_ACCESS
+        mutable std::ostringstream m_msgs;
+#endif
+
 
     public:
         bool m_print_to_console = false;
@@ -223,11 +234,15 @@ namespace BCLog {
         static std::string LogLevelToStr(BCLog::Level level);
 
         bool DefaultShrinkDebugFile() const;
+
     };
 
 } // namespace BCLog
 
 BCLog::Logger& LogInstance();
+
+extern std::atomic<bool> g_logging_shutdown;
+
 
 /** Return true if log accepts specified category, at the specified level. */
 static inline bool LogAcceptCategory(BCLog::LogFlags category, BCLog::Level level)

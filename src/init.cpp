@@ -157,6 +157,9 @@ static constexpr bool DEFAULT_STOPAFTERBLOCKIMPORT{false};
 
 static constexpr int MIN_CORE_FDS = MIN_LEVELDB_FDS + NUM_FDS_MESSAGE_CAPTURE;
 static const char* DEFAULT_ASMAP_FILENAME="ip_asn.map";
+// Default for --fastprune: off
+static constexpr bool DEFAULT_FASTPRUNE = false;
+
 
 /**
  * The PID file facilities.
@@ -868,6 +871,11 @@ bool AppInitParameterInteraction(const ArgsManager& args)
 {
     const CChainParams& chainparams = Params();
     // ********************************************************* Step 2: parameter interactions
+   
+    // **************************************************– Fast-prune opt-in
+    // Skip the expensive initial prune scan if the user explicitly asks for it
+    bool fFastPrune = args.GetBoolArg("-fastprune", DEFAULT_FASTPRUNE);
+
 
     // also see: InitParameterInteraction()
 
@@ -942,12 +950,25 @@ bool AppInitParameterInteraction(const ArgsManager& args)
     }
 
     if (args.GetIntArg("-prune", 0)) {
-        if (args.GetBoolArg("-txindex", DEFAULT_TXINDEX))
+        // txindex never allowed with any prune
+        if (args.GetBoolArg("-txindex", DEFAULT_TXINDEX)) {
             return InitError(_("Prune mode is incompatible with -txindex."));
+        }
+        // but allow the newer index-modes if you asked for fastprune
+        if (!fFastPrune) {
+            if (args.GetBoolArg("-blockfilterindex", DEFAULT_BLOCKFILTERINDEX)) {
+                return InitError(_("Prune mode is incompatible with -blockfilterindex."));
+            }
+            if (args.GetBoolArg("-coinstatsindex", DEFAULT_COINSTATSINDEX)) {
+                return InitError(_("Prune mode is incompatible with -coinstatsindex."));
+            }
+        }
+        // the chainstate-only reindex is still banned
         if (args.GetBoolArg("-reindex-chainstate", false)) {
             return InitError(_("Prune mode is incompatible with -reindex-chainstate. Use full -reindex instead."));
         }
     }
+
 
     // If -forcednsseed is set to true, ensure -dnsseed has not been set to false
     if (args.GetBoolArg("-forcednsseed", DEFAULT_FORCEDNSSEED) && !args.GetBoolArg("-dnsseed", DEFAULT_DNSSEED)){

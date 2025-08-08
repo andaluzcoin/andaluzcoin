@@ -321,6 +321,7 @@ public:
 
     /** Decode to normal compressed CPubKey (for debugging purposes). */
     CPubKey Decode() const;
+    static constexpr size_t PUBLIC_SIZE = SIZE;
 
     // Read-only access for serialization.
     const std::byte* data() const { return m_pubkey.data(); }

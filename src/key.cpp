@@ -15,6 +15,10 @@
 #include <secp256k1_extrakeys.h>
 #include <secp256k1_recovery.h>
 #include <secp256k1_schnorrsig.h>
+#include <secp256k1.h>
+
+
+secp256k1_context* secp256k1_ctx = nullptr;
 
 static secp256k1_context* secp256k1_context_sign = nullptr;
 
@@ -451,6 +455,9 @@ static void ECC_Start() {
 
     secp256k1_context *ctx = secp256k1_context_create(SECP256K1_CONTEXT_NONE);
     assert(ctx != nullptr);
+
+    assert(secp256k1_ctx == nullptr);
+    secp256k1_ctx = secp256k1_context_create(SECP256K1_CONTEXT_SIGN | SECP256K1_CONTEXT_VERIFY);
 
     {
         // Pass in a random blinding seed to the secp256k1 context.

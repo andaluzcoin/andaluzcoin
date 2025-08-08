@@ -2,7 +2,7 @@
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or https://opensource.org/license/mit/.
 
-add_library(test_util STATIC EXCLUDE_FROM_ALL
+add_library(andaluzcoin_test_util STATIC EXCLUDE_FROM_ALL
   blockfilter.cpp
   coins.cpp
   index.cpp
@@ -20,7 +20,7 @@ add_library(test_util STATIC EXCLUDE_FROM_ALL
   $<$<BOOL:${ENABLE_WALLET}>:${PROJECT_SOURCE_DIR}/src/wallet/test/util.cpp>
 )
 
-target_link_libraries(test_util
+target_link_libraries(andaluzcoin_test_util
   PRIVATE
     core_interface
     Boost::headers

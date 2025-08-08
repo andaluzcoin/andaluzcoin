@@ -99,4 +99,12 @@ WalletDescriptor GenerateWalletDescriptor(const CExtPubKey& master_key, const Ou
     return w_desc;
 }
 
+#ifdef USE_BDB
+     bool BerkeleyDatabaseSanityCheck()
+     {
+          // Placeholder for actual BDB sanity check logic.
+          return true;
+     }
+#endif
+
 } // namespace wallet

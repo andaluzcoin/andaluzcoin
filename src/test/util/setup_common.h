@@ -36,13 +36,13 @@ class uint160;
 class uint256;
 
 /** This is connected to the logger. Can be used to redirect logs to any other log */
-extern const std::function<void(const std::string&)> G_TEST_LOG_FUN;
+inline std::function<void(const std::string&)> G_TEST_LOG_FUN;
 
 /** Retrieve the command line arguments. */
-extern const std::function<std::vector<const char*>()> G_TEST_COMMAND_LINE_ARGUMENTS;
+inline std::function<std::vector<const char*>()> G_TEST_COMMAND_LINE_ARGUMENTS;
 
 /** Retrieve the unit test name. */
-extern const std::function<std::string()> G_TEST_GET_FULL_NAME;
+inline std::function<std::string()> G_TEST_GET_FULL_NAME;
 
 static constexpr CAmount CENT{1000000};
 

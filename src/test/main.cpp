@@ -5,6 +5,7 @@
 /**
  * See https://www.boost.org/doc/libs/1_78_0/libs/test/doc/html/boost_test/adv_scenarios/single_header_customizations/multiple_translation_units.html
  */
+#undef BOOST_TEST_MODULE
 #define BOOST_TEST_MODULE Andaluzcoin Core Test Suite
 
 #include <boost/test/included/unit_test.hpp>
@@ -13,36 +14,27 @@
 
 #include <functional>
 #include <iostream>
+#include <vector>
+#include <string>
 
-/** Redirect debug log to unit_test.log files */
-const std::function<void(const std::string&)> G_TEST_LOG_FUN = [](const std::string& s) {
-    static const bool should_log{std::any_of(
-        &boost::unit_test::framework::master_test_suite().argv[1],
-        &boost::unit_test::framework::master_test_suite().argv[boost::unit_test::framework::master_test_suite().argc],
-        [](const char* arg) {
-            return std::string{"DEBUG_LOG_OUT"} == arg;
-        })};
-    if (!should_log) return;
-    std::cout << s;
-};
+/** Assign values to the already-declared inline variables */
+// Correct assignments to inline variables (declared in setup_common.h)
+struct SetupGTestVariables {
+    SetupGTestVariables() {
+        G_TEST_LOG_FUN = [](const std::string& s) {
+            std::cerr << "[TEST LOG] " << s;
+        };
 
-/**
- * Retrieve the command line arguments from boost.
- * Allows usage like:
- * `test_andaluzcoin --run_test="net_tests/cnode_listen_port" -- -checkaddrman=1 -printtoconsole=1`
- * which would return `["-checkaddrman=1", "-printtoconsole=1"]`.
- */
-const std::function<std::vector<const char*>()> G_TEST_COMMAND_LINE_ARGUMENTS = []() {
-    std::vector<const char*> args;
-    for (int i = 1; i < boost::unit_test::framework::master_test_suite().argc; ++i) {
-        args.push_back(boost::unit_test::framework::master_test_suite().argv[i]);
+        G_TEST_COMMAND_LINE_ARGUMENTS = []() {
+            return std::vector<const char*>{};
+        };
+
+        G_TEST_GET_FULL_NAME = []() {
+            return std::string("andaluzcoin_tests");
+        };
     }
-    return args;
 };
 
-/**
- * Retrieve the boost unit test name.
- */
-const std::function<std::string()> G_TEST_GET_FULL_NAME = []() {
-    return boost::unit_test::framework::current_test_case().full_name();
-};
+// Static instance to run during startup
+static SetupGTestVariables setup_gtest_vars;
+

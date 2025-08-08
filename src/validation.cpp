@@ -116,6 +116,10 @@ TRACEPOINT_SEMAPHORE(utxocache, flush);
 TRACEPOINT_SEMAPHORE(mempool, replaced);
 TRACEPOINT_SEMAPHORE(mempool, rejected);
 
+__attribute__((constructor)) void early_validation_init() {
+    printf("✅ validation.cpp static initializer reached\n"); fflush(stdout);
+}
+
 const CBlockIndex* Chainstate::FindForkInGlobalIndex(const CBlockLocator& locator) const
 {
     AssertLockHeld(cs_main);
