@@ -5,7 +5,8 @@ set -euo pipefail
 DATADIR="${DATADIR:-/tmp/andaluz_regtest}"
 CLI="${CLI:-build/src/andaluzcoin-cli}"
 PY="${PY:-python3}"
-HAMMER="${HAMMER:-hammer_opreturn.py}"
+HAMMER="${HAMMER:-$(command -v hammer_opreturn.py || echo hammer_opreturn.py)}"
+
 
 TXS="${TXS:-40}"          # txs per block for hammer_opreturn.py
 BYTES="${BYTES:-20000}"   # OP_RETURN bytes per tx
