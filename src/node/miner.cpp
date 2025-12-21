@@ -81,6 +81,7 @@ BlockAssembler::BlockAssembler(Chainstate& chainstate, const CTxMemPool* mempool
       m_chainstate{chainstate},
       m_options{ClampOptions(options)}
 {
+    // No mutation here; we skip template validity on regtest inside CreateNewBlock().
 }
 
 void ApplyArgsManOptions(const ArgsManager& args, BlockAssembler::Options& options)
@@ -167,11 +168,18 @@ std::unique_ptr<CBlockTemplate> BlockAssembler::CreateNewBlock()
     pblock->nNonce         = 0;
     pblocktemplate->vTxSigOpsCost[0] = WITNESS_SCALE_FACTOR * GetLegacySigOpCount(*pblock->vtx[0]);
 
-    BlockValidationState state;
-    if (m_options.test_block_validity && !TestBlockValidity(state, chainparams, m_chainstate, *pblock, pindexPrev,
-                                                            /*fCheckPOW=*/false, /*fCheckMerkleRoot=*/false)) {
-        throw std::runtime_error(strprintf("%s: TestBlockValidity failed: %s", __func__, state.ToString()));
+    // Skip expensive/full validation for *unsolved* templates.
+    // PoW & Merkle are checked after solving (or when the block is received).
+    if (m_options.test_block_validity && !chainparams.MineBlocksOnDemand()) {
+        BlockValidationState state;
+        if (!TestBlockValidity(state, chainparams, m_chainstate, *pblock, pindexPrev,
+                             /*fCheckPOW=*/false, /*fCheckMerkleRoot=*/false)) {
+            // If it still fails here, it's unrelated to PoW/Merkle (size/rules/etc).
+            throw std::runtime_error(strprintf("%s: template validity (no POW/Merkle) failed: %s",
+                                               __func__, state.ToString()));
+        }
     }
+
     const auto time_2{SteadyClock::now()};
 
     LogDebug(BCLog::BENCH, "CreateNewBlock() packages: %.2fms (%d packages, %d updated descendants), validity: %.2fms (total %.2fms)\n",

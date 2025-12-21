@@ -6,11 +6,14 @@
 #ifndef ANDALUZCOIN_POW_H
 #define ANDALUZCOIN_POW_H
 
+#pragma once
 #include <consensus/params.h>
 
 #include <stdint.h>
+#include <primitives/block.h>
 
 class CBlockHeader;
+class CBlock;
 class CBlockIndex;
 class uint256;
 
@@ -19,7 +22,14 @@ unsigned int CalculateNextWorkRequired(const CBlockIndex* pindexLast, int64_t nF
 
 /** Check whether a block hash satisfies the proof-of-work requirement specified by nBits */
 bool CheckProofOfWork(uint256 hash, unsigned int nBits, const Consensus::Params&);
-bool CheckProofOfWorkImpl(uint256 hash, unsigned int nBits, const Consensus::Params&);
+
+/** Internal helper used by both overloads (non-legacy callers should not use directly). */
+bool CheckProofOfWorkImpl(const uint256& hash, unsigned int nBits, const Consensus::Params&);
+
+/** Preferred overload: validate PoW for a header, selecting the correct PoW hash.
+ *  On regtest we force SHA256d regardless of the main/test algorithm.
+ */
+bool CheckProofOfWork(const CBlockHeader& header, const Consensus::Params& params, bool is_regtest);
 
 /**
  * Return false if the proof-of-work requirement specified by new_nbits at a
@@ -34,5 +44,14 @@ bool CheckProofOfWorkImpl(uint256 hash, unsigned int nBits, const Consensus::Par
  * such as regtest/testnet.
  */
 bool PermittedDifficultyTransition(const Consensus::Params& params, int64_t height, uint32_t old_nbits, uint32_t new_nbits);
+
+/**
+ * Compute the PoW hash used for validation.
+ *  - On regtest: always SHA256d (CBlockHeader::GetHash()).
+ *  - On main/test: your chain’s PoW (can still be SHA256d if unchanged).
+ */
+uint256 GetPoWHash(const CBlockHeader& header, bool is_regtest);
+
+uint256 GetPoWHash(const CBlock& block, bool is_regtest);
 
 #endif // ANDALUZCOIN_POW_H

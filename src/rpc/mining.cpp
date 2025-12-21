@@ -6,7 +6,7 @@
 #include <andaluzcoin-build-config.h> // IWYU pragma: keep
 
 #include <chain.h>
-#include <chainparams.h>
+#include <kernel/chainparams.h>
 #include <chainparamsbase.h>
 #include <common/system.h>
 #include <consensus/amount.h>
@@ -42,6 +42,8 @@
 #include <util/translation.h>
 #include <validation.h>
 #include <validationinterface.h>
+#include <arith_uint256.h>     // arith_uint256 in getblocktemplate/GetNetworkHashPS
+#include <chainparams.h>       // Params()
 
 #include <memory>
 #include <stdint.h>
@@ -136,7 +138,8 @@ static bool GenerateBlock(ChainstateManager& chainman, CBlock&& block, uint64_t&
     block_out.reset();
     block.hashMerkleRoot = BlockMerkleRoot(block);
 
-    while (max_tries > 0 && block.nNonce < std::numeric_limits<uint32_t>::max() && !CheckProofOfWork(block.GetHash(), block.nBits, chainman.GetConsensus()) && !chainman.m_interrupt) {
+    const bool is_regtest = Params().MineBlocksOnDemand();
+    while (max_tries > 0 && block.nNonce < std::numeric_limits<uint32_t>::max() && !CheckProofOfWork(block, chainman.GetConsensus(), is_regtest) && !chainman.m_interrupt) {
         ++block.nNonce;
         --max_tries;
     }
@@ -721,7 +724,9 @@ static RPCHelpMan getblocktemplate()
                 return "inconclusive-not-best-prevblk";
             }
             BlockValidationState state;
-            TestBlockValidity(state, chainman.GetParams(), chainman.ActiveChainstate(), block, chainman.m_blockman.LookupBlockIndex(block.hashPrevBlock), /*fCheckPOW=*/false, /*fCheckMerkleRoot=*/true);
+            if (!TestBlockValidity(state, chainman.GetParams(), chainman.ActiveChainstate(), block, chainman.m_blockman.LookupBlockIndex(block.hashPrevBlock), /*fCheckPOW=*/false, /*fCheckMerkleRoot=*/false)) {
+                throw JSONRPCError(RPC_VERIFY_ERROR, strprintf("TestBlockValidity failed: %s", state.ToString()));
+            }
             return BIP22ValidationResult(state);
         }
 

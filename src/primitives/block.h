@@ -29,6 +29,8 @@ public:
     uint32_t nBits;
     uint32_t nNonce;
 
+    uint256 GetPoWHash() const;
+
     CBlockHeader()
     {
         SetNull();
