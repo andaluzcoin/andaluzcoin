@@ -18,6 +18,8 @@ from test_framework.p2p import P2PDataStore
 from test_framework.messages import uint256_from_str
 from test_framework.messages import CBlockHeader, from_hex
 from io import BytesIO
+from typing import Union
+
 import hashlib
 import os
 
@@ -50,7 +52,11 @@ class RejectLowDifficultyHeadersTest(AndaluzcoinTestFramework):
         self.setup_clean_chain = True
         self.chain = "regtest"   # ✅ Ensure regtest for matching magic bytes
         self.num_nodes = 2
-        self.extra_args = [["-minimumchainwork=0x0", '-prune=550']] * self.num_nodes
+        # Make this test self-contained: NO prune, NO blockfilterindex/coinstatsindex
+        self.extra_args = [
+            ['-minimumchainwork=0x0', '-prune=0', '-blockfilterindex=0', '-coinstatsindex=0'],
+            ['-minimumchainwork=0x0', '-prune=0', '-blockfilterindex=0', '-coinstatsindex=0'],
+        ]
 
     def add_options(self, parser):
         parser.add_argument(
@@ -60,37 +66,45 @@ class RejectLowDifficultyHeadersTest(AndaluzcoinTestFramework):
         )
 
     @staticmethod
-    def bits_to_target(bits):
+    def bits_to_target(bits: int) -> int:
         """Convert compact representation of difficulty (nBits) to target."""
         exponent = bits >> 24
         mantissa = bits & 0xffffff
         if exponent <= 3:
-            target = mantissa >> (8 * (3 - exponent))
-        else:
-            target = mantissa << (8 * (exponent - 3))
-        return target
+            return mantissa >> (8 * (3 - exponent))
+        return mantissa << (8 * (exponent - 3))
 
     @staticmethod
-    def check_proof_of_work(block_hash: bytes, bits: int) -> bool:
-        """Check if a block hash satisfies the proof-of-work requirement specified by bits."""
+    def check_proof_of_work(block_hash: Union[int, bytes], bits: int) -> bool:
+        # Normalize hash to 32-byte big-endian
         if isinstance(block_hash, int):
-            block_hash = block_hash.to_bytes(32, byteorder="big")
+            hb = block_hash.to_bytes(32, byteorder="big", signed=False)
+        else:
+            hb = block_hash
+            if len(hb) < 32:
+                hb = hb.rjust(32, b"\x00")   # left-pad if shorter
+            elif len(hb) > 32:
+                hb = hb[-32:]                # keep the least-significant 32 bytes
+
         target = RejectLowDifficultyHeadersTest.bits_to_target(bits)
-        hash_int = int.from_bytes(block_hash[::-1], byteorder="big")
-        return hash_int <= target
+        hash_int_le = int.from_bytes(hb[::-1], byteorder="big")  # compare LE integer
+        return hash_int_le <= target
 
     def validate_pow_headers(self, headers, label="main"):
         print(f"🔍 Verifying {len(headers)} headers for regtest POW...")
 
         all_valid = True
         for i, header in enumerate(headers):
-            hash_bytes = header.sha256.to_bytes(32, byteorder="big")
-            if not self.check_proof_of_work(hash_bytes, header.nBits):
-                print(f"❌ Invalid POW at header index {i}:\n   hash   = {hash_bytes[::-1].hex()}\n   nBits  = 0x{header.nBits:08x}")
+            ok = self.check_proof_of_work(header.sha256, header.nBits)  # pass int
+            hb = header.sha256.to_bytes(32, byteorder="big")            # for logging
+            hb_le_hex = hb[::-1].hex()
+
+            if not ok:
+                print(f"❌ Invalid POW at header index {i}:\n   hash   = {hb_le_hex}\n   nBits  = 0x{header.nBits:08x}")
 
                 # 🔍 Print target vs hash comparison
                 target = self.bits_to_target(header.nBits)
-                hash_val = int.from_bytes(hash_bytes[::-1], "big")
+                hash_val = int.from_bytes(hb[::-1], "big")
                 print(f"🔍 POW details:")
                 print(f"   target = {hex(target)}")
                 print(f"   hash   = {hex(hash_val)}")
@@ -98,13 +112,9 @@ class RejectLowDifficultyHeadersTest(AndaluzcoinTestFramework):
 
                 all_valid = False
             else:
-                print(f"✅ Header {i}: POW valid. hash={hash_bytes[::-1].hex()}, bits=0x{header.nBits:08x}")
+                print(f"✅ Header {i}: POW valid. hash={hb_le_hex}, bits=0x{header.nBits:08x}")
 
-        if all_valid:
-            print("🎉 All headers pass regtest-style proof-of-work")
-        else:
-            print("❌ Some headers failed POW check")
-
+        print("🎉 All headers pass regtest-style proof-of-work" if all_valid else "❌ Some headers failed POW check")
         return all_valid
 
     @staticmethod
