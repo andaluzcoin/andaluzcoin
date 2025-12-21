@@ -28,3 +28,8 @@ std::string CBlock::ToString() const
     }
     return s.str();
 }
+
+uint256 CBlockHeader::GetPoWHash() const {
+    // Default: Bitcoin PoW (double-SHA256)
+    return GetHash();
+}

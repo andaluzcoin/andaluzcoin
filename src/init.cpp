@@ -956,9 +956,6 @@ bool AppInitParameterInteraction(const ArgsManager& args)
         }
         // but allow the newer index-modes if you asked for fastprune
         if (!fFastPrune) {
-            if (args.GetBoolArg("-blockfilterindex", DEFAULT_BLOCKFILTERINDEX)) {
-                return InitError(_("Prune mode is incompatible with -blockfilterindex."));
-            }
             if (args.GetBoolArg("-coinstatsindex", DEFAULT_COINSTATSINDEX)) {
                 return InitError(_("Prune mode is incompatible with -coinstatsindex."));
             }

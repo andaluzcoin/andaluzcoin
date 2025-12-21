@@ -119,6 +119,8 @@ public:
     const std::string& Bech32HRP() const { return bech32_hrp; }
     const std::vector<uint8_t>& FixedSeeds() const { return vFixedSeeds; }
     const CCheckpointData& Checkpoints() const { return checkpointData; }
+    /** Per-network maximum blockfile size used for blkNNNNN.dat rotation. */
+    unsigned int MaxBlockfileSize() const { return m_max_blockfile_size; }
 
     std::optional<AssumeutxoData> AssumeutxoForHeight(int height) const
     {
@@ -184,6 +186,8 @@ protected:
     CCheckpointData checkpointData;
     std::vector<AssumeutxoData> m_assumeutxo_data;
     ChainTxData chainTxData;
+    /** Default 128 MiB for non-regtest networks. Tuned smaller on regtest for pruning tests. */
+    unsigned int m_max_blockfile_size{128 * 1024 * 1024}; // default 128 MiB (mainnet/testnet)
 };
 
 std::optional<ChainType> GetNetworkForMagic(const MessageStartChars& pchMessageStart);

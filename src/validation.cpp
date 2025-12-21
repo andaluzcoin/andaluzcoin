@@ -28,6 +28,7 @@
 #include <kernel/messagestartchars.h>
 #include <kernel/notifications_interface.h>
 #include <kernel/warning.h>
+#include <chainparamsbase.h>
 #include <logging.h>
 #include <logging/timer.h>
 #include <node/blockstorage.h>
@@ -3959,9 +3960,11 @@ void ChainstateManager::ReceivedBlockTransactions(const CBlock& block, CBlockInd
 
 static bool CheckBlockHeader(const CBlockHeader& block, BlockValidationState& state, const Consensus::Params& consensusParams, bool fCheckPOW = true)
 {
-    // Check proof of work matches claimed amount
-    if (fCheckPOW && !CheckProofOfWork(block.GetHash(), block.nBits, consensusParams))
+    // Check proof of work (force SHA256d on regtest)
+    const bool is_regtest = Params().GetChainType() == ChainType::REGTEST;
+    if (!CheckProofOfWork(block, consensusParams, is_regtest)) {
         return state.Invalid(BlockValidationResult::BLOCK_INVALID_HEADER, "high-hash", "proof of work failed");
+    }
 
     return true;
 }
@@ -4153,8 +4156,11 @@ std::vector<unsigned char> ChainstateManager::GenerateCoinbaseCommitment(CBlock&
 
 bool HasValidProofOfWork(const std::vector<CBlockHeader>& headers, const Consensus::Params& consensusParams)
 {
+    const bool is_regtest = Params().GetChainType() == ChainType::REGTEST; // or Params().IsRegTest()
     return std::all_of(headers.cbegin(), headers.cend(),
-            [&](const auto& header) { return CheckProofOfWork(header.GetHash(), header.nBits, consensusParams);});
+        [&](const CBlockHeader& header) {
+            return CheckProofOfWork(header, consensusParams, is_regtest);
+        });
 }
 
 bool IsBlockMutated(const CBlock& block, bool check_witness_root)
@@ -6576,10 +6582,12 @@ std::pair<int, int> ChainstateManager::GetPruneRange(const Chainstate& chainstat
         prune_start = *Assert(GetSnapshotBaseHeight()) + 1;
     }
 
-    int max_prune = std::max<int>(
-        0, chainstate.m_chain.Height() - static_cast<int>(MIN_BLOCKS_TO_KEEP));
+    // Use Core's 288 keep window on REGTEST so functional tests can prune quickly.
+    const bool is_regtest = (Params().GetChainType() == ChainType::REGTEST);
+    const int  keep_window = is_regtest ? 288 : static_cast<int>(MIN_BLOCKS_TO_KEEP);
+    int max_prune = std::max<int>(0, chainstate.m_chain.Height() - keep_window);
 
-    // last block to prune is the lesser of (caller-specified height, MIN_BLOCKS_TO_KEEP from the tip)
+    // last block to prune is the lesser of (caller-specified height, keep_window from the tip)
     //
     // While you might be tempted to prune the background chainstate more
     // aggressively (i.e. fewer MIN_BLOCKS_TO_KEEP), this won't work with index

@@ -10,6 +10,7 @@
 #include <primitives/block.h>
 #include <uint256.h>
 #include <util/check.h>
+#include <chainparams.h>
 
 unsigned int GetNextWorkRequired(const CBlockIndex* pindexLast, const CBlockHeader *pblock, const Consensus::Params& params)
 {
@@ -139,11 +140,15 @@ bool PermittedDifficultyTransition(const Consensus::Params& params, int64_t heig
 // the most significant bit of the last byte of the hash is set.
 bool CheckProofOfWork(uint256 hash, unsigned int nBits, const Consensus::Params& params)
 {
-    if constexpr (G_FUZZING) return (hash.data()[31] & 0x80) == 0;
+
+#if defined(G_FUZZING)
+    // Bypass full PoW during fuzzing: accept if MSB of last byte is 0.
+    return (hash.data()[31] & 0x80) == 0;
+#endif
     return CheckProofOfWorkImpl(hash, nBits, params);
 }
 
-bool CheckProofOfWorkImpl(uint256 hash, unsigned int nBits, const Consensus::Params& params)
+bool CheckProofOfWorkImpl(const uint256& hash, unsigned int nBits, const Consensus::Params& params)
 {
     bool fNegative;
     bool fOverflow;
@@ -160,4 +165,31 @@ bool CheckProofOfWorkImpl(uint256 hash, unsigned int nBits, const Consensus::Par
         return false;
 
     return true;
+}
+
+uint256 GetPoWHash(const CBlockHeader& header, bool is_regtest)
+{
+    if (is_regtest) {
+        // regtest must remain SHA256d so functional tests remain stable
+        return header.GetHash();
+    }
+    // TODO: replace this with your main/testnet PoW hash if you changed it.
+    // e.g. return scrypt_1024_1_1_256(header);
+    return header.GetHash();
+}
+
+uint256 GetPoWHash(const CBlock& block, bool is_regtest)
+{
+    return GetPoWHash(block.GetBlockHeader(), is_regtest);
+}
+
+// New overload: validate PoW directly from the header (uses GetPoWHash internally)
+bool CheckProofOfWork(const CBlockHeader& header, const Consensus::Params& params, bool is_regtest)
+{
+    const uint256 powhash = GetPoWHash(header, is_regtest);
+#if defined(G_FUZZING)
+    // Bypass full PoW during fuzzing: accept if MSB of last byte is 0.
+    return (powhash.data()[31] & 0x80) == 0;
+#endif
+    return CheckProofOfWorkImpl(powhash, header.nBits, params);
 }

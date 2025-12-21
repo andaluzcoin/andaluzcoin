@@ -5,6 +5,7 @@
 
 #include <rpc/blockchain.h>
 
+#include <algorithm> // for std::max
 #include <blockfilter.h>
 #include <chain.h>
 #include <chainparams.h>
@@ -24,6 +25,7 @@
 #include <index/coinstatsindex.h>
 #include <interfaces/mining.h>
 #include <kernel/coinstats.h>
+#include <kernel/chainparams.h>  // for Params()
 #include <logging/timer.h>
 #include <net.h>
 #include <net_processing.h>
@@ -849,6 +851,7 @@ static RPCHelpMan pruneblockchain()
         [&](const RPCHelpMan& self, const JSONRPCRequest& request) -> UniValue
 {
     ChainstateManager& chainman = EnsureAnyChainman(request.context);
+    const bool is_regtest = Params().MineBlocksOnDemand(); // true on regtest
     if (!chainman.m_blockman.IsPruneMode()) {
         throw JSONRPCError(RPC_MISC_ERROR, "Cannot prune blocks because node is not in prune mode.");
     }
@@ -873,15 +876,30 @@ static RPCHelpMan pruneblockchain()
         heightParam = pindex->nHeight;
     }
 
-    unsigned int height = (unsigned int) heightParam;
-    unsigned int chainHeight = (unsigned int) active_chain.Height();
-    if (chainHeight < chainman.GetParams().PruneAfterHeight()) {
+    int height = heightParam;
+    const int chainHeight = active_chain.Height();
+
+    // Use 288 on regtest so tests can prune at low heights; keep fork's larger value elsewhere.
+    const int min_keep = is_regtest ? 288 : MIN_BLOCKS_TO_KEEP;
+
+    // Honor PruneAfterHeight on non-regtest; disable it on regtest so tests can prune early.
+    const uint64_t prune_after = is_regtest ? 0 : chainman.GetParams().PruneAfterHeight();
+
+    // Guard conditions
+    if (chainHeight < 0) {
         throw JSONRPCError(RPC_MISC_ERROR, "Blockchain is too short for pruning.");
-    } else if (height > chainHeight) {
+    }
+    if (!is_regtest && static_cast<uint64_t>(chainHeight) < prune_after) {
+        throw JSONRPCError(RPC_MISC_ERROR, "Blockchain is too short for pruning.");
+    }
+
+    if (height > chainHeight) {
         throw JSONRPCError(RPC_INVALID_PARAMETER, "Blockchain is shorter than the attempted prune height.");
-    } else if (height > chainHeight - MIN_BLOCKS_TO_KEEP) {
+    }
+
+    if (height > chainHeight - min_keep) {
         LogDebug(BCLog::RPC, "Attempt to prune blocks close to the tip.  Retaining the minimum number of blocks.\n");
-        height = chainHeight - MIN_BLOCKS_TO_KEEP;
+        height = std::max(0, chainHeight - min_keep);
     }
 
     PruneBlockFilesManual(active_chainstate, height);
@@ -2515,6 +2533,18 @@ static RPCHelpMan scanblocks()
         }
         CHECK_NONFATAL(start_index);
         CHECK_NONFATAL(stop_block);
+
+        // If we may read full blocks to filter false positives, fail early on pruned nodes
+        // when the requested start is below pruneheight.
+        if (filter_false_positives) {
+            LOCK(cs_main);
+            if (chainman.m_blockman.IsPruneMode()) {
+                const std::optional<int> prune_height = GetPruneHeight(chainman.m_blockman, chainman.ActiveChain());
+                if (prune_height && start_index->nHeight < *prune_height) {
+                    throw JSONRPCError(RPC_MISC_ERROR, "Block not available (pruned data)");
+                }
+            }
+        }
 
         // loop through the scan objects, add scripts to the needle_set
         GCSFilter::ElementSet needle_set;

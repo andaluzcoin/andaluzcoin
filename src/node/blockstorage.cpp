@@ -12,7 +12,8 @@
 #include <flatfile.h>
 #include <hash.h>
 #include <kernel/blockmanager_opts.h>
-#include <kernel/chainparams.h>
+#include <kernel/chainparams.h>   // ChainType, CChainParams
+#include <chainparams.h>          // Params() accessor
 #include <kernel/messagestartchars.h>
 #include <kernel/notifications_interface.h>
 #include <logging.h>
@@ -131,9 +132,12 @@ bool BlockTreeDB::LoadBlockIndexGuts(const Consensus::Params& consensusParams, s
                 pindexNew->nStatus        = diskindex.nStatus;
                 pindexNew->nTx            = diskindex.nTx;
 
-                if (!CheckProofOfWork(pindexNew->GetBlockHash(), pindexNew->nBits, consensusParams)) {
-                    LogError("%s: CheckProofOfWork failed: %s\n", __func__, pindexNew->ToString());
-                    return false;
+                {
+                    const bool is_regtest = Params().MineBlocksOnDemand();
+                    if (!CheckProofOfWork(pindexNew->GetBlockHeader(), consensusParams, is_regtest)) {
+                        LogError("%s: CheckProofOfWork failed: %s\n", __func__, pindexNew->ToString());
+                        return false;
+                    }
                 }
 
                 pcursor->Next();
@@ -850,7 +854,8 @@ FlatFilePos BlockManager::FindNextBlockPos(unsigned int nAddSize, unsigned int n
     }
 
     bool finalize_undo = false;
-    unsigned int max_blockfile_size{MAX_BLOCKFILE_SIZE};
+    // Per-network blockfile rotation size (tiny on regtest so pruning tests can delete files).
+    unsigned int max_blockfile_size{GetParams().MaxBlockfileSize()};
     // Use smaller blockfiles in test-only -fastprune mode - but avoid
     // the possibility of having a block not fit into the block file.
     if (m_opts.fast_prune) {
@@ -1045,10 +1050,12 @@ bool BlockManager::ReadBlockFromDisk(CBlock& block, const FlatFilePos& pos) cons
         return false;
     }
 
-    // Check the header
-    if (!CheckProofOfWork(block.GetHash(), block.nBits, GetConsensus())) {
-        LogError("%s: Errors in block header at %s\n", __func__, pos.ToString());
-        return false;
+    {
+        const bool is_regtest = Params().MineBlocksOnDemand();
+        if (!CheckProofOfWork(block, GetConsensus(), is_regtest)) {
+            LogError("%s: Errors in block header at %s\n", __func__, pos.ToString());
+            return false;
+        }
     }
 
     // Signet only: check block solution

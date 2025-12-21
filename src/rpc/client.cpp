@@ -35,6 +35,8 @@ static const CRPCConvertParam vRPCConvertParams[] =
     { "generatetoaddress", 0, "nblocks" },
     { "generatetoaddress", 2, "maxtries" },
     { "generatetodescriptor", 0, "num_blocks" },
+    { "generatetodescriptor", 0, "numblocks" },   // add: canonical name
+    { "generatetodescriptor", 0, "nblocks" },     // add: legacy alias
     { "generatetodescriptor", 2, "maxtries" },
     { "generateblock", 1, "transactions" },
     { "generateblock", 2, "submit" },

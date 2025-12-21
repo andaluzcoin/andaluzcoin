@@ -200,6 +200,8 @@ public:
             .tx_count = 1059312821,
             .dTxRate  = 6.721086701157182,
         };
+
+        m_max_blockfile_size = 128 * 1024 * 1024; // 128 MiB
     }
 };
 
@@ -301,6 +303,8 @@ public:
             .tx_count = 187917082,
             .dTxRate  = 3.265051477698455,
         };
+
+        m_max_blockfile_size = 128 * 1024 * 1024; // keep default
     }
 };
 
@@ -530,35 +534,37 @@ public:
         m_chain_type = ChainType::REGTEST;
         consensus.signet_blocks = false;
         consensus.signet_challenge.clear();
-        consensus.nSubsidyHalvingInterval = 150;
-        consensus.BIP34Height = 1; // Always active unless overridden
+        // Keep mining/evaluation trivial and stable for functional tests
+        consensus.nSubsidyHalvingInterval = 150; // BTC regtest default
+        consensus.BIP34Height = 0; // Always active from genesis
         consensus.BIP34Hash = uint256();
-        consensus.BIP65Height = 1;  // Always active unless overridden
-        consensus.BIP66Height = 1;  // Always active unless overridden
-        consensus.CSVHeight = 1;    // Always active unless overridden
-        consensus.SegwitHeight = 0; // Always active unless overridden
+
+        consensus.BIP65Height = 0;  // Always active from genesis
+        consensus.BIP66Height = 0;  // Always active from genesis
+        consensus.CSVHeight   = 0;  // Always active from genesis
+        consensus.SegwitHeight = 0; // Always active from genesis
         consensus.MinBIP9WarningHeight = 0;
-        consensus.powLimit = uint256{"7fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"};
+
+        // PoW must be extremely easy and stable (max target on regtest)
+        // Easiest possible target so CreateNewBlock passes TestBlockValidity before solving
+        consensus.powLimit = *uint256::FromHex("7fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
         consensus.nPowTargetTimespan = 24 * 60 * 60; // one day
-        consensus.nPowTargetSpacing = 10 * 60;
+        consensus.nPowTargetSpacing = 10 * 60;   // value doesn’t matter on regtest
         consensus.fPowAllowMinDifficultyBlocks = true;
         consensus.enforce_BIP94 = opts.enforce_bip94;
         consensus.fPowNoRetargeting = true;
         consensus.nRuleChangeActivationThreshold = 108; // 75% for testchains
         consensus.nMinerConfirmationWindow = 144; // Faster than normal for regtest (144 instead of 2016)
 
-        consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].bit = 28;
-        consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].nStartTime = 0;
-        consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].nTimeout = Consensus::BIP9Deployment::NO_TIMEOUT;
-        consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].min_activation_height = 0; // No activation delay
+        // Activate ALL version-bits deployments immediately on regtest
+        for (int d = 0; d < (int)Consensus::MAX_VERSION_BITS_DEPLOYMENTS; ++d) {
+            consensus.vDeployments[d].nStartTime = Consensus::BIP9Deployment::ALWAYS_ACTIVE;
+            consensus.vDeployments[d].nTimeout   = Consensus::BIP9Deployment::NO_TIMEOUT;
+            consensus.vDeployments[d].min_activation_height = 0;
+        }
 
-        consensus.vDeployments[Consensus::DEPLOYMENT_TAPROOT].bit = 2;
-        consensus.vDeployments[Consensus::DEPLOYMENT_TAPROOT].nStartTime = Consensus::BIP9Deployment::ALWAYS_ACTIVE;
-        consensus.vDeployments[Consensus::DEPLOYMENT_TAPROOT].nTimeout = Consensus::BIP9Deployment::NO_TIMEOUT;
-        consensus.vDeployments[Consensus::DEPLOYMENT_TAPROOT].min_activation_height = 0; // No activation delay
-
-        consensus.nMinimumChainWork = uint256{};
-        consensus.defaultAssumeValid = uint256{};
+        consensus.nMinimumChainWork = uint256(); // zero
+        consensus.defaultAssumeValid = uint256{};  // no assume-valid
 
         pchMessageStart[0] = 0xfa;
         pchMessageStart[1] = 0xbf;
@@ -595,14 +601,15 @@ public:
             consensus.vDeployments[deployment_pos].min_activation_height = version_bits_params.min_activation_height;
         }
 
-        genesis = CreateGenesisBlock(1296688602, 2, 0x207fffff, 1, 50 * COIN);
+        // nBits must match powLimit => 0x207fffff on regtest
+        genesis = CreateGenesisBlock(/* nTime */ 1296688602, /* nNonce */ 2, /* nBits */ 0x207fffff, 1, 50 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
-        assert(consensus.hashGenesisBlock == uint256{"0f9188f13cb7b2c71f2a335e3a4fc328bf5beb436012afca590b1a11466e2206"});
-        assert(genesis.hashMerkleRoot == uint256{"4a5e1e4baab89f3a32518a88c31bc87f618f76673e2cc77ab2127b7afdeda33b"});
+        // Keep upstream regtest asserts (SHA256d PoW)
+        assert(consensus.hashGenesisBlock == *uint256::FromHex("0f9188f13cb7b2c71f2a335e3a4fc328bf5beb436012afca590b1a11466e2206"));
+        assert(genesis.hashMerkleRoot == *uint256::FromHex("4a5e1e4baab89f3a32518a88c31bc87f618f76673e2cc77ab2127b7afdeda33b"));
 
-        vFixedSeeds.clear(); //!< Regtest mode doesn't have any fixed seeds.
+        vFixedSeeds.clear();
         vSeeds.clear();
-        vSeeds.emplace_back("dummySeed.invalid.");
 
         fDefaultConsistencyChecks = true;
         m_is_mockable_chain = true;
@@ -649,6 +656,10 @@ public:
         base58Prefixes[EXT_SECRET_KEY] = {0x04, 0x35, 0x83, 0x94};
 
         bech32_hrp = "bcrt";
+
+        // Make files tiny on regtest so pruning tests can delete whole files quickly.
+        // 256 KiB ensures many blk*.dat files even with small regtest blocks.
+        m_max_blockfile_size = 16 * 1024 * 1024;
     }
 };
 

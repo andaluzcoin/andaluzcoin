@@ -248,4 +248,35 @@ void JSONRPCRequest::parse(const UniValue& valRequest)
         params = UniValue(UniValue::VARR);
     else
         throw JSONRPCError(RPC_INVALID_REQUEST, "Params must be an array or object");
+
+    // ---- Andaluzcoin compatibility shim ------------------------------------
+    // generatetodescriptor: accept either "numblocks" or "nblocks" and
+    // convert named-object params into the expected positional array:
+    //   [numblocks, descriptor, maxtries]
+    if (strMethod == "generatetodescriptor" && params.isObject()) {
+        const std::vector<std::string>& keys = params.getKeys();
+        const std::vector<UniValue>&     vals = params.getValues();
+        const size_t n = std::min(keys.size(), vals.size());
+
+        UniValue nb, desc, mt;
+        bool have_nb = false, have_desc = false, have_mt = false;
+
+        for (size_t i = 0; i < n; ++i) {
+            const std::string& k = keys[i];
+            if (k == "numblocks" || k == "nblocks") { nb = vals[i]; have_nb = true; continue; }
+            if (k == "descriptor")                  { desc = vals[i]; have_desc = true; continue; }
+            if (k == "maxtries")                    { mt = vals[i]; have_mt = true; continue; }
+        }
+
+        // If we recognized at least the first arg, build positional params.
+        if (have_nb || have_desc || have_mt) {
+            UniValue arr(UniValue::VARR);
+            if (have_nb)   arr.push_back(nb);
+            if (have_desc) arr.push_back(desc);
+            if (have_mt)   arr.push_back(mt);
+            params = std::move(arr);
+        }
+    }
+    // ------------------------------------------------------------------------
+
 }
