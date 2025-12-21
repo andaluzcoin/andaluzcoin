@@ -365,13 +365,16 @@ class TestNode():
         assert not invalid_call
         return self.__getattr__('generateblock')(*args, **kwargs)
 
-    def generatetoaddress(self, *args, invalid_call, **kwargs):
-        assert not invalid_call
-        return self.__getattr__('generatetoaddress')(*args, **kwargs)
+    def generatetoaddress(self, nblocks, address, maxtries=1000000, **_ignore):
+        # Accept extra framework kwargs (e.g., invalid_call) but don't forward them to RPC
+        return self.__getattr__('generatetoaddress')(
+            nblocks=nblocks, address=address, maxtries=maxtries
+        )
 
-    def generatetodescriptor(self, *args, invalid_call, **kwargs):
-        assert not invalid_call
-        return self.__getattr__('generatetodescriptor')(*args, **kwargs)
+    def generatetodescriptor(self, nblocks, descriptor, maxtries=1000000, **_ignore):
+        return self.__getattr__('generatetodescriptor')(
+            nblocks=nblocks, descriptor=descriptor, maxtries=maxtries
+        )
 
     def setmocktime(self, timestamp):
         """Wrapper for setmocktime RPC, sets self.mocktime"""

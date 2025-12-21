@@ -28,8 +28,8 @@ class WalletPruningTest(AndaluzcoinTestFramework):
         self.num_nodes = 2
         self.wallet_names = []
         self.extra_args = [
-            [], # node dedicated to mining
-            ['-prune=550'], # node dedicated to testing pruning
+            ['-blockfilterindex=0'],                 # mining node
+            ['-prune=550', '-blockfilterindex=0'],   # pruned node
         ]
 
     def skip_test_if_missing_module(self):
