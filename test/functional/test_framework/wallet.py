@@ -120,8 +120,12 @@ class MiniWallet:
         return self._test_node.getblockchaininfo()['blocks'] - utxo['height'] + 1
 
     def _is_mature(self, utxo, min_coinbase_depth: int = COINBASE_MATURITY) -> bool:
+        # UTXO dicts may come from different RPCs / helpers.
+        # Some provide 'coinbase', others provide 'generated', and some provide neither.
+        # Default to treating missing as non-coinbase to avoid KeyError in tests.
+        coinbase = utxo.get('coinbase', utxo.get('generated', False))
         """Non-coinbase always ok; coinbase must reach min_coinbase_depth."""
-        return (not utxo['coinbase']) or (self._depth(utxo) >= min_coinbase_depth)
+        return (not coinbase) or (self._depth(utxo) >= min_coinbase_depth)
 
     def _create_utxo(self, *, txid, vout, value, height, coinbase, confirmations):
         return {"txid": txid, "vout": vout, "value": value, "height": height, "coinbase": coinbase, "confirmations": confirmations}
