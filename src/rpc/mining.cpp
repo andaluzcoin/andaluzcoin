@@ -302,6 +302,20 @@ static RPCHelpMan generatetoaddress()
     };
 }
 
+static void SolveBlockOrThrow(CBlock& block, const Consensus::Params& consensus, int64_t max_tries)
+{
+    // Make sure we start from a clean nonce.
+    block.nNonce = 0;
+
+    // Try nonces. For regtest this should succeed almost immediately.
+    for (int64_t i = 0; i < max_tries; ++i) {
+        if (CheckProofOfWork(block.GetHash(), block.nBits, consensus)) return;
+        ++block.nNonce;
+    }
+
+    throw JSONRPCError(RPC_INTERNAL_ERROR, "Could not solve block");
+}
+
 static RPCHelpMan generateblock()
 {
     return RPCHelpMan{"generateblock",
@@ -388,9 +402,13 @@ static RPCHelpMan generateblock()
         block.vtx.insert(block.vtx.end(), txs.begin(), txs.end());
         RegenerateCommitments(block, chainman);
 
+        // Solve PoW before validating/submitting. This RPC is used in functional tests;
+        // never submit an unsolved block (would fail with "high-hash").
+        SolveBlockOrThrow(block, chainman.GetConsensus(), /*max_tries=*/10'000'000);
+
         BlockValidationState state;
-        if (!TestBlockValidity(state, chainman.GetParams(), chainman.ActiveChainstate(), block, chainman.m_blockman.LookupBlockIndex(block.hashPrevBlock), /*fCheckPOW=*/false, /*fCheckMerkleRoot=*/false)) {
-            throw JSONRPCError(RPC_VERIFY_ERROR, strprintf("TestBlockValidity failed: %s", state.ToString()));
+        if (!TestBlockValidity(state, chainman.GetParams(), chainman.ActiveChainstate(), block, chainman.m_blockman.LookupBlockIndex(block.hashPrevBlock), /*fCheckPOW=*/true, /*fCheckMerkleRoot=*/true)) {
+             throw JSONRPCError(RPC_VERIFY_ERROR, strprintf("TestBlockValidity failed: %s", state.ToString()));
         }
     }
 
