@@ -423,19 +423,19 @@ class TestNode():
 
     def generatetoaddress(self, nblocks, address, maxtries=1000000, *, called_by_framework, **_ignore):
         assert called_by_framework, (
-            "Direct call of this mining RPC is discouraged. Please use one of the self.generate* methods "
-            "on the test framework, which sync the nodes to avoid intermittent test issues. You may use "
-            "sync_fun=self.no_op to disable the sync explicitly."
+            "Direct call of this mining RPC is discouraged. Please use one of the self.generate* "
+            "methods on the test framework, which sync the nodes to avoid intermittent test issues. "
+            "You may use sync_fun=self.no_op to disable the sync explicitly."
         )
-        return self.__getattr__('generatetoaddress')(nblocks=nblocks, address=address, maxtries=maxtries)
+        return self.__getattr__('generatetoaddress')(nblocks, address, maxtries)
 
     def generatetodescriptor(self, nblocks, descriptor, maxtries=1000000, *, called_by_framework, **_ignore):
         assert called_by_framework, (
-            "Direct call of this mining RPC is discouraged. Please use one of the self.generate* methods "
-            "on the test framework, which sync the nodes to avoid intermittent test issues. You may use "
-            "sync_fun=self.no_op to disable the sync explicitly."
+            "Direct call of this mining RPC is discouraged. Please use one of the self.generate* "
+            "methods on the test framework, which sync the nodes to avoid intermittent test issues. "
+            "You may use sync_fun=self.no_op to disable the sync explicitly."
         )
-        return self.__getattr__('generatetodescriptor')(nblocks=nblocks, descriptor=descriptor, maxtries=maxtries)
+        return self.__getattr__('generatetodescriptor')(nblocks, descriptor, maxtries)
 
     def setmocktime(self, timestamp):
         """Wrapper for setmocktime RPC, sets self.mocktime"""

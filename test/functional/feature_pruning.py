@@ -303,7 +303,9 @@ class PruneTest(BitcoinTestFramework):
             try:
                 nd.pruneblockchain(target)  # no-op / should not error
             except Exception as e:
-                self.fail(f"pruneblockchain({target}) unexpectedly failed with a single blk file: {e}")
+                raise AssertionError(
+                    f"pruneblockchain({target}) unexpectedly failed with a single blk file: {e}"
+                ) from e
             return True
         return False
 
@@ -470,7 +472,7 @@ class PruneTest(BitcoinTestFramework):
             )
             left -= m
         # final guard
-        self.sync_blocks(self.nodes, timeout=300)	
+        self.sync_blocks(self.nodes, timeout=300)
 
     # helper
     def _ensure_flag(self, args, flag):
