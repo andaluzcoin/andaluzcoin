@@ -29,14 +29,8 @@ from test_framework.util import (
 )
 
 from test_framework.test_node import ErrorMatch
-
-import binascii
-import glob
-from decimal import Decimal
-from os import path
-from pathlib import Path
-from test_framework.test_node import TestNode
 from test_framework.wallet import MiniWallet
+from decimal import Decimal
 from test_framework.authproxy import JSONRPCException
 
 
@@ -255,7 +249,7 @@ class PruneTest(BitcoinTestFramework):
 
         datadir = self._node_datadir(idx)
         chain_dir = getattr(node, "chain", getattr(self, "_chain_dirname", "regtest"))
-        path = os.path.join(datadir, chain_dir, "blocks")
+        blocks_path = os.path.join(datadir, chain_dir, "blocks")
 
         # Debug: log at most once per node when ANDALUZ_PATH_DEBUG=1
         if os.getenv("ANDALUZ_PATH_DEBUG") == "1":
@@ -264,10 +258,10 @@ class PruneTest(BitcoinTestFramework):
                 logged = set()
                 self._path_logged_nodes = logged
             if idx not in logged:
-                self.log.debug(f"path-debug: node{idx} blocks_dir={path!r} (datadir={datadir!r}, chain={chain_dir!r})")
+                self.log.debug(f"path-debug: node{idx} blocks_dir={blocks_path!r} (datadir={datadir!r}, chain={chain_dir!r})")
                 logged.add(idx)
 
-        return path
+        return blocks_path
 
     def _blkfiles(self, node_idx: int):
         d = self._node_blocks_dir(node_idx)
@@ -566,7 +560,6 @@ class PruneTest(BitcoinTestFramework):
             return
 
         # Otherwise, assert that at least one blk file disappears.
-        blocks_dir = self._node_blocks_dir(self.pruned_idx)
         before = self._blkfiles(self.pruned_idx)
 
         def pruned_any_file():

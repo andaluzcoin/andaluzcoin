@@ -325,9 +325,13 @@ class MiniWallet:
         certain number of outputs with equal amounts. The output amounts can be
         set by amount_per_output or automatically calculated with a fee_per_output.
         """
-        utxos_to_spend = utxos_to_spend or [self.get_utxo(confirmed_only=confirmed_only, min_coinbase_depth=min_coinbase_depth)]
-        # Hard guard: never build a tx spending immature coinbase
-        assert all(self._is_mature(u, min_coinbase_depth) for u in utxos_to_spend), "Attempted to spend immature coinbase UTXO"
+        if utxos_to_spend is None:
+            utxos_to_spend = [self.get_utxo(confirmed_only=confirmed_only, min_coinbase_depth=min_coinbase_depth)]
+            # Guard only when the wallet selects inputs automatically
+            assert all(self._is_mature(u, min_coinbase_depth) for u in utxos_to_spend), \
+                "Attempted to spend immature coinbase UTXO"
+        # else: caller explicitly provided inputs; may intentionally be immature for negative tests
+
         sequence = [sequence] * len(utxos_to_spend) if type(sequence) is int else sequence
         assert_equal(len(utxos_to_spend), len(sequence))
 
