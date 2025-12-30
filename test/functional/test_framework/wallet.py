@@ -56,7 +56,13 @@ from test_framework.util import (
 )
 from test_framework.wallet_util import generate_keypair
 
-DEFAULT_FEE = Decimal("0.0001")
+from test_framework.messages import COIN
+
+# Default fee used by MiniWallet helpers.
+# Scales with COIN so forks with different base-units don't break tests.
+# (Bitcoin: COIN=100_000_000 -> DEFAULT_FEE=10_000 sats)
+DEFAULT_FEE = max(1, COIN // 10_000)
+
 
 class MiniWalletMode(Enum):
     """Determines the transaction type the MiniWallet is creating and spending.
