@@ -59,9 +59,22 @@ from test_framework.wallet_util import generate_keypair
 from test_framework.messages import COIN
 
 # Default fee used by MiniWallet helpers.
-# Scales with COIN so forks with different base-units don't break tests.
-# (Bitcoin: COIN=100_000_000 -> DEFAULT_FEE=10_000 sats)
-DEFAULT_FEE = max(1, COIN // 10_000)
+# Keep Bitcoin-Core semantics:
+# - fee_rate is coins/kvB (Decimal)
+# - fee_per_output is satoshis (int)
+DEFAULT_FEE = Decimal("0.0001")  # coins/kvB
+DEFAULT_FEE_PER_OUTPUT = 10_000  # sats
+
+
+def _as_coin_amount(v) -> Decimal:
+    """Normalize amounts to coin units (Decimal).
+    If v is int, treat as satoshis and convert to coins.
+    """
+    if isinstance(v, Decimal):
+        return v
+    if isinstance(v, int):
+        return Decimal(v) / COIN
+    return Decimal(str(v))
 
 
 class MiniWalletMode(Enum):
@@ -336,7 +349,11 @@ class MiniWallet:
             # Guard only when the wallet selects inputs automatically
             assert all(self._is_mature(u, min_coinbase_depth) for u in utxos_to_spend), \
                 "Attempted to spend immature coinbase UTXO"
-        # else: caller explicitly provided inputs; may intentionally be immature for negative tests
+
+        # ---- normalize units (call at start) ----
+        # Ensure every input UTXO value is a coin Decimal (not sats int).
+        utxos_to_spend = [dict(u, value=_as_coin_amount(u["value"])) for u in utxos_to_spend]
+        # -----------------------------------------
 
         sequence = [sequence] * len(utxos_to_spend) if type(sequence) is int else sequence
         assert_equal(len(utxos_to_spend), len(sequence))
@@ -345,7 +362,14 @@ class MiniWallet:
         inputs_value_total = sum([int(COIN * utxo['value']) for utxo in utxos_to_spend])
         outputs_value_total = inputs_value_total - fee_per_output * num_outputs
         amount_per_output = amount_per_output or (outputs_value_total // num_outputs)
-        assert amount_per_output > 0
+
+        if amount_per_output <= 0:
+            raise RuntimeError(
+                f"amount_per_output={amount_per_output} inputs_total={inputs_value_total} "
+                f"fee_per_output={fee_per_output} num_outputs={num_outputs} "
+                f"utxos={[ (u.get('txid','')[:8], u.get('vout'), u.get('value')) for u in utxos_to_spend ]}"
+            )
+
         outputs_value_total = amount_per_output * num_outputs
         fee = Decimal(inputs_value_total - outputs_value_total) / COIN
 
@@ -391,8 +415,25 @@ class MiniWallet:
     ):
         """Create and return a tx with the specified fee. If fee is 0, use fee_rate, where the resulting fee may be exact or at most one satoshi higher than needed."""
         utxo_to_spend = utxo_to_spend or self.get_utxo(confirmed_only=confirmed_only, min_coinbase_depth=min_coinbase_depth)
+
+        # ---- normalize units (call at start) ----
+        utxo_to_spend = dict(utxo_to_spend)  # don't mutate caller's dict
+        utxo_to_spend["value"] = _as_coin_amount(utxo_to_spend["value"])
+
+        # If fee_rate is passed as int, interpret as sats/kvB (common in tests),
+        # convert to coins/kvB for this helper.
+        if isinstance(fee_rate, int):
+            fee_rate = Decimal(fee_rate) / COIN
+        else:
+            fee_rate = Decimal(fee_rate)
+
+        # If fee is passed as int, interpret as sats and convert to coins.
+        fee = _as_coin_amount(fee) if isinstance(fee, int) else Decimal(fee)
+        # -----------------------------------------
+
         assert fee_rate >= 0
         assert fee >= 0
+
         # calculate fee
         if self._mode in (MiniWalletMode.RAW_OP_TRUE, MiniWalletMode.ADDRESS_OP_TRUE):
             vsize = Decimal(104)  # anyone-can-spend

@@ -23,7 +23,11 @@ from test_framework.util import (
     assert_raises_rpc_error,
 )
 from test_framework.messages import COIN
-from test_framework.wallet import DEFAULT_FEE, MiniWallet
+from test_framework.wallet import DEFAULT_FEE, MiniWallet, DEFAULT_FEE_PER_OUTPUT
+
+FEE_PER_OUTPUT = DEFAULT_FEE_PER_OUTPUT
+FEE_PER_OUTPUT_LOW = max(1, FEE_PER_OUTPUT // 5)
+FEE_PER_OUTPUT_HIGH = FEE_PER_OUTPUT * 5
 
 
 
@@ -208,7 +212,7 @@ class RPCPackagesTest(BitcoinTestFramework):
 
             child_tx = self.wallet.create_self_transfer_multi(
                 utxos_to_spend=parent_coins,
-                fee_per_output=max(1, DEFAULT_FEE // 5),
+                fee_per_output=FEE_PER_OUTPUT_LOW,
             )
             for _ in range(10):
                 random.shuffle(package_hex)
@@ -251,8 +255,8 @@ class RPCPackagesTest(BitcoinTestFramework):
 
         # Add a child that spends both at high feerate to submit via submitpackage
         tx_child = self.wallet.create_self_transfer_multi(
-            fee_per_output=int(DEFAULT_FEE * 5 * COIN),
             utxos_to_spend=[tx1["new_utxo"], tx2["new_utxo"]],
+            fee_per_output=FEE_PER_OUTPUT_HIGH,
         )
 
         testres = node.testmempoolaccept([tx1["hex"], tx2["hex"], tx_child["hex"]])
@@ -347,7 +351,44 @@ class RPCPackagesTest(BitcoinTestFramework):
             if partial_submit and random.choice([True, False]):
                 node.sendrawtransaction(parent_tx["hex"])
                 presubmitted_wtxids.add(parent_tx["wtxid"])
-        child_tx = self.wallet.create_self_transfer_multi(utxos_to_spend=[tx["new_utxo"] for tx in package_txns], fee_per_output=DEFAULT_FEE)
+
+        parent_utxos = [tx["new_utxo"] for tx in package_txns]
+        inputs_total = sum(int(COIN * u["value"]) for u in parent_utxos)
+
+        # Keep 10k sats when possible, but never exceed inputs_total - 1 sat.
+        fee = min(FEE_PER_OUTPUT, max(1, inputs_total - 1))
+
+        self.log.debug("test_submit_child_with_parents: num_parents=%d partial_submit=%s", num_parents, partial_submit)
+        self.log.debug("test_submit_child_with_parents: len(package_txns)=%d", len(package_txns))
+
+        # Restructure so the child tx is always created, but:
+        # if num_parents == 0: child is a standalone tx
+        # else: child spends the parents.
+        # This case should test that submitpackage rejects a 1-tx "package".
+        if num_parents == 0:
+            assert len(package_txns) == 0
+            child_tx = self.wallet.create_self_transfer(fee_rate=DEFAULT_FEE)
+        else:
+            parent_utxos = [tx["new_utxo"] for tx in package_txns]
+            inputs_total_sats = sum(int(COIN * u["value"]) for u in parent_utxos)
+
+            # Keep 10k sats when possible, but never exceed inputs_total - 1 sat.
+            fee_sats = min(FEE_PER_OUTPUT, max(1, inputs_total_sats - 1))
+
+            self.log.debug(
+                "submit_child_with_parents: parents=%s total_sats=%d fee_per_output=%d",
+                [(u["txid"][:8], u["vout"], str(u["value"])) for u in parent_utxos],
+                inputs_total_sats,
+                fee_sats,
+            )
+
+            child_tx = self.wallet.create_self_transfer_multi(
+                utxos_to_spend=parent_utxos,
+                fee_per_output=fee_sats,
+                # num_outputs defaults to 1, so this is the whole output value
+                amount_per_output=inputs_total_sats - fee_sats,  # amount_per_output is sats
+            )
+
         package_txns.append(child_tx)
 
         testmempoolaccept_result = node.testmempoolaccept(rawtxs=[tx["hex"] for tx in package_txns])
@@ -363,9 +404,9 @@ class RPCPackagesTest(BitcoinTestFramework):
             tx_result = submitpackage_result["tx-results"][wtxid]
             assert_equal(tx_result["txid"], tx.txid_hex)
             assert_equal(tx_result["vsize"], tx.get_vsize())
-            assert_equal(tx_result["fees"]["base"], DEFAULT_FEE)
+            assert_equal(tx_result["fees"]["base"], package_txn["fee"])
             if wtxid not in presubmitted_wtxids:
-                assert_fee_amount(DEFAULT_FEE, tx.get_vsize(), tx_result["fees"]["effective-feerate"])
+                assert_fee_amount(tx_result["fees"]["base"], tx.get_vsize(), tx_result["fees"]["effective-feerate"])
                 assert_equal(tx_result["fees"]["effective-includes"], [wtxid])
 
         # submitpackage result should be consistent with testmempoolaccept and getmempoolentry
