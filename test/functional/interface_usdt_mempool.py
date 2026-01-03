@@ -36,6 +36,25 @@ MEMPOOL_TRACEPOINTS_PROGRAM = """
 #define MAX_REMOVAL_REASON_LENGTH       9
 #define HASH_LENGTH                     32
 
+
+static __always_inline s64 s64_from_ptr_or_val(u64 raw)
+{
+  s64 val = 0;
+  if (bpf_probe_read_user(&val, sizeof(val), (void *)raw) == 0) {
+    return val;
+  }
+  return (s64)raw;
+}
+
+static __always_inline u64 u64_from_ptr_or_val(u64 raw)
+{
+  u64 val = 0;
+  if (bpf_probe_read_user(&val, sizeof(val), (void *)raw) == 0) {
+    return val;
+  }
+  return raw;
+}
+
 struct added_event
 {
   u8    hash[HASH_LENGTH];
@@ -82,7 +101,10 @@ int trace_added(struct pt_regs *ctx) {
   bpf_usdt_readarg(1, ctx, &phash);
   bpf_probe_read_user(&added.hash, sizeof(added.hash), phash);
   bpf_usdt_readarg(2, ctx, &added.vsize);
-  bpf_usdt_readarg(3, ctx, &added.fee);
+  
+  u64 fee_raw = 0;
+  bpf_usdt_readarg(3, ctx, &fee_raw);
+  added.fee = s64_from_ptr_or_val(fee_raw);
 
   added_events.perf_submit(ctx, &added, sizeof(added));
   return 0;
@@ -96,8 +118,15 @@ int trace_removed(struct pt_regs *ctx) {
   bpf_usdt_readarg(2, ctx, &preason);
   bpf_probe_read_user_str(&removed.reason, sizeof(removed.reason), preason);
   bpf_usdt_readarg(3, ctx, &removed.vsize);
-  bpf_usdt_readarg(4, ctx, &removed.fee);
-  bpf_usdt_readarg(5, ctx, &removed.entry_time);
+  
+  u64 fee_raw = 0;
+  u64 entry_raw = 0;
+
+  bpf_usdt_readarg(4, ctx, &fee_raw);
+  removed.fee = s64_from_ptr_or_val(fee_raw);
+
+  bpf_usdt_readarg(5, ctx, &entry_raw);
+  removed.entry_time = u64_from_ptr_or_val(entry_raw);
 
   removed_events.perf_submit(ctx, &removed, sizeof(removed));
   return 0;
@@ -120,12 +149,25 @@ int trace_replaced(struct pt_regs *ctx) {
   bpf_usdt_readarg(1, ctx, &preplaced_hash);
   bpf_probe_read_user(&replaced.replaced_hash, sizeof(replaced.replaced_hash), preplaced_hash);
   bpf_usdt_readarg(2, ctx, &replaced.replaced_vsize);
-  bpf_usdt_readarg(3, ctx, &replaced.replaced_fee);
-  bpf_usdt_readarg(4, ctx, &replaced.replaced_entry_time);
+
+  u64 rf_raw = 0;
+  u64 rt_raw = 0;
+
+  bpf_usdt_readarg(3, ctx, &rf_raw);
+  replaced.replaced_fee = s64_from_ptr_or_val(rf_raw);
+
+  bpf_usdt_readarg(4, ctx, &rt_raw);
+  replaced.replaced_entry_time = u64_from_ptr_or_val(rt_raw);
+
   bpf_usdt_readarg(5, ctx, &preplacement_hash);
   bpf_probe_read_user(&replaced.replacement_hash, sizeof(replaced.replacement_hash), preplacement_hash);
   bpf_usdt_readarg(6, ctx, &replaced.replacement_vsize);
-  bpf_usdt_readarg(7, ctx, &replaced.replacement_fee);
+
+  u64 pf_raw = 0;
+
+  bpf_usdt_readarg(7, ctx, &pf_raw);
+  replaced.replacement_fee = s64_from_ptr_or_val(pf_raw);
+
   bpf_usdt_readarg(8, ctx, &replaced.replaced_by_transaction);
 
   replaced_events.perf_submit(ctx, &replaced, sizeof(replaced));

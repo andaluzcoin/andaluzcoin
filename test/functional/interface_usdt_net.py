@@ -202,6 +202,16 @@ int trace_closed_connection(struct pt_regs *ctx) {
 """
 
 
+def _cstr_utf8(x) -> str:
+    """Decode a fixed-size char[] coming from USDT/BPF as a C-string."""
+    if not isinstance(x, (bytes, bytearray)):
+        x = bytes(x)
+    # Stop at first NUL; ignore any garbage beyond.
+    x = x.split(b"\x00", 1)[0]
+    return x.decode("utf-8", errors="ignore")
+
+
+
 class Connection(ctypes.Structure):
     _fields_ = [
         ("id", ctypes.c_uint64),
@@ -297,16 +307,16 @@ class NetTracepointTest(BitcoinTestFramework):
 
         def check_p2p_message(event, is_inbound):
             nonlocal checked_inbound_version_msg, checked_outbound_version_msg
-            if event.msg_type.decode("utf-8") == "version":
+            if _cstr_utf8(event.msg_type) == "version":
                 self.log.info(
                     f"check_p2p_message(): {'inbound' if is_inbound else 'outbound'} {event}")
                 peer = self.nodes[0].getpeerinfo()[0]
                 msg = msg_version()
                 msg.deserialize(BytesIO(bytes(event.msg[:event.msg_size])))
                 assert_equal(peer["id"], event.peer_id, peer["id"])
-                assert_equal(peer["addr"], event.peer_addr.decode("utf-8"))
-                assert_equal(peer["connection_type"],
-                             event.peer_conn_type.decode("utf-8"))
+                assert_equal(peer["addr"], _cstr_utf8(event.peer_addr))
+                assert_equal(peer["connection_type"], _cstr_utf8(event.peer_conn_type))
+
                 if is_inbound:
                     checked_inbound_version_msg += 1
                 else:
