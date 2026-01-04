@@ -66,6 +66,19 @@ DEFAULT_FEE = Decimal("0.0001")  # coins/kvB
 DEFAULT_FEE_PER_OUTPUT = 10_000  # sats
 
 
+def _feerate_to_btc_kvb(fee_rate) -> Decimal:
+    """
+    Convert a MiniWallet feerate to BTC/kvB.
+
+    - If fee_rate is a Decimal < 1: treat as BTC/kvB (legacy behavior used by many tests).
+    - Otherwise (int/float/Decimal>=1): treat as sat/vB and convert to BTC/kvB.
+    """
+    if isinstance(fee_rate, Decimal) and fee_rate < 1:
+        return fee_rate
+    # sat/vB -> sat/kvB (x1000) -> BTC/kvB (/COIN)
+    return Decimal(str(fee_rate)) * Decimal(1000) / Decimal(COIN)
+
+
 def _as_coin_amount(v) -> Decimal:
     """Normalize amounts to coin units (Decimal).
     If v is int, treat as satoshis and convert to coins.
@@ -415,6 +428,7 @@ class MiniWallet:
     ):
         """Create and return a tx with the specified fee. If fee is 0, use fee_rate, where the resulting fee may be exact or at most one satoshi higher than needed."""
         utxo_to_spend = utxo_to_spend or self.get_utxo(confirmed_only=confirmed_only, min_coinbase_depth=min_coinbase_depth)
+        fee_rate = _feerate_to_btc_kvb(fee_rate)
 
         # ---- normalize units (call at start) ----
         utxo_to_spend = dict(utxo_to_spend)  # don't mutate caller's dict
