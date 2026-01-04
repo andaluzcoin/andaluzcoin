@@ -321,6 +321,18 @@ other kinds of patches because of increased peer review and consensus building
 requirements.
 
 
+### Functional tests that may be skipped locally
+
+Some functional tests require external artifacts or optional build features and may be skipped on developer machines.
+
+- `wallet_backwards_compatibility.py` / `wallet_migration.py`:
+  These require “previous release” binaries (a populated `PREVIOUS_RELEASES_DIR`). Andaluzcoin does not ship prior-release artifacts early in the project, so these tests may be skipped until we have tagged releases to validate against.
+
+- `interface_zmq.py`: requires building with ZMQ enabled (e.g. a `build-zmq/` profile).
+- `interface_usdt_*.py`: requires building with USDT enabled and sufficient BPF permissions (often run with `sudo`, e.g. `build-usdt-noinline/`).
+- `interface_ipc.py`: requires IPC enabled and the Python `capnp` module (pycapnp).
+
+
 ### Peer Review
 
 Anyone may participate in peer review which is expressed by comments in the pull
