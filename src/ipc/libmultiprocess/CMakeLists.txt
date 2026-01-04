@@ -12,6 +12,12 @@ endif()
 
 include("cmake/compat_find.cmake")
 
+
+# Work around Ubuntu/Debian CapnProtoConfig.cmake "libatomic not found" bug:
+# it runs check_library_exists() in C++ mode when only CXX is enabled.
+# Enabling C makes the check run in C and succeed.
+enable_language(C)
+
 find_package(Threads REQUIRED)
 find_package(CapnProto 0.7 QUIET NO_MODULE)
  if(NOT CapnProto_FOUND)
