@@ -5,7 +5,10 @@
 """A limited-functionality wallet, which may replace a real wallet in tests"""
 
 from copy import deepcopy
-from decimal import Decimal
+import os
+from test_framework.util import logger
+from decimal import Decimal, ROUND_CEILING
+from test_framework.authproxy import JSONRPCException
 from enum import Enum
 from typing import (
     Any,
@@ -303,10 +306,35 @@ class MiniWallet:
             self._utxos = []
         return utxos
 
-    def send_self_transfer(self, *, from_node, **kwargs):
-        """Call create_self_transfer and send the transaction."""
-        tx = self.create_self_transfer(**kwargs)
-        self.sendrawtransaction(from_node=from_node, tx_hex=tx['hex'])
+    def send_self_transfer(self, *, from_node, fee_rate=None, **kwargs):
+        """Create, broadcast, and return a self-transfer transaction."""
+        if os.getenv("MINIWALLET_TRACE") == "1":
+            logger.warning(
+                "[MINIWALLET_TRACE] send_self_transfer fee_rate_arg=%s kwargs_keys=%s kwargs_preview=%s",
+                fee_rate,
+                sorted(list(kwargs.keys())),
+                {k: kwargs[k] for k in sorted(kwargs.keys()) if k in ("version", "target_vsize", "sequence", "locktime")},
+            )
+
+        effective_fee_rate = fee_rate
+        if effective_fee_rate is None and hasattr(self, "fee_rate"):
+            effective_fee_rate = self.fee_rate
+
+        # IMPORTANT:
+        # - If effective_fee_rate is still None, do NOT pass fee_rate at all -> create_self_transfer() uses its default.
+        # - If a test explicitly passes fee_rate (including 0), pass it through.
+        if os.getenv("MINIWALLET_TRACE") == "1":
+            logger.warning(
+                "[MINIWALLET_TRACE] send_self_transfer using effective_fee_rate=%s (passed_arg=%s)",
+                effective_fee_rate, fee_rate
+            )
+
+        if effective_fee_rate is None:
+            tx = self.create_self_transfer(**kwargs)  # uses create_self_transfer default fee_rate
+        else:
+            tx = self.create_self_transfer(fee_rate=effective_fee_rate, **kwargs)
+
+        self.sendrawtransaction(from_node=from_node, tx_hex=tx["hex"])
         return tx
 
     def send_to(self, *, from_node, scriptPubKey, amount, fee=1000):
@@ -428,21 +456,28 @@ class MiniWallet:
     ):
         """Create and return a tx with the specified fee. If fee is 0, use fee_rate, where the resulting fee may be exact or at most one satoshi higher than needed."""
         utxo_to_spend = utxo_to_spend or self.get_utxo(confirmed_only=confirmed_only, min_coinbase_depth=min_coinbase_depth)
-        fee_rate = _feerate_to_btc_kvb(fee_rate)
+        orig_fee_rate = fee_rate
+        # Only convert non-numeric feerate objects (if any). In these tests, numeric values
+        # are already expressed as BTC/kvB (including values >= 1, e.g. 1.25 BTC/kvB).
+        if not isinstance(fee_rate, (int, float, Decimal, str)):
+            fee_rate = _feerate_to_btc_kvb(fee_rate)
 
         # ---- normalize units (call at start) ----
         utxo_to_spend = dict(utxo_to_spend)  # don't mutate caller's dict
         utxo_to_spend["value"] = _as_coin_amount(utxo_to_spend["value"])
 
-        # If fee_rate is passed as int, interpret as sats/kvB (common in tests),
-        # convert to coins/kvB for this helper.
+        # Normalize fee_rate to BTC/kvB (coins/kvB).
+        # In these functional tests:
+        #  - int means sats/vB
+        #  - Decimal/float/str means BTC/kvB (even if >= 1, e.g. 1.25 BTC/kvB)
         if isinstance(fee_rate, int):
-            fee_rate = Decimal(fee_rate) / COIN
+            # sats/vB -> sats/kvB -> BTC/kvB
+            fee_rate = (Decimal(fee_rate) * Decimal(1000)) / Decimal(COIN)
         else:
-            fee_rate = Decimal(fee_rate)
+            fee_rate = Decimal(str(fee_rate))
 
         # If fee is passed as int, interpret as sats and convert to coins.
-        fee = _as_coin_amount(fee) if isinstance(fee, int) else Decimal(fee)
+        fee = (Decimal(fee) / Decimal(COIN)) if isinstance(fee, int) else Decimal(str(fee))
         # -----------------------------------------
 
         assert fee_rate >= 0
@@ -450,16 +485,35 @@ class MiniWallet:
 
         # calculate fee
         if self._mode in (MiniWalletMode.RAW_OP_TRUE, MiniWalletMode.ADDRESS_OP_TRUE):
-            vsize = Decimal(104)  # anyone-can-spend
+            vsize = 104  # anyone-can-spend
         elif self._mode == MiniWalletMode.RAW_P2PK:
-            vsize = Decimal(168)  # P2PK (73 bytes scriptSig + 35 bytes scriptPubKey + 60 bytes other)
+            vsize = 168  # P2PK (73 bytes scriptSig + 35 bytes scriptPubKey + 60 bytes other)
         else:
             assert False
-        if target_vsize and not fee:  # respect fee_rate if target vsize is passed
-            fee = get_fee(target_vsize, fee_rate)
-        send_value = utxo_to_spend["value"] - (fee or (fee_rate * vsize / 1000))
+
+        tx_size_vb = int(target_vsize) if target_vsize else int(vsize)
+
+        # get_fee() expects feerate in sats/kvB (int) and returns sats (int).
+        # fee_rate is normalized BTC/kvB -> convert to sats/kvB with ceiling to avoid underpaying.
+        feerate_sat_kvb = int((fee_rate * Decimal(COIN)).to_integral_value(rounding=ROUND_CEILING))
+        feerate_sat_kvb = max(feerate_sat_kvb, 0)
+
+        # If fee (coin amount) is non-zero, use it; otherwise derive from fee_rate.
+        if fee > 0:
+            implied_fee = fee
+        else:
+            fee_sat = get_fee(tx_size_vb, feerate_sat_kvb)  # sats (int)
+            implied_fee = Decimal(fee_sat) / Decimal(COIN)  # sats -> BTC (Decimal)
+
+        if os.getenv("MINIWALLET_TRACE") == "1":
+            logger.warning(
+                "[MINIWALLET_TRACE] create_self_transfer fee_rate_in=%s normalized_btc_kvb=%s feerate_sat_kvb=%s tx_size_vb=%s implied_fee=%s",
+                orig_fee_rate, fee_rate, feerate_sat_kvb, tx_size_vb, implied_fee
+            )
+
+        send_value = utxo_to_spend["value"] - implied_fee
         if send_value <= 0:
-            raise RuntimeError(f"UTXO value {utxo_to_spend['value']} is too small to cover fees {(fee or (fee_rate * vsize / 1000))}")
+            raise RuntimeError(f"UTXO value {utxo_to_spend['value']} is too small to cover fees {implied_fee}")
         # create tx
         tx = self.create_self_transfer_multi(
             utxos_to_spend=[utxo_to_spend],
@@ -469,14 +523,70 @@ class MiniWallet:
             **kwargs,
         )
         if not target_vsize:
-            assert_equal(tx["tx"].get_vsize(), vsize)
+            assert_equal(tx["tx"].get_vsize(), int(vsize))
         tx["new_utxo"] = tx.pop("new_utxos")[0]
 
         return tx
 
     def sendrawtransaction(self, *, from_node, tx_hex, maxfeerate=0, **kwargs):
-        txid = from_node.sendrawtransaction(hexstring=tx_hex, maxfeerate=maxfeerate, **kwargs)
-        self.scan_tx(from_node.decoderawtransaction(tx_hex))
+        trace = os.getenv("MINIWALLET_TRACE") == "1"
+
+        dec = None
+        mp = None
+        tma0 = None
+
+        if trace:
+            try:
+                mp = from_node.getmempoolinfo()
+            except Exception as e:
+                mp = {"_error": f"getmempoolinfo failed: {e}"}
+
+            try:
+                dec = from_node.decoderawtransaction(tx_hex)
+            except Exception as e:
+                dec = {"_error": f"decoderawtransaction failed: {e}"}
+
+            try:
+                tma0 = from_node.testmempoolaccept([tx_hex])[0]
+            except Exception as e:
+                tma0 = {"_error": f"testmempoolaccept failed: {e}"}
+
+            logger.warning(
+                "[MINIWALLET_TRACE] pre-send "
+                "minrelaytxfee=%s relayfee=%s incrementalrelayfee=%s vsize=%s weight=%s "
+                "tma_allowed=%s tma_reject=%s tma_fees=%s",
+                mp.get("minrelaytxfee"), mp.get("relayfee"), mp.get("incrementalrelayfee"),
+                dec.get("vsize") if isinstance(dec, dict) else None,
+                dec.get("weight") if isinstance(dec, dict) else None,
+                tma0.get("allowed") if isinstance(tma0, dict) else None,
+                tma0.get("reject-reason") if isinstance(tma0, dict) else None,
+                tma0.get("fees") if isinstance(tma0, dict) else None,
+            )
+
+        try:
+            txid = from_node.sendrawtransaction(hexstring=tx_hex, maxfeerate=maxfeerate, **kwargs)
+        except JSONRPCException as e:
+            if trace:
+                logger.warning("[MINIWALLET_TRACE] sendrawtransaction FAILED: %s", e)
+                # Re-run TMA after failure (sometimes it contains clearer reason/fees)
+                try:
+                    tma1 = from_node.testmempoolaccept([tx_hex])[0]
+                except Exception as ee:
+                    tma1 = {"_error": f"testmempoolaccept-after failed: {ee}"}
+                logger.warning(
+                    "[MINIWALLET_TRACE] post-fail tma_allowed=%s tma_reject=%s tma_fees=%s",
+                    tma1.get("allowed") if isinstance(tma1, dict) else None,
+                    tma1.get("reject-reason") if isinstance(tma1, dict) else None,
+                    tma1.get("fees") if isinstance(tma1, dict) else None,
+                )
+                logger.warning("[MINIWALLET_TRACE] tx_hex=%s", tx_hex)
+            raise
+
+        # Decode once (reuse if we already decoded above)
+        if dec is None or (isinstance(dec, dict) and "_error" in dec):
+            dec = from_node.decoderawtransaction(tx_hex)
+
+        self.scan_tx(dec)
         return txid
 
     def create_self_transfer_chain(self, *, chain_length, utxo_to_spend=None):

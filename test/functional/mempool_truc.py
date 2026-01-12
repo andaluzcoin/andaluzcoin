@@ -521,7 +521,10 @@ class MempoolTRUC(BitcoinTestFramework):
         tx_v3_child_2_rule4 = self.wallet.create_self_transfer(
             utxo_to_spend=tx_v3_parent["new_utxos"][1], fee_rate=2 * DEFAULT_FEE + Decimal("0.00000001"), version=3
         )
-        rule4_str = f"insufficient fee (including sibling eviction), rejecting replacement {tx_v3_child_2_rule4['txid']}, not enough additional fees to relay"
+        # Error text differs across versions/branches:
+        # - "... , not enough additional fees to relay"
+        # - "; new feerate ... <= old feerate ..."
+        rule4_str = f"insufficient fee (including sibling eviction), rejecting replacement {tx_v3_child_2_rule4['txid']}"
         assert_raises_rpc_error(-26, rule4_str, node.sendrawtransaction, tx_v3_child_2_rule4["hex"])
         self.check_mempool([tx_v3_parent['txid'], tx_v3_child_1['txid']])
 
@@ -625,7 +628,16 @@ class MempoolTRUC(BitcoinTestFramework):
             tx_v3_child = self.wallet.create_self_transfer(utxo_to_spend=tx_v3_0fee_parent["new_utxo"], fee_rate=high_feerate, version=3)
             total_v3_fee = tx_v3_child["fee"] + tx_v3_0fee_parent["fee"]
             total_v3_size = tx_v3_child["tx"].get_vsize() + tx_v3_0fee_parent["tx"].get_vsize()
-            assert_greater_than_or_equal(total_v3_fee, get_fee(total_v3_size, minrelayfeerate))
+            
+            required_v3_fee = get_fee(total_v3_size, minrelayfeerate)
+            self.log.info(
+                f"DEBUG minrelayfeerate={minrelayfeerate} BTC/kvB, "
+                f"total_v3_size={total_v3_size} vB, "
+                f"required_v3_fee={required_v3_fee} BTC, "
+                f"total_v3_fee={total_v3_fee} BTC"
+            )
+            assert_greater_than_or_equal(total_v3_fee, required_v3_fee)
+
             if minrelayfeerate > 0:
                 assert_greater_than(get_fee(tx_v3_0fee_parent["tx"].get_vsize(), minrelayfeerate), 0)
                 # Always need to pay at least 1 satoshi for entry, even if minimum feerate is very low
