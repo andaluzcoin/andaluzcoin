@@ -356,7 +356,7 @@ class RPCPackagesTest(BitcoinTestFramework):
         inputs_total = sum(int(COIN * u["value"]) for u in parent_utxos)
 
         # Keep 10k sats when possible, but never exceed inputs_total - 1 sat.
-        fee = min(FEE_PER_OUTPUT, max(1, inputs_total - 1))
+        _fee = min(FEE_PER_OUTPUT, max(1, inputs_total - 1))
 
         self.log.debug("test_submit_child_with_parents: num_parents=%d partial_submit=%s", num_parents, partial_submit)
         self.log.debug("test_submit_child_with_parents: len(package_txns)=%d", len(package_txns))

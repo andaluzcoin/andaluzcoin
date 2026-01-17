@@ -628,7 +628,7 @@ class MempoolTRUC(BitcoinTestFramework):
             tx_v3_child = self.wallet.create_self_transfer(utxo_to_spend=tx_v3_0fee_parent["new_utxo"], fee_rate=high_feerate, version=3)
             total_v3_fee = tx_v3_child["fee"] + tx_v3_0fee_parent["fee"]
             total_v3_size = tx_v3_child["tx"].get_vsize() + tx_v3_0fee_parent["tx"].get_vsize()
-            
+
             required_v3_fee = get_fee(total_v3_size, minrelayfeerate)
             self.log.info(
                 f"DEBUG minrelayfeerate={minrelayfeerate} BTC/kvB, "

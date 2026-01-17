@@ -101,7 +101,7 @@ int trace_added(struct pt_regs *ctx) {
   bpf_usdt_readarg(1, ctx, &phash);
   bpf_probe_read_user(&added.hash, sizeof(added.hash), phash);
   bpf_usdt_readarg(2, ctx, &added.vsize);
-  
+
   u64 fee_raw = 0;
   bpf_usdt_readarg(3, ctx, &fee_raw);
   added.fee = s64_from_ptr_or_val(fee_raw);
@@ -118,7 +118,7 @@ int trace_removed(struct pt_regs *ctx) {
   bpf_usdt_readarg(2, ctx, &preason);
   bpf_probe_read_user_str(&removed.reason, sizeof(removed.reason), preason);
   bpf_usdt_readarg(3, ctx, &removed.vsize);
-  
+
   u64 fee_raw = 0;
   u64 entry_raw = 0;
 

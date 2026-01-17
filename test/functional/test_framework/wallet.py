@@ -10,6 +10,7 @@ from test_framework.util import logger
 from decimal import Decimal, ROUND_CEILING
 from test_framework.authproxy import JSONRPCException
 from enum import Enum
+
 from typing import (
     Any,
     Optional,
@@ -59,7 +60,6 @@ from test_framework.util import (
 )
 from test_framework.wallet_util import generate_keypair
 
-from test_framework.messages import COIN
 
 # Default fee used by MiniWallet helpers.
 # Keep Bitcoin-Core semantics:

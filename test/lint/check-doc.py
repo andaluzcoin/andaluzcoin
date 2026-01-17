@@ -25,6 +25,23 @@ CMD_GREP_DOCS = r"git grep --perl-regexp '{}' {}".format(REGEX_DOC, CMD_ROOT_DIR
 # list unsupported, deprecated and duplicate args as they need no documentation
 SET_DOC_OPTIONAL = set(['-h', '-?', '-dbcrashratio', '-forcecompactdb', '-ipcconnect', '-ipcfd'])
 
+# Some arguments are only present/meaningful in certain build configurations
+# (e.g. ZMQ enabled), or are test-only knobs. The doc linter runs across
+# multiple configs, so ignore these to avoid false positives.
+IGNORE_UNKNOWN_ARGS = {
+    '-includeconf',
+    '-testdatadir',
+    '-zmqpubrawblock',
+    '-zmqpubrawblockhwm',
+    '-zmqpubrawtx',
+    '-zmqpubrawtxhwm',
+    '-zmqpubhashblock',
+    '-zmqpubhashblockhwm',
+    '-zmqpubhashtx',
+    '-zmqpubhashtxhwm',
+    '-zmqpubsequence',
+    '-zmqpubsequencehwm',
+}
 
 def lint_missing_argument_documentation():
     used = check_output(CMD_GREP_ARGS, shell=True).decode('utf8').strip()
@@ -34,6 +51,8 @@ def lint_missing_argument_documentation():
     args_docd = set(re.findall(re.compile(REGEX_DOC), docd)).union(SET_DOC_OPTIONAL)
     args_need_doc = args_used.difference(args_docd)
     args_unknown = args_docd.difference(args_used)
+    # Drop conditionally-available/test-only args from the "unknown" set.
+    args_unknown.difference_update(IGNORE_UNKNOWN_ARGS)
 
     print("Args used        : {}".format(len(args_used)))
     print("Args documented  : {}".format(len(args_docd)))
