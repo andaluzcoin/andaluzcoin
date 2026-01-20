@@ -504,6 +504,31 @@ jobs:
     steps:
       - *CHECKOUT
 
+      - name: Free disk space (CentOS, depends, gui)
+        if: ${{ matrix.name == 'CentOS, depends, gui' }}
+        run: |
+          set -euxo pipefail
+          echo "== Before cleanup =="
+          df -h
+
+          # Remove large preinstalled components commonly present on GitHub runners.
+          # Safe even if paths do not exist.
+          sudo rm -rf /usr/share/dotnet /opt/ghc /usr/local/lib/android || true
+
+          # Clear caches
+          sudo rm -rf "$HOME/.cache" || true
+          sudo rm -rf /var/lib/apt/lists/* || true
+          sudo apt-get clean || true
+
+          # Clear docker/buildx junk (best effort)
+          docker system df || true
+          docker system prune -af || true
+          docker builder prune -af || true
+          docker system df || true
+
+          echo "== After cleanup =="
+          df -h
+
       - name: Configure environment
         uses: ./.github/actions/configure-environment
 
@@ -515,6 +540,11 @@ jobs:
         uses: ./.github/actions/configure-docker
         with:
           cache-provider: ${{ matrix.provider || needs.runners.outputs.provider }}
+
+      - name: Prune buildx cache (CentOS, depends, gui)
+        if: ${{ matrix.name == 'CentOS, depends, gui' }}
+        run: |
+          docker builder prune -af || true
 
       - name: Enable bpfcc script
         if: ${{ env.CONTAINER_NAME == 'ci_native_asan' }}
