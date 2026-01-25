@@ -53,12 +53,10 @@ jobs:
     env:
       MAX_COUNT: 6
     steps:
-      - name: Determine fetch depth
-        run: echo "FETCH_DEPTH=$((${{ github.event.pull_request.commits }} + 2))" >> "$GITHUB_ENV"
       - uses: actions/checkout@v5
         with:
           ref: ${{ github.event.pull_request.head.sha }}
-          fetch-depth: ${{ env.FETCH_DEPTH }}
+          fetch-depth: 0
       - name: Determine commit range
         run: |
           # Checkout HEAD~ and find the test base commit
