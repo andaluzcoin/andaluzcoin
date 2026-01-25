@@ -59,33 +59,29 @@ jobs:
           fetch-depth: 0
       - name: Determine commit range
         run: |
-          # Checkout HEAD~ and find the test base commit
+          # Checkout HEAD~ and find the test base commit.
           # Checkout HEAD~ because it would be wasteful to rerun tests on the PR
           # head commit that are already run by other jobs.
           git checkout HEAD~
-          # Figure out test base commit by listing ancestors of HEAD, excluding
-          # ancestors of the most recent merge commit, limiting the list to the
-          # newest MAX_COUNT ancestors, ordering it from oldest to newest, and
-          # taking the first one.
-          #
-          # If the branch contains up to MAX_COUNT ancestor commits after the
-          # most recent merge commit, all of those commits will be tested. If it
-          # contains more, only the most recent MAX_COUNT commits will be
-          # tested.
-          #
-          # In the command below, the ^@ suffix is used to refer to all parents
-          # of the merge commit as described in:
-          # https://git-scm.com/docs/git-rev-parse#_other_rev_parent_shorthand_notations
-          # and the ^ prefix is used to exclude these parents and all their
-          # ancestors from the rev-list output as described in:
-          # https://git-scm.com/docs/git-rev-list
-          MERGE_BASE=$(git rev-list -n1 --merges HEAD)
-          EXCLUDE_MERGE_BASE_ANCESTORS=
-          # MERGE_BASE can be empty due to limited fetch-depth
-          if test -n "$MERGE_BASE"; then
-            EXCLUDE_MERGE_BASE_ANCESTORS=^${MERGE_BASE}^@
+
+          # Ensure base branch exists locally.
+          git fetch origin "${GITHUB_BASE_REF}"
+
+          # Only test commits that are part of the PR (exclude commits already on origin/<base>).
+          PR_MERGE_BASE=$(git merge-base HEAD "origin/${GITHUB_BASE_REF}")
+          PR_COMMITS=$(git rev-list --reverse "${PR_MERGE_BASE}..HEAD")
+
+          if [ -z "${PR_COMMITS}" ]; then
+            echo "No PR commits to test."
+            echo "TEST_BASE=${PR_MERGE_BASE}" >> "$GITHUB_ENV"
+            exit 0
           fi
-          echo "TEST_BASE=$(git rev-list -n$((${{ env.MAX_COUNT }} + 1)) --reverse HEAD $EXCLUDE_MERGE_BASE_ANCESTORS | head -1)" >> "$GITHUB_ENV"
+
+          # Limit to newest MAX_COUNT commits, but set TEST_BASE to the parent of the
+          # oldest commit to test so that commit is included in the rebase.
+          OLDEST=$(echo "${PR_COMMITS}" | tail -n "${MAX_COUNT}" | head -n 1)
+          TEST_BASE=$(git rev-parse "${OLDEST}^")
+          echo "TEST_BASE=${TEST_BASE}" >> "$GITHUB_ENV"
       - run: |
           git fetch origin "${GITHUB_BASE_REF}"
           git config user.email "ci@example.com"
