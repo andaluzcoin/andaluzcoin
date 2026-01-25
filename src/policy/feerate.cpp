@@ -13,7 +13,7 @@ CFeeRate::CFeeRate(const CAmount& nFeePaid, int32_t virtual_bytes)
     if (virtual_bytes > 0) {
         m_feerate = FeePerVSize(nFeePaid, virtual_bytes);
     } else {
-        m_feerate = FeePerVSize();
+        m_feerate = FeePerVSize(0, 0);
     }
 }
 

@@ -15,6 +15,14 @@
 #include <cstdint>
 #include <string>
 
+/**
+ * Fee rates are expressed in satoshis per 1000 virtual bytes (sat/kvB).
+ *
+ * Keep defaults aligned with upstream Bitcoin Core:
+ *  - minrelaytxfee: 100 sat/kvB (0.1 sat/vB)
+ *  - incrementalrelayfee: 100 sat/kvB (0.1 sat/vB)
+ */
+
 class CCoinsViewCache;
 class CFeeRate;
 class CScript;
@@ -40,7 +48,7 @@ static constexpr unsigned int MAX_P2SH_SIGOPS{15};
 static constexpr unsigned int MAX_STANDARD_TX_SIGOPS_COST{MAX_BLOCK_SIGOPS_COST/5};
 /** The maximum number of potentially executed legacy signature operations in a single standard tx */
 static constexpr unsigned int MAX_TX_LEGACY_SIGOPS{2'500};
-/** Default for -incrementalrelayfee, which sets the minimum feerate increase for mempool limiting or replacement **/
+/** Default for -incrementalrelayfee (sat/kvB): min feerate increase for mempool limiting or replacement **/
 static constexpr unsigned int DEFAULT_INCREMENTAL_RELAY_FEE{100};
 /** Default for -bytespersigop */
 static constexpr unsigned int DEFAULT_BYTES_PER_SIGOP{20};
@@ -62,7 +70,7 @@ static constexpr unsigned int MAX_STANDARD_SCRIPTSIG_SIZE{1650};
  * only increase the dust limit after prior releases were already not creating
  * outputs below the new threshold */
 static constexpr unsigned int DUST_RELAY_TX_FEE{3000};
-/** Default for -minrelaytxfee, minimum relay fee for transactions */
+/** Default for -minrelaytxfee (sat/kvB): minimum relay fee for transactions */
 static constexpr unsigned int DEFAULT_MIN_RELAY_TX_FEE{100};
 /** Default for -limitancestorcount, max number of in-mempool ancestors */
 static constexpr unsigned int DEFAULT_ANCESTOR_LIMIT{25};

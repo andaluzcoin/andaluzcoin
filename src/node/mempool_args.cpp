@@ -41,6 +41,7 @@ void ApplyArgsManOptions(const ArgsManager& argsman, MemPoolLimits& mempool_limi
 }
 }
 
+
 util::Result<void> ApplyArgsManOptions(const ArgsManager& argsman, const CChainParams& chainparams, MemPoolOptions& mempool_opts)
 {
     mempool_opts.check_ratio = argsman.GetIntArg("-checkmempool", mempool_opts.check_ratio);
@@ -55,9 +56,16 @@ util::Result<void> ApplyArgsManOptions(const ArgsManager& argsman, const CChainP
 
     if (auto hours = argsman.GetIntArg("-mempoolexpiry")) mempool_opts.expiry = std::chrono::hours{*hours};
 
+    // Start from policy defaults (sat/kvB), not whatever MemPoolOptions happened to contain.
+    mempool_opts.incremental_relay_feerate = CFeeRate{CAmount{DEFAULT_INCREMENTAL_RELAY_FEE}};
+    mempool_opts.min_relay_feerate         = CFeeRate{CAmount{DEFAULT_MIN_RELAY_TX_FEE}};
+
     // incremental relay fee sets the minimum feerate increase necessary for replacement in the mempool
     // and the amount the mempool min fee increases above the feerate of txs evicted due to mempool limiting.
-    if (const auto arg{argsman.GetArg("-incrementalrelayfee")}) {
+    if (argsman.IsArgSet("-incrementalrelayfee")) {
+        const auto arg = argsman.GetArg("-incrementalrelayfee");
+        if (!arg) return util::Error{Untranslated("Internal error: -incrementalrelayfee marked set but missing value")};
+
         if (std::optional<CAmount> inc_relay_fee = ParseMoney(*arg)) {
             mempool_opts.incremental_relay_feerate = CFeeRate{inc_relay_fee.value()};
         } else {
@@ -66,14 +74,19 @@ util::Result<void> ApplyArgsManOptions(const ArgsManager& argsman, const CChainP
     }
 
     static_assert(DEFAULT_MIN_RELAY_TX_FEE == DEFAULT_INCREMENTAL_RELAY_FEE);
-    if (const auto arg{argsman.GetArg("-minrelaytxfee")}) {
+
+    if (argsman.IsArgSet("-minrelaytxfee")) {
+        const auto arg = argsman.GetArg("-minrelaytxfee");
+        if (!arg) return util::Error{Untranslated("Internal error: -minrelaytxfee marked set but missing value")};
+
         if (std::optional<CAmount> min_relay_feerate = ParseMoney(*arg)) {
             // High fee check is done afterward in CWallet::Create()
             mempool_opts.min_relay_feerate = CFeeRate{min_relay_feerate.value()};
         } else {
             return util::Error{AmountErrMsg("minrelaytxfee", *arg)};
         }
-    } else if (mempool_opts.incremental_relay_feerate > mempool_opts.min_relay_feerate) {
+    } else if (argsman.IsArgSet("-incrementalrelayfee") &&
+               mempool_opts.incremental_relay_feerate > mempool_opts.min_relay_feerate) {
         // Allow only setting incremental fee to control both
         mempool_opts.min_relay_feerate = mempool_opts.incremental_relay_feerate;
         LogInfo("Increasing minrelaytxfee to %s to match incrementalrelayfee", mempool_opts.min_relay_feerate.ToString());
@@ -81,7 +94,10 @@ util::Result<void> ApplyArgsManOptions(const ArgsManager& argsman, const CChainP
 
     // Feerate used to define dust.  Shouldn't be changed lightly as old
     // implementations may inadvertently create non-standard transactions
-    if (const auto arg{argsman.GetArg("-dustrelayfee")}) {
+    if (argsman.IsArgSet("-dustrelayfee")) {
+        const auto arg = argsman.GetArg("-dustrelayfee");
+        if (!arg) return util::Error{Untranslated("Internal error: -dustrelayfee marked set but missing value")};
+
         if (std::optional<CAmount> parsed = ParseMoney(*arg)) {
             mempool_opts.dust_relay_feerate = CFeeRate{parsed.value()};
         } else {
