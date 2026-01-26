@@ -343,6 +343,8 @@ jobs:
             ${{ env.BASE_BUILD_DIR }}/src/secp256k1/bin/*.exe
             ${{ env.BASE_BUILD_DIR }}/src/univalue/*.exe
             ${{ env.BASE_BUILD_DIR }}/test/config.ini
+          # Keep artifacts from piling up on GitHub-hosted runners/storage.
+          retention-days: 14
 
   windows-native-test:
     name: 'Windows, test cross-built'
