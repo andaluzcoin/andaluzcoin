@@ -10,13 +10,20 @@ Versioning convention (recommended):
 ## [Unreleased]
 
 ### Upstream sync
-- Sync with Bitcoin Core `30.x` (includes 30.2 backports). (#3)
+- Sync with Bitcoin Core `30.x` up to `v30.2`. (#3)
+
+### Documentation
+- Add CHANGELOG to track Andaluzcoin-specific changes.
+
+## [andaluzcoin-v0.0.1] - 2026-01-25
 
 ### Tests
 - Fix MiniWallet fee/feerate normalization for TRUC mempool tests; avoid 0-fee txs under minrelay changes. (#2)
 
 ### Build/CI
-- Free disk and prune docker/build cache for the CentOS depends+gui CI job. (#2)
+- CI: free disk and prune docker/build cache for the CentOS depends+gui job. (#2)
+- CI: test-each-commit workflow improvements (unshallow checkout; only test PR commits). (#2)
+
+### Repo hygiene
 - Keep libmultiprocess subtree unmodified to satisfy subtree lint. (#2)
 - Lint fixes (whitespace, doc args, etc.). (#2)
-
