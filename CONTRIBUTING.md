@@ -121,7 +121,7 @@ test/functional/test_runner.py wallet_* p2p_* mempool_*
 If you built in a non-default location, set the path to the binaries:
 
 test/functional/test_runner.py --srcdir=build/src
-   
+
 ### Functional tests that may be skipped locally
 
 Some functional tests require external artifacts or optional build features and may be skipped on developer machines.
@@ -132,7 +132,7 @@ Some functional tests require external artifacts or optional build features and 
 - `interface_zmq.py`: requires building with ZMQ enabled (e.g. a `build-zmq/` profile).
 - `interface_usdt_*.py`: requires building with USDT enabled and sufficient BPF permissions (often run with `sudo`, e.g. `build-usdt-noinline/`).
 - `interface_ipc.py`: requires IPC enabled and the Python `capnp` module (pycapnp).
-   
+
 ### How to run CI locally
 
 Our CI is designed to be reproducible locally. Before pushing, you should be able to run:
@@ -160,7 +160,7 @@ A suggested local “CI-like” sequence:
 Optional: run GitHub Actions locally (requires Docker) using act:
   - act -l
   - act -W .github/workflows/ci.yml
-  
+
 Coding Standards
 ----------------
 
@@ -186,7 +186,7 @@ Install:
 
 Run lint:
   - ruff check .
-  
+
 Auto-fix (safe fixes):
   - ruff check . --fix
 
