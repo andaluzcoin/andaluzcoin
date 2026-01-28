@@ -407,7 +407,7 @@ workload on reviewing.
 -------------------------
 
 The following applies to code changes to the Andaluzcoin Core project (and related
-projects such as libsecp256k1), and is not to be confused with overall 
+projects such as libsecp256k1), and is not to be confused with overall
 Network Protocol consensus changes.
 
 Whether a pull request is merged into Andaluzcoin Core rests with the project merge
