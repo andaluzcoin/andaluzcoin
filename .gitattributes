@@ -1,3 +1,11 @@
+# Keep version stamping support
 src/clientversion.cpp export-subst
-*.sh text eol=lf
-*.py text eol=lf
+
+# Normalize text to LF (prevents CRLF noise across platforms)
+* text=auto eol=lf
+
+# Explicitly enforce LF for common doc/script formats
+*.md text eol=lf
+*.txt text eol=lf
+*.sh  text eol=lf
+*.py  text eol=lf
