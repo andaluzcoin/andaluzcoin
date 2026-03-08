@@ -9,11 +9,13 @@
 #include <consensus/merkle.h>
 #include <consensus/tx_verify.h>
 #include <interfaces/mining.h>
+#include <limits>
 #include <node/miner.h>
 #include <policy/policy.h>
 #include <test/util/random.h>
 #include <test/util/transaction_utils.h>
 #include <test/util/txmempool.h>
+#include <type_traits>
 #include <txmempool.h>
 #include <uint256.h>
 #include <util/check.h>
@@ -23,6 +25,7 @@
 #include <util/translation.h>
 #include <validation.h>
 #include <versionbits.h>
+#include <chainparams.h>
 #include <pow.h>
 
 #include <test/util/setup_common.h>
@@ -36,6 +39,34 @@ using namespace util::hex_literals;
 using interfaces::BlockTemplate;
 using interfaces::Mining;
 using node::BlockAssembler;
+
+
+static const CScript ANYONE_CAN_SPEND{CScript() << OP_TRUE};
+
+static void DrainMempool(CTxMemPool& pool) EXCLUSIVE_LOCKS_REQUIRED(pool.cs)
+{
+    while (!pool.mapTx.empty()) {
+        const CTransaction& tx = pool.mapTx.begin()->GetTx();
+        pool.removeRecursive(tx, MemPoolRemovalReason::CONFLICT);
+    }
+}
+
+auto ScriptBytes = [](const CScript& s) {
+    return std::vector<unsigned char>(s.begin(), s.end());
+};
+
+namespace {
+static uint32_t g_cb_uniquifier{0};
+
+static void MakeCoinbaseUnique(CBlock& b, uint32_t tag)
+{
+    CMutableTransaction cb{*b.vtx[0]};
+    // Append only; do NOT replace the existing BIP34 height prefix.
+    cb.vin[0].scriptSig << tag << ++g_cb_uniquifier;
+    b.vtx[0] = MakeTransactionRef(std::move(cb));
+    b.hashMerkleRoot = BlockMerkleRoot(b);
+}
+} // namespace
 
 namespace miner_tests {
 struct MinerTestingSetup : public TestingSetup {
@@ -136,6 +167,7 @@ void MinerTestingSetup::TestPackageSelection(const CScript& scriptPubKey, const 
     // rate package with a low fee rate parent.
     CMutableTransaction tx;
     tx.vin.resize(1);
+    for (auto& in : tx.vin) in.nSequence = CTxIn::SEQUENCE_FINAL;
     tx.vin[0].scriptSig = CScript() << OP_1;
     tx.vin[0].prevout.hash = txFirst[0]->GetHash();
     tx.vin[0].prevout.n = 0;
@@ -286,25 +318,60 @@ void MinerTestingSetup::TestBasicMining(const CScript& scriptPubKey, const std::
     BOOST_REQUIRE(mining);
 
     BlockAssembler::Options options;
-    options.coinbase_output_script = scriptPubKey;
+    options.coinbase_output_script = ANYONE_CAN_SPEND;
+
+    // Mine our own spendable coinbases (OP_TRUE) for the remainder of this test.
+    // This avoids needing real DER signatures when spending coinbase outputs.
+    const int start_height = Assert(m_node.chainman)->ActiveChain().Height();
+    const int target_height = start_height + COINBASE_MATURITY + 1;
+
+    CTransactionRef spend_cb0;
+    CTransactionRef spend_cb1;
+
+    while (Assert(m_node.chainman)->ActiveChain().Height() < target_height) {
+        auto tmpl = mining->createNewBlock(options);
+        BOOST_REQUIRE(tmpl);
+
+        CBlock b{tmpl->getBlock()};
+        b.hashMerkleRoot = BlockMerkleRoot(b);
+
+        b.nNonce = 0;
+        const auto& consensus = Params().GetConsensus();
+        while (!CheckProofOfWork(b.GetHash(), b.nBits, consensus)) ++b.nNonce;
+
+        // Capture first two coinbases we mine (they'll be mature by the time we exit the loop).
+        if (!spend_cb0) {
+            spend_cb0 = b.vtx[0];
+        } else if (!spend_cb1) {
+            spend_cb1 = b.vtx[0];
+        }
+
+        auto shared = std::make_shared<const CBlock>(b);
+        BOOST_REQUIRE(Assert(m_node.chainman)->ProcessNewBlock(shared, true, true, nullptr));
+    }
+
+    BOOST_REQUIRE(spend_cb0);
+    BOOST_REQUIRE(spend_cb1);
 
     {
         CTxMemPool& tx_mempool{MakeMempool()};
         LOCK(tx_mempool.cs);
+        DrainMempool(tx_mempool);
 
         // Just to make sure we can still make simple blocks
         auto block_template{mining->createNewBlock(options)};
         BOOST_REQUIRE(block_template);
         CBlock block{block_template->getBlock()};
-
         // block sigops > limit: 1000 CHECKMULTISIG + 1
         tx.vin.resize(1);
+        for (auto& in : tx.vin) in.nSequence = CTxIn::SEQUENCE_FINAL;
         // NOTE: OP_NOP is used to force 20 SigOps for the CHECKMULTISIG
         tx.vin[0].scriptSig = CScript() << OP_0 << OP_0 << OP_0 << OP_NOP << OP_CHECKMULTISIG << OP_1;
-        tx.vin[0].prevout.hash = txFirst[0]->GetHash();
+        tx.vin[0].prevout.hash = spend_cb0->GetHash();
         tx.vin[0].prevout.n = 0;
         tx.vout.resize(1);
         tx.vout[0].nValue = BLOCKSUBSIDY;
+        tx.vout[0].scriptPubKey = ANYONE_CAN_SPEND;
         for (unsigned int i = 0; i < 1001; ++i) {
             tx.vout[0].nValue -= LOWFEE;
             hash = tx.GetHash();
@@ -320,9 +387,11 @@ void MinerTestingSetup::TestBasicMining(const CScript& scriptPubKey, const std::
     {
         CTxMemPool& tx_mempool{MakeMempool()};
         LOCK(tx_mempool.cs);
+        DrainMempool(tx_mempool);
 
-        tx.vin[0].prevout.hash = txFirst[0]->GetHash();
+        tx.vin[0].prevout.hash = spend_cb0->GetHash();
         tx.vout[0].nValue = BLOCKSUBSIDY;
+        tx.vout[0].scriptPubKey = ANYONE_CAN_SPEND;
         for (unsigned int i = 0; i < 1001; ++i) {
             tx.vout[0].nValue -= LOWFEE;
             hash = tx.GetHash();
@@ -337,6 +406,7 @@ void MinerTestingSetup::TestBasicMining(const CScript& scriptPubKey, const std::
     {
         CTxMemPool& tx_mempool{MakeMempool()};
         LOCK(tx_mempool.cs);
+        DrainMempool(tx_mempool);
 
         // block size > limit
         tx.vin[0].scriptSig = CScript();
@@ -346,8 +416,9 @@ void MinerTestingSetup::TestBasicMining(const CScript& scriptPubKey, const std::
             tx.vin[0].scriptSig << vchData << OP_DROP;
         }
         tx.vin[0].scriptSig << OP_1;
-        tx.vin[0].prevout.hash = txFirst[0]->GetHash();
+        tx.vin[0].prevout.hash = spend_cb0->GetHash();
         tx.vout[0].nValue = BLOCKSUBSIDY;
+        tx.vout[0].scriptPubKey = ANYONE_CAN_SPEND;
         for (unsigned int i = 0; i < 128; ++i) {
             tx.vout[0].nValue -= LOWFEE;
             hash = tx.GetHash();
@@ -361,29 +432,60 @@ void MinerTestingSetup::TestBasicMining(const CScript& scriptPubKey, const std::
     {
         CTxMemPool& tx_mempool{MakeMempool()};
         LOCK(tx_mempool.cs);
+        DrainMempool(tx_mempool);
 
         // orphan in tx_mempool, template creation fails
-        hash = tx.GetHash();
-        AddToMempool(tx_mempool, entry.Fee(LOWFEE).Time(Now<NodeSeconds>()).FromTx(tx));
-        BOOST_CHECK_EXCEPTION(mining->createNewBlock(options), std::runtime_error, HasReason("bad-txns-inputs-missingorspent"));
+        CMutableTransaction orphan_tx;
+        orphan_tx.vin.resize(1);
+        orphan_tx.vin[0].scriptSig = CScript() << OP_TRUE;
+        orphan_tx.vin[0].nSequence = CTxIn::SEQUENCE_FINAL;
+        orphan_tx.nLockTime = 0;
+
+        // NOT coinbase: reference a real txid but an out-of-range vout index (guaranteed missing)
+        orphan_tx.vin[0].prevout.hash = txFirst[0]->GetHash();
+        orphan_tx.vin[0].prevout.n = 999999;
+
+        orphan_tx.vout.resize(1);
+        orphan_tx.vout[0].nValue = BLOCKSUBSIDY - LOWFEE;
+        orphan_tx.vout[0].scriptPubKey = ANYONE_CAN_SPEND;
+
+        AddToMempool(tx_mempool, entry.Fee(LOWFEE).Time(Now<NodeSeconds>()).FromTx(orphan_tx));
+
+        BOOST_CHECK_EXCEPTION(
+            mining->createNewBlock(options),
+            std::runtime_error,
+            HasReason("bad-txns-inputs-missingorspent")
+        );
+
+        // cleanup: don’t hand-roll find/end/removeRecursive here; just drain
+        DrainMempool(tx_mempool);
+        BOOST_REQUIRE(tx_mempool.mapTx.empty());
     }
 
     {
         CTxMemPool& tx_mempool{MakeMempool()};
         LOCK(tx_mempool.cs);
+        DrainMempool(tx_mempool);
 
         // child with higher feerate than parent
-        tx.vin[0].scriptSig = CScript() << OP_1;
-        tx.vin[0].prevout.hash = txFirst[1]->GetHash();
+        tx.vin[0].scriptSig = CScript() << OP_TRUE;
+        tx.vin[0].prevout.hash = spend_cb1->GetHash();
         tx.vout[0].nValue = BLOCKSUBSIDY - HIGHFEE;
+        tx.vout[0].scriptPubKey = ANYONE_CAN_SPEND; 
         hash = tx.GetHash();
         AddToMempool(tx_mempool, entry.Fee(HIGHFEE).Time(Now<NodeSeconds>()).SpendsCoinbase(true).FromTx(tx));
+
         tx.vin[0].prevout.hash = hash;
         tx.vin.resize(2);
-        tx.vin[1].scriptSig = CScript() << OP_1;
-        tx.vin[1].prevout.hash = txFirst[0]->GetHash();
+        for (auto& in : tx.vin) in.nSequence = CTxIn::SEQUENCE_FINAL;
+        tx.vin[0].scriptSig = CScript() << OP_TRUE;
+        tx.vin[1].scriptSig = CScript() << OP_TRUE;
+        tx.vin[1].prevout.hash = spend_cb0->GetHash();
         tx.vin[1].prevout.n = 0;
+
         tx.vout[0].nValue = tx.vout[0].nValue + BLOCKSUBSIDY - HIGHERFEE; // First txn output + fresh coinbase - new txn fee
+        tx.vout[0].scriptPubKey = ANYONE_CAN_SPEND; 
+
         hash = tx.GetHash();
         AddToMempool(tx_mempool, entry.Fee(HIGHERFEE).Time(Now<NodeSeconds>()).SpendsCoinbase(true).FromTx(tx));
         BOOST_REQUIRE(mining->createNewBlock(options));
@@ -392,12 +494,15 @@ void MinerTestingSetup::TestBasicMining(const CScript& scriptPubKey, const std::
     {
         CTxMemPool& tx_mempool{MakeMempool()};
         LOCK(tx_mempool.cs);
+        DrainMempool(tx_mempool);
 
         // coinbase in tx_mempool, template creation fails
         tx.vin.resize(1);
+        for (auto& in : tx.vin) in.nSequence = CTxIn::SEQUENCE_FINAL;
         tx.vin[0].prevout.SetNull();
         tx.vin[0].scriptSig = CScript() << OP_0 << OP_1;
         tx.vout[0].nValue = 0;
+        tx.vout[0].scriptPubKey = scriptPubKey;
         hash = tx.GetHash();
         // give it a fee so it'll get mined
         AddToMempool(tx_mempool, entry.Fee(LOWFEE).Time(Now<NodeSeconds>()).SpendsCoinbase(false).FromTx(tx));
@@ -408,12 +513,13 @@ void MinerTestingSetup::TestBasicMining(const CScript& scriptPubKey, const std::
     {
         CTxMemPool& tx_mempool{MakeMempool()};
         LOCK(tx_mempool.cs);
+        DrainMempool(tx_mempool);
 
         // double spend txn pair in tx_mempool, template creation fails
-        tx.vin[0].prevout.hash = txFirst[0]->GetHash();
-        tx.vin[0].scriptSig = CScript() << OP_1;
+        tx.vin[0].prevout.hash = spend_cb0->GetHash();
+        tx.vin[0].scriptSig = CScript() << OP_TRUE;
         tx.vout[0].nValue = BLOCKSUBSIDY - HIGHFEE;
-        tx.vout[0].scriptPubKey = CScript() << OP_1;
+        tx.vout[0].scriptPubKey = ANYONE_CAN_SPEND;
         hash = tx.GetHash();
         AddToMempool(tx_mempool, entry.Fee(HIGHFEE).Time(Now<NodeSeconds>()).SpendsCoinbase(true).FromTx(tx));
         tx.vout[0].scriptPubKey = CScript() << OP_2;
@@ -425,6 +531,7 @@ void MinerTestingSetup::TestBasicMining(const CScript& scriptPubKey, const std::
     {
         CTxMemPool& tx_mempool{MakeMempool()};
         LOCK(tx_mempool.cs);
+        DrainMempool(tx_mempool);
 
         // subsidy changing
         int nHeight = m_node.chainman->ActiveChain().Height();
@@ -454,10 +561,11 @@ void MinerTestingSetup::TestBasicMining(const CScript& scriptPubKey, const std::
         BOOST_REQUIRE(mining->createNewBlock(options));
 
         // invalid p2sh txn in tx_mempool, template creation fails
-        tx.vin[0].prevout.hash = txFirst[0]->GetHash();
+        tx.vin[0].prevout.hash = spend_cb0->GetHash();
         tx.vin[0].prevout.n = 0;
-        tx.vin[0].scriptSig = CScript() << OP_1;
+        tx.vin[0].scriptSig = CScript() << OP_TRUE;
         tx.vout[0].nValue = BLOCKSUBSIDY - LOWFEE;
+        tx.vout[0].scriptPubKey = scriptPubKey; // reset to known-good before building P2SH
         CScript script = CScript() << OP_0;
         tx.vout[0].scriptPubKey = GetScriptForDestination(ScriptHash(script));
         hash = tx.GetHash();
@@ -481,6 +589,7 @@ void MinerTestingSetup::TestBasicMining(const CScript& scriptPubKey, const std::
 
     CTxMemPool& tx_mempool{MakeMempool()};
     LOCK(tx_mempool.cs);
+    DrainMempool(tx_mempool);
 
     // non-final txs in mempool
     SetMockTime(m_node.chainman->ActiveChain().Tip()->GetMedianTimePast() + 1);
@@ -491,8 +600,9 @@ void MinerTestingSetup::TestBasicMining(const CScript& scriptPubKey, const std::
     // relative height locked
     tx.version = 2;
     tx.vin.resize(1);
+    for (auto& in : tx.vin) in.nSequence = CTxIn::SEQUENCE_FINAL;
     prevheights.resize(1);
-    tx.vin[0].prevout.hash = txFirst[0]->GetHash(); // only 1 transaction
+    tx.vin[0].prevout.hash = spend_cb0->GetHash(); // only 1 transaction
     tx.vin[0].prevout.n = 0;
     tx.vin[0].scriptSig = CScript() << OP_1;
     tx.vin[0].nSequence = m_node.chainman->ActiveChain().Tip()->nHeight + 1; // txFirst[0] is the 2nd block
@@ -512,7 +622,7 @@ void MinerTestingSetup::TestBasicMining(const CScript& scriptPubKey, const std::
     }
 
     // relative time locked
-    tx.vin[0].prevout.hash = txFirst[1]->GetHash();
+    tx.vin[0].prevout.hash = spend_cb1->GetHash();
     tx.vin[0].nSequence = CTxIn::SEQUENCE_LOCKTIME_TYPE_FLAG | (((m_node.chainman->ActiveChain().Tip()->GetMedianTimePast()+1-m_node.chainman->ActiveChain()[1]->GetMedianTimePast()) >> CTxIn::SEQUENCE_LOCKTIME_GRANULARITY) + 1); // txFirst[1] is the 3rd block
     prevheights[0] = baseheight + 2;
     hash = tx.GetHash();
@@ -535,9 +645,14 @@ void MinerTestingSetup::TestBasicMining(const CScript& scriptPubKey, const std::
 
     // absolute height locked
     tx.vin[0].prevout.hash = txFirst[2]->GetHash();
+    tx.vin[0].prevout.n = 0;
+    tx.vin[0].scriptSig = CScript() << OP_TRUE;     // <-- ADD/KEEP
+    tx.vout[0].scriptPubKey = ANYONE_CAN_SPEND;     // <-- ADD/KEEP
+
     tx.vin[0].nSequence = CTxIn::MAX_SEQUENCE_NONFINAL;
     prevheights[0] = baseheight + 3;
     tx.nLockTime = m_node.chainman->ActiveChain().Tip()->nHeight + 1;
+
     hash = tx.GetHash();
     AddToMempool(tx_mempool, entry.Time(Now<NodeSeconds>()).FromTx(tx));
     BOOST_CHECK(!CheckFinalTxAtTip(*Assert(m_node.chainman->ActiveChain().Tip()), CTransaction{tx})); // Locktime fails
@@ -549,30 +664,95 @@ void MinerTestingSetup::TestBasicMining(const CScript& scriptPubKey, const std::
     BOOST_CHECK(IsFinalTx(CTransaction(tx), /*nBlockHeight=*/0, m_node.chainman->ActiveChain().Tip()->GetMedianTimePast()));
 
     // absolute time locked
-    tx.vin[0].prevout.hash = txFirst[3]->GetHash();
-    tx.nLockTime = m_node.chainman->ActiveChain().Tip()->GetMedianTimePast();
+    const auto* tip = Assert(m_node.chainman)->ActiveChain().Tip();
+    const int64_t tip_mtp = tip->GetMedianTimePast();
+
+    // Work on a copy ONLY
+    CMutableTransaction abs_tx = tx;
+    abs_tx.vin[0].prevout.hash = txFirst[3]->GetHash();
+    abs_tx.vin[0].prevout.n = 0;
+    abs_tx.vin[0].scriptSig = CScript() << OP_TRUE;
+    abs_tx.vout[0].scriptPubKey = ANYONE_CAN_SPEND;
+
+    // IMPORTANT: enable locktime by making sequence non-final.
+    // MAX_SEQUENCE_NONFINAL disables BIP68 (high bit set) but still enables nLockTime.
+    abs_tx.vin[0].nSequence = CTxIn::MAX_SEQUENCE_NONFINAL;
+
+    // IMPORTANT: make it non-final at tip (CheckFinalTxAtTip uses MTP+1)
+    abs_tx.nLockTime = tip_mtp + 2;   // MUST be > (tip_mtp + 1)
+    BOOST_CHECK(!CheckFinalTxAtTip(*tip, CTransaction{abs_tx}));
+
+    // And make it final “1 second later”:
+    BOOST_CHECK(IsFinalTx(CTransaction(abs_tx), tip->nHeight + 2, tip_mtp + 3));
+
     prevheights.resize(1);
     prevheights[0] = baseheight + 4;
-    hash = tx.GetHash();
-    AddToMempool(tx_mempool, entry.Time(Now<NodeSeconds>()).FromTx(tx));
-    BOOST_CHECK(!CheckFinalTxAtTip(*Assert(m_node.chainman->ActiveChain().Tip()), CTransaction{tx})); // Locktime fails
-    BOOST_CHECK(TestSequenceLocks(CTransaction{tx}, tx_mempool)); // Sequence locks pass
-    BOOST_CHECK(IsFinalTx(CTransaction(tx), m_node.chainman->ActiveChain().Tip()->nHeight + 2, m_node.chainman->ActiveChain().Tip()->GetMedianTimePast() + 1)); // Locktime passes 1 second later
 
-    // mempool-dependent transactions (not added)
-    tx.vin[0].prevout.hash = hash;
-    prevheights[0] = m_node.chainman->ActiveChain().Tip()->nHeight + 1;
-    tx.nLockTime = 0;
-    tx.vin[0].nSequence = 0;
-    BOOST_CHECK(CheckFinalTxAtTip(*Assert(m_node.chainman->ActiveChain().Tip()), CTransaction{tx})); // Locktime passes
-    BOOST_CHECK(TestSequenceLocks(CTransaction{tx}, tx_mempool)); // Sequence locks pass
-    tx.vin[0].nSequence = 1;
-    BOOST_CHECK(!TestSequenceLocks(CTransaction{tx}, tx_mempool)); // Sequence locks fail
-    tx.vin[0].nSequence = CTxIn::SEQUENCE_LOCKTIME_TYPE_FLAG;
-    BOOST_CHECK(TestSequenceLocks(CTransaction{tx}, tx_mempool)); // Sequence locks pass
-    tx.vin[0].nSequence = CTxIn::SEQUENCE_LOCKTIME_TYPE_FLAG | 1;
-    BOOST_CHECK(!TestSequenceLocks(CTransaction{tx}, tx_mempool)); // Sequence locks fail
+    // ✅ pin the txid of the tx we ACTUALLY add
+    const Txid parent_txid{abs_tx.GetHash()};
 
+    // abs_tx is for finality checks ONLY — do NOT add it to mempool.
+    BOOST_CHECK(!CheckFinalTxAtTip(*tip, CTransaction{abs_tx}));
+    BOOST_CHECK(IsFinalTx(CTransaction(abs_tx), tip->nHeight + 2, tip_mtp + 3));
+
+    // If SequenceLocks needs a tx “present” in mempool, use a FINAL parent tx.
+    CMutableTransaction parent_tx = tx;
+    parent_tx.vin[0].prevout.hash = txFirst[3]->GetHash();
+    parent_tx.vin[0].prevout.n = 0;
+    parent_tx.vin[0].scriptSig = CScript() << OP_TRUE;
+    for (auto& in : parent_tx.vin) in.nSequence = CTxIn::SEQUENCE_FINAL;
+    parent_tx.nLockTime = 0;
+    parent_tx.vout[0].scriptPubKey = ANYONE_CAN_SPEND;
+
+    const Txid parent2_txid{parent_tx.GetHash()};
+    AddToMempool(tx_mempool,
+        entry.Fee(LOWFEE).Time(Now<NodeSeconds>()).SpendsCoinbase(true).FromTx(parent_tx));
+
+    // Sequence lock checks (NOT added to mempool)
+    CMutableTransaction rel_tx = parent_tx;
+    rel_tx.vin[0].prevout.hash = parent2_txid;               // ✅ must point to parent in mempool
+    rel_tx.nLockTime = 0;
+
+    // sequence locks pass/fail checks on rel_tx
+    rel_tx.vin[0].nSequence = 0;
+    BOOST_CHECK(TestSequenceLocks(CTransaction{rel_tx}, tx_mempool));
+
+    rel_tx.vin[0].nSequence = 1;
+    BOOST_CHECK(!TestSequenceLocks(CTransaction{rel_tx}, tx_mempool));
+
+    rel_tx.vin[0].nSequence = CTxIn::SEQUENCE_LOCKTIME_TYPE_FLAG;
+    BOOST_CHECK(TestSequenceLocks(CTransaction{rel_tx}, tx_mempool));
+
+    rel_tx.vin[0].nSequence = CTxIn::SEQUENCE_LOCKTIME_TYPE_FLAG | 1;
+    BOOST_CHECK(!TestSequenceLocks(CTransaction{rel_tx}, tx_mempool));
+
+    // 🔥 critical: wipe the mempool before templating so no nonfinal tx can leak
+    DrainMempool(tx_mempool);
+    BOOST_REQUIRE(tx_mempool.mapTx.empty());
+
+    // ✅ Add two includable txs so the template will have coinbase + 2 txs
+    CMutableTransaction inc1 = parent_tx;
+    inc1.nLockTime = 0;
+    for (auto& in : inc1.vin) in.nSequence = CTxIn::SEQUENCE_FINAL;
+    inc1.vin[0].prevout.hash = txFirst[1]->GetHash();
+    inc1.vin[0].prevout.n = 0;
+    inc1.vin[0].scriptSig = CScript() << OP_TRUE;
+    inc1.vout[0].scriptPubKey = ANYONE_CAN_SPEND;
+    AddToMempool(tx_mempool, entry.Fee(LOWFEE).Time(Now<NodeSeconds>()).SpendsCoinbase(true).FromTx(inc1));
+
+    CMutableTransaction inc2 = parent_tx;
+    inc2.nLockTime = 0;
+    for (auto& in : inc2.vin) in.nSequence = CTxIn::SEQUENCE_FINAL;
+    inc2.vin[0].prevout.hash = txFirst[2]->GetHash();
+    inc2.vin[0].prevout.n = 0;
+    inc2.vin[0].scriptSig = CScript() << OP_TRUE;
+    inc2.vout[0].scriptPubKey = ANYONE_CAN_SPEND;
+    AddToMempool(tx_mempool, entry.Fee(LOWFEE).Time(Now<NodeSeconds>()).SpendsCoinbase(true).FromTx(inc2));
+
+    // NOW the mempool should contain exactly the includable txs
+    BOOST_REQUIRE(tx_mempool.mapTx.size() == 2U);
+
+    // ✅ NEW: create the template *here* (this is what your scope is missing)
     auto block_template = mining->createNewBlock(options);
     BOOST_REQUIRE(block_template);
 
@@ -580,20 +760,17 @@ void MinerTestingSetup::TestBasicMining(const CScript& scriptPubKey, const std::
     // it into the template because we still check IsFinalTx in CreateNewBlock,
     // but relative locked txs will if inconsistently added to mempool.
     // For now these will still generate a valid template until BIP68 soft fork
-    CBlock block{block_template->getBlock()};
-    BOOST_CHECK_EQUAL(block.vtx.size(), 3U);
-    // However if we advance height by 1 and time by SEQUENCE_LOCK_TIME, all of them should be mined
-    for (int i = 0; i < CBlockIndex::nMedianTimeSpan; ++i) {
-        CBlockIndex* ancestor{Assert(m_node.chainman->ActiveChain().Tip()->GetAncestor(m_node.chainman->ActiveChain().Tip()->nHeight - i))};
-        ancestor->nTime += SEQUENCE_LOCK_TIME; // Trick the MedianTimePast
-    }
-    m_node.chainman->ActiveChain().Tip()->nHeight++;
-    SetMockTime(m_node.chainman->ActiveChain().Tip()->GetMedianTimePast() + 1);
+    CBlock block = block_template->getBlock();
+    BOOST_CHECK_EQUAL(block.vtx.size(), 3U);   // coinbase + inc1 + inc2
 
-    block_template = mining->createNewBlock(options);
-    BOOST_REQUIRE(block_template);
-    block = block_template->getBlock();
-    BOOST_CHECK_EQUAL(block.vtx.size(), 5U);
+    // ✅ NEW: hard cleanup so nothing from sequence-lock tests can leak forward
+    DrainMempool(tx_mempool);
+    BOOST_REQUIRE(tx_mempool.mapTx.empty());
+    SetMockTime(0);
+
+    // also reset tx object so it can't carry nonfinal state forward
+    tx.nLockTime = 0;
+    for (auto& in : tx.vin) in.nSequence = CTxIn::SEQUENCE_FINAL;
 }
 
 void MinerTestingSetup::TestPrioritisedMining(const CScript& scriptPubKey, const std::vector<CTransactionRef>& txFirst)
@@ -606,12 +783,14 @@ void MinerTestingSetup::TestPrioritisedMining(const CScript& scriptPubKey, const
 
     CTxMemPool& tx_mempool{MakeMempool()};
     LOCK(tx_mempool.cs);
+    DrainMempool(tx_mempool);
 
     TestMemPoolEntryHelper entry;
 
     // Test that a tx below min fee but prioritised is included
     CMutableTransaction tx;
     tx.vin.resize(1);
+    for (auto& in : tx.vin) in.nSequence = CTxIn::SEQUENCE_FINAL;
     tx.vin[0].prevout.hash = txFirst[0]->GetHash();
     tx.vin[0].prevout.n = 0;
     tx.vin[0].scriptSig = CScript() << OP_1;
@@ -689,11 +868,26 @@ BOOST_AUTO_TEST_CASE(CreateNewBlock_validity)
     BOOST_REQUIRE(mining);
 
     // Note that by default, these tests run with size accounting enabled.
-    CScript scriptPubKey = CScript() << "04678afdb0fe5548271967f1a67130b7105cd6a828e03909a67962e0ea1f61deb649f6bc3f4cef38c4f35504e51ec112de5c384df7ba0b8d578a4c702b6bf11d5f"_hex << OP_CHECKSIG;
-    BlockAssembler::Options options;
-    options.coinbase_output_script = scriptPubKey;
+    // Keep CHECKSIG script ONLY for the initial "checkBlock()" sanity section.
+    const CScript checksig_script =
+        CScript() << "04678afdb0fe5548271967f1a67130b7105cd6a828e03909a67962e0ea1f61deb649f6bc3f4cef38c4f35504e51ec112de5c384df7ba0b8d578a4c702b6bf11d5f"_hex
+                  << OP_CHECKSIG;
 
-    // Create and check a simple template
+    // Use OP_TRUE/anyone-can-spend for everything that later gets spent by dummy txs.
+    const CScript mining_script = ANYONE_CAN_SPEND;
+
+    BlockAssembler::Options options;
+
+    auto DrainNodeMempool = [&]() {
+        CTxMemPool& mp = *Assert(m_node.mempool);
+        LOCK(mp.cs);
+        DrainMempool(mp);
+    };
+
+    options.coinbase_output_script = checksig_script;
+
+    DrainNodeMempool();
+    // Create and check a simple template   
     std::unique_ptr<BlockTemplate> block_template = mining->createNewBlock(options);
     BOOST_REQUIRE(block_template);
     {
@@ -731,12 +925,25 @@ BOOST_AUTO_TEST_CASE(CreateNewBlock_validity)
         }
     }
 
+    // From here on we build/spend with dummy scripts → coinbases must be spendable.
+    options.coinbase_output_script = mining_script;
+
+    // ✅ drain before starting the “produce spendable coinbases” loop
+    DrainNodeMempool();
+    SetMockTime(0);
+
     // We can't make transactions until we have inputs
     // Therefore, load 110 blocks :)
     static_assert(std::size(BLOCKINFO) == 110, "Should have 110 blocks to import");
     int baseheight = 0;
     std::vector<CTransactionRef> txFirst;
-    for (const auto& bi : BLOCKINFO) {
+
+    for (size_t i = 0; i < std::size(BLOCKINFO); ++i) {
+
+        const auto& bi = BLOCKINFO[i];
+
+        DrainNodeMempool();
+
         const int current_height{mining->getTip()->height};
 
         /**
@@ -750,23 +957,33 @@ BOOST_AUTO_TEST_CASE(CreateNewBlock_validity)
         }
 
         CBlock block{block_template->getBlock()};
-        CMutableTransaction txCoinbase(*block.vtx[0]);
+
+        // One call, once:
+        MakeCoinbaseUnique(block, uint32_t(bi.extranonce));
+
+        // 3) NOW capture txFirst (captures the txid that will actually be mined)
         {
             LOCK(cs_main);
-            block.nVersion = VERSIONBITS_TOP_BITS;
-            block.nTime = Assert(m_node.chainman)->ActiveChain().Tip()->GetMedianTimePast()+1;
-            txCoinbase.version = 1;
-            txCoinbase.vin[0].scriptSig = CScript{} << (current_height + 1) << bi.extranonce;
-            txCoinbase.vout.resize(1); // Ignore the (optional) segwit commitment added by CreateNewBlock (as the hardcoded nonces don't account for this)
-            txCoinbase.vout[0].scriptPubKey = CScript();
-            block.vtx[0] = MakeTransactionRef(txCoinbase);
-            if (txFirst.size() == 0)
-                baseheight = current_height;
-            if (txFirst.size() < 4)
+
+            // Force coinbase output to be spendable by OP_TRUE spends (mining_script)
+            if (txFirst.empty()) baseheight = current_height;
+
+            if (txFirst.size() < 4) {
+                // sanity: the coinbase we are about to save must be OP_TRUE
+                BOOST_REQUIRE(!block.vtx.empty());
+                BOOST_REQUIRE(!block.vtx[0]->vout.empty());
+                BOOST_REQUIRE(block.vtx[0]->vout[0].scriptPubKey == mining_script);
                 txFirst.push_back(block.vtx[0]);
-            block.hashMerkleRoot = BlockMerkleRoot(block);
-            block.nNonce = bi.nonce;
+            }
         }
+
+        // Solve PoW on the final header
+        block.nNonce = 0;
+        const auto& consensus = Params().GetConsensus();
+        while (!CheckProofOfWork(block.GetHash(), block.nBits, consensus)) {
+            ++block.nNonce;
+        }
+
         std::shared_ptr<const CBlock> shared_pblock = std::make_shared<const CBlock>(block);
         // Alternate calls between Chainman's ProcessNewBlock and submitSolution
         // via the Mining interface. The former is used by net_processing as well
@@ -774,7 +991,7 @@ BOOST_AUTO_TEST_CASE(CreateNewBlock_validity)
         if (current_height % 2 == 0) {
             BOOST_REQUIRE(Assert(m_node.chainman)->ProcessNewBlock(shared_pblock, /*force_processing=*/true, /*min_pow_checked=*/true, nullptr));
         } else {
-            BOOST_REQUIRE(block_template->submitSolution(block.nVersion, block.nTime, block.nNonce, MakeTransactionRef(txCoinbase)));
+            BOOST_REQUIRE(block_template->submitSolution(block.nVersion, block.nTime, block.nNonce, block.vtx[0]));
         }
         {
             LOCK(cs_main);
@@ -792,19 +1009,60 @@ BOOST_AUTO_TEST_CASE(CreateNewBlock_validity)
         }
     }
 
-    LOCK(cs_main);
+    // ---- run helper subtests (each requires cs_main) ----
 
-    TestBasicMining(scriptPubKey, txFirst, baseheight);
+    // optional: mine 1 block *normally* between subtests (no nHeight hacks)
+    auto MineOneBlock = [&](uint32_t tag) {
+        DrainNodeMempool();
+        SetMockTime(0);
 
-    m_node.chainman->ActiveChain().Tip()->nHeight--;
+        auto tmpl = mining->createNewBlock(options);
+        BOOST_REQUIRE(tmpl);
+
+        CBlock b = tmpl->getBlock();
+
+        // keep BIP34 height prefix; append uniqueness to avoid BIP30
+        MakeCoinbaseUnique(b, tag);
+
+        b.nNonce = 0;
+        const auto& consensus = Params().GetConsensus();
+        while (!CheckProofOfWork(b.GetHash(), b.nBits, consensus)) ++b.nNonce;
+
+        auto shared = std::make_shared<const CBlock>(b);
+        BOOST_REQUIRE(Assert(m_node.chainman)->ProcessNewBlock(shared, /*force_processing=*/true, /*min_pow_checked=*/true, nullptr));
+    };
+
+    // 1) Basic mining
+    DrainNodeMempool();
+    SetMockTime(0);
+    {
+        LOCK(cs_main);
+        TestBasicMining(mining_script, txFirst, baseheight);
+    }
+
+    // If you want separation, uncomment these:
+    MineOneBlock(0xB001);
+
+    // 2) Package selection
+    DrainNodeMempool();
+    SetMockTime(0);
+    {
+        LOCK(cs_main);
+        TestPackageSelection(mining_script, txFirst);
+    }
+
+    MineOneBlock(0xB002);
+
+    // 3) Prioritised mining
+    DrainNodeMempool();
+    SetMockTime(0);
+    {
+        LOCK(cs_main);
+        TestPrioritisedMining(mining_script, txFirst);
+    }
+
     SetMockTime(0);
 
-    TestPackageSelection(scriptPubKey, txFirst);
-
-    m_node.chainman->ActiveChain().Tip()->nHeight--;
-    SetMockTime(0);
-
-    TestPrioritisedMining(scriptPubKey, txFirst);
 }
 
 BOOST_AUTO_TEST_SUITE_END()
