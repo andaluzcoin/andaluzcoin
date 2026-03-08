@@ -328,15 +328,8 @@ void MinerTestingSetup::TestBasicMining(const CScript& scriptPubKey, const std::
     CTransactionRef spend_cb0;
     CTransactionRef spend_cb1;
 
-    while (Assert(m_node.chainman)->ActiveChain().Height() < target_height) {
-        auto tmpl = mining->createNewBlock(options);
-        BOOST_REQUIRE(tmpl);
-
-        CBlock b{tmpl->getBlock()};
-        b.hashMerkleRoot = BlockMerkleRoot(b);
-
-        b.nNonce = 0;
-        const auto& consensus = Params().GetConsensus();
+    std::shared_ptr<const CBlock> shared;
+    {
         while (!CheckProofOfWork(b.GetHash(), b.nBits, consensus)) ++b.nNonce;
 
         // Capture first two coinbases we mine (they'll be mature by the time we exit the loop).
@@ -346,9 +339,10 @@ void MinerTestingSetup::TestBasicMining(const CScript& scriptPubKey, const std::
             spend_cb1 = b.vtx[0];
         }
 
-        auto shared = std::make_shared<const CBlock>(b);
-        BOOST_REQUIRE(Assert(m_node.chainman)->ProcessNewBlock(shared, true, true, nullptr));
+        shared = std::make_shared<const CBlock>(b);        
     }
+
+    BOOST_REQUIRE(Assert(m_node.chainman)->ProcessNewBlock(shared, true, true, nullptr));
 
     BOOST_REQUIRE(spend_cb0);
     BOOST_REQUIRE(spend_cb1);
@@ -687,9 +681,6 @@ void MinerTestingSetup::TestBasicMining(const CScript& scriptPubKey, const std::
 
     prevheights.resize(1);
     prevheights[0] = baseheight + 4;
-
-    // ✅ pin the txid of the tx we ACTUALLY add
-    const Txid parent_txid{abs_tx.GetHash()};
 
     // abs_tx is for finality checks ONLY — do NOT add it to mempool.
     BOOST_CHECK(!CheckFinalTxAtTip(*tip, CTransaction{abs_tx}));
