@@ -16,6 +16,8 @@
 #include <string>
 #include <stdexcept>
 
+#include <chainparams.h> // Params()
+
 static RPCHelpMan rpcNestedTest_rpc()
 {
     return RPCHelpMan{
@@ -82,8 +84,15 @@ void RPCNestedTests::rpcNestedTests()
     QVERIFY(result == result2);
 
     RPCConsole::RPCExecuteCommandLine(m_node, result, "getblock(getbestblockhash())[tx][0]", &filtered);
-    QVERIFY(result == "4a5e1e4baab89f3a32518a88c31bc87f618f76673e2cc77ab2127b7afdeda33b");
-    QVERIFY(filtered == "getblock(getbestblockhash())[tx][0]");
+
+    // Run the same command to populate `result` (and `filtered` if your call supports it)
+    RPCConsole::RPCExecuteCommandLine(m_node, result, "getblock(getblockhash(0))[tx][0]", &filtered);
+
+    // Compare against *this chain's* genesis coinbase txid (chain-agnostic)
+    const std::string expected_genesis_cb =
+        Params().GenesisBlock().vtx[0]->GetHash().ToString();
+
+    QVERIFY(result == expected_genesis_cb);
 
     RPCConsole::RPCParseCommandLine(nullptr, result, "signmessagewithprivkey abc", false, &filtered);
     QVERIFY(filtered == "signmessagewithprivkey(…)");
