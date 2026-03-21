@@ -97,7 +97,7 @@ public:
         consensus.SegwitHeight = 1;
         consensus.MinBIP9WarningHeight = 0; // segwit activation height + miner confirmation window
 
-        consensus.powLimit = uint256{"0000ffff00000000000000000000000000000000000000000000000000000000"};
+        consensus.powLimit = uint256{"00000377ae000000000000000000000000000000000000000000000000000000"};
 
         consensus.nPowTargetTimespan = 14 * 24 * 60 * 60; // two weeks
         consensus.nPowTargetSpacing = 10 * 60;
@@ -147,14 +147,15 @@ public:
             pszTimestamp,
             genesisOutputScript,
             1769731200,
-            104982,
-            0x1f00ffff,
+            2368582,
+            0x1e0377ae,
             1,
             50 * COIN
         );
 
         consensus.hashGenesisBlock = genesis.GetHash();
-        assert(consensus.hashGenesisBlock == uint256{"00003b994550808d4803a2248b519e7f28646f45b45d68d1a947833dc290661a"});
+
+        assert(consensus.hashGenesisBlock == uint256{"000000cd6370144985ca6e987bedcf8abb4234ed6631f0011bd04b382a448c83"});
         assert(genesis.hashMerkleRoot == uint256{"14a3ed7e9a74a76a935c96b7101d9e5cd4c974534838d77c48bdadb15e103e2a"});
 
         // New chain: no Bitcoin DNS seeds / fixed seeds

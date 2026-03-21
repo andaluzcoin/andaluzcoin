@@ -51,10 +51,6 @@ static void DrainMempool(CTxMemPool& pool) EXCLUSIVE_LOCKS_REQUIRED(pool.cs)
     }
 }
 
-auto ScriptBytes = [](const CScript& s) {
-    return std::vector<unsigned char>(s.begin(), s.end());
-};
-
 namespace {
 static uint32_t g_cb_uniquifier{0};
 
@@ -320,30 +316,10 @@ void MinerTestingSetup::TestBasicMining(const CScript& scriptPubKey, const std::
     BlockAssembler::Options options;
     options.coinbase_output_script = ANYONE_CAN_SPEND;
 
-    // Mine our own spendable coinbases (OP_TRUE) for the remainder of this test.
-    // This avoids needing real DER signatures when spending coinbase outputs.
-    const int start_height = Assert(m_node.chainman)->ActiveChain().Height();
-    const int target_height = start_height + COINBASE_MATURITY + 1;
-
-    CTransactionRef spend_cb0;
-    CTransactionRef spend_cb1;
-
-    std::shared_ptr<const CBlock> shared;
-    {
-        while (!CheckProofOfWork(b.GetHash(), b.nBits, consensus)) ++b.nNonce;
-
-        // Capture first two coinbases we mine (they'll be mature by the time we exit the loop).
-        if (!spend_cb0) {
-            spend_cb0 = b.vtx[0];
-        } else if (!spend_cb1) {
-            spend_cb1 = b.vtx[0];
-        }
-
-        shared = std::make_shared<const CBlock>(b);        
-    }
-
-    BOOST_REQUIRE(Assert(m_node.chainman)->ProcessNewBlock(shared, true, true, nullptr));
-
+    // We already mined plenty of blocks in CreateNewBlock_validity (BLOCKINFO loop),
+    // so coinbases in txFirst are mature by the time we reach this test.
+    const CTransactionRef& spend_cb0 = txFirst.at(0);
+    const CTransactionRef& spend_cb1 = txFirst.at(1);
     BOOST_REQUIRE(spend_cb0);
     BOOST_REQUIRE(spend_cb1);
 
@@ -695,13 +671,15 @@ void MinerTestingSetup::TestBasicMining(const CScript& scriptPubKey, const std::
     parent_tx.nLockTime = 0;
     parent_tx.vout[0].scriptPubKey = ANYONE_CAN_SPEND;
 
-    const Txid parent2_txid{parent_tx.GetHash()};
+    // ✅ The ONLY txid you should use going forward
+    const Txid parent_txid{parent_tx.GetHash()};
+
     AddToMempool(tx_mempool,
         entry.Fee(LOWFEE).Time(Now<NodeSeconds>()).SpendsCoinbase(true).FromTx(parent_tx));
 
     // Sequence lock checks (NOT added to mempool)
     CMutableTransaction rel_tx = parent_tx;
-    rel_tx.vin[0].prevout.hash = parent2_txid;               // ✅ must point to parent in mempool
+    rel_tx.vin[0].prevout.hash = parent_txid;    // ✅ must point to parent in mempool
     rel_tx.nLockTime = 0;
 
     // sequence locks pass/fail checks on rel_tx
