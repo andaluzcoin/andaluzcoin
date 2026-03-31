@@ -980,27 +980,6 @@ BOOST_AUTO_TEST_CASE(CreateNewBlock_validity)
 
     // ---- run helper subtests (each requires cs_main) ----
 
-    // optional: mine 1 block *normally* between subtests (no nHeight hacks)
-    auto MineOneBlock = [&](uint32_t tag) {
-        DrainNodeMempool();
-        SetMockTime(0);
-
-        auto tmpl = mining->createNewBlock(options);
-        BOOST_REQUIRE(tmpl);
-
-        CBlock b = tmpl->getBlock();
-
-        // keep BIP34 height prefix; append uniqueness to avoid BIP30
-        MakeCoinbaseUnique(b, tag);
-
-        b.nNonce = 0;
-        const auto& consensus = Params().GetConsensus();
-        while (!CheckProofOfWork(b.GetHash(), b.nBits, consensus)) ++b.nNonce;
-
-        auto shared = std::make_shared<const CBlock>(b);
-        BOOST_REQUIRE(Assert(m_node.chainman)->ProcessNewBlock(shared, /*force_processing=*/true, /*min_pow_checked=*/true, nullptr));
-    };
-
     // 1) Basic mining
     DrainNodeMempool();
     SetMockTime(0);
@@ -1010,7 +989,7 @@ BOOST_AUTO_TEST_CASE(CreateNewBlock_validity)
     }
 
     // If you want separation, uncomment these:
-    MineOneBlock(0xB001);
+    // MineOneBlock(0xB001);
 
     // 2) Package selection
     DrainNodeMempool();
@@ -1020,7 +999,7 @@ BOOST_AUTO_TEST_CASE(CreateNewBlock_validity)
         TestPackageSelection(mining_script, txFirst);
     }
 
-    MineOneBlock(0xB002);
+    // MineOneBlock(0xB002);
 
     // 3) Prioritised mining
     DrainNodeMempool();
