@@ -35,11 +35,12 @@ add_library(bitcoin_wallet STATIC EXCLUDE_FROM_ALL
   walletutil.cpp
 )
 target_link_libraries(bitcoin_wallet
+  PUBLIC
+    $<TARGET_NAME_IF_EXISTS:unofficial::sqlite3::sqlite3>
+    $<TARGET_NAME_IF_EXISTS:SQLite3::SQLite3>
   PRIVATE
     core_interface
     bitcoin_common
-    $<TARGET_NAME_IF_EXISTS:unofficial::sqlite3::sqlite3>
-    $<TARGET_NAME_IF_EXISTS:SQLite3::SQLite3>
     univalue
     Boost::headers
     $<TARGET_NAME_IF_EXISTS:USDT::headers>
