@@ -163,11 +163,14 @@ if(ENABLE_WALLET)
     add_windows_resources(bitcoin-wallet bitcoin-wallet-res.rc)
     add_windows_application_manifest(bitcoin-wallet)
     target_link_libraries(bitcoin-wallet
-      core_interface
-      bitcoin_wallet
-      bitcoin_common
-      bitcoin_util
-      Boost::headers
+      PRIVATE
+        $<TARGET_NAME_IF_EXISTS:unofficial::sqlite3::sqlite3>
+        $<TARGET_NAME_IF_EXISTS:SQLite3::SQLite3>
+        core_interface
+        bitcoin_wallet
+        bitcoin_common
+        bitcoin_util
+        Boost::headers
     )
     install_binary_component(bitcoin-wallet HAS_MANPAGE)
   endif()
