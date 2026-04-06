@@ -114,7 +114,25 @@ if(ENABLE_WALLET)
   else()
     find_package(SQLite3 3.7.17 REQUIRED)
   endif()
+
+  if(NOT TARGET SQLite3::SQLite3 AND DEFINED SQLite3_LIBRARY)
+    add_library(SQLite3::SQLite3 UNKNOWN IMPORTED)
+
+    if(DEFINED SQLite3_INCLUDE_DIR)
+      set(_sqlite_include_dirs "${SQLite3_INCLUDE_DIR}")
+    elseif(DEFINED SQLite3_INCLUDE_DIRS)
+      set(_sqlite_include_dirs "${SQLite3_INCLUDE_DIRS}")
+    else()
+      set(_sqlite_include_dirs "")
+    endif()
+
+    set_target_properties(SQLite3::SQLite3 PROPERTIES
+      IMPORTED_LOCATION "${SQLite3_LIBRARY}"
+      INTERFACE_INCLUDE_DIRECTORIES "${_sqlite_include_dirs}"
+    )
+  endif()
 endif()
+
 cmake_dependent_option(BUILD_WALLET_TOOL "Build bitcoin-wallet tool." ${BUILD_TESTS} "ENABLE_WALLET" OFF)
 
 option(REDUCE_EXPORTS "Attempt to reduce exported symbols in the resulting executables." OFF)
@@ -713,56 +731,3 @@ endif()
 
 # We want all build properties to be encapsulated properly.
 include(WarnAboutGlobalProperties)
-
-
-
-
-
-
-#=============================
-# Temporarily add this block
-#=============================
-if(TARGET SQLite3::SQLite3)
-  get_target_property(SQLITE3_TYPE SQLite3::SQLite3 TYPE)
-  get_target_property(SQLITE3_IMPORTED SQLite3::SQLite3 IMPORTED)
-  get_target_property(SQLITE3_LOCATION SQLite3::SQLite3 IMPORTED_LOCATION)
-  get_target_property(SQLITE3_IMPLIB SQLite3::SQLite3 IMPORTED_IMPLIB)
-  get_target_property(SQLITE3_INTERFACE_LIBS SQLite3::SQLite3 INTERFACE_LINK_LIBRARIES)
-  message(STATUS "SQLite3::SQLite3 TYPE=${SQLITE3_TYPE}")
-  message(STATUS "SQLite3::SQLite3 IMPORTED=${SQLITE3_IMPORTED}")
-  message(STATUS "SQLite3::SQLite3 IMPORTED_LOCATION=${SQLITE3_LOCATION}")
-  message(STATUS "SQLite3::SQLite3 IMPORTED_IMPLIB=${SQLITE3_IMPLIB}")
-  message(STATUS "SQLite3::SQLite3 INTERFACE_LINK_LIBRARIES=${SQLITE3_INTERFACE_LIBS}")
-else()
-  message(STATUS "SQLite3::SQLite3 target is NOT defined")
-endif()
-
-if(TARGET unofficial::sqlite3::sqlite3)
-  get_target_property(U_SQLITE3_TYPE unofficial::sqlite3::sqlite3 TYPE)
-  get_target_property(U_SQLITE3_IMPORTED unofficial::sqlite3::sqlite3 IMPORTED)
-  get_target_property(U_SQLITE3_LOCATION unofficial::sqlite3::sqlite3 IMPORTED_LOCATION)
-  get_target_property(U_SQLITE3_IMPLIB unofficial::sqlite3::sqlite3 IMPORTED_IMPLIB)
-  get_target_property(U_SQLITE3_INTERFACE_LIBS unofficial::sqlite3::sqlite3 INTERFACE_LINK_LIBRARIES)
-  message(STATUS "unofficial::sqlite3::sqlite3 TYPE=${U_SQLITE3_TYPE}")
-  message(STATUS "unofficial::sqlite3::sqlite3 IMPORTED=${U_SQLITE3_IMPORTED}")
-  message(STATUS "unofficial::sqlite3::sqlite3 IMPORTED_LOCATION=${U_SQLITE3_LOCATION}")
-  message(STATUS "unofficial::sqlite3::sqlite3 IMPORTED_IMPLIB=${U_SQLITE3_IMPLIB}")
-  message(STATUS "unofficial::sqlite3::sqlite3 INTERFACE_LINK_LIBRARIES=${U_SQLITE3_INTERFACE_LIBS}")
-else()
-  message(STATUS "unofficial::sqlite3::sqlite3 target is NOT defined")
-endif()
-
-if(TARGET bitcoin_wallet)
-  get_target_property(BW_LINK_LIBS bitcoin_wallet LINK_LIBRARIES)
-  get_target_property(BW_INTERFACE_LIBS bitcoin_wallet INTERFACE_LINK_LIBRARIES)
-  message(STATUS "bitcoin_wallet LINK_LIBRARIES=${BW_LINK_LIBS}")
-  message(STATUS "bitcoin_wallet INTERFACE_LINK_LIBRARIES=${BW_INTERFACE_LIBS}")
-endif()
-
-if(TARGET bitcoin-wallet)
-  get_target_property(BWE_LINK_LIBS bitcoin-wallet LINK_LIBRARIES)
-  message(STATUS "bitcoin-wallet LINK_LIBRARIES=${BWE_LINK_LIBS}")
-endif()
-#=============================
-# Temporarily remove this block
-#=================================
