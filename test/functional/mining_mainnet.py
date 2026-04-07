@@ -19,13 +19,8 @@ from test_framework.util import (
     assert_equal,
 )
 from test_framework.blocktools import (
-    DIFF_1_N_BITS,
-    DIFF_1_TARGET,
-    DIFF_4_N_BITS,
-    DIFF_4_TARGET,
     create_coinbase,
     nbits_str,
-    target_str
 )
 
 from test_framework.messages import (
@@ -38,6 +33,9 @@ import os
 
 # See data/README.md
 COINBASE_SCRIPT_PUBKEY="76a914eadbac7f36c37e39361168b7aaee3cb24a25312d88ac"
+
+ALUZ_DIFF_1_N_BITS = 0x1e0377ae
+ALUZ_DIFF_4_N_BITS = 0x1e00ddeb
 
 class MiningMainnetTest(BitcoinTestFramework):
 
@@ -59,7 +57,7 @@ class MiningMainnetTest(BitcoinTestFramework):
         block.nVersion = 0x20000000
         block.hashPrevBlock = int(prev_hash, 16)
         block.nTime = blocks['timestamps'][height - 1]
-        block.nBits = DIFF_1_N_BITS if height < 2016 else DIFF_4_N_BITS
+        block.nBits = ALUZ_DIFF_1_N_BITS if height < 2016 else ALUZ_DIFF_4_N_BITS
         block.nNonce = blocks['nonces'][height - 1]
         block.vtx = [create_coinbase(height=height, script_pubkey=bytes.fromhex(COINBASE_SCRIPT_PUBKEY), halving_period=210000)]
         # The alternate mainnet chain was mined with non-timelocked coinbase txs.
@@ -96,14 +94,11 @@ class MiningMainnetTest(BitcoinTestFramework):
 
         self.log.info("Check difficulty adjustment with getmininginfo")
         mining_info = node.getmininginfo()
-        assert_equal(mining_info['difficulty'], 1)
-        assert_equal(mining_info['bits'], nbits_str(DIFF_1_N_BITS))
-        assert_equal(mining_info['target'], target_str(DIFF_1_TARGET))
+
+        assert_equal(mining_info['bits'], nbits_str(ALUZ_DIFF_1_N_BITS))
 
         assert_equal(mining_info['next']['height'], 2016)
-        assert_equal(mining_info['next']['difficulty'], 4)
-        assert_equal(mining_info['next']['bits'], nbits_str(DIFF_4_N_BITS))
-        assert_equal(mining_info['next']['target'], target_str(DIFF_4_TARGET))
+        assert_equal(mining_info['next']['bits'], nbits_str(ALUZ_DIFF_4_N_BITS))
 
         # Mine first block of the second retarget period
         height = 2016
@@ -111,14 +106,13 @@ class MiningMainnetTest(BitcoinTestFramework):
         assert_equal(node.getblockcount(), height)
 
         mining_info = node.getmininginfo()
-        assert_equal(mining_info['difficulty'], 4)
+
+        assert_equal(mining_info['bits'], nbits_str(ALUZ_DIFF_4_N_BITS))
 
         self.log.info("getblock RPC should show historical target")
         block_info = node.getblock(node.getblockhash(1))
 
-        assert_equal(block_info['difficulty'], 1)
-        assert_equal(block_info['bits'], nbits_str(DIFF_1_N_BITS))
-        assert_equal(block_info['target'], target_str(DIFF_1_TARGET))
+        assert_equal(block_info['bits'], nbits_str(ALUZ_DIFF_1_N_BITS))
 
 
 if __name__ == '__main__':

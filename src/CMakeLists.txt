@@ -163,11 +163,12 @@ if(ENABLE_WALLET)
     add_windows_resources(bitcoin-wallet bitcoin-wallet-res.rc)
     add_windows_application_manifest(bitcoin-wallet)
     target_link_libraries(bitcoin-wallet
-      core_interface
-      bitcoin_wallet
-      bitcoin_common
-      bitcoin_util
-      Boost::headers
+      PRIVATE
+        core_interface
+        bitcoin_wallet
+        bitcoin_common
+        bitcoin_util
+        Boost::headers
     )
     install_binary_component(bitcoin-wallet HAS_MANPAGE)
   endif()

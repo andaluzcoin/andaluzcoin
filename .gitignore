@@ -29,3 +29,4 @@ target/
 
 # Functional test cache (generated)
 /test/cache/
+Testing/

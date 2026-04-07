@@ -114,7 +114,25 @@ if(ENABLE_WALLET)
   else()
     find_package(SQLite3 3.7.17 REQUIRED)
   endif()
+
+  if(NOT TARGET SQLite3::SQLite3 AND DEFINED SQLite3_LIBRARY)
+    add_library(SQLite3::SQLite3 UNKNOWN IMPORTED)
+
+    if(DEFINED SQLite3_INCLUDE_DIR)
+      set(_sqlite_include_dirs "${SQLite3_INCLUDE_DIR}")
+    elseif(DEFINED SQLite3_INCLUDE_DIRS)
+      set(_sqlite_include_dirs "${SQLite3_INCLUDE_DIRS}")
+    else()
+      set(_sqlite_include_dirs "")
+    endif()
+
+    set_target_properties(SQLite3::SQLite3 PROPERTIES
+      IMPORTED_LOCATION "${SQLite3_LIBRARY}"
+      INTERFACE_INCLUDE_DIRECTORIES "${_sqlite_include_dirs}"
+    )
+  endif()
 endif()
+
 cmake_dependent_option(BUILD_WALLET_TOOL "Build bitcoin-wallet tool." ${BUILD_TESTS} "ENABLE_WALLET" OFF)
 
 option(REDUCE_EXPORTS "Attempt to reduce exported symbols in the resulting executables." OFF)

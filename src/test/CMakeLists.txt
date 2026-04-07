@@ -180,6 +180,13 @@ if(ENABLE_IPC)
   target_link_libraries(test_bitcoin bitcoin_ipc_test bitcoin_ipc)
 endif()
 
+option(GENERATE_BIP324_PACKET_VECTORS "Generate BIP324 packet vectors (stdout)" OFF)
+mark_as_advanced(GENERATE_BIP324_PACKET_VECTORS)
+
+if(GENERATE_BIP324_PACKET_VECTORS)
+  target_compile_definitions(test_bitcoin PRIVATE GENERATE_BIP324_PACKET_VECTORS=1)
+endif()
+
 function(add_boost_test source_file)
   if(NOT EXISTS ${source_file})
     return()

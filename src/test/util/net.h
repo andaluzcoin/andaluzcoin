@@ -65,10 +65,22 @@ struct ConnmanTestMsg : public CConnman {
     void ClearTestNodes()
     {
         LOCK(m_nodes_mutex);
+
         for (CNode* node : m_nodes) {
+            if (node->IsManualOrFullOutboundConn()) {
+                --m_network_conn_counts[node->addr.GetNetwork()];
+            }
             delete node;
         }
         m_nodes.clear();
+
+        for (CNode* node : m_nodes_disconnected) {
+            if (node->IsManualOrFullOutboundConn()) {
+                --m_network_conn_counts[node->addr.GetNetwork()];
+            }
+            delete node;
+        }
+        m_nodes_disconnected.clear();
     }
 
     void Handshake(CNode& node,

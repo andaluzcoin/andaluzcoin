@@ -51,10 +51,22 @@ submit new unit tests for old code. Unit tests can be compiled and run
 (assuming they weren't disabled during the generation of the build system) with: `ctest`. Further details on running
 and extending unit tests can be found in [/src/test/README.md](/src/test/README.md).
 
+For BIP324 packet vector testing (quiet mode, single-vector filtering, and vector regeneration), see the “BIP324 packet vector test” section in [`src/test/README.md`](src/test/README.md).
+
 There are also [regression and integration tests](/test), written
 in Python.
 These tests can be run (if the [test dependencies](/test) are installed) with: `build/test/functional/test_runner.py`
 (assuming `build` is your build directory).
+
+#### BIP324 packet vector regeneration (developers)
+
+To regenerate BIP324 packet test vectors (printed to stdout), configure the test target with vector generation enabled:
+
+```bash
+cmake -B build -S . -DGENERATE_BIP324_PACKET_VECTORS=ON
+cmake --build build --target test_bitcoin -j"$(nproc)"
+./build/bin/test_bitcoin --run_test=bip324_tests/packet_test_vectors --log_level=nothing --report_level=short
+```
 
 The CI (Continuous Integration) systems make sure that every pull request is tested on Windows, Linux, and macOS.
 The CI must pass on all commits before merge to avoid unrelated CI failures on new pull requests.

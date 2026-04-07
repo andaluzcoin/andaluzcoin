@@ -38,7 +38,7 @@ Bitcoin Core requires one of the following compilers.
 | [Cap'n Proto](../depends/packages/capnp.mk) | [link](https://capnproto.org) | [0.7.1](https://github.com/bitcoin/bitcoin/pull/28907) |
 | Python (scripts, tests) | [link](https://www.python.org) | [3.10](https://github.com/bitcoin/bitcoin/pull/30527) |
 | [Qt](../depends/packages/qt.mk) (gui) | [link](https://download.qt.io/archive/qt/) | [6.2](https://github.com/bitcoin/bitcoin/pull/30997) |
-| [qrencode](../depends/packages/qrencode.mk) (gui) | [link](https://fukuchi.org/works/qrencode/) | N/A |
+| [qrencode](../depends/packages/qrencode.mk) (gui) | [link](https://github.com/fukuchi/libqrencode/releases) | N/A |
 | [SQLite](../depends/packages/sqlite.mk) (wallet) | [link](https://sqlite.org) | [3.7.17](https://github.com/bitcoin/bitcoin/pull/19077) |
 | [systemtap](../depends/packages/systemtap.mk) ([tracing](tracing.md)) | [link](https://sourceware.org/systemtap/) | N/A |
 | [ZeroMQ](../depends/packages/zeromq.mk) (notifications) | [link](https://github.com/zeromq/libzmq/releases) | 4.0.0 |

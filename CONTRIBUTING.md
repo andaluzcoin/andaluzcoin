@@ -250,6 +250,52 @@ keep the monotree rule consistent.
 The project coding conventions in the developer notes (see doc/developer-notes.md)
 must be followed.
 
+### Andaluzcoin specifics
+
+Keep `master` clean: develop on a topic branch, push the branch to your fork, and open a PR to `master`.
+CI should run on the PR, not on direct pushes to `master`.
+
+Typical flow:
+
+```bash
+# Make sure your local view is current
+git fetch origin
+git fetch upstream
+
+# Create (or switch to) a topic branch
+git checkout -b fix/my-change
+
+# Keep your branch current (choose one)
+git rebase upstream/master
+# or, if you prefer: git merge upstream/master
+
+# Push your topic branch (use --force-with-lease if you rebased after pushing)
+git push -u origin fix/my-change
+# git push --force-with-lease origin fix/my-change
+
+# Open a PR to master
+gh pr create --base master --head fix/my-change
+
+```
+
+Notes:
+
+- If you rewrite history (rebase), use `--force-with-lease` when pushing.
+- Prefer rebasing on `upstream/master` before opening the PR to minimize merge noise.
+- Do not push directly to `master`; merge via PR after CI passes.
+
+That’s clean, evergreen, and matches your current remotes (`origin` = your fork, `upstream` = bitcoin/bitcoin).
+
+---
+
+## Commit it (single doc commit)
+
+```bash
+$EDITOR CONTRIBUTING.md
+git add CONTRIBUTING.md
+git commit -m "doc: document Andaluzcoin PR workflow"
+```
+
 Committing Patches
 ------------------
 In general, commits should be atomic and diffs should be easy to read. For this

@@ -113,6 +113,64 @@ If you run an entire test suite, such as `--run_test=getarg_tests`, or all the t
 (by not specifying `--run_test`), a separate directory
 will be created for each individual test.
 
+#### BIP324 packet vector test (quiet + single-vector filtering)
+
+The `bip324_tests/packet_test_vectors` test validates BIP324 encryption/decryption behavior against
+a set of pre-generated packet vectors (included from `src/test/data/*.inl`).
+
+**Run the packet vector test (quiet unless failure):**
+
+```bash
+./build/bin/test_bitcoin \
+  --run_test=bip324_tests/packet_test_vectors \
+  --log_level=nothing \
+  --report_level=short
+
+```
+
+Run a single vector by index (0-based):
+
+Set BIP324_ONLY_VEC to the vector index you want:
+
+BIP324_ONLY_VEC=4 ./build/bin/test_bitcoin \
+  --run_test=bip324_tests/packet_test_vectors \
+  --log_level=nothing \
+  --report_level=short
+
+Notes:
+
+BIP324_ONLY_VEC is 0-based and refers to the order vectors are executed from the included .inl file.
+
+The test uses BOOST_TEST_CONTEXT(...) so vector details print only on failure.
+
+Regenerating (dumping) BIP324 packet vectors to stdout (developer workflow)
+
+This repo provides an optional CMake toggle that recompiles test_bitcoin in “dump mode”, where
+packet_test_vectors prints regenerated vectors to stdout.
+
+1) Configure + rebuild in dump mode:
+   --------------------------------
+cmake -S . -B build -DGENERATE_BIP324_PACKET_VECTORS=ON
+cmake --build build --target test_bitcoin
+
+(If you already have a build dir, re-running the cmake -S/-B ... line is only needed when toggling the option.)
+
+2) Run and capture output:
+   ----------------------
+./build/bin/test_bitcoin \
+  --run_test=bip324_tests/packet_test_vectors \
+  --log_level=nothing \
+  --report_level=short \
+  > /tmp/bip324_packet_vectors.txt
+
+The output is bracketed with markers (e.g. BEGIN_BIP324_PACKET_VECTORS / END_BIP324_PACKET_VECTORS)
+so it’s easy to copy/paste the regenerated TestBIP324PacketVector(...) calls back into the .inl file.
+
+3) Return to normal test mode:
+   --------------------------
+cmake -S . -B build -DGENERATE_BIP324_PACKET_VECTORS=OFF
+cmake --build build --target test_bitcoin
+
 ### Adding test cases
 
 To add a new unit test file to our test suite, you need
