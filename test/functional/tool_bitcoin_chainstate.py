@@ -41,11 +41,14 @@ class BitcoinChainstateTest(BitcoinTestFramework):
         # Build a synthetic child block on top of the actual chain genesis.
         genesis_hash = node.getblockhash(0)
         genesis_header = node.getblockheader(genesis_hash)
+
         block = create_block(
             hashprev=int(genesis_hash, 16),
             coinbase=create_coinbase(height=1),
             ntime=genesis_header["time"] + 1,
         )
+        block.nBits = int(genesis_header["bits"], 16)
+        block.solve()
         block_one = block.serialize().hex()
 
         node.stop_node()
