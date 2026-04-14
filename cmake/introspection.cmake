@@ -215,5 +215,43 @@ if(NOT MSVC)
     set(HAVE_AVX2 FALSE)
     set(HAVE_X86_SHANI FALSE)
   endif()
+
+  # Check for ARM SHA256 intrinsics.
+  set(HAVE_ARM_SHANI FALSE)
+  set(ARM_SHANI_CXXFLAGS "")
+
+  set(IS_ARM64_ARCH FALSE)
+  if(CMAKE_SYSTEM_PROCESSOR MATCHES "^(aarch64|arm64|ARM64)$")
+    set(IS_ARM64_ARCH TRUE)
+  endif()
+
+  # On macOS, the actual target arch can be controlled by CMAKE_OSX_ARCHITECTURES.
+  if(APPLE AND CMAKE_OSX_ARCHITECTURES)
+    set(IS_ARM64_ARCH FALSE)
+    foreach(_arch IN LISTS CMAKE_OSX_ARCHITECTURES)
+      if(_arch MATCHES "^(arm64|aarch64)$")
+        set(IS_ARM64_ARCH TRUE)
+      endif()
+    endforeach()
+  endif()
+
+  if(IS_ARM64_ARCH)
+    set(ARM_SHANI_CXXFLAGS -march=armv8-a+crypto)
+    check_cxx_source_compiles_with_flags("
+      #include <arm_neon.h>
+
+      int main()
+      {
+        uint32x4_t abcd = vdupq_n_u32(0);
+        uint32x4_t efgh = vdupq_n_u32(1);
+        uint32x4_t wk   = vdupq_n_u32(2);
+        uint32x4_t r0   = vsha256hq_u32(abcd, efgh, wk);
+        uint32x4_t r1   = vsha256h2q_u32(efgh, abcd, wk);
+        return vgetq_lane_u32(r0, 0) + vgetq_lane_u32(r1, 0);
+      }
+      " HAVE_ARM_SHANI
+      CXXFLAGS ${ARM_SHANI_CXXFLAGS}
+    )
+  endif()
 endif()
 
