@@ -15,6 +15,7 @@
 
 #include <string>
 #include <stdexcept>
+#include <chainparams.h>
 
 static RPCHelpMan rpcNestedTest_rpc()
 {
@@ -37,6 +38,11 @@ static RPCHelpMan rpcNestedTest_rpc()
 static const CRPCCommand vRPCCommands[] = {
     {"rpcNestedTest", &rpcNestedTest_rpc},
 };
+
+static QString GenesisMerkleRootString()
+{
+    return QString::fromStdString(Params().GenesisBlock().hashMerkleRoot.GetHex());
+}
 
 void RPCNestedTests::rpcNestedTests()
 {
@@ -82,7 +88,7 @@ void RPCNestedTests::rpcNestedTests()
     QVERIFY(result == result2);
 
     RPCConsole::RPCExecuteCommandLine(m_node, result, "getblock(getbestblockhash())[tx][0]", &filtered);
-    QVERIFY(result == "4a5e1e4baab89f3a32518a88c31bc87f618f76673e2cc77ab2127b7afdeda33b");
+    QVERIFY(QString::fromStdString(result) == GenesisMerkleRootString());
     QVERIFY(filtered == "getblock(getbestblockhash())[tx][0]");
 
     RPCConsole::RPCParseCommandLine(nullptr, result, "signmessagewithprivkey abc", false, &filtered);
