@@ -46,6 +46,10 @@
 
 #include <boost/test/unit_test.hpp>
 
+#include <base58.h>
+#include <chainparams.h>
+#include <kernel/chainparams.h>
+
 using namespace std::literals;
 using namespace util::hex_literals;
 using util::ConstevalHexDigit;
@@ -90,6 +94,23 @@ public:
         return Assume(get_ip1() != 5);
     }
 };
+
+static std::string ReencodeBase58ForActiveChain(
+    const std::string& bitcoin_encoded,
+    CChainParams::Base58Type type)
+{
+    std::vector<unsigned char> decoded;
+    BOOST_REQUIRE(DecodeBase58Check(bitcoin_encoded, decoded, 100));
+    BOOST_REQUIRE(!decoded.empty());
+
+    const auto& prefix = Params().Base58Prefix(type);
+    BOOST_REQUIRE_EQUAL(prefix.size(), 1U);
+
+    decoded[0] = prefix[0];
+
+    return EncodeBase58Check(decoded);
+}
+
 } // namespace
 
 BOOST_AUTO_TEST_CASE(util_check)
@@ -1482,6 +1503,22 @@ BOOST_AUTO_TEST_CASE(message_sign)
 
 BOOST_AUTO_TEST_CASE(message_verify)
 {
+    const std::string p2sh_no_key = ReencodeBase58ForActiveChain(
+        "3B5fQsEXEaV8v6U3ejYc8XaKXAkyQj2MjV",
+        CChainParams::SCRIPT_ADDRESS);
+
+    const std::string p2pkh_invalid_sig = ReencodeBase58ForActiveChain(
+        "1KqbBpLy5FARmTPD4VZnDDpYjkUvkr82Pm",
+        CChainParams::PUBKEY_ADDRESS);
+
+    const std::string p2pkh_signed = ReencodeBase58ForActiveChain(
+        "15CRxFdyRpGZLW9w8HnHvVduizdL5jKNbs",
+        CChainParams::PUBKEY_ADDRESS);
+
+    const std::string p2pkh_signed_2 = ReencodeBase58ForActiveChain(
+        "11canuhp9X2NocwCq7xNrQYTmUgZAnLK3",
+        CChainParams::PUBKEY_ADDRESS);
+
     BOOST_CHECK_EQUAL(
         MessageVerify(
             "invalid address",
@@ -1491,42 +1528,42 @@ BOOST_AUTO_TEST_CASE(message_verify)
 
     BOOST_CHECK_EQUAL(
         MessageVerify(
-            "3B5fQsEXEaV8v6U3ejYc8XaKXAkyQj2MjV",
+            p2sh_no_key,
             "signature should be irrelevant",
             "message too"),
         MessageVerificationResult::ERR_ADDRESS_NO_KEY);
 
     BOOST_CHECK_EQUAL(
         MessageVerify(
-            "1KqbBpLy5FARmTPD4VZnDDpYjkUvkr82Pm",
+            p2pkh_invalid_sig,
             "invalid signature, not in base64 encoding",
             "message should be irrelevant"),
         MessageVerificationResult::ERR_MALFORMED_SIGNATURE);
 
     BOOST_CHECK_EQUAL(
         MessageVerify(
-            "1KqbBpLy5FARmTPD4VZnDDpYjkUvkr82Pm",
+            p2pkh_invalid_sig,
             "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=",
             "message should be irrelevant"),
         MessageVerificationResult::ERR_PUBKEY_NOT_RECOVERED);
 
     BOOST_CHECK_EQUAL(
         MessageVerify(
-            "15CRxFdyRpGZLW9w8HnHvVduizdL5jKNbs",
+            p2pkh_signed,
             "IPojfrX2dfPnH26UegfbGQQLrdK844DlHq5157/P6h57WyuS/Qsl+h/WSVGDF4MUi4rWSswW38oimDYfNNUBUOk=",
             "I never signed this"),
         MessageVerificationResult::ERR_NOT_SIGNED);
 
     BOOST_CHECK_EQUAL(
         MessageVerify(
-            "15CRxFdyRpGZLW9w8HnHvVduizdL5jKNbs",
+            p2pkh_signed,
             "IPojfrX2dfPnH26UegfbGQQLrdK844DlHq5157/P6h57WyuS/Qsl+h/WSVGDF4MUi4rWSswW38oimDYfNNUBUOk=",
             "Trust no one"),
         MessageVerificationResult::OK);
 
     BOOST_CHECK_EQUAL(
         MessageVerify(
-            "11canuhp9X2NocwCq7xNrQYTmUgZAnLK3",
+            p2pkh_signed_2,
             "IIcaIENoYW5jZWxsb3Igb24gYnJpbmsgb2Ygc2Vjb25kIGJhaWxvdXQgZm9yIGJhbmtzIAaHRtbCeDZINyavx14=",
             "Trust me"),
         MessageVerificationResult::OK);
