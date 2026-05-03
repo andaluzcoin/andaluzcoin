@@ -20,38 +20,112 @@
 
 #include <boost/test/unit_test.hpp>
 
+#include <base58.h>
+#include <kernel/chainparams.h>
+
 using namespace util::hex_literals;
 using util::ToString;
 
-static const std::string strSecret1 = "5HxWvvfubhXpYYpS3tJkw6fq9jE9j18THftkZjHHfmFiWtmAbrj";
-static const std::string strSecret2 = "5KC4ejrDjv152FGwP386VD1i2NYc5KkfSMyv1nGy1VGDxGHqVY3";
-static const std::string strSecret1C = "Kwr371tjA9u2rFSMZjTNun2PXXP3WPZu2afRHTcta6KxEUdm1vEw";
-static const std::string strSecret2C = "L3Hq7a8FEQwJkW1M2GNKDW28546Vp5miewcCzSqUD9kCAXrJdS3g";
-static const std::string addr1 = "1QFqqMUD55ZV3PJEJZtaKCsQmjLT6JkjvJ";
-static const std::string addr2 = "1F5y5E5FMc5YzdJtB9hLaUe43GDxEKXENJ";
-static const std::string addr1C = "1NoJrossxPBKfCHuJXT4HadJrXRE9Fxiqs";
-static const std::string addr2C = "1CRj2HyM1CXWzHAXLQtiGLyggNT9WQqsDs";
+
+namespace {
+
+static std::string ReencodeWIFForActiveChain(const std::string& bitcoin_wif)
+{
+    std::vector<unsigned char> decoded;
+    BOOST_REQUIRE(DecodeBase58Check(bitcoin_wif, decoded, 100));
+    BOOST_REQUIRE(decoded.size() == 33 || decoded.size() == 34);
+
+    const auto& secret_prefix = Params().Base58Prefix(CChainParams::SECRET_KEY);
+    BOOST_REQUIRE_EQUAL(secret_prefix.size(), 1U);
+
+    decoded[0] = secret_prefix[0];
+
+    return EncodeBase58Check(decoded);
+}
+
+static std::string ReencodeBase58ForActiveChain(
+    const std::string& bitcoin_encoded,
+    CChainParams::Base58Type type)
+{
+    std::vector<unsigned char> decoded;
+    BOOST_REQUIRE(DecodeBase58Check(bitcoin_encoded, decoded, 100));
+    BOOST_REQUIRE(!decoded.empty());
+
+    const auto& prefix = Params().Base58Prefix(type);
+    BOOST_REQUIRE_EQUAL(prefix.size(), 1U);
+
+    decoded[0] = prefix[0];
+
+    return EncodeBase58Check(decoded);
+}
+
+} // namespace
+
+static const std::string bitcoin_addr1 = "1QFqqMUD55ZV3PJEJZtaKCsQmjLT6JkjvJ";
+static const std::string bitcoin_addr2 = "1F5y5E5FMc5YzdJtB9hLaUe43GDxEKXENJ";
+static const std::string bitcoin_addr1C = "1NoJrossxPBKfCHuJXT4HadJrXRE9Fxiqs";
+static const std::string bitcoin_addr2C = "1CRj2HyM1CXWzHAXLQtiGLyggNT9WQqsDs";
+
+static const std::string bitcoin_strSecret1 = "5HxWvvfubhXpYYpS3tJkw6fq9jE9j18THftkZjHHfmFiWtmAbrj";
+static const std::string bitcoin_strSecret2 = "5KC4ejrDjv152FGwP386VD1i2NYc5KkfSMyv1nGy1VGDxGHqVY3";
+static const std::string bitcoin_strSecret1C = "Kwr371tjA9u2rFSMZjTNun2PXXP3WPZu2afRHTcta6KxEUdm1vEw";
+static const std::string bitcoin_strSecret2C = "L3Hq7a8FEQwJkW1M2GNKDW28546Vp5miewcCzSqUD9kCAXrJdS3g";
 
 static const std::string strAddressBad = "1HV9Lc3sNHZxwj4Zk6fB38tEmBryq2cBiF";
 
+static std::string strSecret1()
+{
+    SelectParams(ChainType::MAIN);
+    return ReencodeWIFForActiveChain(bitcoin_strSecret1);
+}
+
+static std::string strSecret2()
+{
+    SelectParams(ChainType::MAIN);
+    return ReencodeWIFForActiveChain(bitcoin_strSecret2);
+}
+
+static std::string strSecret1C()
+{
+    SelectParams(ChainType::MAIN);
+    return ReencodeWIFForActiveChain(bitcoin_strSecret1C);
+}
+
+static std::string strSecret2C()
+{
+    SelectParams(ChainType::MAIN);
+    return ReencodeWIFForActiveChain(bitcoin_strSecret2C);
+}
 
 BOOST_FIXTURE_TEST_SUITE(key_tests, BasicTestingSetup)
 
 BOOST_AUTO_TEST_CASE(key_test1)
 {
-    CKey key1  = DecodeSecret(strSecret1);
+
+    SelectParams(ChainType::MAIN);
+
+    const std::string addr1 = ReencodeBase58ForActiveChain(bitcoin_addr1, CChainParams::PUBKEY_ADDRESS);
+    const std::string addr2 = ReencodeBase58ForActiveChain(bitcoin_addr2, CChainParams::PUBKEY_ADDRESS);
+    const std::string addr1C = ReencodeBase58ForActiveChain(bitcoin_addr1C, CChainParams::PUBKEY_ADDRESS);
+    const std::string addr2C = ReencodeBase58ForActiveChain(bitcoin_addr2C, CChainParams::PUBKEY_ADDRESS);
+
+    CKey key1  = DecodeSecret(strSecret1());
     BOOST_CHECK(key1.IsValid() && !key1.IsCompressed());
-    CKey key2  = DecodeSecret(strSecret2);
+
+    CKey key2  = DecodeSecret(strSecret2());
     BOOST_CHECK(key2.IsValid() && !key2.IsCompressed());
-    CKey key1C = DecodeSecret(strSecret1C);
+
+    CKey key1C = DecodeSecret(strSecret1C());
     BOOST_CHECK(key1C.IsValid() && key1C.IsCompressed());
-    CKey key2C = DecodeSecret(strSecret2C);
+
+    CKey key2C = DecodeSecret(strSecret2C());
     BOOST_CHECK(key2C.IsValid() && key2C.IsCompressed());
+
     CKey bad_key = DecodeSecret(strAddressBad);
     BOOST_CHECK(!bad_key.IsValid());
 
-    CPubKey pubkey1  = key1. GetPubKey();
-    CPubKey pubkey2  = key2. GetPubKey();
+    CPubKey pubkey1  = key1.GetPubKey();
+    CPubKey pubkey2  = key2.GetPubKey();
     CPubKey pubkey1C = key1C.GetPubKey();
     CPubKey pubkey2C = key2C.GetPubKey();
 
@@ -89,8 +163,8 @@ BOOST_AUTO_TEST_CASE(key_test1)
 
         std::vector<unsigned char> sign1, sign2, sign1C, sign2C;
 
-        BOOST_CHECK(key1.Sign (hashMsg, sign1));
-        BOOST_CHECK(key2.Sign (hashMsg, sign2));
+        BOOST_CHECK(key1.Sign(hashMsg, sign1));
+        BOOST_CHECK(key2.Sign(hashMsg, sign2));
         BOOST_CHECK(key1C.Sign(hashMsg, sign1C));
         BOOST_CHECK(key2C.Sign(hashMsg, sign2C));
 
@@ -118,15 +192,15 @@ BOOST_AUTO_TEST_CASE(key_test1)
 
         std::vector<unsigned char> csign1, csign2, csign1C, csign2C;
 
-        BOOST_CHECK(key1.SignCompact (hashMsg, csign1));
-        BOOST_CHECK(key2.SignCompact (hashMsg, csign2));
+        BOOST_CHECK(key1.SignCompact(hashMsg, csign1));
+        BOOST_CHECK(key2.SignCompact(hashMsg, csign2));
         BOOST_CHECK(key1C.SignCompact(hashMsg, csign1C));
         BOOST_CHECK(key2C.SignCompact(hashMsg, csign2C));
 
         CPubKey rkey1, rkey2, rkey1C, rkey2C;
 
-        BOOST_CHECK(rkey1.RecoverCompact (hashMsg, csign1));
-        BOOST_CHECK(rkey2.RecoverCompact (hashMsg, csign2));
+        BOOST_CHECK(rkey1.RecoverCompact(hashMsg, csign1));
+        BOOST_CHECK(rkey2.RecoverCompact(hashMsg, csign2));
         BOOST_CHECK(rkey1C.RecoverCompact(hashMsg, csign1C));
         BOOST_CHECK(rkey2C.RecoverCompact(hashMsg, csign2C));
 
@@ -165,7 +239,7 @@ BOOST_AUTO_TEST_CASE(key_test1)
 BOOST_AUTO_TEST_CASE(key_signature_tests)
 {
     // When entropy is specified, we should see at least one high R signature within 20 signatures
-    CKey key = DecodeSecret(strSecret1);
+    CKey key = DecodeSecret(strSecret1());
     std::string msg = "A message to be signed";
     uint256 msg_hash = Hash(msg);
     std::vector<unsigned char> sig;
@@ -336,7 +410,7 @@ BOOST_AUTO_TEST_CASE(bip340_test_vectors)
 
 BOOST_AUTO_TEST_CASE(key_ellswift)
 {
-    for (const auto& secret : {strSecret1, strSecret2, strSecret1C, strSecret2C}) {
+    for (const auto& secret : {strSecret1(), strSecret2(), strSecret1C(), strSecret2C()}) {
         CKey key = DecodeSecret(secret);
         BOOST_CHECK(key.IsValid());
 

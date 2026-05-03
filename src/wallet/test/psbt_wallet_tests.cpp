@@ -12,7 +12,37 @@
 #include <test/util/setup_common.h>
 #include <wallet/test/wallet_test_fixture.h>
 
+#include <base58.h>
+#include <chainparams.h>
+#include <kernel/chainparams.h>
+#include <util/strencodings.h>
+
+
 using namespace util::hex_literals;
+
+namespace {
+
+
+static std::string ReencodeExtKeyForActiveChain(const std::string& bitcoin_extkey, bool secret)
+{
+    std::vector<unsigned char> decoded;
+    BOOST_REQUIRE(DecodeBase58Check(bitcoin_extkey, decoded, 200));
+    BOOST_REQUIRE_EQUAL(decoded.size(), 78U);
+
+    const auto& prefix = Params().Base58Prefix(
+        secret ? CChainParams::EXT_SECRET_KEY : CChainParams::EXT_PUBLIC_KEY);
+
+    BOOST_REQUIRE_EQUAL(prefix.size(), 4U);
+
+    decoded[0] = prefix[0];
+    decoded[1] = prefix[1];
+    decoded[2] = prefix[2];
+    decoded[3] = prefix[3];
+
+    return EncodeBase58Check(decoded);
+}
+
+} // namespace
 
 namespace wallet {
 BOOST_FIXTURE_TEST_SUITE(psbt_wallet_tests, WalletTestingSetup)
@@ -24,7 +54,16 @@ static void import_descriptor(CWallet& wallet, const std::string& descriptor)
     FlatSigningProvider provider;
     std::string error;
     auto descs = Parse(descriptor, provider, error, /* require_checksum=*/ false);
-    assert(descs.size() == 1);
+
+    BOOST_REQUIRE_MESSAGE(
+        descs.size() == 1,
+        "import_descriptor failed\n"
+        "descriptor: " << descriptor << "\n"
+        "error: " << error << "\n"
+        "parsed count: " << descs.size()
+    );
+
+    //assert(descs.size() == 1);
     auto& desc = descs.at(0);
     WalletDescriptor w_desc(std::move(desc), 0, 0, 10, 0);
     Assert(wallet.AddWalletDescriptor(w_desc, provider, "", false));
@@ -51,9 +90,24 @@ BOOST_AUTO_TEST_CASE(psbt_updater_test)
     m_wallet.mapWallet.emplace(std::piecewise_construct, std::forward_as_tuple(prev_tx2->GetHash()), std::forward_as_tuple(prev_tx2, TxStateInactive{}));
 
     // Import descriptors for keys and scripts
-    import_descriptor(m_wallet, "sh(multi(2,xprv9s21ZrQH143K2LE7W4Xf3jATf9jECxSb7wj91ZnmY4qEJrS66Qru9RFqq8xbkgT32ya6HqYJweFdJUEDf5Q6JFV7jMiUws7kQfe6Tv4RbfN/0h/0h/0h,xprv9s21ZrQH143K2LE7W4Xf3jATf9jECxSb7wj91ZnmY4qEJrS66Qru9RFqq8xbkgT32ya6HqYJweFdJUEDf5Q6JFV7jMiUws7kQfe6Tv4RbfN/0h/0h/1h))");
-    import_descriptor(m_wallet, "sh(wsh(multi(2,xprv9s21ZrQH143K2LE7W4Xf3jATf9jECxSb7wj91ZnmY4qEJrS66Qru9RFqq8xbkgT32ya6HqYJweFdJUEDf5Q6JFV7jMiUws7kQfe6Tv4RbfN/0h/0h/2h,xprv9s21ZrQH143K2LE7W4Xf3jATf9jECxSb7wj91ZnmY4qEJrS66Qru9RFqq8xbkgT32ya6HqYJweFdJUEDf5Q6JFV7jMiUws7kQfe6Tv4RbfN/0h/0h/3h)))");
-    import_descriptor(m_wallet, "wpkh(xprv9s21ZrQH143K2LE7W4Xf3jATf9jECxSb7wj91ZnmY4qEJrS66Qru9RFqq8xbkgT32ya6HqYJweFdJUEDf5Q6JFV7jMiUws7kQfe6Tv4RbfN/0h/0h/*h)");
+    const std::string wallet_xprv = ReencodeExtKeyForActiveChain(
+        "xprv9s21ZrQH143K2LE7W4Xf3jATf9jECxSb7wj91ZnmY4qEJrS66Qru9RFqq8xbkgT32ya6HqYJweFdJUEDf5Q6JFV7jMiUws7kQfe6Tv4RbfN",
+        true);
+
+    import_descriptor(m_wallet,
+        "sh(multi(2," + wallet_xprv + "/0h/0h/0h," + wallet_xprv + "/0h/0h/1h))");
+
+    //import_descriptor(m_wallet, "sh(multi(2,xprv9s21ZrQH143K2LE7W4Xf3jATf9jECxSb7wj91ZnmY4qEJrS66Qru9RFqq8xbkgT32ya6HqYJweFdJUEDf5Q6JFV7jMiUws7kQfe6Tv4RbfN/0h/0h/0h,xprv9s21ZrQH143K2LE7W4Xf3jATf9jECxSb7wj91ZnmY4qEJrS66Qru9RFqq8xbkgT32ya6HqYJweFdJUEDf5Q6JFV7jMiUws7kQfe6Tv4RbfN/0h/0h/1h))");
+
+    import_descriptor(m_wallet,
+        "sh(wsh(multi(2," + wallet_xprv + "/0h/0h/2h," + wallet_xprv + "/0h/0h/3h)))");
+
+    //import_descriptor(m_wallet, "sh(wsh(multi(2,xprv9s21ZrQH143K2LE7W4Xf3jATf9jECxSb7wj91ZnmY4qEJrS66Qru9RFqq8xbkgT32ya6HqYJweFdJUEDf5Q6JFV7jMiUws7kQfe6Tv4RbfN/0h/0h/2h,xprv9s21ZrQH143K2LE7W4Xf3jATf9jECxSb7wj91ZnmY4qEJrS66Qru9RFqq8xbkgT32ya6HqYJweFdJUEDf5Q6JFV7jMiUws7kQfe6Tv4RbfN/0h/0h/3h)))");
+
+    import_descriptor(m_wallet,
+        "wpkh(" + wallet_xprv + "/0h/0h/*h)");
+
+    //import_descriptor(m_wallet, "wpkh(xprv9s21ZrQH143K2LE7W4Xf3jATf9jECxSb7wj91ZnmY4qEJrS66Qru9RFqq8xbkgT32ya6HqYJweFdJUEDf5Q6JFV7jMiUws7kQfe6Tv4RbfN/0h/0h/*h)");
 
     // Call FillPSBT
     PartiallySignedTransaction psbtx;
