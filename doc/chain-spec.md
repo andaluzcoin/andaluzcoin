@@ -10,6 +10,9 @@
 - Regtest: YES (kept Bitcoin-compatible where practical for test stability)
 - Testnet/Testnet4/Signet: code may remain present, but not productized in v0.1
 
+## Consensus and Proof-of-Work
+- Andaluzcoin mainnet uses a Litecoin/Dogecoin-style maximum PoW target to support practical early community mining while retaining Bitcoin-derived proof-of-work consensus.
+
 ## Networks
 ### Mainnet (frozen)
 - P2P port: 29444
