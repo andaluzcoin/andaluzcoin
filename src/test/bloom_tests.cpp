@@ -87,7 +87,7 @@ BOOST_AUTO_TEST_CASE(bloom_create_insert_key)
     BOOST_REQUIRE_EQUAL(secret.size(), 32U);
 
     CKey key;
-    key.Set(secret.begin(), secret.end(), /*compressed=*/false);
+    key.Set(secret.begin(), secret.end(), /*fCompressedIn=*/false);
     BOOST_REQUIRE(key.IsValid());
 
     CPubKey pubkey = key.GetPubKey();
