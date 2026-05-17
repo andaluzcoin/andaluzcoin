@@ -186,7 +186,7 @@ BOOST_AUTO_TEST_CASE(merkle_block_1)
     //put here temp code
     BOOST_TEST_MESSAGE("blockhash=" + block.GetHash().GetHex());
     BOOST_TEST_MESSAGE("merkle=" + block.hashMerkleRoot.GetHex());
-    BOOST_TEST_MESSAGE("tx_count=" + std::to_string(block.vtx.size()));
+    BOOST_TEST_MESSAGE("tx_count=" << block.vtx.size());
 
     BOOST_REQUIRE_EQUAL(block.vtx.size(), 9U);
     BOOST_REQUIRE_EQUAL(block.GetHash().GetHex(),

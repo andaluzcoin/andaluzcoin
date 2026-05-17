@@ -15,7 +15,6 @@
 #include <base58.h>
 #include <chainparams.h>
 #include <kernel/chainparams.h>
-#include <util/strencodings.h>
 
 
 using namespace util::hex_literals;
