@@ -14,9 +14,9 @@
             "n": 0,
             "scriptPubKey": {
                 "asm": "OP_HASH160 a4051c02398868af83f28f083208fae99a769263 OP_EQUAL",
-                "desc": "addr(3GeGs1eHUxPz5YyuFe9WPpXid2UsUb5Jos)#juhnnegr",
+                "desc": "addr(pLVq9B2Z1AJ7g6bbzdTChs1q7XLX6K81G4)#t9fvsfcs",
                 "hex": "a914a4051c02398868af83f28f083208fae99a76926387",
-                "address": "3GeGs1eHUxPz5YyuFe9WPpXid2UsUb5Jos",
+                "address": "pLVq9B2Z1AJ7g6bbzdTChs1q7XLX6K81G4",
                 "type": "scripthash"
             }
         }

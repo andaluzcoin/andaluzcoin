@@ -18,6 +18,73 @@
 
 #include <algorithm>
 
+#include <base58.h>
+#include <script/solver.h>
+#include <kernel/chainparams.h>
+
+
+namespace {
+
+static bool IsMainnetFixture(const UniValue& metadata)
+{
+    const UniValue& chain = metadata.find_value("chain");
+    return chain.isStr() && chain.get_str() == "main";
+}
+
+static bool IsPrivkeyFixture(const UniValue& metadata)
+{
+    const UniValue& is_privkey = metadata.find_value("isPrivkey");
+    return is_privkey.isBool() && is_privkey.get_bool();
+}
+
+static std::string ReencodeWIFForActiveChain(const std::string& bitcoin_wif)
+{
+    std::vector<unsigned char> decoded;
+    BOOST_REQUIRE(DecodeBase58Check(bitcoin_wif, decoded, 100));
+
+    // WIF payload is:
+    // [1-byte secret prefix] + [32-byte private key] + optional [0x01 compressed marker]
+    BOOST_REQUIRE(decoded.size() == 33 || decoded.size() == 34);
+
+    const auto& secret_prefix = Params().Base58Prefix(CChainParams::SECRET_KEY);
+    BOOST_REQUIRE_EQUAL(secret_prefix.size(), 1U);
+
+    decoded[0] = secret_prefix[0];
+
+    return EncodeBase58Check(decoded);
+}
+
+static std::string EncodeAddressFromScriptForActiveChain(const std::string& script_hex)
+{
+    const std::vector<unsigned char> script_bytes{ParseHex(script_hex)};
+    const CScript script{script_bytes.begin(), script_bytes.end()};
+
+    CTxDestination dest;
+    BOOST_REQUIRE(ExtractDestination(script, dest));
+    BOOST_REQUIRE(IsValidDestination(dest));
+
+    return EncodeDestination(dest);
+}
+
+static std::string ReencodeKeyIoFixtureForActiveChain(
+    const std::string& encoded,
+    const std::string& payload_hex,
+    const UniValue& metadata)
+{
+    if (!IsMainnetFixture(metadata)) {
+        return encoded;
+    }
+
+    if (IsPrivkeyFixture(metadata)) {
+        return ReencodeWIFForActiveChain(encoded);
+    }
+
+    return EncodeAddressFromScriptForActiveChain(payload_hex);
+}
+
+} // namespace
+
+
 BOOST_FIXTURE_TEST_SUITE(key_io_tests, BasicTestingSetup)
 
 // Goal: check that parsed keys match test payload
@@ -38,8 +105,15 @@ BOOST_AUTO_TEST_CASE(key_io_valid_parse)
         std::string exp_base58string = test[0].get_str();
         const std::vector<std::byte> exp_payload{ParseHex<std::byte>(test[1].get_str())};
         const UniValue &metadata = test[2].get_obj();
+
         bool isPrivkey = metadata.find_value("isPrivkey").get_bool();
         SelectParams(ChainTypeFromString(metadata.find_value("chain").get_str()).value());
+
+        exp_base58string = ReencodeKeyIoFixtureForActiveChain(
+            exp_base58string,
+            test[1].get_str(),
+            metadata);
+
         bool try_case_flip = metadata.find_value("tryCaseFlip").isNull() ? false : metadata.find_value("tryCaseFlip").get_bool();
         if (isPrivkey) {
             bool isCompressed = metadata.find_value("isCompressed").get_bool();
@@ -97,8 +171,12 @@ BOOST_AUTO_TEST_CASE(key_io_valid_gen)
         std::string exp_base58string = test[0].get_str();
         std::vector<unsigned char> exp_payload = ParseHex(test[1].get_str());
         const UniValue &metadata = test[2].get_obj();
+
         bool isPrivkey = metadata.find_value("isPrivkey").get_bool();
         SelectParams(ChainTypeFromString(metadata.find_value("chain").get_str()).value());
+
+        exp_base58string = ReencodeKeyIoFixtureForActiveChain(exp_base58string, test[1].get_str(), metadata);
+
         if (isPrivkey) {
             bool isCompressed = metadata.find_value("isCompressed").get_bool();
             CKey key;

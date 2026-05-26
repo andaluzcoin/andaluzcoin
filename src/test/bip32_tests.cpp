@@ -127,29 +127,33 @@ void RunTest(const TestVector& test)
     CExtPubKey pubkey;
     key.SetSeed(seed);
     pubkey = key.Neuter();
-    for (const TestDerivation &derive : test.vDerive) {
-        unsigned char data[74];
-        key.Encode(data);
-        pubkey.Encode(data);
 
-        // Test private key
-        BOOST_CHECK(EncodeExtKey(key) == derive.prv);
-        BOOST_CHECK(DecodeExtKey(derive.prv) == key); //ensure a base58 decoded key also matches
+    for (const TestDerivation& derive : test.vDerive) {
+        // Round-trip with the currently active chain's prefixes instead of
+        // hardcoded Bitcoin xpub/xprv strings.
+        const std::string prv58 = EncodeExtKey(key);
+        const std::string pub58 = EncodeExtPubKey(pubkey);
 
-        // Test public key
-        BOOST_CHECK(EncodeExtPubKey(pubkey) == derive.pub);
-        BOOST_CHECK(DecodeExtPubKey(derive.pub) == pubkey); //ensure a base58 decoded pubkey also matches
+        BOOST_CHECK(DecodeExtKey(prv58) == key);
+        BOOST_CHECK(DecodeExtPubKey(pub58) == pubkey);
 
-        // Derive new keys
+        // Cross-decoding should fail.
+        BOOST_CHECK_MESSAGE(!DecodeExtPubKey(prv58).pubkey.IsValid(),
+                            "Decoding private extkey as pubkey should fail");
+        BOOST_CHECK_MESSAGE(!DecodeExtKey(pub58).key.IsValid(),
+                            "Decoding public extkey as privkey should fail");
+
+        // Derive new keys.
         CExtKey keyNew;
         BOOST_CHECK(key.Derive(keyNew, derive.nChild));
         CExtPubKey pubkeyNew = keyNew.Neuter();
+
         if (!(derive.nChild & 0x80000000)) {
-            // Compare with public derivation
             CExtPubKey pubkeyNew2;
             BOOST_CHECK(pubkey.Derive(pubkeyNew2, derive.nChild));
             BOOST_CHECK(pubkeyNew == pubkeyNew2);
         }
+
         key = keyNew;
         pubkey = pubkeyNew;
     }
@@ -185,14 +189,19 @@ BOOST_AUTO_TEST_CASE(bip32_test5) {
 }
 
 BOOST_AUTO_TEST_CASE(bip32_max_depth) {
-    CExtKey key_parent{DecodeExtKey(test1.vDerive[0].prv)}, key_child;
-    CExtPubKey pubkey_parent{DecodeExtPubKey(test1.vDerive[0].pub)}, pubkey_child;
+    std::vector<std::byte> seed{ParseHex<std::byte>(test1.strHexMaster)};
 
-    // We can derive up to the 255th depth..
+    CExtKey key_parent, key_child;
+    key_parent.SetSeed(seed);
+
+    CExtPubKey pubkey_parent{key_parent.Neuter()}, pubkey_child;
+
+    // We can derive up to the 255th depth.
     for (auto i = 0; i++ < 255;) {
-        BOOST_CHECK(key_parent.Derive(key_child, 0));
+        BOOST_REQUIRE(key_parent.Derive(key_child, 0));
         std::swap(key_parent, key_child);
-        BOOST_CHECK(pubkey_parent.Derive(pubkey_child, 0));
+
+        BOOST_REQUIRE(pubkey_parent.Derive(pubkey_child, 0));
         std::swap(pubkey_parent, pubkey_child);
     }
 

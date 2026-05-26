@@ -85,14 +85,20 @@ void AddPeer(NodeId& id, std::vector<CNode*>& nodes, PeerManager& peerman, Connm
 
 BOOST_FIXTURE_TEST_CASE(test_addnode_getaddednodeinfo_and_connection_detection, PeerTest)
 {
+    std::unique_ptr<PeerManager> peerman;
+
     auto connman = std::make_unique<ConnmanTestMsg>(0x1337, 0x1337, *m_node.addrman, *m_node.netgroupman, Params());
-    auto peerman = PeerManager::make(*connman, *m_node.addrman, nullptr, *m_node.chainman, *m_node.mempool, *m_node.warnings, {});
+    peerman = PeerManager::make(*connman, *m_node.addrman, nullptr, *m_node.chainman, *m_node.mempool, *m_node.warnings, {});
+    connman->SetMsgProc(peerman.get());
+
     NodeId id{0};
     std::vector<CNode*> nodes;
 
+    const std::string localhost_addr_port = strprintf("127.0.0.1:%u", Params().GetDefaultPort());
+
     // Connect a localhost peer.
     {
-        ASSERT_DEBUG_LOG("Added connection to 127.0.0.1:8333 peer=1");
+        ASSERT_DEBUG_LOG("Added connection to " + localhost_addr_port + " peer=1");
         AddPeer(id, nodes, *peerman, *connman, ConnectionType::MANUAL, /*onion_peer=*/false, /*address=*/"127.0.0.1");
         BOOST_REQUIRE(nodes.back() != nullptr);
     }
@@ -100,8 +106,11 @@ BOOST_FIXTURE_TEST_CASE(test_addnode_getaddednodeinfo_and_connection_detection, 
     // Call ConnectNode(), which is also called by RPC addnode onetry, for a localhost
     // address that resolves to multiple IPs, including that of the connected peer.
     // The connection attempt should consistently fail due to the check in ConnectNode().
+    const std::string already_connected_log =
+        "Not opening a connection to localhost, already connected to " + localhost_addr_port;
+
     for (int i = 0; i < 10; ++i) {
-        ASSERT_DEBUG_LOG("Not opening a connection to localhost, already connected to 127.0.0.1:8333");
+        ASSERT_DEBUG_LOG(already_connected_log);
         BOOST_CHECK(!connman->ConnectNodePublic(*peerman, "localhost", ConnectionType::MANUAL));
     }
 
@@ -162,11 +171,6 @@ BOOST_FIXTURE_TEST_CASE(test_addnode_getaddednodeinfo_and_connection_detection, 
         BOOST_CHECK(connman->AlreadyConnectedPublic(CAddress{address_with_changed_port, NODE_NONE}));
     }
 
-    // Clean up
-    for (auto node : connman->TestNodes()) {
-        peerman->FinalizeNode(*node);
-    }
-    connman->ClearTestNodes();
 }
 
 BOOST_AUTO_TEST_SUITE_END()

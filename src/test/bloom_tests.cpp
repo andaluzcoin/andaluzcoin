@@ -82,9 +82,16 @@ BOOST_AUTO_TEST_CASE(bloom_create_insert_serialize_with_tweak)
 
 BOOST_AUTO_TEST_CASE(bloom_create_insert_key)
 {
-    std::string strSecret = std::string("5Kg1gnAjaLfKiwhhPpGS3QfRg2m6awQvaj98JCZBZQ5SuS2F15C");
-    CKey key = DecodeSecret(strSecret);
+    const auto secret = ParseHex("f49addfd726a59abde172c86452f5f73038a02f4415878dc14934175e8418aff");
+
+    BOOST_REQUIRE_EQUAL(secret.size(), 32U);
+
+    CKey key;
+    key.Set(secret.begin(), secret.end(), /*fCompressedIn=*/false);
+    BOOST_REQUIRE(key.IsValid());
+
     CPubKey pubkey = key.GetPubKey();
+
     std::vector<unsigned char> vchPubKey(pubkey.begin(), pubkey.end());
 
     CBloomFilter filter(2, 0.001, 0, BLOOM_UPDATE_ALL);
@@ -173,6 +180,23 @@ BOOST_AUTO_TEST_CASE(bloom_match)
 BOOST_AUTO_TEST_CASE(merkle_block_1)
 {
     CBlock block = getBlock13b8a();
+
+
+
+    //put here temp code
+    BOOST_TEST_MESSAGE("blockhash=" + block.GetHash().GetHex());
+    BOOST_TEST_MESSAGE("merkle=" + block.hashMerkleRoot.GetHex());
+    BOOST_TEST_MESSAGE("tx_count=" << block.vtx.size());
+
+    BOOST_REQUIRE_EQUAL(block.vtx.size(), 9U);
+    BOOST_REQUIRE_EQUAL(block.GetHash().GetHex(),
+        "0000000000013b8ab2cd513b0261a14096412195a72a0c4827d229dcc7e0f7af");
+    BOOST_REQUIRE_EQUAL(block.vtx.back()->GetHash().GetHex(),
+        "74d681e0e03bafa802c8aa084379aa98d9fcd632ddc2ed9782b586ec87451f20");
+    //put here end temp code
+
+
+
     CBloomFilter filter(10, 0.000001, 0, BLOOM_UPDATE_ALL);
     // Match the last transaction
     filter.insert(uint256{"74d681e0e03bafa802c8aa084379aa98d9fcd632ddc2ed9782b586ec87451f20"});

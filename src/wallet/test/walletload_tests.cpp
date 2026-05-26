@@ -9,6 +9,33 @@
 
 #include <boost/test/unit_test.hpp>
 
+#include <base58.h>
+#include <chainparams.h>
+#include <kernel/chainparams.h>
+
+namespace {
+
+static std::string ReencodeExtKeyForActiveChain(const std::string& bitcoin_extkey, bool secret)
+{
+    std::vector<unsigned char> decoded;
+    BOOST_REQUIRE(DecodeBase58Check(bitcoin_extkey, decoded, 200));
+    BOOST_REQUIRE_EQUAL(decoded.size(), 78U);
+
+    const auto& prefix = Params().Base58Prefix(
+        secret ? CChainParams::EXT_SECRET_KEY : CChainParams::EXT_PUBLIC_KEY);
+
+    BOOST_REQUIRE_EQUAL(prefix.size(), 4U);
+
+    decoded[0] = prefix[0];
+    decoded[1] = prefix[1];
+    decoded[2] = prefix[2];
+    decoded[3] = prefix[3];
+
+    return EncodeBase58Check(decoded);
+}
+
+} // namespace
+
 namespace wallet {
 
 BOOST_AUTO_TEST_SUITE(walletload_tests)
@@ -70,7 +97,17 @@ BOOST_FIXTURE_TEST_CASE(wallet_load_descriptors, TestingSetup)
     {
         // Write valid descriptor with invalid ID
         WalletBatch batch(*database);
-        std::string desc = "wpkh([d34db33f/84h/0h/0h]xpub6DJ2dNUysrn5Vt36jH2KLBT2i1auw1tTSSomg8PhqNiUtx8QX2SvC9nrHu81fT41fvDUnhMjEzQgXnQjKEu3oaqMSzhSrHMxyyoEAmUHQbY/0/*)#cjjspncu";
+
+        const std::string xpub = ReencodeExtKeyForActiveChain(
+            "xpub6DJ2dNUysrn5Vt36jH2KLBT2i1auw1tTSSomg8PhqNiUtx8QX2SvC9nrHu81fT41fvDUnhMjEzQgXnQjKEu3oaqMSzhSrHMxyyoEAmUHQbY",
+            false);
+
+        const std::string desc_no_checksum =
+            "wpkh([d34db33f/84h/0h/0h]" + xpub + "/0/*)";
+
+        const std::string desc =
+            desc_no_checksum + "#" + GetDescriptorChecksum(desc_no_checksum);
+
         WalletDescriptor wallet_descriptor(std::make_shared<DummyDescriptor>(desc), 0, 0, 0, 0);
         BOOST_CHECK(batch.WriteDescriptor(uint256::ONE, wallet_descriptor));
     }
