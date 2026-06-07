@@ -51,10 +51,10 @@ constexpr int SIGNABLE = 1 << 3; // We can sign with this descriptor (this is no
 constexpr int DERIVE_HARDENED = 1 << 4; // The final derivation is hardened, i.e. ends with *' or *h
 constexpr int MIXED_PUBKEYS = 1 << 5;
 constexpr int XONLY_KEYS = 1 << 6; // X-only pubkeys are in use (and thus inferring/caching may swap parity of pubkeys/keyids)
-constexpr int MISSING_PRIVKEYS = 1 << 7; // Not all private keys are available, so ToPrivateString will fail.
+constexpr int MISSING_PRIVKEYS = 1 << 7; // Not all private keys are available. ToPrivateString() will return true if there is at least one private key and HavePrivateKeys() will return `false`.
 constexpr int SIGNABLE_FAILS = 1 << 8; // We can sign with this descriptor, but actually trying to sign will fail
 constexpr int MUSIG = 1 << 9; // This is a MuSig so key counts will have an extra key
-constexpr int MUSIG_DERIVATION = 1 << 10; // MuSig with derivation from the aggregate key
+constexpr int MUSIG_DERIVATION = 1 << 10; // MuSig with BIP 328 derivation from the aggregate key
 constexpr int MIXED_MUSIG = 1 << 11; // Both MuSig and normal key expressions are present
 constexpr int UNIQUE_XPUBS = 1 << 12; // Whether the xpub count should be of unique xpubs
 
@@ -252,6 +252,9 @@ void DoCheck(std::string prv, std::string pub, const std::string& norm_pub, int 
         } else {
             BOOST_CHECK_MESSAGE(EqualDescriptor(prv, prv1), "Private ser: " + prv1 + " Private desc: " + prv);
         }
+        BOOST_CHECK(!parse_priv->HavePrivateKeys(keys_pub));
+        BOOST_CHECK(parse_pub->HavePrivateKeys(keys_priv));
+
         BOOST_CHECK(!parse_priv->ToPrivateString(keys_pub, prv1));
         BOOST_CHECK(parse_pub->ToPrivateString(keys_priv, prv1));
         if (expected_prv) {
@@ -270,6 +273,12 @@ void DoCheck(std::string prv, std::string pub, const std::string& norm_pub, int 
         parse_pub->ExpandPrivate(0, keys_priv, pub_prov);
 
         BOOST_CHECK_MESSAGE(EqualSigningProviders(priv_prov, pub_prov), "Private desc: " + prv + " Pub desc: " + pub);
+    } else if (keys_priv.keys.size() > 0) {
+        // If there is at least one private key, ToPrivateString() should return true and include that key
+        std::string prv_str;
+        BOOST_CHECK(parse_priv->ToPrivateString(keys_priv, prv_str));
+        size_t checksum_len = 9; // Including the '#' character
+        BOOST_CHECK_MESSAGE(prv == prv_str.substr(0, prv_str.length() - checksum_len), prv);
     }
 
     // Check that private can produce the normalized descriptors
@@ -282,6 +291,14 @@ void DoCheck(std::string prv, std::string pub, const std::string& norm_pub, int 
     // Check whether IsRange on both returns the expected result
     BOOST_CHECK_EQUAL(parse_pub->IsRange(), (flags & RANGE) != 0);
     BOOST_CHECK_EQUAL(parse_priv->IsRange(), (flags & RANGE) != 0);
+
+    // Check that the highest key expression index matches the number of keys in the descriptor
+    BOOST_TEST_INFO("Pub desc: " + pub);
+    uint32_t key_exprs = parse_pub->GetMaxKeyExpr();
+    BOOST_CHECK_EQUAL(key_exprs + 1, parse_pub->GetKeyCount());
+    BOOST_TEST_INFO("Priv desc: " + prv);
+    BOOST_CHECK_EQUAL(key_exprs, parse_priv->GetMaxKeyExpr());
+    BOOST_CHECK_EQUAL(key_exprs + 1, parse_priv->GetKeyCount());
 
     // * For ranged descriptors,  the `scripts` parameter is a list of expected result outputs, for subsequent
     //   positions to evaluate the descriptors on (so the first element of `scripts` is for evaluating the
@@ -324,6 +341,7 @@ void DoCheck(std::string prv, std::string pub, const std::string& norm_pub, int 
             size_t num_xpubs = CountXpubs(pub1);
             size_t num_unique_xpubs = CountUniqueXpubs(pub1);
             if (flags & MUSIG_DERIVATION) {
+                // Deriving from the aggregate will include the synthetic xpub of the aggregate in the caches and SigningProviders.
                 num_xpubs++;
                 num_unique_xpubs++;
             }
@@ -464,7 +482,7 @@ void DoCheck(std::string prv, std::string pub, const std::string& norm_pub, int 
             // Test whether the observed key path is present in the 'paths' variable (which contains expected, unobserved paths),
             // and then remove it from that set.
             for (const auto& origin : script_provider.origins) {
-                BOOST_CHECK_MESSAGE(paths.count(origin.second.second.path), "Unexpected key path: " + prv);
+                BOOST_CHECK_MESSAGE(paths.contains(origin.second.second.path), "Unexpected key path: " + prv);
                 left_paths.erase(origin.second.second.path);
             }
         }
@@ -1651,8 +1669,63 @@ BOOST_AUTO_TEST_CASE(descriptor_test)
     CheckUnparsable("tr(musig(" + xprv_a1 + "/*," + xpub_68N + "/*)/0)","tr(musig(" + xpub_6ER + "/*," + xpub_68N + "/*)/0)", "tr(): musig(): Cannot have ranged participant keys if musig() also has derivation");
 
     // Fuzzer crash test cases
-    CheckUnparsable("pk(musig(dd}uue/00/)k(", "pk(musig(dd}uue/00/)k(", "Invalid musig() expression");
+    CheckUnparsable("pk(musig(dd}uue/00/)k(", "pk(musig(dd}uue/00/)k(", "'pk(musig(dd}uue/00/)k(' is not a valid descriptor function");
     CheckUnparsable("tr(musig(tuus(oldepk(gg)ggggfgg)<,z(((((((((((((((((((((st)", "tr(musig(tuus(oldepk(gg)ggggfgg)<,z(((((((((((((((((((((st)","tr(): Too many ')' in musig() expression");
+}
+
+BOOST_AUTO_TEST_CASE(descriptor_literal_null_byte)
+{
+    // Trailing '\0' string literal should be ignored.
+    FlatSigningProvider keys;
+    std::string err;
+    auto descs = Parse("pk(0279be667ef9dcbbac55a06295ce870b07029bfcdb2dce28d959f2815b16f81798)", keys, err, /*require_checksum=*/false);
+    BOOST_REQUIRE_MESSAGE(!descs.empty(), err);
+}
+
+BOOST_AUTO_TEST_CASE(descriptor_older_warnings)
+{
+    // A safe boundary value should yield no warnings.
+    {
+        FlatSigningProvider keys;
+        std::string err;
+        auto descs = Parse("wsh(and_v(v:pk(0379e45b3cf75f9c5f9befd8e9506fb962f6a9d185ac87001ec44a8d3df8d4a9e3),older(65535)))", keys, err, /*require_checksum=*/false);
+        BOOST_REQUIRE_MESSAGE(!descs.empty(), err);
+        BOOST_CHECK(descs[0]->Warnings().empty());
+    }
+
+    // Height-based unsafe value (65536) should produce one warning.
+    {
+        FlatSigningProvider keys;
+        std::string err;
+        const uint32_t height_unsafe = 65536;
+        auto descs = Parse(strprintf("wsh(and_v(v:pk(0379e45b3cf75f9c5f9befd8e9506fb962f6a9d185ac87001ec44a8d3df8d4a9e3),older(%u)))", height_unsafe), keys, err, /*require_checksum=*/false);
+        BOOST_REQUIRE_MESSAGE(!descs.empty(), err);
+        const auto& ws = descs[0]->Warnings();
+        BOOST_REQUIRE_EQUAL(ws.size(), 1U);
+        BOOST_CHECK_EQUAL(ws[0], strprintf("height-based relative locktime: older(%u) > 65535 blocks is unsafe", height_unsafe));
+    }
+
+    // Time-based unsafe value: add SEQUENCE_LOCKTIME_TYPE_FLAG (1<<22)
+    {
+        FlatSigningProvider keys;
+        std::string err;
+        const uint32_t time_unsafe = 65536 | CTxIn::SEQUENCE_LOCKTIME_TYPE_FLAG;
+        auto descs = Parse(strprintf("wsh(and_v(v:pk(0379e45b3cf75f9c5f9befd8e9506fb962f6a9d185ac87001ec44a8d3df8d4a9e3),older(%u)))", time_unsafe), keys, err, /*require_checksum=*/false);
+        BOOST_REQUIRE_MESSAGE(!descs.empty(), err);
+        const auto& warnings = descs[0]->Warnings();
+        BOOST_REQUIRE_EQUAL(warnings.size(), 1U);
+        BOOST_CHECK_EQUAL(warnings[0], strprintf("time-based relative locktime: older(%u) > (65535 * 512) seconds is unsafe", time_unsafe));
+    }
+
+    // Ensure no false positive warnings for absolute timelocks
+    {
+        FlatSigningProvider keys;
+        std::string err;
+        // Using after() with a large timestamp (> 65535)
+        auto descs = Parse("wsh(and_v(v:pk(0379e45b3cf75f9c5f9befd8e9506fb962f6a9d185ac87001ec44a8d3df8d4a9e3),after(1000000)))", keys, err, /*require_checksum=*/false);
+        BOOST_REQUIRE_MESSAGE(!descs.empty(), err);
+        BOOST_CHECK(descs[0]->Warnings().empty());
+    }
 }
 
 BOOST_AUTO_TEST_SUITE_END()
