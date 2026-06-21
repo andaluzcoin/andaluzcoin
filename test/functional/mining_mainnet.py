@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# Copyright (c) 2025 The Bitcoin Core developers
+# Copyright (c) 2025-present The Bitcoin Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 """Test mining on an alternate mainnet
@@ -21,7 +21,7 @@ from test_framework.util import (
 from test_framework.blocktools import (
     create_coinbase,
     nbits_str,
-    target_str
+    target_str,
 )
 
 from test_framework.messages import (
@@ -33,7 +33,7 @@ import json
 import os
 
 # See data/README.md
-COINBASE_SCRIPT_PUBKEY="76a914eadbac7f36c37e39361168b7aaee3cb24a25312d88ac"
+COINBASE_SCRIPT_PUBKEY = "76a914eadbac7f36c37e39361168b7aaee3cb24a25312d88ac"
 
 # Andaluzcoin mainnet uses an easier-than-Bitcoin but retarget-safe
 # initial PoW target.
@@ -44,12 +44,13 @@ ALUZ_DIFF_1_TARGET = 0x00ffff << (8 * (0x1e - 3))
 ALUZ_DIFF_4_N_BITS = 0x1d3fffc0
 ALUZ_DIFF_4_TARGET = ALUZ_DIFF_1_TARGET // 4
 
+
 class MiningMainnetTest(BitcoinTestFramework):
 
     def set_test_params(self):
         self.num_nodes = 1
         self.setup_clean_chain = True
-        self.chain = "" # main
+        self.chain = ""  # main
 
     def add_options(self, parser):
         parser.add_argument(
@@ -78,16 +79,17 @@ class MiningMainnetTest(BitcoinTestFramework):
         assert_equal(prev_hash, block.hash_hex)
         return prev_hash
 
-
     def run_test(self):
         node = self.nodes[0]
+
         # Clear disk space warning
         node.stderr.seek(0)
         node.stderr.truncate()
+
         self.log.info("Load alternative mainnet blocks")
         path = os.path.join(os.path.dirname(os.path.realpath(__file__)), self.options.datafile)
         prev_hash = node.getbestblockhash()
-        blocks = None
+
         with open(path, encoding='utf-8') as f:
             blocks = json.load(f)
             n_blocks = len(blocks['timestamps'])
@@ -101,6 +103,7 @@ class MiningMainnetTest(BitcoinTestFramework):
 
         self.log.info("Check difficulty adjustment with getmininginfo")
         mining_info = node.getmininginfo()
+
         assert_equal(mining_info['difficulty'], 0.00390625)
         assert_equal(mining_info['bits'], nbits_str(ALUZ_DIFF_1_N_BITS))
         assert_equal(mining_info['target'], target_str(ALUZ_DIFF_1_TARGET))

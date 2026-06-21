@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# Copyright (c) 2018-2022 The Bitcoin Core developers
+# Copyright (c) 2018-present The Bitcoin Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 """Test bitcoin-wallet."""
@@ -38,12 +38,23 @@ class ToolWalletTest(BitcoinTestFramework):
         p = self.bitcoin_wallet_process(*args)
         stdout, stderr = p.communicate()
         assert_equal(stdout, '')
+        actual_stderr = stderr.strip()
         if isinstance(error, tuple):
             assert_equal(p.poll(), error[0])
-            assert error[1] in stderr.strip()
+            assert error[1] in actual_stderr, f"Expected stderr to contain {error[1]!r}, got {actual_stderr!r}"
         else:
             assert_equal(p.poll(), 1)
-            assert error in stderr.strip()
+            assert error in actual_stderr, f"Expected stderr to contain {error!r}, got {actual_stderr!r}"
+
+    def assert_raises_tool_error_contains(self, expected_parts, *args):
+        p = self.bitcoin_wallet_process(*args)
+        stdout, stderr = p.communicate()
+        assert_equal(stdout, '')
+        assert_equal(p.poll(), 1)
+        actual_stderr = stderr.strip()
+        actual_lower = actual_stderr.lower()
+        missing = [part for part in expected_parts if part.lower() not in actual_lower]
+        assert not missing, f"Expected stderr to contain parts {expected_parts!r}, missing {missing!r}, got {actual_stderr!r}"
 
     def assert_tool_output(self, output, *args):
         p = self.bitcoin_wallet_process(*args)
@@ -83,7 +94,7 @@ class ToolWalletTest(BitcoinTestFramework):
 
     def read_dump(self, filename):
         dump = OrderedDict()
-        with open(filename, "r", encoding="utf8") as f:
+        with open(filename, "r") as f:
             for row in f:
                 row = row.strip()
                 key, value = row.split(',')
@@ -98,7 +109,7 @@ class ToolWalletTest(BitcoinTestFramework):
     def write_dump(self, dump, filename, magic=None, skip_checksum=False):
         if magic is None:
             magic = "BITCOIN_CORE_WALLET_DUMP"
-        with open(filename, "w", encoding="utf8") as f:
+        with open(filename, "w") as f:
             row = ",".join([magic, dump[magic]]) + "\n"
             f.write(row)
             for k, v in dump.items():
@@ -136,6 +147,7 @@ class ToolWalletTest(BitcoinTestFramework):
         self.assert_raises_tool_error('Error parsing command line arguments: Invalid parameter -foo', '-foo')
         self.assert_raises_tool_error('No method provided. Run `bitcoin-wallet -help` for valid methods.')
         self.assert_raises_tool_error('Wallet name must be provided when creating a new wallet.', 'create')
+        self.assert_raises_tool_error('Wallet name must be provided when creating a new wallet.', 'createfromdump')
         error = f"SQLiteDatabase: Unable to obtain an exclusive lock on the database, is it being used by another instance of {self.config['environment']['CLIENT_NAME']}?"
         self.assert_raises_tool_error(
             error,
@@ -157,7 +169,7 @@ class ToolWalletTest(BitcoinTestFramework):
         #
         # self.log.debug('Setting wallet file permissions to 400 (read-only)')
         # os.chmod(self.wallet_path, stat.S_IRUSR)
-        # assert self.wallet_permissions() in ['400', '666'] # Sanity check. 666 because Appveyor.
+        # assert self.wallet_permissions() in ['400', '666'] # Sanity check. 666 on Windows.
         # shasum_before = self.wallet_shasum()
         timestamp_before = self.wallet_timestamp()
         self.log.debug('Wallet file timestamp before calling info: {}'.format(timestamp_before))
@@ -168,7 +180,7 @@ class ToolWalletTest(BitcoinTestFramework):
         self.log_wallet_timestamp_comparison(timestamp_before, timestamp_after)
         self.log.debug('Setting wallet file permissions back to 600 (read/write)')
         os.chmod(self.wallet_path, stat.S_IRUSR | stat.S_IWUSR)
-        assert self.wallet_permissions() in ['600', '666']  # Sanity check. 666 because Appveyor.
+        assert self.wallet_permissions() in ['600', '666']  # Sanity check. 666 on Windows.
         #
         # TODO: Wallet tool info should not write to the wallet file.
         # The following lines should be uncommented and the tests still succeed:
@@ -313,18 +325,18 @@ class ToolWalletTest(BitcoinTestFramework):
         bad_sum_wallet_dump = self.nodes[0].datadir_path / "wallet-bad_sum3.dump"
         dump_data["checksum"] = "2" * 10
         self.write_dump(dump_data, bad_sum_wallet_dump)
-        self.assert_raises_tool_error('Error: Checksum is not the correct size', '-wallet=badload', '-dumpfile={}'.format(bad_sum_wallet_dump), 'createfromdump')
+        self.assert_raises_tool_error_contains(['error', 'checksum', 'correct', 'size'], '-wallet=badload', '-dumpfile={}'.format(bad_sum_wallet_dump), 'createfromdump')
         assert not (self.nodes[0].wallets_path / "badload").is_dir()
         dump_data["checksum"] = "3" * 66
         self.write_dump(dump_data, bad_sum_wallet_dump)
-        self.assert_raises_tool_error('Error: Checksum is not the correct size', '-wallet=badload', '-dumpfile={}'.format(bad_sum_wallet_dump), 'createfromdump')
+        self.assert_raises_tool_error_contains(['error', 'checksum', 'correct', 'size'], '-wallet=badload', '-dumpfile={}'.format(bad_sum_wallet_dump), 'createfromdump')
         assert not (self.nodes[0].wallets_path / "badload").is_dir()
-        self.assert_raises_tool_error('Error: Checksum is not the correct size', '-wallet=', '-dumpfile={}'.format(bad_sum_wallet_dump), 'createfromdump')
+        self.assert_raises_tool_error('Error: Checksum is not the correct size', '-wallet=bad_sum_wallet', '-dumpfile={}'.format(bad_sum_wallet_dump), 'createfromdump')
         assert self.nodes[0].wallets_path.exists()
         assert not (self.nodes[0].wallets_path / "wallet.dat").exists()
 
         self.log.info('Checking createfromdump with an unnamed wallet')
-        self.do_tool_createfromdump("", "wallet.dump")
+        self.do_tool_createfromdump("restored_wallet_1", "wallet.dump")
 
     def test_chainless_conflicts(self):
         self.log.info("Test wallet tool when wallet contains conflicting transactions")
@@ -427,6 +439,15 @@ class ToolWalletTest(BitcoinTestFramework):
         self.assert_raises_tool_error("Invalid parameter -descriptors", "-wallet=legacy", "-descriptors=false", "create")
         assert not (self.nodes[0].wallets_path / "legacy").exists()
 
+    def test_no_create_unnamed(self):
+        self.log.info("Test that unnamed (default) wallets cannot be created")
+
+        self.assert_raises_tool_error("Wallet name cannot be empty", "-wallet=", "create")
+        assert not (self.nodes[0].wallets_path / "wallet.dat").exists()
+
+        self.assert_raises_tool_error("Wallet name cannot be empty", "-wallet=", "-dumpfile=wallet.dump", "createfromdump")
+        assert not (self.nodes[0].wallets_path / "wallet.dat").exists()
+
     def run_test(self):
         self.wallet_path = self.nodes[0].wallets_path / self.default_wallet_name / self.wallet_data_filename
         self.test_invalid_tool_commands_and_args()
@@ -439,6 +460,7 @@ class ToolWalletTest(BitcoinTestFramework):
         self.test_chainless_conflicts()
         self.test_dump_very_large_records()
         self.test_no_create_legacy()
+        self.test_no_create_unnamed()
 
 
 if __name__ == '__main__':
