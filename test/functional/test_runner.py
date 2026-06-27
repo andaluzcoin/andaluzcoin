@@ -324,6 +324,7 @@ BASE_SCRIPTS = [
     'p2p_fingerprint.py',
     'feature_uacomment.py',
     'feature_init.py',
+    'feature_andaluz_identity.py',
     'wallet_coinbase_category.py',
     'feature_filelock.py',
     'feature_loadblock.py',
