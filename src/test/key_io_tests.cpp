@@ -197,6 +197,53 @@ BOOST_AUTO_TEST_CASE(key_io_valid_gen)
 }
 
 
+// Goal: check that Andaluzcoin mainnet key encodings do not regress to Bitcoin prefixes
+BOOST_AUTO_TEST_CASE(andaluz_key_encoding_identity)
+{
+    SelectParams(ChainType::MAIN);
+
+    const auto check_base58_prefix = [](const std::string& encoded, const std::vector<unsigned char>& expected_prefix) {
+        std::vector<unsigned char> decoded;
+        BOOST_REQUIRE(DecodeBase58Check(encoded, decoded, 100));
+        BOOST_REQUIRE_GE(decoded.size(), expected_prefix.size());
+        BOOST_CHECK(std::equal(expected_prefix.begin(), expected_prefix.end(), decoded.begin()));
+    };
+
+    std::vector<unsigned char> secret_bytes(32, 1);
+    CKey key;
+    key.Set(secret_bytes.begin(), secret_bytes.end(), /*fCompressedIn=*/true);
+    BOOST_REQUIRE(key.IsValid());
+
+    const std::string wif{EncodeSecret(key)};
+    BOOST_CHECK(!wif.empty());
+    BOOST_CHECK(wif[0] != '5');
+    BOOST_CHECK(wif[0] != 'K');
+    BOOST_CHECK(wif[0] != 'L');
+    check_base58_prefix(wif, Params().Base58Prefix(CChainParams::SECRET_KEY));
+    BOOST_CHECK(DecodeSecret(wif).IsValid());
+
+    const std::vector<std::byte> seed{
+        std::byte{0}, std::byte{1}, std::byte{2}, std::byte{3},
+        std::byte{4}, std::byte{5}, std::byte{6}, std::byte{7},
+        std::byte{8}, std::byte{9}, std::byte{10}, std::byte{11},
+        std::byte{12}, std::byte{13}, std::byte{14}, std::byte{15},
+    };
+    CExtKey ext_key;
+    ext_key.SetSeed(seed);
+
+    const std::string encoded_ext_secret{EncodeExtKey(ext_key)};
+    const std::string encoded_ext_public{EncodeExtPubKey(ext_key.Neuter())};
+
+    BOOST_CHECK(encoded_ext_secret.starts_with("zprv"));
+    BOOST_CHECK(encoded_ext_public.starts_with("zpub"));
+    BOOST_CHECK(!encoded_ext_secret.starts_with("xprv"));
+    BOOST_CHECK(!encoded_ext_public.starts_with("xpub"));
+
+    check_base58_prefix(encoded_ext_secret, Params().Base58Prefix(CChainParams::EXT_SECRET_KEY));
+    check_base58_prefix(encoded_ext_public, Params().Base58Prefix(CChainParams::EXT_PUBLIC_KEY));
+}
+
+
 // Goal: check that base58 parsing code is robust against a variety of corrupted data
 BOOST_AUTO_TEST_CASE(key_io_invalid)
 {
