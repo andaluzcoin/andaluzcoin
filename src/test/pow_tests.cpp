@@ -4,11 +4,13 @@
 
 #include <chain.h>
 #include <chainparams.h>
+#include <chainparamsbase.h>
 #include <pow.h>
 #include <test/util/random.h>
 #include <test/util/common.h>
 #include <test/util/setup_common.h>
 #include <util/chaintype.h>
+#include <util/strencodings.h>
 
 #include <boost/test/unit_test.hpp>
 
@@ -183,6 +185,38 @@ void sanity_check_chainparams(const ArgsManager& args, ChainType chain_type)
         BOOST_CHECK(UintToArith256(consensus.powLimit) < targ_max);
     }
 }
+
+BOOST_AUTO_TEST_CASE(AndaluzNetworkParams_MAIN_identity)
+{
+    const auto chainParams = CreateChainParams(*m_node.args, ChainType::MAIN);
+    const auto baseChainParams = CreateBaseChainParams(ChainType::MAIN);
+    const auto& consensus = chainParams->GetConsensus();
+    const auto& genesis = chainParams->GenesisBlock();
+
+    const char expected_genesis_hash[] =
+        "000000f7dca7651a1397fd0bc99b2a456dbb2d23470834b6290aadec4b46d15c";
+    const char expected_merkle_root[] =
+        "14a3ed7e9a74a76a935c96b7101d9e5cd4c974534838d77c48bdadb15e103e2a";
+    const char expected_pow_limit[] =
+        "000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffff";
+
+    BOOST_CHECK_EQUAL(HexStr(chainParams->MessageStart()), "b6a96458");
+    BOOST_CHECK_EQUAL(chainParams->GetDefaultPort(), 29444);
+    BOOST_CHECK_EQUAL(baseChainParams->RPCPort(), 29443);
+    BOOST_CHECK_EQUAL(chainParams->Bech32HRP(), "aluz");
+
+    BOOST_CHECK_EQUAL(consensus.hashGenesisBlock.ToString(), expected_genesis_hash);
+    BOOST_CHECK_EQUAL(genesis.GetHash().ToString(), expected_genesis_hash);
+    BOOST_CHECK_EQUAL(genesis.hashMerkleRoot.ToString(), expected_merkle_root);
+    BOOST_CHECK_EQUAL(genesis.nTime, 1769731200U);
+    BOOST_CHECK_EQUAL(genesis.nBits, 0x1e00ffffU);
+
+    BOOST_CHECK_EQUAL(consensus.powLimit.ToString(), expected_pow_limit);
+    BOOST_CHECK_EQUAL(consensus.nPowTargetSpacing, 10 * 60);
+    BOOST_CHECK_EQUAL(consensus.nPowTargetTimespan, 14 * 24 * 60 * 60);
+    BOOST_CHECK_EQUAL(consensus.nSubsidyHalvingInterval, 210000);
+}
+
 
 BOOST_AUTO_TEST_CASE(ChainParams_MAIN_sanity)
 {
