@@ -53,6 +53,29 @@ BOOST_AUTO_TEST_CASE(block_subsidy_test)
     TestBlockSubsidyHalvings(1000); // Just another interval
 }
 
+BOOST_AUTO_TEST_CASE(AndaluzSubsidy_MAIN_identity)
+{
+    const auto chainParams = CreateChainParams(*m_node.args, ChainType::MAIN);
+    const auto& consensus = chainParams->GetConsensus();
+
+    BOOST_CHECK_EQUAL(consensus.nSubsidyHalvingInterval, 210000);
+
+    BOOST_CHECK_EQUAL(GetBlockSubsidy(0, consensus), 50 * COIN);
+    BOOST_CHECK_EQUAL(GetBlockSubsidy(1, consensus), 50 * COIN);
+    BOOST_CHECK_EQUAL(GetBlockSubsidy(209999, consensus), 50 * COIN);
+
+    BOOST_CHECK_EQUAL(GetBlockSubsidy(210000, consensus), 25 * COIN);
+    BOOST_CHECK_EQUAL(GetBlockSubsidy(419999, consensus), 25 * COIN);
+
+    BOOST_CHECK_EQUAL(GetBlockSubsidy(420000, consensus), 50 * COIN / 4);
+    BOOST_CHECK_EQUAL(GetBlockSubsidy(629999, consensus), 50 * COIN / 4);
+
+    BOOST_CHECK_EQUAL(GetBlockSubsidy(630000, consensus), 50 * COIN / 8);
+
+    BOOST_CHECK_EQUAL(GetBlockSubsidy(64 * consensus.nSubsidyHalvingInterval, consensus), 0);
+}
+
+
 BOOST_AUTO_TEST_CASE(subsidy_limit_test)
 {
     const auto chainParams = CreateChainParams(*m_node.args, ChainType::MAIN);
