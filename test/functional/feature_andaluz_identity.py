@@ -21,20 +21,25 @@ class AndaluzIdentityTest(BitcoinTestFramework):
         ]]
 
     def run_test(self):
-        self.log.info("Checking Andaluzcoin mainnet genesis hash")
-        assert_equal(
-            self.nodes[0].getblockhash(0),
-            "000000f7dca7651a1397fd0bc99b2a456dbb2d23470834b6290aadec4b46d15c",
-        )
+        expected_genesis_hash = "000000f7dca7651a1397fd0bc99b2a456dbb2d23470834b6290aadec4b46d15c"
 
-        self.log.info("Checking Andaluzcoin P2P runtime subversion")
-        subversion = self.nodes[0].getnetworkinfo()["subversion"]
+        self.log.info("Checking Andaluzcoin mainnet startup chain identity")
+        blockchain_info = self.nodes[0].getblockchaininfo()
+        assert_equal(blockchain_info["chain"], "main")
+        assert_equal(blockchain_info["blocks"], 0)
+        assert_equal(blockchain_info["headers"], 0)
+        assert_equal(blockchain_info["bestblockhash"], expected_genesis_hash)
+
+        self.log.info("Checking Andaluzcoin mainnet genesis hash")
+        assert_equal(self.nodes[0].getblockhash(0), expected_genesis_hash)
+
+        self.log.info("Checking Andaluzcoin P2P runtime identity")
+        network_info = self.nodes[0].getnetworkinfo()
+        subversion = network_info["subversion"]
         assert subversion.startswith("/AndaluzcoinCore:"), subversion
         assert "Satoshi" not in subversion, subversion
         assert "Bitcoin" not in subversion, subversion
-
-        self.log.info("Checking chain identity")
-        assert_equal(self.nodes[0].getblockchaininfo()["chain"], "main")
+        assert_equal(network_info["connections"], 0)
 
 
 if __name__ == "__main__":
