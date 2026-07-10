@@ -25,9 +25,20 @@ class AndaluzWalletIdentityTest(BitcoinTestFramework):
         self.skip_if_no_wallet()
 
     def run_test(self):
+        wallet_name = "andaluz_identity"
+
         self.log.info("Creating wallet")
-        self.nodes[0].createwallet(wallet_name="andaluz_identity")
-        wallet = self.nodes[0].get_wallet_rpc("andaluz_identity")
+        create_result = self.nodes[0].createwallet(wallet_name=wallet_name)
+        assert_equal(create_result["name"], wallet_name)
+
+        wallet = self.nodes[0].get_wallet_rpc(wallet_name)
+
+        self.log.info("Checking Andaluzcoin wallet RPC startup identity")
+        wallet_info = wallet.getwalletinfo()
+        assert_equal(wallet_info["walletname"], wallet_name)
+        assert_equal(wallet_info["private_keys_enabled"], True)
+        assert_equal(wallet_info["descriptors"], True)
+        assert_equal(wallet_info["format"], "sqlite")
 
         self.log.info("Checking Andaluzcoin bech32 address prefix")
         bech32_addr = wallet.getnewaddress("", "bech32")
