@@ -5,6 +5,9 @@
 
 """Verify Andaluzcoin post-v31 runtime identity."""
 
+import subprocess
+from pathlib import Path
+
 from test_framework.test_framework import BitcoinTestFramework
 from test_framework.util import assert_equal
 
@@ -40,6 +43,34 @@ class AndaluzIdentityTest(BitcoinTestFramework):
         assert "Satoshi" not in subversion, subversion
         assert "Bitcoin" not in subversion, subversion
         assert_equal(network_info["connections"], 0)
+
+        self.log.info("Checking Andaluzcoin RPC config/help identity")
+        build_dir = Path(self.config["environment"]["BUILDDIR"])
+        exeext = self.config["environment"].get("EXEEXT", "")
+        bitcoind_name = f"bitcoind{exeext}"
+        bitcoind_candidates = [
+            build_dir / "bin" / bitcoind_name,
+            build_dir / "bin" / "Debug" / bitcoind_name,
+            build_dir / "bin" / "Release" / bitcoind_name,
+            build_dir / "bin" / "RelWithDebInfo" / bitcoind_name,
+        ]
+        bitcoind_candidates.extend(sorted((build_dir / "bin").glob(f"**/{bitcoind_name}")))
+
+        bitcoind_path = next((candidate for candidate in bitcoind_candidates if candidate.exists()), None)
+        assert bitcoind_path is not None, bitcoind_candidates
+
+        help_datadir = Path(self.options.tmpdir) / "andaluz_help_datadir"
+        help_datadir.mkdir(parents=True, exist_ok=True)
+        help_result = subprocess.run(
+            [bitcoind_path, f"-datadir={help_datadir}", "-help"],
+            check=True,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            text=True,
+        )
+        help_text = help_result.stdout + help_result.stderr
+        assert "default: 29443" in help_text, help_text
+        assert "default: 8332" not in help_text, help_text
 
 
 if __name__ == "__main__":
