@@ -44,6 +44,18 @@ class AndaluzIdentityTest(BitcoinTestFramework):
         assert "Bitcoin" not in subversion, subversion
         assert_equal(network_info["connections"], 0)
 
+        self.log.info("Checking Andaluzcoin CLI identity")
+        cli_blockchain_info = self.nodes[0].cli.getblockchaininfo()
+        assert_equal(cli_blockchain_info["chain"], "main")
+        assert_equal(cli_blockchain_info["bestblockhash"], expected_genesis_hash)
+        assert_equal(self.nodes[0].cli.getblockhash(0), expected_genesis_hash)
+
+        cli_network_info = self.nodes[0].cli.getnetworkinfo()
+        cli_subversion = cli_network_info["subversion"]
+        assert cli_subversion.startswith("/AndaluzcoinCore:"), cli_subversion
+        assert "Satoshi" not in cli_subversion, cli_subversion
+        assert "Bitcoin" not in cli_subversion, cli_subversion
+
         self.log.info("Checking Andaluzcoin RPC config/help identity")
         build_dir = Path(self.config["environment"]["BUILDDIR"])
         exeext = self.config["environment"].get("EXEEXT", "")
