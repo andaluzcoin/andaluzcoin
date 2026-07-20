@@ -193,6 +193,7 @@ BASE_SCRIPTS = [
     'p2p_1p1c_network.py',
     'interface_rest.py',
     'mempool_spend_coinbase.py',
+    'mempool_andaluz_transaction_identity.py',
     'wallet_avoid_mixing_output_types.py',
     'mempool_reorg.py',
     'p2p_block_sync.py --v1transport',
