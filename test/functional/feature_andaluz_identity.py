@@ -13,6 +13,40 @@ from test_framework.util import assert_equal
 
 
 class AndaluzIdentityTest(BitcoinTestFramework):
+    def find_binary(self, binary_name, *, required=True):
+        build_dir = Path(self.config["environment"]["BUILDDIR"])
+        exeext = self.config["environment"].get("EXEEXT", "")
+        executable_name = f"{binary_name}{exeext}"
+
+        candidates = [
+            build_dir / "bin" / executable_name,
+            build_dir / "bin" / "Debug" / executable_name,
+            build_dir / "bin" / "Release" / executable_name,
+            build_dir / "bin" / "RelWithDebInfo" / executable_name,
+        ]
+        candidates.extend(sorted((build_dir / "bin").glob(f"**/{executable_name}")))
+
+        binary_path = next((candidate for candidate in candidates if candidate.exists()), None)
+        if required:
+            assert binary_path is not None, candidates
+        return binary_path
+
+    def assert_andaluz_version_output(self, binary_path, datadir):
+        result = subprocess.run(
+            [binary_path, f"-datadir={datadir}", "--version"],
+            check=True,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            text=True,
+        )
+        version_text = result.stdout + result.stderr
+        version_lines = [line for line in version_text.splitlines() if line.strip()]
+        assert version_lines, version_text
+
+        product_line = version_lines[0]
+        assert "Andaluzcoin Core" in product_line, version_text
+        assert "Bitcoin Core" not in product_line, version_text
+
     def set_test_params(self):
         self.num_nodes = 1
         self.setup_clean_chain = True
@@ -56,21 +90,20 @@ class AndaluzIdentityTest(BitcoinTestFramework):
         assert "Satoshi" not in cli_subversion, cli_subversion
         assert "Bitcoin" not in cli_subversion, cli_subversion
 
+        self.log.info("Checking Andaluzcoin binary version identity")
+        bitcoind_path = self.find_binary("bitcoind")
+        bitcoin_cli_path = self.find_binary("bitcoin-cli")
+        bitcoin_wallet_path = self.find_binary("bitcoin-wallet", required=False)
+
+        version_datadir = Path(self.options.tmpdir) / "andaluz_version_datadir"
+        version_datadir.mkdir(parents=True, exist_ok=True)
+
+        self.assert_andaluz_version_output(bitcoind_path, version_datadir)
+        self.assert_andaluz_version_output(bitcoin_cli_path, version_datadir)
+        if bitcoin_wallet_path is not None:
+            self.assert_andaluz_version_output(bitcoin_wallet_path, version_datadir)
+
         self.log.info("Checking Andaluzcoin RPC config/help identity")
-        build_dir = Path(self.config["environment"]["BUILDDIR"])
-        exeext = self.config["environment"].get("EXEEXT", "")
-        bitcoind_name = f"bitcoind{exeext}"
-        bitcoind_candidates = [
-            build_dir / "bin" / bitcoind_name,
-            build_dir / "bin" / "Debug" / bitcoind_name,
-            build_dir / "bin" / "Release" / bitcoind_name,
-            build_dir / "bin" / "RelWithDebInfo" / bitcoind_name,
-        ]
-        bitcoind_candidates.extend(sorted((build_dir / "bin").glob(f"**/{bitcoind_name}")))
-
-        bitcoind_path = next((candidate for candidate in bitcoind_candidates if candidate.exists()), None)
-        assert bitcoind_path is not None, bitcoind_candidates
-
         help_datadir = Path(self.options.tmpdir) / "andaluz_help_datadir"
         help_datadir.mkdir(parents=True, exist_ok=True)
         help_result = subprocess.run(
