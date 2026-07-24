@@ -129,6 +129,7 @@ BASE_SCRIPTS = [
     'feature_abortnode.py',
     'wallet_address_types.py',
     'wallet_andaluz_identity.py',
+    'wallet_andaluz_backup_restore.py',
     'p2p_orphan_handling.py',
     'wallet_basic.py',
     'feature_maxtipage.py',
