@@ -232,6 +232,7 @@ BASE_SCRIPTS = [
     'wallet_change_address.py',
     'p2p_addr_relay.py',
     'p2p_andaluz_connectivity.py',
+    'p2p_andaluz_block_propagation.py',
     'p2p_getaddr_caching.py',
     'p2p_getdata.py',
     'p2p_addrfetch.py',
