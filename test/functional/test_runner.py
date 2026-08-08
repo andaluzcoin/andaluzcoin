@@ -301,6 +301,7 @@ BASE_SCRIPTS = [
     'mining_basic.py',
     'mining_andaluz_subsidy_identity.py',
     'mining_andaluz_getblocktemplate_identity.py',
+    'mining_andaluz_generateblock_identity.py',
     'mining_andaluz_coinbase_maturity_spend.py',
     'mining_mainnet.py',
     'feature_signet.py',
