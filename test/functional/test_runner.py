@@ -140,6 +140,7 @@ BASE_SCRIPTS = [
     'wallet_andaluz_change_address_identity.py',
     'wallet_andaluz_transaction_history_identity.py',
     'wallet_andaluz_balance_accounting_identity.py',
+    'wallet_andaluz_receive_accounting_identity.py',
     'p2p_orphan_handling.py',
     'wallet_basic.py',
     'feature_maxtipage.py',
