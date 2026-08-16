@@ -123,6 +123,7 @@ class AndaluzWalletBalanceAccountingIdentityTest(BitcoinTestFramework):
 
         txid = sender.sendtoaddress(receiver_address, amount)
         assert txid in self.nodes[0].getrawmempool(), self.nodes[0].getrawmempool()
+        self.nodes[0].syncwithvalidationinterfacequeue()
 
         sender_tx = sender.gettransaction(txid)
         assert_equal(sender_tx["amount"], -amount)
@@ -132,6 +133,10 @@ class AndaluzWalletBalanceAccountingIdentityTest(BitcoinTestFramework):
         assert fee > Decimal("0"), sender_tx
 
         self.log.info("Checking unconfirmed receiver balance accounting")
+        self.wait_until(
+            lambda: receiver.getbalances()["mine"]["untrusted_pending"] == amount,
+            timeout=60,
+        )
         receiver_pending = receiver.getbalances()["mine"]
         assert_equal(receiver_pending["trusted"], Decimal("0E-8"))
         assert_equal(receiver_pending["untrusted_pending"], amount)
@@ -145,8 +150,18 @@ class AndaluzWalletBalanceAccountingIdentityTest(BitcoinTestFramework):
 
         assert_equal(self.nodes[0].getbestblockhash(), confirm_block_hash)
         assert_equal(self.nodes[0].getmempoolinfo()["size"], 0)
+        self.nodes[0].syncwithvalidationinterfacequeue()
 
         expected_sender_trusted = initial_sender_trusted - amount - fee
+
+        self.wait_until(
+            lambda: sender.getbalances()["mine"]["trusted"] == expected_sender_trusted,
+            timeout=60,
+        )
+        self.wait_until(
+            lambda: receiver.getbalances()["mine"]["trusted"] == amount,
+            timeout=60,
+        )
 
         self.log.info("Checking confirmed sender balance accounting")
         self.assert_mine_balances(
