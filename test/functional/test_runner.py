@@ -152,6 +152,7 @@ BASE_SCRIPTS = [
     'wallet_andaluz_multisig_rescan_spend_identity.py',
     'wallet_andaluz_lock_unspent_identity.py',
     'wallet_andaluz_coin_selection_identity.py',
+    'wallet_andaluz_fund_raw_transaction_identity.py',
     'p2p_orphan_handling.py',
     'wallet_basic.py',
     'feature_maxtipage.py',
