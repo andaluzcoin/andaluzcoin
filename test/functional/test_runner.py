@@ -156,6 +156,7 @@ BASE_SCRIPTS = [
     'wallet_andaluz_subtract_fee_from_amount_identity.py',
     'wallet_andaluz_fee_rate_identity.py',
     'wallet_andaluz_fee_estimation_identity.py',
+    'wallet_andaluz_dust_change_identity.py',
     'p2p_orphan_handling.py',
     'wallet_basic.py',
     'feature_maxtipage.py',
