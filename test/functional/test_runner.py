@@ -159,6 +159,7 @@ BASE_SCRIPTS = [
     'wallet_andaluz_dust_change_identity.py',
     'wallet_andaluz_send_rpc_identity.py',
     'wallet_andaluz_sendall_identity.py',
+    'wallet_andaluz_send_psbt_identity.py',
     'p2p_orphan_handling.py',
     'wallet_basic.py',
     'feature_maxtipage.py',
