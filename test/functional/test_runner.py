@@ -168,6 +168,7 @@ BASE_SCRIPTS = [
     'wallet_andaluz_send_lock_unspents_identity.py',
     'wallet_andaluz_send_add_inputs_identity.py',
     'wallet_andaluz_send_subtract_fee_outputs_identity.py',
+    'wallet_andaluz_send_include_unsafe_identity.py',
     'p2p_orphan_handling.py',
     'wallet_basic.py',
     'feature_maxtipage.py',
