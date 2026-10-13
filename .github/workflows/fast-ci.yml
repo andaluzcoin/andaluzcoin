@@ -1,0 +1,78 @@
+# Copyright (c) 2026 The Andaluzcoin Core developers
+# Distributed under the MIT software license, see the accompanying
+# file COPYING or https://opensource.org/license/mit/.
+
+# Lightweight branch-push checks. The existing CI workflow remains the full
+# cross-platform gate on pull requests and on pushes to master.
+name: Fast CI (ARM64)
+
+on:
+  push:
+    branches-ignore:
+      - master
+    tags-ignore:
+      - '**'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: fast-arm64-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  smoke:
+    name: Linux ARM64 smoke
+    runs-on: ubuntu-24.04-arm
+    timeout-minutes: 60
+
+    env:
+      CCACHE_DIR: ${{ github.workspace }}/.ccache
+      CCACHE_MAXSIZE: 768M
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends \
+            build-essential cmake ninja-build pkgconf ccache \
+            libevent-dev libboost-dev libsqlite3-dev python3-zmq
+
+      - name: Restore compile cache
+        uses: actions/cache@v5
+        with:
+          path: ${{ env.CCACHE_DIR }}
+          key: fast-arm64-ccache-${{ github.sha }}
+          restore-keys: |
+            fast-arm64-ccache-
+
+      - name: Configure node, wallet and unit tests
+        run: |
+          cmake -S . -B build -G Ninja \
+            -DCMAKE_BUILD_TYPE=Release \
+            -DBUILD_GUI=OFF \
+            -DENABLE_IPC=OFF \
+            -DENABLE_WALLET=ON \
+            -DBUILD_TESTS=ON \
+            -DBUILD_BENCH=OFF
+
+      - name: Build node, CLI and unit test binary
+        run: |
+          cmake --build build --target bitcoind bitcoin-cli test_bitcoin --parallel 4
+          ccache --show-stats
+
+      - name: Verify mainnet consensus constants
+        run: build/bin/test_bitcoin --run_test=pow_tests/AndaluzNetworkParams_MAIN_identity --report_level=short
+
+      - name: Run Andaluzcoin smoke tests
+        run: |
+          build/test/functional/test_runner.py --jobs=2 \
+            feature_andaluz_identity.py \
+            p2p_andaluz_connectivity.py \
+            p2p_andaluz_network_separation_identity.py \
+            mining_andaluz_getblocktemplate_identity.py \
+            wallet_andaluz_identity.py
