@@ -9,7 +9,7 @@ on:
   # See: https://docs.github.com/en/actions/writing-workflows/choosing-when-your-workflow-runs/events-that-trigger-workflows#push.
   push:
     branches:
-      - '**'
+      - master
     tags-ignore:
       - '**'
 
@@ -137,12 +137,8 @@ jobs:
     # See: https://github.com/actions/runner-images#available-images.
     runs-on: macos-15
 
-    # When a contributor maintains a fork of the repo, any pull request they make
-    # to their own fork, or to the main repository, will trigger two CI runs:
-    # one for the branch push and one for the pull request.
-    # This can be avoided by setting SKIP_BRANCH_PUSH=true as a custom env variable
-    # in Github repository settings.
-    if: ${{ vars.SKIP_BRANCH_PUSH != 'true' || github.event_name == 'pull_request' }}
+    # Full matrix runs for PRs and master; ordinary branch pushes use Fast CI.
+    if: ${{ github.event_name == 'pull_request' || github.ref == 'refs/heads/master' }}
 
     timeout-minutes: 120
 
@@ -225,7 +221,7 @@ jobs:
     name: ${{ matrix.job-name }}
     runs-on: windows-2025-vs2026
 
-    if: ${{ vars.SKIP_BRANCH_PUSH != 'true' || github.event_name == 'pull_request' }}
+    if: ${{ github.event_name == 'pull_request' || github.ref == 'refs/heads/master' }}
 
     env:
       PYTHONUTF8: 1
@@ -341,7 +337,7 @@ jobs:
     name: 'Windows-cross to x86_64, ${{ matrix.crt }}'
     needs: [runners, record-frozen-commit]
     runs-on: ${{ needs.runners.outputs.provider == 'cirrus' && 'ghcr.io/cirruslabs/ubuntu-runner-amd64:24.04-sm' || 'ubuntu-24.04' }}
-    if: ${{ vars.SKIP_BRANCH_PUSH != 'true' || github.event_name == 'pull_request' }}
+    if: ${{ github.event_name == 'pull_request' || github.ref == 'refs/heads/master' }}
 
     strategy:
       fail-fast: false
@@ -454,7 +450,7 @@ jobs:
     name: ${{ matrix.name }}
     needs: runners
     runs-on: ${{ needs.runners.outputs.provider == 'cirrus' && matrix.cirrus-runner || matrix.fallback-runner }}
-    if: ${{ vars.SKIP_BRANCH_PUSH != 'true' || github.event_name == 'pull_request' }}
+    if: ${{ github.event_name == 'pull_request' || github.ref == 'refs/heads/master' }}
     timeout-minutes: ${{ matrix.timeout-minutes }}
 
     env:
@@ -617,7 +613,7 @@ jobs:
     name: 'lint'
     needs: runners
     runs-on: ${{ needs.runners.outputs.provider == 'cirrus' && 'ghcr.io/cirruslabs/ubuntu-runner-amd64:24.04-xs' || 'ubuntu-24.04' }}
-    if: ${{ vars.SKIP_BRANCH_PUSH != 'true' || github.event_name == 'pull_request' }}
+    if: ${{ github.event_name == 'pull_request' || github.ref == 'refs/heads/master' }}
     timeout-minutes: 20
     env:
       CONTAINER_NAME: "bitcoin-linter"
