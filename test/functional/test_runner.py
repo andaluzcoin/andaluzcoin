@@ -349,6 +349,7 @@ BASE_SCRIPTS = [
     'mining_andaluz_generateblock_identity.py',
     'mining_andaluz_coinbase_maturity_spend.py',
     'mining_mainnet.py',
+    'mining_andaluz_mainnet_block_validation.py',
     'feature_signet.py',
     'p2p_mutated_blocks.py',
     'rpc_named_arguments.py',
