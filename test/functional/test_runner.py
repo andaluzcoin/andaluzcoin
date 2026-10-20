@@ -280,6 +280,7 @@ BASE_SCRIPTS = [
     'p2p_addr_relay.py',
     'p2p_andaluz_connectivity.py',
     'p2p_andaluz_network_separation_identity.py',
+    'p2p_andaluz_mainnet_bootstrap_identity.py',
     'p2p_andaluz_block_propagation.py',
     'p2p_getaddr_caching.py',
     'p2p_getdata.py',
