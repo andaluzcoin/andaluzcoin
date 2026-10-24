@@ -1,3 +1,12 @@
+> **WARNING: inherited historical Bitcoin test fixture documentation.**
+> This is NOT an Andaluzcoin bootstrap or mining guide. Do not apply the
+> commands, keys, addresses, timestamps, ports or source-patching advice below
+> to Andaluzcoin. The precomputed fixture is unchanged by this documentation edit.
+> Use the [ALUZ chain specification](../../../doc/chain-spec.md),
+> [current mainnet block validation test](../mining_andaluz_mainnet_block_validation.py)
+> and [local mainnet transport test](../p2p_andaluz_mainnet_v2_transport_identity.py)
+> for actual Andaluzcoin verification; these use precomputed blocks, not live mining.
+
 # Various test vectors
 
 ## mainnet_alt.json

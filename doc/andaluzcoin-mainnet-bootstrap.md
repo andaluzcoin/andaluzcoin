@@ -62,9 +62,17 @@ editing it while running does not immediately change connections.
 
 `-dnsseed=0` disables seed queries, not DNS resolution of manual hostnames.
 `-dns=0` disables hostname lookup for manual options; use numeric addresses
-if selecting that policy. Keep transport defaults; dedicated encrypted transport
-identity validation is a later milestone. A user-agent string identifies claimed
-software, not an authenticated operator or trustworthy chain.
+if selecting that policy. Keep transport defaults. The v0.2.72
+[local mainnet v2 transport test](../test/functional/p2p_andaluz_mainnet_v2_transport_identity.py)
+now checks an encrypted v2 session and precomputed-block relay, v1
+interoperability, and rejection of a Bitcoin wrong-magic v1 version prefix on a
+v2-capable listener. It does not establish real public WAN operation,
+authenticated operators, or all v2 cross-network rejection cases. BIP324 is
+opportunistic transport encryption, not authenticated peer identity or proof of
+a remote chain; v1 remains possible and unencrypted. See the
+[mainnet readiness checklist](andaluzcoin-mainnet-readiness.md). A user-agent
+string identifies claimed software, not an authenticated operator or trustworthy
+chain.
 
 ## Verify connections and identity
 

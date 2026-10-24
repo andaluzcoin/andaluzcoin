@@ -1,94 +1,61 @@
-Bitcoin Core
-=============
+# Andaluzcoin Core (ALUZ) documentation
 
-Setup
----------------------
-Bitcoin Core is the original Bitcoin client and it builds the backbone of the network. It downloads and, by default, stores the entire history of Bitcoin transactions, which requires several hundred gigabytes or more of disk space. Depending on the speed of your computer and network connection, the synchronization process can take anywhere from a few hours to several days or more.
+Andaluzcoin is a Bitcoin-derived culture/community SHA256d proof-of-work chain.
+Mainnet and regtest code support does not establish a reliable public economic
+network. **PRELAUNCH / NOT APPROVED FOR PUBLIC ECONOMIC MAINNET.**
+Start with the [readiness checklist](andaluzcoin-mainnet-readiness.md) and
+[manual bootstrap operations](andaluzcoin-mainnet-bootstrap.md).
 
-To download Bitcoin Core, visit [bitcoincore.org](https://bitcoincore.org/en/download/).
+## Operators
 
-Running
----------------------
-The following are some helpful notes on how to run Bitcoin Core on your native platform.
+- [Current chain specification](chain-spec.md): network identity and consensus parameters; source is authoritative.
+- [Mainnet readiness checklist](andaluzcoin-mainnet-readiness.md): unfulfilled launch gates and required evidence.
+- [Manual mainnet bootstrap guide](andaluzcoin-mainnet-bootstrap.md): private RPC, verified peer selection and recovery; no approved public endpoints.
+- [Private local inspection](../README.md#private-local-inspection): fresh isolated datadir with no peers or wallet.
 
-### Unix
+## Developers
 
-Unpack the files into a directory and run:
+- [Project overview and Ubuntu/Linux build](../README.md#build-on-ubuntulinux)
+- [Installation entry point](../INSTALL.md)
+- [Andaluzcoin developer notes](andaluzcoin-dev-notes.md): normal versus fuzz build directories.
+- [Runtime identity test](../test/functional/feature_andaluz_identity.py)
+- [Local mainnet bootstrap test](../test/functional/p2p_andaluz_mainnet_bootstrap_identity.py)
+- [Local mainnet v2 transport test](../test/functional/p2p_andaluz_mainnet_v2_transport_identity.py)
+- [Precomputed mainnet block validation test](../test/functional/mining_andaluz_mainnet_block_validation.py)
+- [Project source and issues](https://github.com/andaluzcoin/andaluzcoin)
 
-- `bin/bitcoin-qt` (GUI) or
-- `bin/bitcoind` (headless)
-- `bin/bitcoin` (wrapper command)
+## Wallet users and integrators
 
-The `bitcoin` command supports subcommands like `bitcoin gui`, `bitcoin node`, and `bitcoin rpc` exposing different functionality. Subcommands can be listed with `bitcoin help`.
+Current local coverage uses SQLite descriptor wallets. External wallet and
+hardware integration remain TO DO; extended-key bytes overlap Bitcoin's
+SLIP-0132 zpub/zprv convention. The descriptor wrapper determines script type,
+not the textual key prefix. Read the [wallet readiness gate](andaluzcoin-mainnet-readiness.md#wallet-recovery-and-integration)
+before attempting integration.
 
-### Windows
+- [Address and wallet identity test](../test/functional/wallet_andaluz_identity.py)
+- [Extended key, descriptor and watch-only test](../test/functional/wallet_andaluz_extended_key_identity.py)
+- [Backup/restore identity test](../test/functional/wallet_andaluz_backup_restore.py)
 
-Unpack the files into a directory, and then run bitcoin-qt.exe.
+## Inherited Bitcoin Core technical references
 
-### macOS
+The following documents describe upstream mechanics and may contain Bitcoin
+network addresses, wallet examples, defaults, downloads or support channels.
+Those are not Andaluzcoin resources. Check network-specific values against the
+[ALUZ chain specification](chain-spec.md) and source, retain `bitcoin.conf`
+and current executable names, and always specify a private ALUZ `-datadir`.
+Upstream release procedures are reference material, not a claim of ALUZ releases.
 
-Drag Bitcoin Core to your applications folder, and then run Bitcoin Core.
+- [Unix build notes](build-unix.md) and [dependencies](dependencies.md)
+- [Configuration file syntax](bitcoin-conf.md)
+- [JSON-RPC interface](JSON-RPC-interface.md)
+- [Managing wallets](managing-wallets.md)
+- [Descriptor language](descriptors.md)
+- [PSBT reference](psbt.md)
+- [Developer notes](developer-notes.md)
+- [Fuzz testing](fuzzing.md)
+- [Release process reference](release-process.md)
+- [Assets attribution](assets-attribution.md)
 
-### Need Help?
-
-* See the documentation at the [Bitcoin Wiki](https://en.bitcoin.it/wiki/Main_Page)
-for help and more information.
-* Ask for help on [Bitcoin StackExchange](https://bitcoin.stackexchange.com).
-* Ask for help on #bitcoin on Libera Chat. If you don't have an IRC client, you can use [web.libera.chat](https://web.libera.chat/#bitcoin).
-* Ask for help on the [BitcoinTalk](https://bitcointalk.org/) forums, in the [Technical Support board](https://bitcointalk.org/index.php?board=4.0).
-
-Building
----------------------
-The following are developer notes on how to build Bitcoin Core on your native platform. They are not complete guides, but include notes on the necessary libraries, compile flags, etc.
-
-- [Dependencies](dependencies.md)
-- [macOS Build Notes](build-osx.md)
-- [Unix Build Notes](build-unix.md)
-- [Windows Build Notes](build-windows-msvc.md)
-- [FreeBSD Build Notes](build-freebsd.md)
-- [OpenBSD Build Notes](build-openbsd.md)
-- [NetBSD Build Notes](build-netbsd.md)
-
-Development
----------------------
-The Bitcoin repo's [root README](/README.md) contains relevant information on the development process and automated testing.
-
-- [Developer Notes](developer-notes.md)
-- [Productivity Notes](productivity.md)
-- [Release Process](release-process.md)
-- [Source Code Documentation (External Link)](https://doxygen.bitcoincore.org/)
-- [Translation Process](translation_process.md)
-- [Translation Strings Policy](translation_strings_policy.md)
-- [JSON-RPC Interface](JSON-RPC-interface.md)
-- [Unauthenticated REST Interface](REST-interface.md)
-- [BIPS](bips.md)
-- [Dnsseed Policy](dnsseed-policy.md)
-- [Benchmarking](benchmarking.md)
-- [Internal Design Docs](design/)
-
-### Resources
-* Discuss on the [BitcoinTalk](https://bitcointalk.org/) forums, in the [Development & Technical Discussion board](https://bitcointalk.org/index.php?board=6.0).
-* Discuss project-specific development on #bitcoin-core-dev on Libera Chat. If you don't have an IRC client, you can use [web.libera.chat](https://web.libera.chat/#bitcoin-core-dev).
-
-### Miscellaneous
-- [Assets Attribution](assets-attribution.md)
-- [bitcoin.conf Configuration File](bitcoin-conf.md)
-- [CJDNS Support](cjdns.md)
-- [Files](files.md)
-- [Fuzz-testing](fuzzing.md)
-- [I2P Support](i2p.md)
-- [Init Scripts (systemd/upstart/openrc)](init.md)
-- [Managing Wallets](managing-wallets.md)
-- [Multisig Tutorial](multisig-tutorial.md)
-- [Offline Signing Tutorial](offline-signing-tutorial.md)
-- [P2P bad ports definition and list](p2p-bad-ports.md)
-- [PSBT support](psbt.md)
-- [Reduce Memory](reduce-memory.md)
-- [Reduce Traffic](reduce-traffic.md)
-- [Tor Support](tor.md)
-- [Transaction Relay Policy](policy/README.md)
-- [ZMQ](zmq.md)
-
-License
----------------------
-Distributed under the [MIT software license](/COPYING).
+Andaluzcoin acknowledges Bitcoin Core contributors and Satoshi Nakamoto.
+Distributed under the [MIT software license](../COPYING), preserving upstream
+copyright and license provenance.
