@@ -64,8 +64,8 @@ cannot be assumed compatible with this fork.
 only Python's standard library. Owner-approved Part 2 replaces the failed
 zero-node framework lifecycle with `unittest` and strict `argparse`: no framework,
 NetworkThread, daemon, listener, RPC, database or PoW nonce search. Runner metadata
-`--configfile`, `--cachedir`, `--portseed`, `--tmpdir` is accepted and explicitly
-unused; it cannot change model seeds or write files. Unknown arguments fail;
+`--configfile`, `--cachedir`, `--portseed`, `--tmpdir`, and
+`--timeout-factor` are accepted and explicitly unused; it cannot change model seeds or write files. Unknown arguments fail;
 optimized Python is rejected so assertions cannot disappear. Successful runs
 have empty stderr and exit zero only after both test groups pass.
 

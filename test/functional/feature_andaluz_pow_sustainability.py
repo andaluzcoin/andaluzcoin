@@ -259,6 +259,7 @@ def main():
     for option in ('configfile', 'cachedir', 'tmpdir'):
         parser.add_argument('--' + option, help='Accepted runner metadata; unused (no files or nodes)')
     parser.add_argument('--portseed', type=int, help='Accepted runner metadata; model uses fixed SEEDS')
+    parser.add_argument('--timeout-factor', type=float, help='Accepted CI runner metadata; unused for offline tests')
     parser.add_argument('--summary-json', action='store_true', help='After passing tests, print detailed JSON to stdout')
     args = parser.parse_args()
     if not __debug__:
