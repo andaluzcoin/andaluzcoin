@@ -19,3 +19,9 @@ cmake -B build -S . \
   -DBUILD_TESTS=ON
 
 cmake --build build -j 1
+```
+
+Keep fuzz builds in separate directories such as `build_fuzz/` and
+`build_fuzz_nosan/` (the directories used by the CMake fuzz presets).
+`BUILD_FOR_FUZZING=ON` disables normal daemon/CLI/test targets; do not
+reuse that configuration for normal functional tests.

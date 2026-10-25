@@ -1,79 +1,120 @@
-Bitcoin Core integration/staging tree
-=====================================
+# Andaluzcoin Core (ALUZ)
 
-https://bitcoincore.org
+Andaluzcoin is an independent Bitcoin-derived cultural/community coin with
+functional decentralized consensus, peer-to-peer transactions and SHA256d
+proof-of-work mining. Its purpose is community participation and peer-to-peer
+money; it is not a utility-first token or a Bitcoin competitor by design.
+There are no guarantees of value, profit or mining returns.
 
-For an immediately usable, binary version of the Bitcoin Core software, see
-https://bitcoincore.org/en/download/.
+**PRELAUNCH: NOT APPROVED FOR PUBLIC ECONOMIC MAINNET.** Mainnet consensus
+and regtest are supported in code. That does not establish public launch
+readiness: there is no approved public seeds/bootstrap network, and repository
+tests alone establish no verified security, uptime or mining ecosystem.
+See the [mainnet readiness checklist](doc/andaluzcoin-mainnet-readiness.md)
+for the outstanding gates and evidence required.
 
-What is Bitcoin Core?
----------------------
+## Network identity
 
-Bitcoin Core connects to the Bitcoin peer-to-peer network to download and fully
-validate blocks and transactions. It also includes a wallet and graphical user
-interface, which can be optionally built.
+These mainnet values come from [chain parameters](src/kernel/chainparams.cpp)
+and [RPC base parameters](src/chainparamsbase.cpp); source remains authoritative.
 
-Further information about Bitcoin Core is available in the [doc folder](/doc).
+| Parameter | Implemented mainnet value |
+| --- | --- |
+| Genesis | `000000f7dca7651a1397fd0bc99b2a456dbb2d23470834b6290aadec4b46d15c` |
+| P2P magic | `b6 a9 64 58` |
+| P2P / RPC port | `29444` / `29443` |
+| Bech32 HRP | `aluz` |
+| P2PKH / P2SH / WIF version byte (decimal) | `55` / `117` / `183` |
+| Intended block spacing | 10 minutes |
+| Difficulty retarget | 2016 blocks / 14-day target timespan; no mainnet minimum-difficulty exception |
+| Subsidy halving interval | 210000 blocks |
+| DNS / fixed seeds | Empty |
 
-License
--------
+The [chain specification](doc/chain-spec.md) records further parameters.
+Mining sustainability, hash-rate shocks and reorg risk still require review;
+ASERT and AuxPoW are research concepts, not implemented features.
 
-Bitcoin Core is released under the terms of the MIT license. See [COPYING](COPYING) for more
-information or see https://opensource.org/license/MIT.
+## Build on Ubuntu/Linux
 
-Development Process
--------------------
+From this repository checkout, use a normal build directory separate from fuzz
+builds. The current requirements include CMake >= 3.22, a C++20 compiler
+(GCC >= 12.1 or Clang >= 17), Boost >= 1.74, libevent >= 2.1.8,
+SQLite >= 3.7.17 for wallets, and Python >= 3.10 for test scripts.
+The package list follows the inherited [Unix build notes](doc/build-unix.md)
+and [dependency reference](doc/dependencies.md); older distributions may need
+newer compiler packages.
 
-The `master` branch is regularly built (see `doc/build-*.md` for instructions) and tested, but it is not guaranteed to be
-completely stable. [Tags](https://github.com/bitcoin/bitcoin/tags) are created
-regularly from release branches to indicate new official, stable release versions of Bitcoin Core.
+```sh
+sudo apt-get install build-essential cmake pkgconf python3 libevent-dev libboost-dev libsqlite3-dev
+cmake -S . -B build -DCMAKE_BUILD_TYPE=Release \
+  -DBUILD_GUI=OFF -DENABLE_IPC=OFF -DWITH_USDT=OFF \
+  -DBUILD_FOR_FUZZING=OFF -DBUILD_FUZZ_BINARY=OFF \
+  -DBUILD_DAEMON=ON -DBUILD_CLI=ON -DENABLE_WALLET=ON -DBUILD_TESTS=ON
+cmake --build build -j 1
+```
 
-The https://github.com/bitcoin-core/gui repository is used exclusively for the
-development of the GUI. Its master branch is identical in all monotree
-repositories. Release branches and tags do not exist, so please do not fork
-that repository unless it is for development reasons.
+`-j 1` limits parallel compiler memory use on constrained ARM64/Linux builders;
+a successful build still requires sufficient memory and disk. IPC is disabled
+here so Cap'n Proto is not required. The current executables retain upstream
+names: **`build/bin/bitcoind`** and **`build/bin/bitcoin-cli`**. These names do
+not mean this checkout connects to Bitcoin mainnet. This is a source build path,
+not a claim that GUI packages or Windows/macOS releases are distributed.
 
-The contribution workflow is described in [CONTRIBUTING.md](CONTRIBUTING.md)
-and useful hints for developers can be found in [doc/developer-notes.md](doc/developer-notes.md).
+Optional local validation after building:
 
-Testing
--------
+```sh
+ctest --test-dir build --output-on-failure
+python3 build/test/functional/test_runner.py -j 1 feature_andaluz_identity.py p2p_andaluz_mainnet_bootstrap_identity.py
+```
 
-Testing and code review is the bottleneck for development; we get more pull
-requests than we can review and test on short notice. Please be patient and help out by testing
-other people's pull requests, and remember this is a security-critical project where any mistake might cost people
-lots of money.
+The targeted functional tests create isolated temporary data directories and
+exercise local mainnet identity/manual connections. They do not contact a
+public ALUZ bootstrap network or demonstrate economic security.
 
-### Automated Testing
+## Private local inspection
 
-Developers are strongly encouraged to write [unit tests](src/test/README.md) for new code, and to
-submit new unit tests for old code. Unit tests can be compiled and run
-(assuming they weren't disabled during the generation of the build system) with: `ctest`. Further details on running
-and extending unit tests can be found in [/src/test/README.md](/src/test/README.md).
+For a non-public mainnet inspection, create a fresh directory with `mktemp`;
+do not reuse an existing Bitcoin or Andaluzcoin wallet/data directory.
+Run these commands from the checkout after building:
 
-There are also [regression and integration tests](/test), written
-in Python.
-These tests can be run (if the [test dependencies](/test) are installed) with: `build/test/functional/test_runner.py`
-(assuming `build` is your build directory).
+```sh
+ALUZ_LOCAL_DATA=$(mktemp -d /tmp/aluz-local.XXXXXX)
+chmod 700 "$ALUZ_LOCAL_DATA"
+build/bin/bitcoind -datadir="$ALUZ_LOCAL_DATA" -chain=main \
+  -disablewallet=1 -connect=0 -listen=0 -dns=0 -dnsseed=0 -fixedseeds=0 \
+  -natpmp=0 -discover=0 -rpcbind=127.0.0.1 -rpcallowip=127.0.0.1 -daemon
+build/bin/bitcoin-cli -datadir="$ALUZ_LOCAL_DATA" -chain=main -rpcwait getblockchaininfo
+build/bin/bitcoin-cli -datadir="$ALUZ_LOCAL_DATA" -chain=main getblockhash 0
+build/bin/bitcoin-cli -datadir="$ALUZ_LOCAL_DATA" -chain=main stop
+```
 
-The CI (Continuous Integration) systems make sure that every pull request is tested on Windows, Linux, and macOS.
-The CI must pass on all commits before merge to avoid unrelated CI failures on new pull requests.
+This disables peer discovery, outgoing automatic connections and P2P listening;
+it does not automatically sync or mine. RPC uses the local authentication cookie;
+keep it private. The config filename remains **`bitcoin.conf`**. Use an explicit
+`-datadir` for both daemon and CLI: inherited defaults still use Bitcoin paths
+(`~/.bitcoin` on Linux). `chain=main` selects mainnet; `[main]` scopes config
+settings and does not itself select a chain. Explicit RPC binding requires
+both `rpcbind` and `rpcallowip`; keep both private. See the
+[manual bootstrap guide](doc/andaluzcoin-mainnet-bootstrap.md) for future
+operator planning with verified peers; no live endpoints are provided.
 
-### Manual Quality Assurance (QA) Testing
+## Documentation and development
 
-Changes should be tested by somebody other than the developer who wrote the
-code. This is especially important for large or high-risk changes. It is useful
-to add a test plan to the pull request description if testing the changes is
-not straightforward.
+- [Installation entry point](INSTALL.md)
+- [Andaluzcoin documentation index](doc/README.md)
+- [Chain specification](doc/chain-spec.md)
+- [Mainnet readiness gates](doc/andaluzcoin-mainnet-readiness.md)
+- [Manual mainnet bootstrap operations](doc/andaluzcoin-mainnet-bootstrap.md)
+- [Andaluzcoin developer notes](doc/andaluzcoin-dev-notes.md)
+- [Project repository](https://github.com/andaluzcoin/andaluzcoin)
+- [Contribution workflow](CONTRIBUTING.md) and [inherited developer reference](doc/developer-notes.md)
 
-Translations
-------------
+Andaluzcoin derives from Bitcoin Core and acknowledges its contributors and
+Satoshi Nakamoto. Much technical documentation, executable naming and command
+syntax remain inherited Bitcoin Core material. Bitcoin addresses, services,
+downloads and support channels in those references are not Andaluzcoin services;
+use the Andaluzcoin chain specification and tests for network-specific facts.
+Automated engineering tests are not evidence of a deployed global network.
 
-Changes to translations as well as new translations can be submitted to
-[Bitcoin Core's Transifex page](https://explore.transifex.com/bitcoin/bitcoin/).
-
-Translations are periodically pulled from Transifex and merged into the git repository. See the
-[translation process](doc/translation_process.md) for details on how this works.
-
-**Important**: We do not accept translation changes as GitHub pull requests because the next
-pull from Transifex would automatically overwrite them again.
+Andaluzcoin Core is distributed under the [MIT license](COPYING), preserving
+upstream copyright and license provenance.
