@@ -117,6 +117,7 @@ BASE_SCRIPTS = [
     'mempool_updatefromblock.py',
     'mempool_persist.py',
     # vv Tests less than 60s vv
+    'feature_andaluz_pow_sustainability.py',
     'rpc_psbt.py',
     'wallet_fundrawtransaction.py',
     'wallet_bumpfee.py',
