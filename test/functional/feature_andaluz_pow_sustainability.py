@@ -260,6 +260,11 @@ def main():
         parser.add_argument('--' + option, help='Accepted runner metadata; unused (no files or nodes)')
     parser.add_argument('--portseed', type=int, help='Accepted runner metadata; model uses fixed SEEDS')
     parser.add_argument('--timeout-factor', type=float, help='Accepted CI runner metadata; unused for offline tests')
+    for flag in ('v2transport', 'usecli', 'previous-releases'):
+        parser.add_argument('--' + flag, action='store_true',
+                            help='Accepted CI runner flag; unused for offline tests')
+    parser.add_argument('--coveragedir',
+                        help='Accepted RPC coverage path; unused for offline tests')
     parser.add_argument('--summary-json', action='store_true', help='After passing tests, print detailed JSON to stdout')
     args = parser.parse_args()
     if not __debug__:
