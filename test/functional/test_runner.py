@@ -118,6 +118,7 @@ BASE_SCRIPTS = [
     'mempool_persist.py',
     # vv Tests less than 60s vv
     'feature_andaluz_auxpow_feasibility.py',
+    'feature_andaluz_auxpow_chainid_spec.py',
     'feature_andaluz_pow_sustainability.py',
     'rpc_psbt.py',
     'wallet_fundrawtransaction.py',

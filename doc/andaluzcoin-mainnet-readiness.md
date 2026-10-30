@@ -75,6 +75,7 @@ and operator identity separately; a user-agent or session ID alone is not trust.
 
 See the [offline mining sustainability study](andaluzcoin-mining-sustainability.md).
 See the [SHA256d AuxPoW feasibility study](andaluzcoin-sha256d-auxpow-feasibility.md).
+See the [AuxPoW candidate specification](andaluzcoin-auxpow-candidate-specification.md).
 
 Owner/operator: **TO BE ASSIGNED** (consensus reviewers, independent miners and monitoring operators).
 See [chain parameters](../src/kernel/chainparams.cpp),
