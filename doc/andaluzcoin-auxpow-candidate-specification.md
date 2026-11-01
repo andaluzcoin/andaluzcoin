@@ -295,6 +295,8 @@ No chain ID, limit, bit or activation choice can be inferred from toy constants.
 
 ## 15. Conclusions, sources and next milestones
 
+See the follow-up [chain-ID encoding and network-domain study](andaluzcoin-auxpow-chainid-domain-compatibility.md).
+
 The section 3 immutable source ledger is the external authority for precedent;
 section 2 local sources govern ALUZ. These findings establish modular collision
 behavior and bounded historical ID evidence. They do not establish mining
