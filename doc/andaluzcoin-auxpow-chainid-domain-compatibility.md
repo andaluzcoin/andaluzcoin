@@ -318,6 +318,8 @@ assumed from these commands. Upstream source tests were read, not run.
 
 ## 10. Decision log and next gates
 
+See the follow-up [bounded proof serialization and activation research](andaluzcoin-auxpow-proof-serialization-activation.md).
+
 | Open choice / alternative | Recommendation for review, not selection | Acceptance gate |
 | --- | --- | --- |
 | ID width and signed vs unsigned decoder | Specify an exact domain before any allocation; never infer it from a toy constant | Independent encoding corpus including negative, boundary and overflow rejection cases. |
