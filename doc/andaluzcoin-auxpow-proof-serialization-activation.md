@@ -316,6 +316,8 @@ that any environment passed them. Upstream parsers/tests were read, not run.
 
 ## 10. Decision log and production gates
 
+See the follow-up [mixed-mode work and pool-exit recovery research](andaluzcoin-auxpow-work-recovery.md).
+
 | Unselected decision | Experimental choice / alternative | Required next evidence |
 | --- | --- | --- |
 | Official proof serialization and attachment | Detached R0 vs source-compatible layouts; no selection | Approved full grammar, all serialization/hash/P2P/disk/cache contexts and independent real-proof corpus. |

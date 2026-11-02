@@ -121,6 +121,7 @@ BASE_SCRIPTS = [
     'feature_andaluz_auxpow_chainid_spec.py',
     'feature_andaluz_auxpow_chainid_domain.py',
     'feature_andaluz_auxpow_serialization.py',
+    'feature_andaluz_auxpow_work_recovery.py',
     'feature_andaluz_pow_sustainability.py',
     'rpc_psbt.py',
     'wallet_fundrawtransaction.py',
