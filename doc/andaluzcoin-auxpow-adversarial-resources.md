@@ -257,6 +257,10 @@ not fresh validation or multi-platform success claims.
 
 ## 10. Remaining real-integration gates
 
+See the [implementation-readiness dossier](andaluzcoin-auxpow-integration-readiness.md)
+for the frozen validation, relay, storage and cache entry points, future test
+obligations and owner decisions that precede any real parser/consensus patch.
+
 Production review still needs an owner-selected complete format and threat
 model, real transaction/witness/proof validation, transport/preallocation
 budgets, adversarial resource and fuzz evidence, concurrency/cache analysis,
