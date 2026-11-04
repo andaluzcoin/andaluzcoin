@@ -218,7 +218,7 @@ builder or hashlib. All literals below are digest bytes, not reversed display.
 | Output | Value0, exact44-byte commitment from section 5 |
 | Parent header | Version 4 as LE32, previous hash `33` repeated 32, raw coinbase txid as Merkle root, then 12 zero time/bits/nonce bytes |
 | Child H(header) | `852c98044fb00507122ff63bda7b529566348fc204f72b00dff1afd7b40501e4` |
-| Synthetic auxiliary leaf/root | `a 16523acc3578eef2892e54a69b410378bfffa29a079b926b015d5d27c94d77a` |
+| Synthetic auxiliary leaf/root | `a16523acc3578eef2892e54a69b410378bfffa29a079b926b015d5d27c94d77a` |
 | Coinbase txid | `351b305a551698238ec6de2203a256911d5bf87f3d99ad6d01e80d8a4a1b234f` |
 | Parent H(header) | `b26fc616776149ef456ae89800c5934a05395f615ab4fa8b7ce1b9cc2036ed0f` |
 | H(entire314-byte container) | `3bc6dcddc5c6fac2435387a39bde62dedc135775b5b9bbd72177ec5eb6fabfe0` |
@@ -271,6 +271,8 @@ fixture hex; the committed test pins expected component/container hashes and
 field offsets. No network, miner, node or live parent-chain data was used.
 
 ## 8. Resource analysis and limitations
+
+See the follow-up [adversarial corpus and resource-bound study](andaluzcoin-auxpow-adversarial-resources.md).
 
 | Dimension | R0 bound and rejection point | What this does not prove |
 | --- | --- | --- |
