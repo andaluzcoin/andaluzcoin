@@ -365,6 +365,9 @@ network budget, parent-chain policy or activation parameter is inferred from R0.
 
 ## 8. Dependency order and implementation-readiness evidence
 
+See the [proposed B1 candidate contract](andaluzcoin-auxpow-b-candidate-specification.md)
+for exact reviewable bytes, view/policy contracts and planned evidence; it adopts no production rule.
+
 1. **Freeze the research input.** Record revision, surfaces, source facts and
    missing evidence. This dossier supplies that map; issue #99 records review.
 2. **Resolve the specification choices.** D01-D03 establish actual identity,

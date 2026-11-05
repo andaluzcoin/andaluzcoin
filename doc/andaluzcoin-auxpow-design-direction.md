@@ -266,6 +266,9 @@ production family.
 
 ## 11. Finite next phase if the owner chooses a direction
 
+See the [proposed B1 candidate contract](andaluzcoin-auxpow-b-candidate-specification.md)
+for exact reviewable bytes, view/policy contracts and planned evidence; it adopts no production rule.
+
 The requested authorization is for **one later isolated specification phase**,
 with the following finite deliverables, not open-ended prototype work:
 
