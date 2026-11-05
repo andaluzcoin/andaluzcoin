@@ -345,6 +345,9 @@ silently satisfy them.
 not named assignees or completed approvals. Candidate alternatives below are not
 production recommendations selected by this milestone.
 
+See the [design-direction review package](andaluzcoin-auxpow-design-direction.md)
+for concrete PROPOSED alternatives and an owner decision form; these gates remain OPEN.
+
 | ID / accountable roles | Decision requiring explicit review | Evidence needed before implementation/integration |
 | --- | --- | --- |
 | D01 / owner, consensus, networking | Child identity, proof attachment, complete grammar, canonical framing and all serialization views. | Approved exact format; independent V01/V02/V07/V12 corpora and compatibility rationale. |

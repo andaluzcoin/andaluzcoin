@@ -300,6 +300,9 @@ See the [implementation-readiness dossier](andaluzcoin-auxpow-integration-readin
 for current-code integration boundaries, future acceptance evidence and unresolved
 owner decisions; it selects no production implementation.
 
+See the [design-direction review package](andaluzcoin-auxpow-design-direction.md)
+for a concrete, non-binding D01-D03 proposal and owner decision; production gates remain OPEN.
+
 The section 3 immutable source ledger is the external authority for precedent;
 section 2 local sources govern ALUZ. These findings establish modular collision
 behavior and bounded historical ID evidence. They do not establish mining
