@@ -34,6 +34,7 @@ mined-proof replay is implemented/executed by this document.
 | ALUZ [block/header](https://github.com/andaluzcoin/andaluzcoin/blob/4c98bfa88c4c45014677c7e9b2fec53459b000aa/src/primitives/block.h#L26-L107), [GetHash](https://github.com/andaluzcoin/andaluzcoin/blob/4c98bfa88c4c45014677c7e9b2fec53459b000aa/src/primitives/block.cpp#L15-L18) | C80 has six fields; proof exclusion is compatible with that hash starting point, not with unchanged future wire views. |
 | ALUZ [HashWriter](https://github.com/andaluzcoin/andaluzcoin/blob/4c98bfa88c4c45014677c7e9b2fec53459b000aa/src/hash.h#L100-L129), [TaggedHash](https://github.com/andaluzcoin/andaluzcoin/blob/4c98bfa88c4c45014677c7e9b2fec53459b000aa/src/hash.h#L213-L219) | HashWriter has double/single finalizers; TaggedHash primes SHA256(tag) twice. B1 requires the double finalizer, not the usual BIP340 single-SHA result. |
 | ALUZ [context](https://github.com/andaluzcoin/andaluzcoin/blob/4c98bfa88c4c45014677c7e9b2fec53459b000aa/src/validation.cpp#L4112-L4152), [admission](https://github.com/andaluzcoin/andaluzcoin/blob/4c98bfa88c4c45014677c7e9b2fec53459b000aa/src/validation.cpp#L4218-L4290), [work/index](https://github.com/andaluzcoin/andaluzcoin/blob/4c98bfa88c4c45014677c7e9b2fec53459b000aa/src/node/blockstorage.cpp#L224-L255) | Expected bits/ancestry, work verification and index credit are separate. Existing known-header/min-work shortcuts do not authenticate new evidence. |
+| ALUZ [native index height](https://github.com/andaluzcoin/andaluzcoin/blob/4c98bfa88c4c45014677c7e9b2fec53459b000aa/src/chain.h#L105-L106) | CBlockIndex stores int nHeight; B1 bounds admitted/configured heights to the nonnegative signed32 range before native conversion/addition. |
 | ALUZ [transaction shape](https://github.com/andaluzcoin/andaluzcoin/blob/4c98bfa88c4c45014677c7e9b2fec53459b000aa/src/primitives/transaction.h#L341-L344), [basic checks](https://github.com/andaluzcoin/andaluzcoin/blob/4c98bfa88c4c45014677c7e9b2fec53459b000aa/src/consensus/tx_check.cpp#L19-L59), [txid](https://github.com/andaluzcoin/andaluzcoin/blob/4c98bfa88c4c45014677c7e9b2fec53459b000aa/src/primitives/transaction.cpp#L69-L96) | Coinbase shape, amount rules and stripped txid are distinct from full parent validity. B1 proposes the precise proof-only subset below. |
 | Namecoin [proof](https://github.com/namecoin/namecoin-core/blob/942b14038f3ae704b6c2d50355de835d3ee92288/src/auxpow.cpp#L41-L139), [slot/fold](https://github.com/namecoin/namecoin-core/blob/942b14038f3ae704b6c2d50355de835d3ee92288/src/auxpow.cpp#L143-L185), [serializer](https://github.com/namecoin/namecoin-core/blob/942b14038f3ae704b6c2d50355de835d3ee92288/src/auxpow.h#L88-L114) | Historical scriptSig/markerless and ignored-field semantics are not B1. B1 uses a unique exact output record, tagged auxiliary nodes and a ledger-key slot. |
 | Namecoin [work route](https://github.com/namecoin/namecoin-core/blob/942b14038f3ae704b6c2d50355de835d3ee92288/src/validation.cpp#L1886-L1940), [numeric path](https://github.com/namecoin/namecoin-core/blob/942b14038f3ae704b6c2d50355de835d3ee92288/src/pow.cpp#L153-L186) | Parent work is tested against child bits; linkage is not full parent consensus. Future numeric evidence must exclude the fuzz-determinism shortcut. |
@@ -81,7 +82,7 @@ last. Code-fence bytes, indentation and CR are not part of the manifest.
 
 ```text
 ALUZ-B1
-revision=1
+revision=2
 hash=TH2-SHA256TAG
 network=ND1
 config=CFG1
@@ -155,7 +156,8 @@ ND1len must equal its canonical parsing and be<=8271; maximum CFG1 length8432.
 P must equal the manifest-derived B1 P; unsupported profiles/configuration reject.
 **BeforeMask MUST be1 (DIRECT); AfterMask MUST be2 (AUX).**
 Zero, BOTH=3, reverse or any other masks reject configuration.
-H is required in1..UINT32_MAX and immutable for this ledger history; no literal
+H is encoded u32 but MUST be in1..INT32_MAX (2147483647); larger values reject
+before native conversion. H is immutable for this ledger history; no literal
 production H is chosen. MinAdmissionWork is a local admission threshold only.
 ConfigID = H2(exact canonical CFG1 bytes).
 
@@ -170,7 +172,10 @@ A local admission-threshold change can change ConfigID/receipts but not that
 immutable ledger binding. No production configuration/migration is adopted.
 
 For a non-genesis C80: require a known same-ledger previous child matching
-hashPrevBlock. Derive h=pprev.height+1 with uint32 overflow rejection.
+hashPrevBlock. Require pprev.height in0..INT32_MAX-1; reject invalid or
+INT32_MAX parent heights before addition. Compute h=pprev.height+1 using checked
+wider arithmetic, require h in1..INT32_MAX, then convert to native height.
+No signed overflow/unsigned wrap is permitted; genesis height is0.
 At h<H only DIRECT is legal; at h>=H only AUX is legal.
 This is the exact proposed monotone fixed-height mechanism.
 Expected bits, MTP, future-time and full signed-version rules use that fixed
@@ -634,7 +639,7 @@ fixtures are distinct provenance classes. No historical corpus is promised.
 | V12 | Unchanged native index bytes plus exact BIND1/sidecar/path association; wrong filename/K/Hc/E, missing/conflicting binding, interrupted writes/flush errors/crash cuts, orphan reconciliation and startup/import/reindex/reindex-chainstate evidence revalidation. |
 | V13 | Pruned child body with retained AUX proof, missing/corrupt sidecar/reacquisition and eligible-work accounting; unavailable proof/body must not become invalid child or implicit direct work. |
 | V14 | Proposal/template never become accepted evidence; submit views require work. Template child-vector cap/cap+1 reserves155 DIRECT or10362 AUX and includes its153-byte prefix; a maximum valid completed proof still fits. RPC/body/EOF bounds at every view. |
-| V15 | Parent-derived h; H-1/H/H+1 and uint32 edges (H=0 rejects); exact genesis DIRECT exception; fixed child across active-tip changes, same-height branches, unknown parent/clock retry without active-tip dispatch. |
+| V15 | Parent-derived h; H-1/H/H+1 within the native range; H=0/H>INT32_MAX reject; invalid/negative/INT32_MAX parent heights reject before addition/conversion; pprev=INT32_MAX-1 permits h=INT32_MAX and its next child rejects; exact genesis height0/DIRECT exception; fixed child across active-tip changes, same-height branches, unknown parent/clock retry without active-tip dispatch. |
 | V16 | Only DIRECT→AUX allowed; reject BOTH/reverse/profile-reset configurations, persisted-H changes and unknown profiles; old/new-node disagreement/rollback after parent-only work; no pool-exit DIRECT fallback or wall-time target change. |
 | V17 | Byte-identical current genesis/PoW/DAA/subsidy/identity/network/descriptor-only behavior before any authorized later implementation; no adoption inferred from this research. |
 | V18 | Independent exact-contract reviewer/implementations, resource/fuzz/concurrency/security and economic/operational evidence by layer; all omissions named, no general mining/security certification. |
