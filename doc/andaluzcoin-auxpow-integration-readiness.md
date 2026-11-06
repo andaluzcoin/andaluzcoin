@@ -424,3 +424,6 @@ It does not select or deploy AuxPoW, prove real proof acceptance, provide an
 independent security certification, or close implementation/operational gates.
 The [mainnet checklist](andaluzcoin-mainnet-readiness.md) remains unchanged:
 all 21 gates unchecked, public economic mainnet **NO-GO**.
+
+See the [B1 specification review](andaluzcoin-auxpow-b-specification-review.md)
+for cross-view, synchronization and native-boundary findings; production gates remain OPEN.

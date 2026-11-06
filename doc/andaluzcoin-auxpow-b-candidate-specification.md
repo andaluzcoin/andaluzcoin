@@ -663,3 +663,6 @@ and exact-head CI → permitted regular merge → successful actual-merge master
 → verified annotated research tag → final report/closure remains the workflow.
 Failed checks or actual adoption require separate owner disposition.
 Mainnet remains **NO-GO** with 21 unchecked launch gates and D01-D08 OPEN.
+
+See the [B1 specification review](andaluzcoin-auxpow-b-specification-review.md)
+for unresolved findings and next-phase eligibility; no production rule is adopted.
