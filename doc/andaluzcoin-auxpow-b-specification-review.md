@@ -349,3 +349,6 @@ V requirement or mainnet checkbox. The execution report records the final PR
 head/tree, review/CI, any permitted regular merge and actual-master CI, and the
 independently verified annotated research tag before tracker closure.
 No automatic retry or failed-check waiver is implied by earlier milestones.
+
+See the [separate correction proposals](andaluzcoin-auxpow-b-specification-corrections.md)
+for concrete drafting dispositions and the unresolved exact-freeze conditions.
