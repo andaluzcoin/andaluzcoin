@@ -427,3 +427,6 @@ all 21 gates unchecked, public economic mainnet **NO-GO**.
 
 See the [B1 specification review](andaluzcoin-auxpow-b-specification-review.md)
 for cross-view, synchronization and native-boundary findings; production gates remain OPEN.
+
+See the [separate correction proposals](andaluzcoin-auxpow-b-specification-corrections.md)
+for capacity, sync, terminal-height and genesis requirements; no integration is authorized.
