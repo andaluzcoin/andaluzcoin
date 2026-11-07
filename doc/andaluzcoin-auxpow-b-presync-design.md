@@ -475,3 +475,6 @@ activation/migration and operations remain HOLD. All D01-D08 and21launch gates
 remain OPEN/unchecked, mainnetNO-GO. Mainnet consensus/identity/network settings
 and descriptor-wallet-only policy remain unchanged. No fixed remaining milestone
 count or GO date is implied by completing a research dossier.
+
+Security/cost eligibility and exact-contract follow-up: [v0.2.88 dossier](andaluzcoin-auxpow-b-security-cost-eligibility.md).
+Research/calibration only; no budget/parameter adoption, complete freeze or GO approval.
