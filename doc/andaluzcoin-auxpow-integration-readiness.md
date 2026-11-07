@@ -430,3 +430,6 @@ for cross-view, synchronization and native-boundary findings; production gates r
 
 See the [separate correction proposals](andaluzcoin-auxpow-b-specification-corrections.md)
 for capacity, sync, terminal-height and genesis requirements; no integration is authorized.
+
+See the [presync design investigation](andaluzcoin-auxpow-b-presync-design.md)
+for synchronization ownership, security and progress requirements; no integration is authorized.

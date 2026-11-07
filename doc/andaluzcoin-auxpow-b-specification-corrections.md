@@ -410,3 +410,6 @@ regular merge -> successful actual-merge master CI -> independently verified
 annotated research tag -> final report/closure. Failed/cancelled checks require
 their own disposition; older retry approvals do not carry forward.
 Completion closes no D gate, future C/V evidence case or mainnet checkbox.
+
+See the [presync design investigation](andaluzcoin-auxpow-b-presync-design.md)
+for typed memory, security-model and supported-domain proposals; exact freeze remains HOLD.
