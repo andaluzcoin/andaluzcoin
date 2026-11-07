@@ -433,3 +433,6 @@ for capacity, sync, terminal-height and genesis requirements; no integration is 
 
 See the [presync design investigation](andaluzcoin-auxpow-b-presync-design.md)
 for synchronization ownership, security and progress requirements; no integration is authorized.
+
+Security/cost eligibility and exact-contract follow-up: [v0.2.88 dossier](andaluzcoin-auxpow-b-security-cost-eligibility.md).
+Research/calibration only; no budget/parameter adoption, complete freeze or GO approval.
