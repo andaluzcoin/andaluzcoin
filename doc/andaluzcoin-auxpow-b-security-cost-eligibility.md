@@ -393,3 +393,6 @@ invariants and all D/21GO holds remain unchanged.
 
 Concrete resource/experiment proposal: [v0.2.89 measurement charter](andaluzcoin-auxpow-b-measurement-charter.md).
 Critical scope approval pending; no measurement execution, operator-budget adoption or qualification.
+
+Preparation follow-up: [v0.2.90 controls contract](andaluzcoin-auxpow-b-preparation-controls.md).
+Both preparation attempts stopped; the contract is design only and grants no new execution or qualification.

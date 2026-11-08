@@ -279,3 +279,6 @@ and PR -> exact-head technical/owner review and required CI -> permitted regular
 merge -> successful actual-master CI -> independently verified annotated
 research tag -> final report/closure. No old CI retry/waiver permission remains;
 no milestone completion, merge or tag is claimed while the required gates wait.
+
+Preparation follow-up: [v0.2.90 controls contract](andaluzcoin-auxpow-b-preparation-controls.md).
+Both preparation attempts stopped; the contract is design only and grants no new execution or qualification.
