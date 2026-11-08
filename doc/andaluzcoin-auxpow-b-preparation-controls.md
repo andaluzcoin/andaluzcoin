@@ -352,3 +352,7 @@ All D01-D08 remain OPEN, all 21 mainnet gates unchecked and mainnet NO-GO; conse
 - [Microsoft console-client list](https://learn.microsoft.com/en-us/windows/console/getconsoleprocesslist) and [console HWND/pseudoconsole semantics](https://learn.microsoft.com/en-us/windows/console/getconsolewindow).
 - [Microsoft job memory limits](https://learn.microsoft.com/en-us/windows/win32/api/winnt/ns-winnt-jobobject_extended_limit_information).
 - [Microsoft handle-list attribute](https://learn.microsoft.com/en-us/windows/win32/api/processthreadsapi/nf-processthreadsapi-updateprocthreadattribute) and [STARTUPINFO](https://learn.microsoft.com/en-us/windows/win32/api/processthreadsapi/ns-processthreadsapi-startupinfow).
+
+## Diagnostic packet continuation
+
+See [the proposed evidence-packet and readiness specification](andaluzcoin-auxpow-b-diagnostic-packet.md); diagnostic execution remains BLOCKED and measurements HOLD.
