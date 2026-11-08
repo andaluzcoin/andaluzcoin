@@ -478,3 +478,6 @@ count or GO date is implied by completing a research dossier.
 
 Security/cost eligibility and exact-contract follow-up: [v0.2.88 dossier](andaluzcoin-auxpow-b-security-cost-eligibility.md).
 Research/calibration only; no budget/parameter adoption, complete freeze or GO approval.
+
+Proposed component-measurement gate: [v0.2.89 charter](andaluzcoin-auxpow-b-measurement-charter.md).
+The scoped F4 exception is unapproved; the production freeze/executable holds remain.
