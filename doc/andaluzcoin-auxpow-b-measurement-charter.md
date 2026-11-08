@@ -282,3 +282,7 @@ no milestone completion, merge or tag is claimed while the required gates wait.
 
 Preparation follow-up: [v0.2.90 controls contract](andaluzcoin-auxpow-b-preparation-controls.md).
 Both preparation attempts stopped; the contract is design only and grants no new execution or qualification.
+
+## Diagnostic packet continuation
+
+See [the proposed evidence-packet and readiness specification](andaluzcoin-auxpow-b-diagnostic-packet.md); diagnostic execution remains BLOCKED and measurements HOLD.
