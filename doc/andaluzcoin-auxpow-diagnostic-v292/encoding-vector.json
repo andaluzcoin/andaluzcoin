@@ -1,0 +1,25 @@
+{
+  "kind": "SYNTHETIC_ENCODING_VECTOR",
+  "scope": "Canonical UTF-8 serialization and event digest framing only",
+  "input": {
+    "previous_digest": "0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef",
+    "payload": {
+      "z": "18446744073709551615",
+      "a": "line\né😀"
+    }
+  },
+  "expected_canonical_text": "{\"payload\":{\"a\":\"line\\u000aé😀\",\"z\":\"18446744073709551615\"},\"previous_digest\":\"0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef\"}",
+  "expected_byte_length": "148",
+  "expected_sha256": "7bf033a7a5f8de2526c83a0b0dda89cd8ed7c2aa02dc7b9d2635375e8692bdda",
+  "excluded_framing": [
+    "pipe length prefix",
+    "journal line feed"
+  ],
+  "expected_rejections": [
+    "Duplicate member names",
+    "JSON numeric tokens",
+    "Noncanonical field order",
+    "Short control escapes",
+    "Unicode surrogate escapes for scalar values"
+  ]
+}
