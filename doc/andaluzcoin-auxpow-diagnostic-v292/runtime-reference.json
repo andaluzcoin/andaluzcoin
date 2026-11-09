@@ -1,0 +1,44 @@
+{
+  "kind": "static-file-identity-reference",
+  "provenance": "File bytes and Windows file version metadata read on the current preparation workstation",
+  "lab_identity_state": "MISSING",
+  "dependency_closure_state": "MISSING",
+  "python_executable": {
+    "name": "python.exe",
+    "file_version": "3.9.0",
+    "byte_length": "100368",
+    "sha256": "9042daa88b2d3879a51bfabc2d90d4a56da05ebf184b6492a22a46fdc1c936a4",
+    "pe_machine": "0x8664",
+    "pe_optional_magic": "0x020b",
+    "pe_subsystem": "3",
+    "pe_subsystem_name": "IMAGE_SUBSYSTEM_WINDOWS_CUI"
+  },
+  "files_in_same_installation": [
+    {
+      "name": "python39.dll",
+      "byte_length": "4457488",
+      "sha256": "0eabf135bb9492e561bbbc5602a933623c9e461aceaf6eb1ceced635e363cd5c"
+    },
+    {
+      "name": "vcruntime140.dll",
+      "byte_length": "101672",
+      "sha256": "ff43e813785ee948a937b642b03050bb4b1c6a5e23049646b891a66f65d4c833"
+    },
+    {
+      "name": "vcruntime140_1.dll",
+      "byte_length": "44328",
+      "sha256": "7b8f70dd3bdae110e61823d1ca6fd8955a5617119f5405cdd6b14cad3656dfc7"
+    }
+  ],
+  "source_references": [
+    {
+      "url": "https://github.com/python/cpython/blob/v3.9.0/Modules/_winapi.c",
+      "git_blob": "e1672c478522e874e4560fed10828a8b4a4212db"
+    },
+    {
+      "url": "https://github.com/python/cpython/blob/v3.9.0/Lib/subprocess.py",
+      "git_blob": "13600c28cf71170b216ab5df055aa1402df60b32"
+    }
+  ],
+  "interpretation": "These digests identify reference files. The selected lab must supply its actual OS build, image, token, loader, API-set, binary and stdlib closure evidence. Interpreter execution and loader observation were outside this static read."
+}

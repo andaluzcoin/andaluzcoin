@@ -1,0 +1,208 @@
+{
+  "schema": "andaluzcoin-topology-lab-quota-candidate-v1",
+  "status": "PROPOSED_FOR_REVIEW",
+  "parent_research_merge": "1e40b1507ab2ffbd03a2d47d89bf009b9edd07a0",
+  "scope": "One future topology-only attempt consisting of serial L0 then L1, each once. Broker, L0 leaf, L1 root and L1 child are the only proposed application lifetimes.",
+  "disposition": {
+    "diagnostic": "BLOCKED",
+    "execution_approval": "MISSING",
+    "mainnet": "NO-GO",
+    "measurements": "HOLD",
+    "operator_environment": "UNSELECTED",
+    "operator_budgets": "UNSELECTED"
+  },
+  "provenance": {
+    "proposal_author_role": "laboratory quota drafter",
+    "review_disposition": "PRESENT_UNREVIEWED",
+    "required_review_roles": [
+      "controls",
+      "ownership",
+      "receipt",
+      "network assurance"
+    ],
+    "specification": "https://github.com/andaluzcoin/andaluzcoin/blob/1e40b1507ab2ffbd03a2d47d89bf009b9edd07a0/doc/andaluzcoin-auxpow-b-diagnostic-packet.md#L343-L374",
+    "hard_commit_reference": "https://learn.microsoft.com/en-us/windows/win32/api/winnt/ns-winnt-jobobject_extended_limit_information",
+    "active_process_reference": "https://learn.microsoft.com/en-us/windows/win32/api/winnt/ns-winnt-jobobject_basic_limit_information",
+    "job_accounting_reference": "https://learn.microsoft.com/en-us/windows/win32/api/winnt/ns-winnt-jobobject_basic_accounting_information",
+    "documented_job_queries": "https://learn.microsoft.com/en-us/windows/win32/api/jobapi2/nf-jobapi2-queryinformationjobobject",
+    "memory_notification_reference": "https://learn.microsoft.com/en-us/windows/win32/api/winnt/ns-winnt-jobobject_limit_violation_information_2",
+    "process_memory_reference": "https://learn.microsoft.com/en-us/windows/win32/api/psapi/ns-psapi-process_memory_counters_ex",
+    "rationale": "The receipt-only cases need four application lifetimes and short bounded waits. The ceilings are proposed stop and admission policies for that shape. Historical stopped preparation observed approximately 13 MiB of broker commit, 21 MiB of sampled working set, 2.39 startup core-seconds and a 344 ms polling gap. Those observations motivate review margin and explicit gap refusal. They establish neither feasible execution under these limits nor operator capacity. The historical 1 GiB, 600 core-seconds and 1800 seconds supply no authority."
+  },
+  "hard_job_limits": {
+    "classification": "HARD_AFTER_ESTABLISHMENT",
+    "aggregate_job_commit_bytes": "268435456",
+    "aggregate_active_process_limit": "3",
+    "owned_case_job_active_process_limits": {
+      "L0": "1",
+      "L1": "2"
+    },
+    "kill_on_last_handle_close": true,
+    "allow_breakaway": false,
+    "allow_silent_breakaway": false,
+    "establishment": "Verify actual aggregate and owned nested job identity, exclusive termination ownership, requested flags and numeric limit readbacks before first call commitment. Verify direct client image and both memberships while suspended. The L1 root creates its sole child under the inherited case job after the exact call permit. A job limit governs associated processes after establishment. It supplies no pre-assignment or external helper coverage.",
+    "stop_rule": "Missing establishment or readback before commitment is BLOCKED. Unexpected process, admission failure, identity discrepancy or hard limit event after commitment is STOPPED. Preserve the attempted association separately from known active lifetimes. Termination is restricted to an exclusively owned case job or the exact held creation handle of its owned direct client when case assignment fails."
+  },
+  "monitored_cpu_and_wall": {
+    "classification": "MONITORED_STOP",
+    "cpu_counter_unit": "100 ns user plus kernel execution ticks",
+    "cpu_stop_ticks": "200000000",
+    "cpu_cleanup_review_ticks": "250000000",
+    "wall_clock": "QPC ticks, with immutable QPC frequency and integer comparisons",
+    "normal_wall_stop_ms": "30000",
+    "cleanup_disposition_ms": "45000",
+    "wall_start": "First broker monotonic timestamp. Freeze an earlier accountable clock bound if claiming a bound for pre-entry wall time. In its absence mark interpreter startup wall time uncovered and qualify the topology window separately.",
+    "cpu_charge": "Charge aggregate job user and kernel counters including already exited members, plus full broker lifetime CPU sampled at control establishment as a conservative startup charge. Report possible startup overlap. Nested case counters are recorded separately and never summed into the aggregate.",
+    "completion_boundary": "Include preflight, controlled startup, launch, wait, receipt, termination and cleanup work while observed. Preserve the last observation and any broker self-exit tail. Additional review or evidence is required for a whole-family guarantee. Network assurance must cover pre-entry and self-exit regardless of this clock window.",
+    "stop_rule": "At normal threshold prevent further launch/release, stop and preserve cleanup evidence. Reaching a cleanup threshold records overshoot or incomplete cleanup and cannot imply termination. These values are monitor thresholds and allocate 5 observed core-seconds and 15 observed wall-seconds for cleanup review."
+  },
+  "monitored_deadlines_ms": {
+    "control_establishment_from_broker_entry": "8000",
+    "L0_from_first_launch_intent_to_case_reconciliation": "8000",
+    "L1_from_first_launch_intent_to_case_reconciliation": "12000",
+    "direct_resume_result_or_delegated_call_permit_to_ready": "3000",
+    "ready_to_fresh_binding_and_release_ack": "1000",
+    "delegated_intent_to_authorization": "1000",
+    "delegated_authorization_to_enter_request": "1000",
+    "delegated_enter_to_committed_call_permit": "1000",
+    "delegated_call_permit_to_creator_result": "2000",
+    "leaf_or_child_release_ack_to_terminal": "2000",
+    "root_child_reconciliation_to_terminal": "2000",
+    "client_terminal_to_observed_exit": "2000",
+    "graceful_cleanup_after_stop": "2000",
+    "termination_request_to_owned_child_exit_review": "3000",
+    "pipe_drain_and_final_recording_review": "5000",
+    "comparison": "The earliest applicable absolute deadline wins. Derive each relative stage deadline once from its named observed event. A deadline cannot reset an enclosing case or attempt deadline. A late or missing required record is STOPPED after first commitment."
+  },
+  "monitored_sampling": {
+    "classification": "MONITORED_STOP",
+    "target_poll_interval_ms": "25",
+    "target_scratch_scan_interval_ms": "25",
+    "minimum_periodic_row_spacing_ms": "10",
+    "maximum_accepted_observed_gap_ms": "250",
+    "maximum_periodic_rows": "5120",
+    "scope": "Sample job accounting, process identities, observed handle and thread counts, process memory, live logical scratch, pipe state and output accounting while the broker can observe them. Record gaps and failed collection. A missed identity, late observation or count inconsistency is a refusal or stop at the applicable phase. Treat notification delivery as supplementary.",
+    "row_encoding": "One candidate auxiliary file of fixed 96-byte records. Fields are twelve unsigned 64-bit little-endian integers in the declared order. Emit a row only for a complete observation. An absent or failed required value is recorded as a separately bounded canonical UNKNOWN or ERROR event and prevents PASS. Record QPC frequency, common origin and unit definitions in the bound control snapshot.",
+    "row_fields_in_order": [
+      "sample_ordinal",
+      "qpc_ticks",
+      "job_user_100ns",
+      "job_kernel_100ns",
+      "job_peak_commit_bytes",
+      "sampled_private_commit_sum_bytes",
+      "sampled_working_set_sum_bytes",
+      "scratch_live_logical_bytes",
+      "mediated_bytes_before_this_write",
+      "job_active_processes",
+      "job_total_processes",
+      "job_terminated_processes"
+    ],
+    "stop_rule": "Retain actual sampled ticks, maximum gap, stopping request and overshoot. A required gap above 250 ms or sample count overflow refuses PASS. Sampling proves neither continuous occupancy nor closed process history."
+  },
+  "memory_observation_and_allocations": {
+    "private_commit_sample_stop_bytes": "201326592",
+    "working_set_sample_stop_bytes": "402653184",
+    "broker_explicit_buffer_capacity_bytes": "4194304",
+    "each_client_explicit_buffer_capacity_bytes": "262144",
+    "broker_pending_frame_max_bytes": "65600",
+    "broker_pending_frame_max_count": "16",
+    "requested_pipe_buffer_bytes_per_direction": "4096",
+    "source_hash_read_chunk_max_bytes": "65536",
+    "thread_stack_reserve_per_thread_proposal_bytes": "2097152",
+    "coverage": "Sum observed PrivateUsage and WorkingSetSize separately over verified live process handles. Label the observation order and scope. Report per-process peaks separately from aggregate job peak. A working-set sum can include shared pages. Count explicit buffer capacity, in-flight copies, digest/encoding staging, descriptors, pipe queues and writer overlap once per owner. Managed/runtime heap and committed stacks remain charged to job commit. Requested pipe buffer sizes supply no independent kernel-memory cap. Static PE stack reserve and runtime thread policy need exact evidence.",
+    "current_job_commit": "MISSING for exact live job-wide commit unless a reviewed supported implementation supplies it. Class 9 supplies JobMemoryLimit and PeakJobMemoryUsed. The historical class 28 query is absent from the documented QueryInformationJobObject class list. Class 34 JobMemory is conditioned on a qualifying memory notification. Summed PrivateUsage is a separate observation. If the selected claim requires exact current job commit, this remains a readiness blocker.",
+    "stop_rule": "The private and working-set thresholds are monitored stops. Missing required ownership or buffer inventory before commitment blocks readiness. Any proposed capacity allocation refused after commitment consumes the attempt and stops it."
+  },
+  "handles_and_threads": {
+    "classification": "MONITORED_STOP except the explicit inherited handle allowlist",
+    "inherited_std_handles_per_client": "3",
+    "live_handle_count_max_by_role": {
+      "BROKER": "96",
+      "L0_LEAF": "24",
+      "L1_ROOT": "48",
+      "L1_CHILD": "24"
+    },
+    "maximum_simultaneous_role_handles": "168",
+    "live_thread_count_max_by_role": {
+      "BROKER": "2",
+      "L0_LEAF": "1",
+      "L1_ROOT": "1",
+      "L1_CHILD": "1"
+    },
+    "maximum_simultaneous_role_threads": "4",
+    "intentional_broker_worker_threads": "1",
+    "intentional_new_client_threads": "0",
+    "scope": "Three explicit std handles in the child allowlist and no inherited job handle. One charged broker worker thread owns synchronous creation and flush operations while the broker retains one durable sequencer. Charge private, duplicated, transient and closing handles, pending I/O objects and all runtime threads. A frozen type, owner, rights and close obligation is required for every managed handle. The exact thread collection API needs source review. Observed process handle and thread counts are not lifetime supremum guarantees."
+  },
+  "mediated_output": {
+    "classification": "HARD_AFTER_ESTABLISHMENT for the reviewed prewrite mediation domain",
+    "total_cumulative_bytes": "2097152",
+    "normal_broker_bytes": "1572864",
+    "per_client_bytes": {
+      "L0_LEAF": "65536",
+      "L1_ROOT": "65536",
+      "L1_CHILD": "65536"
+    },
+    "terminal_and_cleanup_reserve_bytes": "327680",
+    "broker_normal_allocations_bytes": {
+      "canonical_event_file": "786432",
+      "raw_sample_file": "491520",
+      "transport_journal_checkpoint_and_copies": "294912"
+    },
+    "reserve_allocations_bytes": {
+      "stop_cleanup_and_terminal_frames": "196608",
+      "detached_inventory_and_terminal_io": "131072"
+    },
+    "max_normal_event_frames": "48",
+    "max_stop_cleanup_terminal_frames": "12",
+    "canonical_event_frame_max_bytes_including_lf": "16384",
+    "client_control_payload_max_bytes": "4096",
+    "client_control_length_prefix_bytes": "4",
+    "client_control_frame_max_bytes_including_prefix": "4100",
+    "client_raw_stderr_max_bytes_per_role": "8192",
+    "max_attempted_terminal_records": "1",
+    "max_attempted_detached_inventory_files": "1",
+    "max_checkpoint_rewrites": "4",
+    "max_checkpoint_write_bytes_each": "16384",
+    "accounting": "Reserve full framed capacity before every emission or write, including actual escaped encoding, control ACKs, raw stdio, journals, duplicate broker recording, scratch writes, partial failures, rewrites, cleanup and detached finalization. File storage of already charged pipe bytes is a separate write. An unsuccessful or partial reserved emission never makes its reserved capacity available to a competing writer. Counter cuts describe completed prior writes. A record's own reservation is distinct and its later committed bytes enter a subsequent cut.",
+    "stop_rule": "Reject a non-fitting frame or exhausted owner partition before writing. Reserve is unavailable for normal output. Preserve the existing prefix and explicit incomplete status on short/failed terminal write. The independent raw stderr bound limits retained bytes. Interpreter or DLL startup/fatal output needs separately established prewrite coverage if whole-emission mediation is required. A raw retention cap does not close that row."
+  },
+  "scratch": {
+    "classification": "MONITORED_STOP",
+    "live_logical_bytes_stop": "4194304",
+    "live_regular_file_count_stop": "12",
+    "relative_path_depth_max": "1",
+    "scope": "Fresh exclusive attempt directory with a frozen basename allowlist and separate immutable inputs. Charge partial output, checkpoint old/new overlap, terminal files and detached inventory. Retain scan timestamp and observed overshoot. The monitored total is a live logical file-length metric."
+  },
+  "canonical_encoding_bounds": {
+    "encoding": "Strict canonical UTF8 JSON without BOM. A durable event-file LF and a local pipe frame's 4-byte unsigned little-endian payload length are outside the canonical JSON digest input. Pipe frames have no newline terminator. Numeric quantities use bounded canonical decimal strings. Reject duplicate or unknown fields and any alternate encoding before trusted use.",
+    "max_container_depth": "8",
+    "max_object_member_count": "48",
+    "max_array_items": "32",
+    "max_key_ascii_bytes": "48",
+    "max_string_utf8_bytes_before_json_escaping": "4096",
+    "max_unsigned_decimal_digits": "20",
+    "max_signed_decimal_digits_excluding_minus": "19",
+    "unsigned_absolute_max": "18446744073709551615",
+    "signed_min": "-9223372036854775808",
+    "signed_max": "9223372036854775807",
+    "digest_lowercase_hex_bytes": "64",
+    "max_explicit_evidence_refs_per_event": "16",
+    "bound_interaction": "Per-field maximum and full framed byte maximum both apply, with stricter event-specific limits supplied by the reviewed schema. Reject oversize input before decoding or reserving storage. Semantic clocks and counters must fit their own declared unit and range."
+  },
+  "network_assurance": {
+    "state": "MISSING_EFFECTIVE_BOUNDARY_EVIDENCE",
+    "required_application_network_bytes": "0",
+    "coverage": "Cover broker, clients, descendants and attributable helper/service activity through startup, cleanup, postterminal work and observer exit. Bind exact effective enforcement, observed paths, subject attribution and independent review. Local control pipes need verified local-only semantics in the selected boundary.",
+    "host_control_and_evidence_allocations_state": "MISSING",
+    "host_control_and_evidence_allocations_scope": "Bind independent host-side limits for attributable controls and observers, offline disk staging and bounded post-power-off receipt recovery. Guest quotas cover guest roles."
+  },
+  "protocol_lifetime_limits": {
+    "allowed_client_launches": {
+      "L0": "1",
+      "L1": "2",
+      "total": "3"
+    },
+    "scope": "Source and admission protocol policy across the attempt"
+  }
+}

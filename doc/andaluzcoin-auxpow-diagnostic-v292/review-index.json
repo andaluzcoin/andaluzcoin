@@ -1,0 +1,126 @@
+{
+  "schema": "andaluzcoin-diagnostic-review-index-v1",
+  "milestone": "v0.2.92",
+  "baseline_commit": "1e40b1507ab2ffbd03a2d47d89bf009b9edd07a0",
+  "tracking_issue": "119",
+  "kind": "REVIEW_CANDIDATE_INDEX",
+  "execution_eligible": false,
+  "diagnostic": "BLOCKED",
+  "measurements": "HOLD",
+  "operator_environment": "UNSELECTED",
+  "operator_budgets": "UNSELECTED",
+  "mainnet": "NO-GO",
+  "candidate_artifacts": [
+    {
+      "path": "README.md",
+      "byte_length": "4518",
+      "sha256": "1703afeef859bab43ede6cd38884f61e4b30f6cb11ba5ebca852cac102caa4cc"
+    },
+    {
+      "path": "controls.md",
+      "byte_length": "18491",
+      "sha256": "8a2b9f6c57491ae3af9cbad1301db0b1a986a985fff3a4867aefb47f0ce14476"
+    },
+    {
+      "path": "encoding-vector.json",
+      "byte_length": "906",
+      "sha256": "d926d1d3a54b33dad915b0f724676c20b91c7bbd0c809c89d71917aaaf021be8"
+    },
+    {
+      "path": "expectations.md",
+      "byte_length": "15501",
+      "sha256": "d2d44250088c408a1091ba54307a7ef7863d377d578e50bbc599254a9cd4d912"
+    },
+    {
+      "path": "network.md",
+      "byte_length": "9842",
+      "sha256": "6571fafdcaed019ea267033833d6edb8d40b1b78717ed67c884071c3d760ea6a"
+    },
+    {
+      "path": "quotas.json",
+      "byte_length": "16032",
+      "sha256": "68faaa25a9e972f51e87b7c51c14fa11f664f8f68086d8625e76e345bcb612d4"
+    },
+    {
+      "path": "receipt_encoding.py",
+      "byte_length": "4484",
+      "sha256": "de1e3697992d4715b2f1b0a85e8ccd483402adeb62a54190cf200b8969e92638"
+    },
+    {
+      "path": "runtime-reference.json",
+      "byte_length": "1682",
+      "sha256": "47805b90112bcab54028854bff7acdbcc9435ea51c12d212110476ba2267a934"
+    }
+  ],
+  "mandatory_execution_inputs": [
+    {
+      "category": "EXECUTION_MANIFEST",
+      "state": "MISSING",
+      "candidate_artifacts": [],
+      "required_evidence": "Final immutable manifest binding the actual inputs for the selected lab and exact cases"
+    },
+    {
+      "category": "SOURCE_FREEZE",
+      "state": "MISSING",
+      "candidate_artifacts": [
+        "receipt_encoding.py",
+        "controls.md"
+      ],
+      "required_evidence": "Exact broker and client implementation bytes, imports, dependencies, entry points, APIs and independently reviewed ownership"
+    },
+    {
+      "category": "HOST_RUNTIME",
+      "state": "MISSING",
+      "candidate_artifacts": [
+        "runtime-reference.json"
+      ],
+      "required_evidence": "Named lab and custodian, exact host and guest builds, runtime, loader and protected artifact closure"
+    },
+    {
+      "category": "LAUNCH_CONTROL_FREEZE",
+      "state": "MISSING",
+      "candidate_artifacts": [
+        "controls.md"
+      ],
+      "required_evidence": "L1 console helper ownership and accounting, held-handle termination rights or exclusive guest fail-safe, and source-level API and handle closure"
+    },
+    {
+      "category": "QUOTA_OUTPUT_FREEZE",
+      "state": "MISSING",
+      "candidate_artifacts": [
+        "quotas.json"
+      ],
+      "required_evidence": "Reviewed and established controls, exact current job commit, whole-emission coverage, observer-tail evidence and host control-plane allocations"
+    },
+    {
+      "category": "NETWORK_ASSURANCE",
+      "state": "MISSING",
+      "candidate_artifacts": [
+        "network.md"
+      ],
+      "required_evidence": "Effective NET-LAB, NET-PATHS, NET-POLICY, NET-COVERAGE and NET-SCOPE artifacts"
+    },
+    {
+      "category": "RECEIPT_OBSERVATION_FREEZE",
+      "state": "MISSING",
+      "candidate_artifacts": [
+        "expectations.md",
+        "encoding-vector.json",
+        "receipt_encoding.py"
+      ],
+      "required_evidence": "Complete event schemas, causal checker, observer bindings, expected evidence and bounded I/O implementation"
+    },
+    {
+      "category": "INDEPENDENT_EXECUTION_PACKET_REVIEW",
+      "state": "MISSING",
+      "candidate_artifacts": [],
+      "required_evidence": "Detached review tied to the final manifest and each required artifact"
+    },
+    {
+      "category": "FRESH_EXECUTION_APPROVAL",
+      "state": "MISSING",
+      "candidate_artifacts": [],
+      "required_evidence": "Detached approval bound to final manifest, review, limits, new attempt identity and L1 exception"
+    }
+  ]
+}
